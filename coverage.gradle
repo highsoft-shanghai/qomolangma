@@ -1,0 +1,4 @@
+project.coverage.excludes = [
+    'ltd/highsoft/hzfa/Application.class',
+    'ltd/highsoft/hzfa/configs/EmbeddedMongoDbFactory.class', // Embedded mongodb
+]
