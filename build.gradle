@@ -28,16 +28,12 @@ subprojects {
 }
 
 dependencies {
-    implementation project(":users.domain")
-    implementation project(":users.application")
     implementation project(":users.gateways")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-aop")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.github.cloudyrock.mongock:mongock-spring:$mongockVersion")
-    implementation("com.github.silaev:mongodb-replica-set:$mongodbReplicaSetVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
