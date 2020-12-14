@@ -5,7 +5,7 @@ plugins {
 }
 
 allprojects {
-    if (subprojects.size() > 0 && name != rootProject   .name) return
+    if (subprojects.size() > 0 && name != rootProject.name) return
     if (name == "documents" || projectDir.parentFile.name == "frontends") return
 
     version '1.0.0'
@@ -28,9 +28,9 @@ subprojects {
 }
 
 dependencies {
-    implementation project(":modulename.domain")
-    implementation project(":modulename.application")
-    implementation project(":modulename.gateways")
+    implementation project(":users.domain")
+    implementation project(":users.application")
+    implementation project(":users.gateways")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
