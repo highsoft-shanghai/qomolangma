@@ -43,3 +43,8 @@ apply from: "$rootDir/gradle/config/scripts/coverage-all.gradle"
 apply from: "./coverage.gradle"
 
 apply from: "$rootDir/gradle/config/scripts/jib.gradle"
+
+task initGit(type: Exec) {
+    commandLine 'sh', "./scripts/setup-git.sh"
+}
+check.dependsOn(initGit)
