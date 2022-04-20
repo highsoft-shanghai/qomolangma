@@ -1,5 +1,6 @@
 class CoverageExtension {
-    @SuppressWarnings("unused") excludes = []
+    @SuppressWarnings("unused")
+            excludes = []
 }
 
 apply plugin: 'java'
@@ -22,8 +23,8 @@ task jacocoMerge(type: JacocoMerge) {
 
 task jacocoRootReport(type: JacocoReport, group: 'verification') {
     reports {
-        html.enabled = true
-        xml.enabled = true
+        html.required = true
+        xml.required = true
     }
 }
 
@@ -31,6 +32,11 @@ task jacocoRootCoverageVerification(type: JacocoCoverageVerification, group: 've
     violationRules {
         rule {
             element = 'PACKAGE'
+            limit {
+                counter = 'INSTRUCTION'
+                value = 'COVEREDRATIO'
+                minimum = 1.0
+            }
             limit {
                 counter = 'LINE'
                 value = 'COVEREDRATIO'

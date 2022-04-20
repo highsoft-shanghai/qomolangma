@@ -1,32 +1,25 @@
 buildscript {
     repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+        gradlePluginPortal()
     }
     dependencies {
-        classpath "com.github.node-gradle:gradle-node-plugin:$nodePluginVersion"
+        classpath "com.github.node-gradle:gradle-node-plugin:3.1.1"
     }
 }
 
-apply plugin: com.moowork.gradle.node.NodePlugin
+apply plugin: com.github.gradle.node.NodePlugin
 
-npmInstall {
-    args = ['--registry=https://registry.npm.taobao.org']
+task yarn_build(type: YarnTask, dependsOn: yarn) {
+    group = 'build'
+    args = ['build']
 }
 
-
-task npmRunTest(type: NpmTask, group: 'verification') {
-    args = ['run', 'test']
+task yarn_test(type: YarnTask, dependsOn: yarn) {
+    group = 'verification'
+    args = ['test:unit']
 }
 
-task npmWatchTest(type: NpmTask, group: 'verification') {
-    args = ['run', 'watch']
+if (!project.hasProperty('skipFrontends')) {
+    tasks.named('test') { it.dependsOn(yarn_test) }
+    tasks.named('build') { it.dependsOn(yarn_build) }
 }
-
-task npmRunBuild(type: NpmTask, group: 'build') {
-    args = ['run', 'build']
-}
-
-test.dependsOn(tasks.getByName('npmRunTest'))
-build.dependsOn(tasks.getByName('npmRunBuild'))
