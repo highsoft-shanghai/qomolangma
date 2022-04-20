@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(":domain.core")
+    implementation libs.springContext
+    implementation libs.springTx
+}

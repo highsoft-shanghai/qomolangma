@@ -49,6 +49,7 @@ dependencies {
     implementation libs.flyaway
     implementation libs.mariadb
     implementation libs.springdoc
+    implementation libs.springBootJDBC
     annotationProcessor libs.springBootConfigurationProcessor
     testImplementation libs.springBootTest
     testImplementation libs.testcontainersJunitJupiter
