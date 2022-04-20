@@ -16,7 +16,7 @@ task yarn_build(type: YarnTask, dependsOn: yarn) {
 
 task yarn_test(type: YarnTask, dependsOn: yarn) {
     group = 'verification'
-    args = ['test:unit']
+    args = ['test']
 }
 
 if (!project.hasProperty('skipFrontends')) {
