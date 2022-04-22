@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 import static com.example.frameworks.domain.core.StringFieldType.asString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class DomainFieldTest {
+class ValueTest {
 
     private TestUser john;
 
@@ -25,7 +25,7 @@ class DomainFieldTest {
         assertEquals(john.getName(), "Neil");
     }
 
-    static class TestUser extends DomainField<String> {
+    static class TestUser extends Value<String> {
 
         public TestUser(String value) {
             super(value, asString());
