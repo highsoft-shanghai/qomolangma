@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 public class WithMocksTest {
     private Person errorPerson;
     private @Mock Persons persons;
-    private @Spy Persons spyPerson = new TestPersons();
+    private @Spy Persons spyPerson;
     private @Captor ArgumentCaptor<Person> captor;
 
     @BeforeEach
