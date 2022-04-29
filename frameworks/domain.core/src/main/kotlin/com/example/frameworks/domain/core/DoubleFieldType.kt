@@ -1,19 +1,18 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-public class DoubleFieldType extends FieldType<Double> {
-
-    public static FieldType<Double> asDouble() {
-        return new DoubleFieldType();
+class DoubleFieldType : FieldType<Double>() {
+    override fun match(underlyingType: Class<*>): Boolean {
+        return Number::class.java.isAssignableFrom(underlyingType)
     }
 
-    @Override
-    protected boolean match(Class<?> underlyingType) {
-        return Number.class.isAssignableFrom(underlyingType);
+    override fun convert(value: Any): Double {
+        return (value as Number).toDouble()
     }
 
-    @Override
-    protected Double convert(Object value) {
-        return ((Number) value).doubleValue();
+    companion object {
+        @JvmStatic
+        fun asDouble(): FieldType<Double> {
+            return DoubleFieldType()
+        }
     }
-
 }
