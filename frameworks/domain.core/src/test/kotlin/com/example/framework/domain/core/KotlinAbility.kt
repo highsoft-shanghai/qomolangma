@@ -1,4 +1,4 @@
-package com.example
+package com.example.framework.domain.core
 
 class KotlinAbility {
     fun run(): String {

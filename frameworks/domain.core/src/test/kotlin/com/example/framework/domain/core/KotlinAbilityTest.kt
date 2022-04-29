@@ -1,4 +1,4 @@
-package com.example
+package com.example.framework.domain.core
 
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
