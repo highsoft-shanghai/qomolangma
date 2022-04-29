@@ -1,21 +1,18 @@
-package com.example.frameworks.context.test;
+package com.example.frameworks.context.test
 
-import com.example.frameworks.domain.core.GlobalClockResetter;
-import org.junit.jupiter.api.extension.AfterEachCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import com.example.frameworks.domain.core.GlobalClockResetter
+import org.junit.jupiter.api.extension.AfterEachCallback
+import org.junit.jupiter.api.extension.BeforeEachCallback
+import org.junit.jupiter.api.extension.ExtensionContext
+import java.time.Instant
 
-import java.time.Instant;
-
-public class FixClockTimeExtension implements BeforeEachCallback, AfterEachCallback {
-    @Override
-    public void beforeEach(ExtensionContext context) {
-        FixClockTime annotation = context.getRequiredTestClass().getDeclaredAnnotation(FixClockTime.class);
-        GlobalClockResetter.fixAt(Instant.parse(annotation.value()));
+class FixClockTimeExtension : BeforeEachCallback, AfterEachCallback {
+    override fun beforeEach(context: ExtensionContext) {
+        val annotation = context.requiredTestClass.getDeclaredAnnotation(FixClockTime::class.java)
+        GlobalClockResetter.fixAt(Instant.parse(annotation.value))
     }
 
-    @Override
-    public void afterEach(ExtensionContext context) {
-        GlobalClockResetter.reset();
+    override fun afterEach(context: ExtensionContext) {
+        GlobalClockResetter.reset()
     }
 }

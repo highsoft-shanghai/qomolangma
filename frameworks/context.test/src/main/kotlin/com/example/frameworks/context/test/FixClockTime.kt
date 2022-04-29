@@ -1,12 +1,15 @@
-package com.example.frameworks.context.test;
+package com.example.frameworks.context.test
 
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtendWith
 
-import java.lang.annotation.*;
-
-@Target({ElementType.TYPE, ElementType.METHOD, ElementType.ANNOTATION_TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-@ExtendWith(FixClockTimeExtension.class)
-public @interface FixClockTime {
-    String value();
-}
+@Target(
+    AnnotationTarget.ANNOTATION_CLASS,
+    AnnotationTarget.CLASS,
+    AnnotationTarget.FUNCTION,
+    AnnotationTarget.PROPERTY_GETTER,
+    AnnotationTarget.PROPERTY_SETTER,
+    AnnotationTarget.ANNOTATION_CLASS
+)
+@Retention(AnnotationRetention.RUNTIME)
+@ExtendWith(FixClockTimeExtension::class)
+annotation class FixClockTime(val value: String)
