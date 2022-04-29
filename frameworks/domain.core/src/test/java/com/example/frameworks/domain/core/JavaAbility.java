@@ -1,6 +1,6 @@
 package com.example.frameworks.domain.core;
 
-public class JavaAbility {
+public record JavaAbility() {
     public String run() {
         return "Hello world.";
     }
