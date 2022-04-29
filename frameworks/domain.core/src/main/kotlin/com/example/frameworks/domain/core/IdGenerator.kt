@@ -1,6 +1,6 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-public interface IdGenerator {
-    String next();
-    String nextReadable();
+interface IdGenerator {
+    operator fun next(): String
+    fun nextReadable(): String
 }

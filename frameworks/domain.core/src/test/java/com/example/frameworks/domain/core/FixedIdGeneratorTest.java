@@ -12,6 +12,5 @@ class FixedIdGeneratorTest {
         IdGenerator idGenerator = new FixedIdGenerator(FIXED);
         assertThat(idGenerator.next()).isEqualTo(FIXED);
         assertThat(idGenerator.nextReadable()).isEqualTo(FIXED);
-        assertThat(new FixedIdGenerator(FIXED).id()).isEqualTo(FIXED);
     }
 }

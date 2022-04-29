@@ -1,14 +1,11 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-
-public record FixedIdGenerator(String id) implements IdGenerator {
-    @Override
-    public String next() {
-        return nextReadable();
+class FixedIdGenerator(private val id: String) : IdGenerator {
+    override fun next(): String {
+        return nextReadable()
     }
 
-    @Override
-    public String nextReadable() {
-        return id;
+    override fun nextReadable(): String {
+        return id
     }
 }
