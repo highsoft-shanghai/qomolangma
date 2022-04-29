@@ -9,7 +9,7 @@ fun execute(runnable: RunnableWithCheckedException) {
     }
 }
 
-fun <R> evaluate(supplier: SupplierWithCheckedException<R>): R {
+fun <R> evaluate(supplier: SupplierWithCheckedException<R?>): R? {
     return try {
         supplier.get()
     } catch (e: Exception) {
@@ -18,6 +18,6 @@ fun <R> evaluate(supplier: SupplierWithCheckedException<R>): R {
 }
 
 
-fun wrap(throwable: Throwable?): RuntimeException {
+fun wrap(throwable: Throwable): RuntimeException {
     return if (throwable is RuntimeException) throwable else RuntimeException(throwable)
 }
