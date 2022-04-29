@@ -1,22 +1,21 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-import java.math.BigDecimal;
+import java.math.BigDecimal
 
-public class DecimalFieldType extends FieldType<BigDecimal> {
-
-    public static DecimalFieldType asDecimal() {
-        return new DecimalFieldType();
+class DecimalFieldType : FieldType<BigDecimal>() {
+    override fun match(underlyingType: Class<*>): Boolean {
+        return Number::class.java.isAssignableFrom(underlyingType) || String::class.java.isAssignableFrom(underlyingType)
     }
 
-    @Override
-    protected boolean match(Class<?> underlyingType) {
-        return Number.class.isAssignableFrom(underlyingType) || String.class.isAssignableFrom(underlyingType);
+    override fun convert(value: Any): BigDecimal {
+        return if (Number::class.java.isAssignableFrom(value.javaClass)) BigDecimal.valueOf((value as Number).toDouble())
+        else BigDecimal(value as String)
     }
 
-    @Override
-    protected BigDecimal convert(Object value) {
-        if (Number.class.isAssignableFrom(value.getClass())) return BigDecimal.valueOf(((Number) value).doubleValue());
-        return new BigDecimal((String) value);
+    companion object {
+        @JvmStatic
+        fun asDecimal(): DecimalFieldType {
+            return DecimalFieldType()
+        }
     }
-
 }
