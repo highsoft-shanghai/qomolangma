@@ -1,55 +1,27 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-import java.util.*;
-import java.util.function.Function;
+import java.util.function.Function
 
-public class EmptyPage<T> implements Page<T> {
-    private final List<T> content;
-    private final long totalElements;
-    private final int size;
-    private final int number;
-    private final int numberOfElements;
+class EmptyPage<T> : Page<T> {
+    override val content: List<T>
+    override val totalElements: Long
+    override val size: Int
+    override val number: Int
+    override val numberOfElements: Int
 
-    public EmptyPage() {
-        content = new ArrayList<>();
-        totalElements = 0;
-        size = 0;
-        number = 0;
-        numberOfElements = 0;
+    init {
+        content = ArrayList()
+        totalElements = 0
+        size = 0
+        number = 0
+        numberOfElements = 0
     }
 
-    public EmptyPage<T> of() {
-        return new EmptyPage<>();
+    fun of(): EmptyPage<T> {
+        return EmptyPage()
     }
 
-    @Override
-    public List<T> getContent() {
-        return this.content;
+    override fun <U> map(converter: Function<in T, out U>?): Page<U>? {
+        return EmptyPage()
     }
-
-    @Override
-    public long getTotalElements() {
-        return totalElements;
-    }
-
-    @Override
-    public int getSize() {
-        return size;
-    }
-
-    @Override
-    public int getNumber() {
-        return number;
-    }
-
-    @Override
-    public int getNumberOfElements() {
-        return numberOfElements;
-    }
-
-    @Override
-    public <U> Page<U> map(Function<? super T, ? extends U> converter) {
-        return new EmptyPage<>();
-    }
-
 }
