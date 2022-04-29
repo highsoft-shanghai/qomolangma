@@ -1,17 +1,18 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-public class IntFieldType extends FieldType<Integer> {
-    public static IntFieldType asInt() {
-        return new IntFieldType();
+class IntFieldType : FieldType<Int>() {
+    override fun match(underlyingType: Class<*>): Boolean {
+        return Number::class.java.isAssignableFrom(underlyingType)
     }
 
-    @Override
-    protected boolean match(Class<?> underlyingType) {
-        return Number.class.isAssignableFrom(underlyingType);
+    override fun convert(value: Any): Int {
+        return (value as Number).toInt()
     }
 
-    @Override
-    protected Integer convert(Object value) {
-        return ((Number) value).intValue();
+    companion object {
+        @JvmStatic
+        fun asInt(): IntFieldType {
+            return IntFieldType()
+        }
     }
 }
