@@ -1,7 +1,19 @@
+buildscript {
+    ext.kotlin_version = '1.6.21'
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21"
+        classpath("org.jetbrains.kotlinx:kover:0.5.0")
+    }
+}
+
 plugins {
     alias(libs.plugins.springBoot)
     alias(libs.plugins.springDependencyManagement)
+    id("org.jetbrains.kotlinx.kover") version "0.5.0"
+    id "org.jetbrains.kotlin.jvm" version "1.6.21"
 }
+
+apply plugin: "kotlin"
 
 allprojects {
     if (subprojects.size() > 0 && name != rootProject.name) return
@@ -15,8 +27,12 @@ allprojects {
     apply from: "$rootDir/gradle/config/scripts/style.gradle"
     apply from: "$rootDir/gradle/config/scripts/coverage.gradle"
     apply from: "$rootDir/style.gradle"
+    apply plugin: "kotlin"
 
     dependencies {
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.21"
+        testImplementation "org.jetbrains.kotlin:kotlin-test:1.6.21"
+        implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.21"
         compileOnly libs.lombok
         implementation libs.guava
         implementation libs.commonsLang3
@@ -26,6 +42,11 @@ allprojects {
     }
 
     test.dependsOn(checkstyleMain)
+
+    sourceSets {
+        main.kotlin.srcDirs += 'src/main/kotlin'
+        main.java.srcDirs += 'src/main/java'
+    }
 }
 
 subprojects {
@@ -44,6 +65,9 @@ dependencies {
     implementation project(":users.gateways")
     testImplementation project(":core.test")
     implementation libs.springBootActuator
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.21"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.21"
+    testImplementation "org.jetbrains.kotlin:kotlin-test:1.6.21"
     implementation libs.springBootWeb
     implementation libs.springBootAop
     implementation libs.flyaway
@@ -60,4 +84,9 @@ if (!project.hasProperty('jacocoDisabled')) {
 }
 jar {
     enabled = false
+}
+
+sourceSets {
+    main.kotlin.srcDirs += 'src/main/kotlin'
+    main.java.srcDirs += 'src/main/java'
 }

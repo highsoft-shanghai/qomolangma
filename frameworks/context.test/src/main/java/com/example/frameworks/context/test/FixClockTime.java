@@ -1,4 +1,4 @@
-package changan.frameworks.context.test;
+package com.example.frameworks.context.test;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 

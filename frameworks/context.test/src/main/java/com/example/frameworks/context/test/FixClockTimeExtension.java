@@ -1,4 +1,4 @@
-package changan.frameworks.context.test;
+package com.example.frameworks.context.test;
 
 import com.example.frameworks.domain.core.GlobalClockResetter;
 import org.junit.jupiter.api.extension.AfterEachCallback;
