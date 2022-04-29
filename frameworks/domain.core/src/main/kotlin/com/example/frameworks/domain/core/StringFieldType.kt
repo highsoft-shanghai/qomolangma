@@ -1,6 +1,6 @@
 package com.example.frameworks.domain.core
 
-class StringFieldType : FieldType<String?>() {
+class StringFieldType : FieldType<String>() {
     fun nullToEmpty(): StringFieldType {
         setNullHandler { "" }
         return this
