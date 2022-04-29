@@ -12,7 +12,7 @@
 
 ## 提交前代码检查
 ```shell script
-./gradlew clean check
+sh ./scripts/check-all
 ```
 
 ## 运行主项目
