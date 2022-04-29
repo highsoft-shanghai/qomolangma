@@ -1,51 +1,79 @@
 package com.example.frameworks.core.test;
 
+import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.Spy;
 
+import java.util.Random;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
 
 @WithMocks
 public class WithMocksTest {
-    private @Mock WithMocksUnitTest test;
-    private @Spy WithMocksUnitTest test2 = new Impl("test");
+    private Person errorPerson;
+    private @Mock Persons persons;
+    private @Spy Persons spyPerson = new TestPersons();
+    private @Captor ArgumentCaptor<Person> captor;
 
     @BeforeEach
     void setUp() {
-        given(test.evaluate()).willReturn("test");
+        errorPerson = new Person(null, null);
+        doThrow(new RuntimeException("error, name cannot be null.")).when(persons).save(errorPerson);
     }
 
     @Test
     void should_be_able_to_mock_one_object_successfully() {
-        assertEquals(test.evaluate(), "test");
-        verify(test, times(1)).evaluate();
+        assertThatThrownBy(() -> persons.save(errorPerson))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("error, name cannot be null.");
     }
 
     @Test
-    void should_be_able_to_spy_one_object() {
-        assertEquals(test2.evaluate(), "test");
-        verify(test2, times(1)).evaluate();
+    void should_be_able_to_spy_one_real_object() {
+        Person neil = new Person("Neil Wang", "webmaster@neilwang.wiki");
+        spyPerson.save(neil);
+        verify(spyPerson).save(neil);
     }
 
-    interface WithMocksUnitTest {
-        String evaluate();
+    @Test
+    void should_be_able_to_use_captor_to_get_test_response() {
+        new SavePersonUseCase(persons).execute();
+        verify(persons, times(1)).save(captor.capture());
+        assertEquals(captor.getValue().name, "Neil");
+        assertEquals(captor.getValue().email.length(), 1);
+        assertTrue(Integer.parseInt(captor.getValue().email) >= 0);
+        assertTrue(Integer.parseInt(captor.getValue().email) < 5);
     }
 
-    private static class Impl implements WithMocksUnitTest {
-        private final String word;
+    @AllArgsConstructor
+    private static class SavePersonUseCase {
+        private final Persons persons;
 
-        Impl(String word) {
-            this.word = word;
+        private void execute() {
+            persons.save(new Person("Neil", String.valueOf(new Random().nextInt(5))));
         }
+    }
 
+    @AllArgsConstructor
+    private static class Person {
+        private final String name;
+        private final String email;
+    }
+
+    interface Persons {
+        void save(Person person);
+    }
+
+    private static class TestPersons implements Persons {
         @Override
-        public String evaluate() {
-            return word;
+        public void save(Person person) {
         }
     }
 }
