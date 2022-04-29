@@ -1,7 +1,3 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-public class MalformedPayloadException extends DomainException {
-    public MalformedPayloadException(String message) {
-        super(message);
-    }
-}
+class MalformedPayloadException(message: String) : DomainException(message)
