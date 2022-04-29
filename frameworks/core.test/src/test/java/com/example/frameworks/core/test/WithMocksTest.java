@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.only;
 
 @WithMocks
 public class WithMocksTest {
@@ -41,13 +41,13 @@ public class WithMocksTest {
     void should_be_able_to_spy_one_real_object() {
         Person neil = new Person("Neil Wang", "webmaster@neilwang.wiki");
         spyPerson.add(neil);
-        then(spyPerson).should(times(1)).add(neil);
+        then(spyPerson).should(only()).add(neil);
     }
 
     @Test
     void should_be_able_to_use_captor_to_get_test_response() {
         new SavePersonUseCase(persons).execute();
-        then(persons).should(times(1)).add(captor.capture());
+        then(persons).should(only()).add(captor.capture());
         assertEquals(captor.getValue().name, "Neil");
         assertEquals(captor.getValue().email.length(), 1);
         assertTrue(Integer.parseInt(captor.getValue().email) >= 0);

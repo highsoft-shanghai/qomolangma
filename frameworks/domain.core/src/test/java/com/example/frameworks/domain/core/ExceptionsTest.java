@@ -45,14 +45,14 @@ public class ExceptionsTest {
     void should_be_able_to_execute_method_when_method_is_good() throws IOException {
         when(mock.evaluate()).thenReturn("");
         Exceptions.execute(mock::execute);
-        then(mock).should(times(1)).execute();
+        then(mock).should(only()).execute();
     }
 
     @Test
     void should_be_able_to_evaluate_method_when_method_is_good() throws IOException {
         when(mock.evaluate()).thenReturn("Test.");
         String evaluate = Exceptions.evaluate(mock::evaluate);
-        then(mock).should(times(1)).evaluate();
+        then(mock).should(only()).evaluate();
         assertEquals(evaluate, "Test.");
     }
 
