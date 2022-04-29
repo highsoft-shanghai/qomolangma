@@ -1,6 +1,6 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-@FunctionalInterface
-public interface RunnableWithCheckedException {
-    void run() throws Exception;
+fun interface RunnableWithCheckedException {
+    @Throws(Exception::class)
+    fun run()
 }
