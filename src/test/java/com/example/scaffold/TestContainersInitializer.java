@@ -23,9 +23,7 @@ public class TestContainersInitializer implements BeforeAllCallback {
         if (mysqldb != null) return;
         mysqldb = new MariaDBContainer<>("mariadb:10.5.8");
         mysqldb.start();
-        System.setProperty("spring.datasource.url", mysqldb.getJdbcUrl() + "?useMysqlMetadata=true");
-        System.setProperty("spring.datasource.username", mysqldb.getUsername());
-        System.setProperty("spring.datasource.password", mysqldb.getPassword());
+        System.setProperty("DB_URI", mysqldb.getJdbcUrl());
     }
 
     public boolean isRunning() {
