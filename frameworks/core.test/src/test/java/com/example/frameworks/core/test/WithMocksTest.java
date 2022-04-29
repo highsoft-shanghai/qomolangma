@@ -36,7 +36,7 @@ public class WithMocksTest {
         String evaluate();
     }
 
-    static class Impl implements WithMocksUnitTest {
+    private static class Impl implements WithMocksUnitTest {
         private final String word;
 
         Impl(String word) {
