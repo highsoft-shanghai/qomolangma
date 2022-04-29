@@ -1,27 +1,18 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.stream.Collectors
 
-public class ArrayFieldType<T> extends FieldType<List<T>> {
-    private final FieldType<T> elementType;
-
-    public ArrayFieldType(FieldType<T> elementType) {
-        this.elementType = elementType;
+class ArrayFieldType<T>(private val elementType: FieldType<T>) : FieldType<List<T>>() {
+    fun nullToEmpty(): ArrayFieldType<T> {
+        setNullHandler { emptyList() }
+        return this
     }
 
-    public ArrayFieldType<T> nullToEmpty() {
-        setNullHandler(Collections::emptyList);
-        return this;
+    override fun match(underlyingType: Class<*>): Boolean {
+        return MutableList::class.java.isAssignableFrom(underlyingType)
     }
 
-    @Override
-    protected boolean match(Class<?> underlyingType) {
-        return List.class.isAssignableFrom(underlyingType);
-    }
-
-    @Override
-    protected List<T> convert(Object value) {
-        return ((List<?>) value).stream().map(elementType::from).collect(Collectors.toList());
+    override fun convert(value: Any): List<T> {
+        return (value as List<*>).stream().map(elementType::from).collect(Collectors.toList())
     }
 }
