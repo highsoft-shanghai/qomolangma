@@ -1,28 +1,28 @@
-package com.example.scaffold.config;
+package com.example.scaffold
 
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Info;
-import org.springdoc.core.GroupedOpenApi;
-import org.springframework.context.annotation.*;
+import io.swagger.v3.oas.models.OpenAPI
+import io.swagger.v3.oas.models.info.Info
+import org.springdoc.core.GroupedOpenApi
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 
 @Configuration
-public class SpringDocConfiguration {
-
+class SpringDocConfiguration {
     @Bean
-    public GroupedOpenApi publicApi() {
+    fun publicApi(): GroupedOpenApi {
         return GroupedOpenApi.builder()
             .group("Scaffold api")
             .pathsToMatch("/**")
-            .build();
+            .build()
     }
 
     @Bean
-    public OpenAPI springShopOpenAPI() {
-        return new OpenAPI().info(new Info()
-            .title("Title")
-            .description("Description.")
-            .version("v1.0.0")
-        );
+    fun springShopOpenAPI(): OpenAPI {
+        return OpenAPI().info(
+            Info()
+                .title("Title")
+                .description("Description.")
+                .version("v1.0.0")
+        )
     }
-
 }
