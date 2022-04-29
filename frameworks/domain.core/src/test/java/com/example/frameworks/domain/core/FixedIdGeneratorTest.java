@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class FixedIdGeneratorTest {
-
     public static final String FIXED = "fixed";
 
     @Test
@@ -13,6 +12,6 @@ class FixedIdGeneratorTest {
         IdGenerator idGenerator = new FixedIdGenerator(FIXED);
         assertThat(idGenerator.next()).isEqualTo(FIXED);
         assertThat(idGenerator.nextReadable()).isEqualTo(FIXED);
+        assertThat(new FixedIdGenerator(FIXED).id()).isEqualTo(FIXED);
     }
-
 }
