@@ -1,6 +1,6 @@
 enableFeaturePreview("VERSION_CATALOGS")
 
-rootProject.name = 'java-ci-scaffold'
+rootProject.name = 'kotlin-ci-scaffold'
 
 file("modules").eachDir {
     include it.name
