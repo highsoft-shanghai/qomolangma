@@ -1,17 +1,18 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-public class LongFieldType extends FieldType<Long> {
-    public static FieldType<Long> asLong() {
-        return new LongFieldType();
+class LongFieldType : FieldType<Long>() {
+    override fun match(underlyingType: Class<*>): Boolean {
+        return Number::class.java.isAssignableFrom(underlyingType)
     }
 
-    @Override
-    protected boolean match(Class<?> underlyingType) {
-        return Number.class.isAssignableFrom(underlyingType);
+    override fun convert(value: Any): Long {
+        return (value as Number).toLong()
     }
 
-    @Override
-    protected Long convert(Object value) {
-        return ((Number) value).longValue();
+    companion object {
+        @JvmStatic
+        fun asLong(): FieldType<Long> {
+            return LongFieldType()
+        }
     }
 }
