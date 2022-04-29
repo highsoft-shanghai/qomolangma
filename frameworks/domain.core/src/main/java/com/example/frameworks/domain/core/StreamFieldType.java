@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class StreamFieldType<T> extends FieldType<Stream<T>> {
-
     private final FieldType<T> elementType;
 
     public StreamFieldType(FieldType<T> elementType) {
@@ -25,5 +24,4 @@ public class StreamFieldType<T> extends FieldType<Stream<T>> {
         setNullHandler(Stream::empty);
         return this;
     }
-
 }

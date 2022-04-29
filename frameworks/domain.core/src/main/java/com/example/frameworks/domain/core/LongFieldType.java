@@ -1,7 +1,6 @@
 package com.example.frameworks.domain.core;
 
 public class LongFieldType extends FieldType<Long> {
-
     public static FieldType<Long> asLong() {
         return new LongFieldType();
     }
@@ -15,5 +14,4 @@ public class LongFieldType extends FieldType<Long> {
     protected Long convert(Object value) {
         return ((Number) value).longValue();
     }
-
 }

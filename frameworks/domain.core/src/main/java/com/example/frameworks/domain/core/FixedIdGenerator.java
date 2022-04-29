@@ -1,14 +1,7 @@
 package com.example.frameworks.domain.core;
 
 
-public class FixedIdGenerator implements IdGenerator {
-
-    private final String id;
-
-    public FixedIdGenerator(String id) {
-        this.id = id;
-    }
-
+public record FixedIdGenerator(String id) implements IdGenerator {
     @Override
     public String next() {
         return nextReadable();
@@ -18,5 +11,4 @@ public class FixedIdGenerator implements IdGenerator {
     public String nextReadable() {
         return id;
     }
-
 }

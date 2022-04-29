@@ -4,7 +4,6 @@ import lombok.*;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class GlobalIdGenerator {
-
     private static IdGenerator idGenerator = new UuidBasedIdGenerator();
 
     public static String nextId() {
@@ -18,5 +17,4 @@ public class GlobalIdGenerator {
     static void reset(IdGenerator idGenerator) {
         GlobalIdGenerator.idGenerator = idGenerator;
     }
-
 }

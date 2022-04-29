@@ -8,7 +8,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @ExtendWith(FixClockTimeExtension.class)
 public @interface FixClockTime {
-
     String value();
-
 }

@@ -3,7 +3,6 @@ package com.example.frameworks.domain.core;
 import java.util.*;
 
 public class ObjectFieldType extends FieldType<Payload> {
-
     public static ObjectFieldType asObject() {
         return new ObjectFieldType();
     }
@@ -22,5 +21,4 @@ public class ObjectFieldType extends FieldType<Payload> {
     protected Payload convert(Object value) {
         return new Payload(value);
     }
-
 }

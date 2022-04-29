@@ -1,7 +1,6 @@
 package com.example.frameworks.domain.core;
 
 public class Value<T> {
-
     private T value;
 
     public Value(T value, FieldType<T> fieldType) {
@@ -15,5 +14,4 @@ public class Value<T> {
     protected void set(T value) {
         this.value = value;
     }
-
 }

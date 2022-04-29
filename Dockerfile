@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk
+FROM openjdk:17-jdk
 RUN addgroup spring && adduser --ingroup spring spring
 USER spring:spring
 ARG DEPENDENCIES=build/dependencies

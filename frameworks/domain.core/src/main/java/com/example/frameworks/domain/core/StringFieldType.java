@@ -1,7 +1,6 @@
 package com.example.frameworks.domain.core;
 
 public class StringFieldType extends FieldType<String> {
-
     public static StringFieldType asString() {
         return new StringFieldType();
     }

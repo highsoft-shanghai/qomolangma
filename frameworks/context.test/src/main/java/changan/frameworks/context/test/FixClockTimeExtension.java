@@ -8,7 +8,6 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import java.time.Instant;
 
 public class FixClockTimeExtension implements BeforeEachCallback, AfterEachCallback {
-
     @Override
     public void beforeEach(ExtensionContext context) {
         FixClockTime annotation = context.getRequiredTestClass().getDeclaredAnnotation(FixClockTime.class);
@@ -19,5 +18,4 @@ public class FixClockTimeExtension implements BeforeEachCallback, AfterEachCallb
     public void afterEach(ExtensionContext context) {
         GlobalClockResetter.reset();
     }
-
 }

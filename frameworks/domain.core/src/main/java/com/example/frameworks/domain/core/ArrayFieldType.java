@@ -4,7 +4,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ArrayFieldType<T> extends FieldType<List<T>> {
-
     private final FieldType<T> elementType;
 
     public ArrayFieldType(FieldType<T> elementType) {
@@ -25,5 +24,4 @@ public class ArrayFieldType<T> extends FieldType<List<T>> {
     protected List<T> convert(Object value) {
         return ((List<?>) value).stream().map(elementType::from).collect(Collectors.toList());
     }
-
 }

@@ -1,7 +1,6 @@
 package com.example.frameworks.domain.core;
 
 public class FloatFieldType extends FieldType<Float> {
-
     public static FieldType<Float> asFloat() {
         return new FloatFieldType();
     }
@@ -15,5 +14,4 @@ public class FloatFieldType extends FieldType<Float> {
     protected Float convert(Object value) {
         return ((Number) value).floatValue();
     }
-
 }

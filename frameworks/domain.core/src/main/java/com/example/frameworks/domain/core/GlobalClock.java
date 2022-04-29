@@ -11,7 +11,6 @@ import java.time.temporal.ChronoUnit;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class GlobalClock {
-
     private static Clock clock = Clock.system(ZoneId.of("Asia/Shanghai"));
 
     public static Instant now() {
@@ -42,5 +41,4 @@ public class GlobalClock {
     public static int month() {
         return now().atZone(zone()).getMonthValue();
     }
-
 }

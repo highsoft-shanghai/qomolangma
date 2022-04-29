@@ -3,7 +3,6 @@ package com.example.frameworks.domain.core;
 import java.time.Instant;
 
 public class InstantFieldType extends FieldType<Instant> {
-
     public static InstantFieldType asInstant() {
         return new InstantFieldType();
     }
@@ -17,5 +16,4 @@ public class InstantFieldType extends FieldType<Instant> {
     protected Instant convert(Object value) {
         return Instant.parse((String) value);
     }
-
 }

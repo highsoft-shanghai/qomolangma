@@ -1,7 +1,6 @@
 package com.example.frameworks.domain.core;
 
 public class IntFieldType extends FieldType<Integer> {
-
     public static IntFieldType asInt() {
         return new IntFieldType();
     }
@@ -15,5 +14,4 @@ public class IntFieldType extends FieldType<Integer> {
     protected Integer convert(Object value) {
         return ((Number) value).intValue();
     }
-
 }

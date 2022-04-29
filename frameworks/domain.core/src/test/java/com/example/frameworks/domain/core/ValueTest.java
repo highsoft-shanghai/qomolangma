@@ -6,7 +6,6 @@ import static com.example.frameworks.domain.core.StringFieldType.asString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ValueTest {
-
     private TestUser john;
 
     @BeforeEach
@@ -40,5 +39,4 @@ class ValueTest {
         }
 
     }
-
 }

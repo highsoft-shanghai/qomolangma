@@ -5,7 +5,6 @@ import java.util.*;
 import java.util.function.Supplier;
 
 public abstract class FieldType<T> {
-
     private Supplier<T> nullHandler = this::defaultNullHandler;
 
     public FieldType<T> allowNull() {
@@ -44,5 +43,4 @@ public abstract class FieldType<T> {
 
     protected void validate(T value) {
     }
-
 }

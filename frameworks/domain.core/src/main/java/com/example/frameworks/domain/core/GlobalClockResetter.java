@@ -7,7 +7,6 @@ import java.time.Instant;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class GlobalClockResetter {
-
     public static void fixAt(Instant instant) {
         GlobalClock.fixedAt(instant);
     }
@@ -15,5 +14,4 @@ public class GlobalClockResetter {
     public static void reset() {
         GlobalClock.reset();
     }
-
 }

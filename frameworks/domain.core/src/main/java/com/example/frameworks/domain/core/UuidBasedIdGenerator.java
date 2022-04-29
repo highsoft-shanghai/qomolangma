@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 public class UuidBasedIdGenerator implements IdGenerator {
-
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSSSSSS");
     private static final long A = 10000000;
     private static final long B = 12219292800L;
@@ -29,5 +28,4 @@ public class UuidBasedIdGenerator implements IdGenerator {
     private String formatUuidTimestamp(long timestamp) {
         return FORMATTER.format(Instant.ofEpochSecond(timestamp / A - B, timestamp % C * D).atZone(ZoneOffset.ofHours(E)));
     }
-
 }

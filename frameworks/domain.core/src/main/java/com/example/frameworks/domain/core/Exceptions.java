@@ -22,5 +22,4 @@ public interface Exceptions {
         if (throwable instanceof RuntimeException) return (RuntimeException) throwable;
         return new RuntimeException(throwable);
     }
-
 }
