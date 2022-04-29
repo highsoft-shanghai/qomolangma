@@ -72,19 +72,19 @@ sh ./scripts/check-all
 ./gradlew bootRun
 ```
 
-## 运行前端项目
+## Run frontend tests
 
 ```shell script
 ./gradlew :scaffold.webui:npm_start
 ```
 
-## 监听前端测试
+## Listen to frontend tests
 
 ```shell script
 ./gradlew :scaffold.webui:npmWatchTest
 ```
 
-## 构建docker镜像并推送至镜像仓库
+## Build a docker image and push it to the image repository
 
 ```shell script
 ./gradlew clean npm_install build push
