@@ -1,10 +1,5 @@
 #!/usr/bin/env sh
 
-docker rm -f com.scaffold.mariadb
-
-if ! (docker run --name com.scaffold.mariadb -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=test -e MYSQL_DATABASE=com.scaffold.mariadb --restart always mariadb:10.5.8); then
-  echo "Failed to start secondary database service"
-  exit 1
-fi
+# TODO : Complete it.
 
 echo "Dev environment setup completed, enjoy please!"

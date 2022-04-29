@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-./gradlew --warning-mode none -P chainTests clean checkstyleMain checkstyleTest check # TODO: gradle warning
+./gradlew --warning-mode none -P chainTests clean checkstyleMain checkstyleTest check
