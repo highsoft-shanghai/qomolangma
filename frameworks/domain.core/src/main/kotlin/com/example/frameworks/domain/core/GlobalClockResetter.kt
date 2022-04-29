@@ -1,17 +1,19 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-
-import java.time.Instant;
+import com.example.frameworks.domain.core.GlobalClock.fixedAt
+import lombok.AccessLevel
+import lombok.NoArgsConstructor
+import java.time.Instant
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class GlobalClockResetter {
-    public static void fixAt(Instant instant) {
-        GlobalClock.fixedAt(instant);
+object GlobalClockResetter {
+    @JvmStatic
+    fun fixAt(instant: Instant?) {
+        fixedAt(instant)
     }
 
-    public static void reset() {
-        GlobalClock.reset();
+    @JvmStatic
+    fun reset() {
+        GlobalClock.reset()
     }
 }

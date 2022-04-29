@@ -1,44 +1,50 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-
-import java.time.Clock;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
+import lombok.AccessLevel
+import lombok.NoArgsConstructor
+import java.time.Clock
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.temporal.ChronoUnit
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class GlobalClock {
-    private static Clock clock = Clock.system(ZoneId.of("Asia/Shanghai"));
+object GlobalClock {
+    private var clock = Clock.system(ZoneId.of("Asia/Shanghai"))
 
-    public static Instant now() {
-        return clock.instant();
+    @JvmStatic
+    fun now(): Instant {
+        return clock.instant()
     }
 
-    public static ZonedDateTime localNow() {
-        return clock.instant().atZone(clock.getZone());
+    @JvmStatic
+    fun localNow(): ZonedDateTime {
+        return clock.instant().atZone(clock.zone)
     }
 
-    public static ZoneId zone() {
-        return clock.getZone();
+    @JvmStatic
+    fun zone(): ZoneId {
+        return clock.zone
     }
 
-    static void fixedAt(Instant instant) {
-        GlobalClock.clock = Clock.fixed(instant, zone());
+    @JvmStatic
+    fun fixedAt(instant: Instant?) {
+        clock = Clock.fixed(instant, zone())
     }
 
-    static void reset() {
-        GlobalClock.clock = Clock.system(zone());
+    @JvmStatic
+    fun reset() {
+        clock = Clock.system(zone())
     }
 
-    public static ZonedDateTime nextLocalHourlyTime(int atHour) {
-        ZonedDateTime now = localNow();
-        return (now.getHour() < atHour ? now : now.plusDays(1)).truncatedTo(ChronoUnit.DAYS).plusHours(atHour);
+    @JvmStatic
+    fun nextLocalHourlyTime(atHour: Int): ZonedDateTime {
+        val now = localNow()
+        return (if (now.hour < atHour) now else now.plusDays(1)).truncatedTo(ChronoUnit.DAYS).plusHours(atHour.toLong())
     }
 
-    public static int month() {
-        return now().atZone(zone()).getMonthValue();
+    @JvmStatic
+    fun month(): Int {
+        return now().atZone(zone()).monthValue
     }
 }
