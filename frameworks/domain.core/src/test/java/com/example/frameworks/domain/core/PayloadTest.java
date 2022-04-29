@@ -8,7 +8,7 @@ import static com.example.frameworks.domain.core.ObjectFieldType.asObject;
 import static com.example.frameworks.domain.core.StringFieldType.asString;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Payload2Test {
+public class PayloadTest {
 
     @Test
     void should_be_able_to_convert_typed_values() {
