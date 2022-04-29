@@ -25,7 +25,6 @@ class ValueTest {
     }
 
     static class TestUser extends Value<String> {
-
         public TestUser(String value) {
             super(value, asString());
         }
@@ -37,6 +36,5 @@ class ValueTest {
         public void setName(String name) {
             super.set(name);
         }
-
     }
 }

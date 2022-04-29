@@ -8,6 +8,6 @@ class Payload(private val value: Any) {
     }
 
     fun <T> get(key: String, type: FieldType<T>): T {
-        return type.from(get(asMap()).get(key));
+        return type.from(get(asMap())[key]);
     }
 }
