@@ -25,12 +25,12 @@ public class WithMocksTest {
     @BeforeEach
     void setUp() {
         errorPerson = new Person(null, null);
-        doThrow(new RuntimeException("error, name cannot be null.")).when(persons).save(errorPerson);
+        doThrow(new RuntimeException("error, name cannot be null.")).when(persons).add(errorPerson);
     }
 
     @Test
     void should_be_able_to_mock_one_object_successfully() {
-        assertThatThrownBy(() -> persons.save(errorPerson))
+        assertThatThrownBy(() -> persons.add(errorPerson))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage("error, name cannot be null.");
     }
@@ -38,14 +38,14 @@ public class WithMocksTest {
     @Test
     void should_be_able_to_spy_one_real_object() {
         Person neil = new Person("Neil Wang", "webmaster@neilwang.wiki");
-        spyPerson.save(neil);
-        verify(spyPerson).save(neil);
+        spyPerson.add(neil);
+        verify(spyPerson).add(neil);
     }
 
     @Test
     void should_be_able_to_use_captor_to_get_test_response() {
         new SavePersonUseCase(persons).execute();
-        verify(persons, times(1)).save(captor.capture());
+        verify(persons, times(1)).add(captor.capture());
         assertEquals(captor.getValue().name, "Neil");
         assertEquals(captor.getValue().email.length(), 1);
         assertTrue(Integer.parseInt(captor.getValue().email) >= 0);
@@ -57,7 +57,7 @@ public class WithMocksTest {
         private final Persons persons;
 
         private void execute() {
-            persons.save(new Person("Neil", String.valueOf(new Random().nextInt(5))));
+            persons.add(new Person("Neil", String.valueOf(new Random().nextInt(5))));
         }
     }
 
@@ -68,12 +68,6 @@ public class WithMocksTest {
     }
 
     interface Persons {
-        void save(Person person);
-    }
-
-    private static class TestPersons implements Persons {
-        @Override
-        public void save(Person person) {
-        }
+        void add(Person person);
     }
 }
