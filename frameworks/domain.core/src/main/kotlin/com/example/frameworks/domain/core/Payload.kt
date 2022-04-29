@@ -1,6 +1,6 @@
 package com.example.frameworks.domain.core
 
-import com.example.frameworks.domain.core.MapFieldType.asMap
+import com.example.frameworks.domain.core.MapFieldType.Companion.asMap
 
 class Payload(private val value: Any) {
     fun <T> get(type: FieldType<T>): T {

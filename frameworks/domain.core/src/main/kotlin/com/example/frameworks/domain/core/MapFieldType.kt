@@ -1,21 +1,18 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-import java.util.Map;
-
-public class MapFieldType extends FieldType<Map<?, ?>> {
-
-    public static FieldType<Map<?, ?>> asMap() {
-        return new MapFieldType();
+class MapFieldType : FieldType<Map<*, *>>() {
+    override fun match(underlyingType: Class<*>): Boolean {
+        return MutableMap::class.java.isAssignableFrom(underlyingType)
     }
 
-    @Override
-    protected boolean match(Class<?> underlyingType) {
-        return Map.class.isAssignableFrom(underlyingType);
+    override fun convert(value: Any): Map<*, *> {
+        return value as Map<*, *>
     }
 
-    @Override
-    protected Map<?, ?> convert(Object value) {
-        return (Map<?, ?>) value;
+    companion object {
+        @JvmStatic
+        fun asMap(): FieldType<Map<*, *>> {
+            return MapFieldType()
+        }
     }
-
 }
