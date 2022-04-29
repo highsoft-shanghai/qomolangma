@@ -1,24 +1,23 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-import java.util.*;
-
-public class ObjectFieldType extends FieldType<Payload> {
-    public static ObjectFieldType asObject() {
-        return new ObjectFieldType();
+class ObjectFieldType : FieldType<Payload>() {
+    fun nullToEmpty(): ObjectFieldType {
+        setNullHandler { Payload(emptyMap<Any, Any>()) }
+        return this
     }
 
-    public ObjectFieldType nullToEmpty() {
-        setNullHandler(() -> new Payload(Collections.emptyMap()));
-        return this;
+    override fun match(underlyingType: Class<*>): Boolean {
+        return MutableMap::class.java.isAssignableFrom(underlyingType)
     }
 
-    @Override
-    protected boolean match(Class<?> underlyingType) {
-        return Map.class.isAssignableFrom(underlyingType);
+    override fun convert(value: Any): Payload {
+        return Payload(value)
     }
 
-    @Override
-    protected Payload convert(Object value) {
-        return new Payload(value);
+    companion object {
+        @JvmStatic
+        fun asObject(): ObjectFieldType {
+            return ObjectFieldType()
+        }
     }
 }
