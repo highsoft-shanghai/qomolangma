@@ -1,19 +1,18 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-public class BooleanFieldType extends FieldType<Boolean> {
-
-    public static BooleanFieldType asBoolean() {
-        return new BooleanFieldType();
+class BooleanFieldType : FieldType<Boolean>() {
+    override fun match(underlyingType: Class<*>): Boolean {
+        return java.lang.Boolean::class.java.isAssignableFrom(underlyingType)
     }
 
-    @Override
-    protected boolean match(Class<?> underlyingType) {
-        return Boolean.class.isAssignableFrom(underlyingType);
+    override fun convert(value: Any): Boolean {
+        return value as Boolean
     }
 
-    @Override
-    protected Boolean convert(Object value) {
-        return (Boolean) value;
+    companion object {
+        @JvmStatic
+        fun asBoolean(): BooleanFieldType {
+            return BooleanFieldType()
+        }
     }
-
 }
