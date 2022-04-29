@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
 
 @WithMocks
@@ -44,14 +45,14 @@ public class ExceptionsTest {
     void should_be_able_to_execute_method_when_method_is_good() throws IOException {
         when(mock.evaluate()).thenReturn("");
         Exceptions.execute(mock::execute);
-        verify(mock, times(1)).execute();
+        then(mock).should(times(1)).execute();
     }
 
     @Test
     void should_be_able_to_evaluate_method_when_method_is_good() throws IOException {
         when(mock.evaluate()).thenReturn("Test.");
         String evaluate = Exceptions.evaluate(mock::evaluate);
-        verify(mock, times(1)).evaluate();
+        then(mock).should(times(1)).evaluate();
         assertEquals(evaluate, "Test.");
     }
 
