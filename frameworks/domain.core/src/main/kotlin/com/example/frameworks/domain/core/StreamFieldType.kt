@@ -1,27 +1,18 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.Stream
 
-public class StreamFieldType<T> extends FieldType<Stream<T>> {
-    private final FieldType<T> elementType;
-
-    public StreamFieldType(FieldType<T> elementType) {
-        this.elementType = elementType;
+class StreamFieldType<T>(private val elementType: FieldType<T>) : FieldType<Stream<T>?>() {
+    override fun match(underlyingType: Class<*>): Boolean {
+        return MutableList::class.java.isAssignableFrom(underlyingType)
     }
 
-    @Override
-    protected boolean match(Class<?> underlyingType) {
-        return List.class.isAssignableFrom(underlyingType);
+    override fun convert(value: Any): Stream<T> {
+        return (value as List<*>).stream().map(elementType::from)
     }
 
-    @Override
-    protected Stream<T> convert(Object value) {
-        return ((List<?>) value).stream().map(elementType::from);
-    }
-
-    public StreamFieldType<T> nullToEmpty() {
-        setNullHandler(Stream::empty);
-        return this;
+    fun nullToEmpty(): StreamFieldType<T> {
+        setNullHandler { Stream.empty() }
+        return this
     }
 }

@@ -1,22 +1,23 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-public class StringFieldType extends FieldType<String> {
-    public static StringFieldType asString() {
-        return new StringFieldType();
+class StringFieldType : FieldType<String?>() {
+    fun nullToEmpty(): StringFieldType {
+        setNullHandler { "" }
+        return this
     }
 
-    public StringFieldType nullToEmpty() {
-        setNullHandler(() -> "");
-        return this;
+    override fun match(underlyingType: Class<*>): Boolean {
+        return String::class.java.isAssignableFrom(underlyingType)
     }
 
-    @Override
-    protected boolean match(Class<?> underlyingType) {
-        return String.class.isAssignableFrom(underlyingType);
+    override fun convert(value: Any): String {
+        return value as String
     }
 
-    @Override
-    protected String convert(Object value) {
-        return (String) value;
+    companion object {
+        @JvmStatic
+        fun asString(): StringFieldType {
+            return StringFieldType()
+        }
     }
 }
