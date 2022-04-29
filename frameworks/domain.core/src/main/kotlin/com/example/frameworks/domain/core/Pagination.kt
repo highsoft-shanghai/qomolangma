@@ -1,6 +1,6 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-public interface Pagination {
-    int getPageNumber();
-    int getPageSize();
+interface Pagination {
+    val pageNumber: Int
+    val pageSize: Int
 }
