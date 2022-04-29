@@ -1,19 +1,20 @@
-package com.example.frameworks.domain.core;
+package com.example.frameworks.domain.core
 
-import java.time.Instant;
+import java.time.Instant
 
-public class InstantFieldType extends FieldType<Instant> {
-    public static InstantFieldType asInstant() {
-        return new InstantFieldType();
+class InstantFieldType : FieldType<Instant>() {
+    override fun match(underlyingType: Class<*>): Boolean {
+        return String::class.java.isAssignableFrom(underlyingType)
     }
 
-    @Override
-    protected boolean match(Class<?> underlyingType) {
-        return String.class.isAssignableFrom(underlyingType);
+    override fun convert(value: Any): Instant {
+        return Instant.parse(value as String)
     }
 
-    @Override
-    protected Instant convert(Object value) {
-        return Instant.parse((String) value);
+    companion object {
+        @JvmStatic
+        fun asInstant(): InstantFieldType {
+            return InstantFieldType()
+        }
     }
 }
