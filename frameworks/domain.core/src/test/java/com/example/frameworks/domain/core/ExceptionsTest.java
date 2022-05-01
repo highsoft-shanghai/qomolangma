@@ -50,7 +50,7 @@ public class ExceptionsTest {
 
     @Test
     void should_be_able_to_evaluate_method_when_method_is_good() {
-        assertEquals(Exceptions.evaluate(() -> "test"), "Test.");
+        assertEquals(Exceptions.evaluate(() -> "test"), "test");
     }
 
     private interface TestForExceptions {
