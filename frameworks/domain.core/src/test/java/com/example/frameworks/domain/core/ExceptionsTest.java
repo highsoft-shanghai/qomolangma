@@ -49,11 +49,8 @@ public class ExceptionsTest {
     }
 
     @Test
-    void should_be_able_to_evaluate_method_when_method_is_good() throws IOException {
-        when(mock.evaluate()).thenReturn("Test.");
-        String evaluate = Exceptions.evaluate(mock::evaluate);
-        then(mock).should(only()).evaluate();
-        assertEquals(evaluate, "Test.");
+    void should_be_able_to_evaluate_method_when_method_is_good() {
+        assertEquals(Exceptions.evaluate(() -> "test"), "Test.");
     }
 
     private interface TestForExceptions {
