@@ -1,4 +1,3 @@
-package com.example.scaffold.frameworks.test.persistence;
+package com.example.scaffold.frameworks.test.persistence
 
-public class TestClient {
-}
+class TestClient

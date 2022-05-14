@@ -1,14 +1,8 @@
-package com.example.scaffold.frameworks.test.persistence;
+package com.example.scaffold.frameworks.test.persistence
 
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtendWith
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.RUNTIME)
-@ExtendWith(PersistenceExtension.class)
-public @interface PersistenceTest {
-}
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+@ExtendWith(PersistenceExtension::class)
+annotation class PersistenceTest

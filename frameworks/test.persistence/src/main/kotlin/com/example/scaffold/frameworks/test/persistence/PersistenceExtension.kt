@@ -1,16 +1,11 @@
-package com.example.scaffold.frameworks.test.persistence;
+package com.example.scaffold.frameworks.test.persistence
 
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.BeforeEachCallback
+import org.junit.jupiter.api.extension.ExtensionContext
 
-import java.util.List;
-
-public class PersistenceExtension implements BeforeEachCallback {
-
-    @Override
-    public void beforeEach(ExtensionContext context) {
-        List<Object> instances = context.getRequiredTestInstances().getAllInstances();
-        new Instances(instances).autoAssignPersistence();
+class PersistenceExtension : BeforeEachCallback {
+    override fun beforeEach(context: ExtensionContext) {
+        val instances = context.requiredTestInstances.allInstances
+        Instances(instances).autoAssignPersistence()
     }
-
 }

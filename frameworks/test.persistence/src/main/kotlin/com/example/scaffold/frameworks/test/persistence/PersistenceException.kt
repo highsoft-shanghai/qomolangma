@@ -1,7 +1,3 @@
-package com.example.scaffold.frameworks.test.persistence;
+package com.example.scaffold.frameworks.test.persistence
 
-public class PersistenceException extends RuntimeException {
-    public PersistenceException(String message) {
-        super(message);
-    }
-}
+class PersistenceException(message: String?) : RuntimeException(message)
