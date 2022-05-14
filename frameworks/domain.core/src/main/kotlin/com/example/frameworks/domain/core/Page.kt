@@ -3,10 +3,14 @@ package com.example.frameworks.domain.core
 import java.util.function.Function
 
 interface Page<T> {
-    val content: List<T>?
-    val totalElements: Long
-    val size: Int
-    val number: Int
-    val numberOfElements: Int
-    fun <U> map(converter: Function<in T, out U>?): Page<U>?
+    fun content(): List<T>
+    fun size(): Int
+    fun number(): Int
+    fun numberOfElements(): Int
+    fun numberOfTotalPages(): Int
+    fun numberOfTotalElements(): Long
+    fun first(): Boolean
+    fun last(): Boolean
+    fun sort(): Sort
+    fun <U> map(converter: Function<in T, out U>): Page<U>
 }

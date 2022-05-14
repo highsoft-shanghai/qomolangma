@@ -1,6 +1,7 @@
 package com.example.frameworks.domain.core
 
 interface Pagination {
-    val pageNumber: Int
-    val pageSize: Int
+    fun pageNumber(): Int
+    fun pageSize(): Int
+    fun sort(): Sort
 }
