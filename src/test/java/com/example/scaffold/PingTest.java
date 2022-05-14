@@ -1,7 +1,7 @@
 package com.example.scaffold;
 
 import com.example.scaffold.frameworks.test.web.IntegrationTest;
-import com.example.scaffold.frameworks.test.web.RestTestTemplate;
+import com.example.scaffold.frameworks.test.web.TestRequestTemplate;
 import com.example.scaffold.frameworks.test.web.TestResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @IntegrationTest
 public class PingTest {
-    private @Resource RestTestTemplate testTemplate;
+    private @Resource TestRequestTemplate testTemplate;
 
     @Test
     void should_reply_pong() {

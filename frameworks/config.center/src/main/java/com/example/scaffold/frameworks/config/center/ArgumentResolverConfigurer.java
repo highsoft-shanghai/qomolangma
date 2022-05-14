@@ -1,4 +1,4 @@
-package com.example.scaffold.config;
+package com.example.scaffold.frameworks.config.center;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;

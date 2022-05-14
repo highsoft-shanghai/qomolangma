@@ -1,4 +1,4 @@
-package com.example.scaffold.config;
+package com.example.scaffold.frameworks.config.center;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

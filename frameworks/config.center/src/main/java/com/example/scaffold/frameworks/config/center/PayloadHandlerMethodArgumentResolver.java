@@ -1,4 +1,4 @@
-package com.example.scaffold.config;
+package com.example.scaffold.frameworks.config.center;
 
 import com.example.scaffold.frameworks.valueobjects.payload.Payload;
 import org.springframework.core.MethodParameter;

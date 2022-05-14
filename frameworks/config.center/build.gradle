@@ -1,0 +1,6 @@
+dependencies {
+    api project(":test.web")
+    api project(":valueobjects.payload")
+    implementation libs.springBootWeb
+    implementation libs.springBootTest
+}

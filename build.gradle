@@ -73,6 +73,7 @@ subprojects {
 dependencies {
     implementation project(":domain.core")
     implementation project(":valueobjects.payload")
+    implementation project(":config.center")
     implementation project(":application.core")
     implementation project(":users.gateways")
     testImplementation project(":test.web")
