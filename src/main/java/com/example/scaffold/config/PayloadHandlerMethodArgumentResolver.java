@@ -1,6 +1,6 @@
 package com.example.scaffold.config;
 
-import com.example.frameworks.domain.core.Payload;
+import com.example.scaffold.frameworks.valueobjects.payload.Payload;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.lang.NonNull;
@@ -38,6 +38,5 @@ public class PayloadHandlerMethodArgumentResolver extends AbstractMessageConvert
     @Override
     public void handleReturnValue(Object returnValue, @NonNull MethodParameter returnType, @NonNull ModelAndViewContainer mavContainer,
                                   @NonNull NativeWebRequest webRequest) {
-
     }
 }

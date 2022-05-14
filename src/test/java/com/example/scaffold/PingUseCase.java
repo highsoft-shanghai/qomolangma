@@ -1,9 +1,9 @@
 package com.example.scaffold;
 
 import com.example.frameworks.application.core.UseCase;
-import com.example.frameworks.domain.core.Payload;
+import com.example.scaffold.frameworks.valueobjects.payload.Payload;
 
-import static com.example.frameworks.domain.core.StringFieldType.asString;
+import static com.example.scaffold.frameworks.valueobjects.payload.StringFieldType.asString;
 
 @UseCase
 public class PingUseCase {

@@ -1,6 +1,6 @@
 package com.example.scaffold
 
-import com.example.frameworks.domain.core.Payload
+import com.example.scaffold.frameworks.valueobjects.payload.Payload
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RestController
