@@ -23,6 +23,8 @@ fastJson = "1.2.47"
 h2 = "2.1.212"
 kover = "0.5.0"
 kotlin = "1.6.21"
+jsonpath = "2.4.0"
+logging-logback = "1.2.11"
 
 [libraries]
 springBootWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot" }
@@ -58,6 +60,8 @@ h2 = { module = "com.h2database:h2", version.ref = "h2" }
 kotlinStdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlinTest = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlinReflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+jsonpath = { module = "com.jayway.jsonpath:json-path", version.ref = "jsonpath" }
+logging-logback = { module = "ch.qos.logback:logback-classic", version.ref = "logging-logback" }
 
 [plugins]
 springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }

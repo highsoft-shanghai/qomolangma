@@ -1,5 +1,6 @@
 package com.example.scaffold;
 
+import com.example.scaffold.frameworks.test.web.IntegrationTest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

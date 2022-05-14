@@ -1,0 +1,8 @@
+dependencies {
+    api project(":domain.core")
+    implementation libs.springBootWeb
+    implementation libs.jsonpath
+    implementation libs.springBootTest
+    implementation project(":core.test")
+    implementation project(":test.moco")
+}

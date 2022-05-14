@@ -1,13 +1,13 @@
-package com.example.scaffold;
+package com.example.scaffold.frameworks.test.web;
 
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public class TestResponse {
-
     private final ResponseEntity<String> response;
 
     public TestResponse(ResponseEntity<String> response) {
@@ -22,7 +22,7 @@ public class TestResponse {
         return JsonPath.compile(jsonPath).read(response.getBody());
     }
 
-    public Object[] values(String jsonPath) {
+    public Object[] jsonValues(String jsonPath) {
         return JsonPath.compile(jsonPath).<JSONArray>read(response.getBody()).toArray();
     }
 
@@ -33,5 +33,4 @@ public class TestResponse {
     public List<String> header(String header) {
         return response.getHeaders().get(header);
     }
-
 }

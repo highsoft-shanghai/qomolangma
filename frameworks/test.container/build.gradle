@@ -1,0 +1,7 @@
+dependencies {
+    api project(":domain.core")
+    implementation libs.testcontainersJunitJupiter
+    implementation libs.junitJupiter
+    implementation libs.junitJupiterEngine
+    implementation libs.logging.logback
+}

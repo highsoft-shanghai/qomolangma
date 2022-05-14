@@ -1,5 +1,7 @@
 package com.example.scaffold;
 
+import com.example.scaffold.frameworks.test.web.IntegrationTest;
+import com.example.scaffold.frameworks.test.web.TestResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 

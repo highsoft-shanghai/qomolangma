@@ -1,0 +1,7 @@
+dependencies {
+    api project(":test.container")
+    implementation libs.moco
+    implementation libs.testcontainersJunitJupiter
+    implementation libs.springBootWeb
+    implementation libs.springBootTest
+}

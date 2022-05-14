@@ -74,6 +74,7 @@ dependencies {
     implementation project(":domain.core")
     implementation project(":application.core")
     implementation project(":users.gateways")
+    testImplementation project(":test.web")
     testImplementation project(":core.test")
     implementation libs.springBootActuator
     implementation libs.kotlinStdlib
