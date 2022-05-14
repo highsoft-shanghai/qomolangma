@@ -1,36 +1,28 @@
-package com.example.scaffold.frameworks.test.web;
+package com.example.scaffold.frameworks.test.web
 
-import com.jayway.jsonpath.JsonPath;
-import net.minidev.json.JSONArray;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.jayway.jsonpath.JsonPath
+import net.minidev.json.JSONArray
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 
-import java.util.List;
-
-public class TestResponse {
-    private final ResponseEntity<String> response;
-
-    public TestResponse(ResponseEntity<String> response) {
-        this.response = response;
+class TestResponse(private val response: ResponseEntity<String>) {
+    fun statusCode(): HttpStatus {
+        return response.statusCode
     }
 
-    public HttpStatus statusCode() {
-        return response.getStatusCode();
+    fun <T> value(jsonPath: String): T {
+        return JsonPath.compile(jsonPath).read(response.body)
     }
 
-    public <T> T value(String jsonPath) {
-        return JsonPath.compile(jsonPath).read(response.getBody());
+    fun jsonValues(jsonPath: String): Array<Any> {
+        return JsonPath.compile(jsonPath).read<JSONArray>(response.body).toTypedArray()
     }
 
-    public Object[] jsonValues(String jsonPath) {
-        return JsonPath.compile(jsonPath).<JSONArray>read(response.getBody()).toArray();
+    fun textBody(): String? {
+        return response.body
     }
 
-    public String textBody() {
-        return response.getBody();
-    }
-
-    public List<String> header(String header) {
-        return response.getHeaders().get(header);
+    fun header(header: String): List<String>? {
+        return response.headers[header]
     }
 }
