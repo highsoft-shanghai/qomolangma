@@ -1,17 +1,13 @@
-package com.example.scaffold.frameworks.test.moco;
+package com.example.scaffold.frameworks.test.moco
 
-import com.example.scaffold.frameworks.test.container.TestContainer;
+import com.example.scaffold.frameworks.test.container.TestContainer
 
-public class MocoContainer extends TestContainer<MocoTestContainer> {
-
-    @Override
-    protected MocoTestContainer createContainer() {
-        return new MocoTestContainer(new CustomizedMocoServerConfig());
+class MocoContainer : TestContainer<MocoTestContainer>() {
+    override fun createContainer(): MocoTestContainer {
+        return MocoTestContainer(CustomizedMocoServerConfig())
     }
 
-    @Override
-    protected void setupEnvironment() {
-        System.setProperty("moco.url", container().getUrl());
+    override fun setupEnvironment() {
+        System.setProperty("moco.url", container().url)
     }
-
 }

@@ -11,12 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @WithTestContainers(containers = {MocoContainer.class})
 public class MocoContainerTest {
-
     private Connection connection;
 
     @BeforeEach
     void setUp() throws IOException {
-        connection = Connection.by("http://localhost:12306/ping");
+        connection = Connection.by(System.getProperty("moco.url") + "/ping");
     }
 
     @Test
@@ -30,5 +29,4 @@ public class MocoContainerTest {
     void tearDown() {
         connection.disconnect();
     }
-
 }

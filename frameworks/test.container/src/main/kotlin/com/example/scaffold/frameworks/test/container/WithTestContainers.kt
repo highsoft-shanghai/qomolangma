@@ -1,13 +1,13 @@
-package com.example.scaffold.frameworks.test.container;
+package com.example.scaffold.frameworks.test.container
 
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtendWith
+import java.lang.annotation.Inherited
+import kotlin.reflect.KClass
 
-import java.lang.annotation.*;
-
-@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.RUNTIME)
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.RUNTIME)
 @Inherited
-@ExtendWith(TestContainersInitializerExtension.class)
-public @interface WithTestContainers {
-    Class<?>[] containers() default {};
-}
+@ExtendWith(
+    TestContainersInitializerExtension::class
+)
+annotation class WithTestContainers(val containers: Array<KClass<*>> = [])

@@ -1,7 +1,7 @@
-package com.example.scaffold.frameworks.test.moco;
+package com.example.scaffold.frameworks.test.moco
 
-import com.github.dreamhead.moco.HttpServer;
+import com.github.dreamhead.moco.HttpServer
 
-public interface MocoServerConfig {
-    HttpServer configure();
+interface MocoServerConfig {
+    fun configure(): HttpServer
 }

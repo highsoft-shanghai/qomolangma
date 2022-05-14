@@ -1,22 +1,20 @@
-package com.example.scaffold.frameworks.test.moco;
+package com.example.scaffold.frameworks.test.moco
 
-import com.github.dreamhead.moco.HttpServer;
+import com.github.dreamhead.moco.HttpServer
+import com.github.dreamhead.moco.Moco.*
 
-import static com.github.dreamhead.moco.Moco.*;
-
-public class CustomizedMocoServerConfig implements MocoServerConfig {
-
-    private static final Integer MOCO_PORT = 12306;
-
-    @Override
-    public HttpServer configure() {
-        HttpServer server = httpServer(MOCO_PORT);
-        set(server);
-        return server;
+class CustomizedMocoServerConfig : MocoServerConfig {
+    override fun configure(): HttpServer {
+        val server = httpServer(MOCO_PORT)
+        set(server)
+        return server
     }
 
-    private void set(HttpServer server) {
-        server.request(by(uri("/ping"))).response(text("pong"));
+    private fun set(server: HttpServer) {
+        server.request(by(uri("/ping"))).response(text("pong"))
     }
 
+    companion object {
+        private const val MOCO_PORT = 12306
+    }
 }

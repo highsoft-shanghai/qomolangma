@@ -1,5 +1,6 @@
 package com.example.scaffold.frameworks.test.container;
 
+import org.jetbrains.annotations.NotNull;
 import org.testcontainers.lifecycle.Startable;
 
 public class DummyTestContainer extends TestContainer<Startable> {
@@ -7,8 +8,12 @@ public class DummyTestContainer extends TestContainer<Startable> {
     static int numberOfStarts;
     static int numberOfEnvironmentSetups;
 
+    public DummyTestContainer() {
+        super();
+    }
+
     @Override
-    protected Startable createContainer() {
+    protected @NotNull Startable createContainer() {
         return new Startable() {
             @Override
             public void start() {

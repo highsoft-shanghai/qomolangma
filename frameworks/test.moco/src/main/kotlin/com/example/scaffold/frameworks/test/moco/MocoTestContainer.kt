@@ -1,30 +1,25 @@
-package com.example.scaffold.frameworks.test.moco;
+package com.example.scaffold.frameworks.test.moco
 
-import com.github.dreamhead.moco.Runner;
-import lombok.Generated;
-import org.testcontainers.lifecycle.Startable;
+import com.github.dreamhead.moco.Runner
+import lombok.Generated
+import org.testcontainers.lifecycle.Startable
 
-import static com.github.dreamhead.moco.Runner.runner;
+class MocoTestContainer(config: MocoServerConfig) : Startable {
+    private val runner: Runner
 
-public class MocoTestContainer implements Startable {
-    private final Runner runner;
-
-    public MocoTestContainer(MocoServerConfig config) {
-        this.runner = runner(config.configure());
+    init {
+        runner = Runner.runner(config.configure())
     }
 
-    @Override
-    public void start() {
-        runner.start();
+    override fun start() {
+        runner.start()
     }
 
-    @Override
     @Generated
-    public void stop() {
-        runner.stop();
+    override fun stop() {
+        runner.stop()
     }
 
-    public String getUrl() {
-        return "http://localhost:12306";
-    }
+    val url: String
+        get() = "http://localhost:12306"
 }

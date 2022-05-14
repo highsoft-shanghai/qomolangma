@@ -1,23 +1,23 @@
-package com.example.scaffold.frameworks.test.container;
+package com.example.scaffold.frameworks.test.container
 
-import org.testcontainers.lifecycle.Startable;
+import org.testcontainers.lifecycle.Startable
 
-public abstract class TestContainer<T extends Startable> {
+abstract class TestContainer<T : Startable> protected constructor() {
+    private val container: T
 
-    private T container;
-
-    public final void start() {
-        container = createContainer();
-        container.start();
-        setupEnvironment();
+    init {
+        container = lazy { createContainer() }.value
     }
 
-    public T container() {
-        return container;
+    fun start() {
+        container.start()
+        setupEnvironment()
     }
 
-    protected abstract T createContainer();
+    fun container(): T {
+        return container
+    }
 
-    protected abstract void setupEnvironment();
-
+    protected abstract fun createContainer(): T
+    protected abstract fun setupEnvironment()
 }
