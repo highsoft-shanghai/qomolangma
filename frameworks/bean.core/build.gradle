@@ -1,6 +1,7 @@
 dependencies {
     api project(":test.web")
-    api project(":valueobjects.payload")
+    api project(":payload.core")
     implementation libs.springBootWeb
     implementation libs.springBootTest
+    implementation libs.springdoc
 }
