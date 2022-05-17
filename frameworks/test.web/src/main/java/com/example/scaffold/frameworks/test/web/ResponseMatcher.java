@@ -2,7 +2,7 @@ package com.example.scaffold.frameworks.test.web;
 
 import org.springframework.http.HttpStatus;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.example.scaffold.frameworks.test.web.EqStatusMatcher.eq;
 
 public interface ResponseMatcher {
     void match(TestResponse response);
@@ -16,22 +16,22 @@ public interface ResponseMatcher {
     }
 
     static ResponseMatcher ok() {
-        return o -> statusCode(HttpStatus.OK).match(o);
+        return o -> statusCode(eq(HttpStatus.OK)).match(o);
     }
 
     static ResponseMatcher created() {
-        return o -> statusCode(HttpStatus.CREATED).match(o);
+        return o -> statusCode(eq(HttpStatus.CREATED)).match(o);
     }
 
     static ResponseMatcher bad() {
-        return o -> statusCode(HttpStatus.BAD_REQUEST).match(o);
+        return o -> statusCode(eq(HttpStatus.BAD_REQUEST)).match(o);
     }
 
     static ResponseMatcher error() {
-        return o -> statusCode(HttpStatus.INTERNAL_SERVER_ERROR).match(o);
+        return o -> statusCode(eq(HttpStatus.INTERNAL_SERVER_ERROR)).match(o);
     }
 
-    static ResponseMatcher statusCode(HttpStatus status) {
-        return o -> assertEquals(status, o.statusCode());
+    static ResponseMatcher statusCode(ResponseStatusMatcher matcher) {
+        return matcher::match;
     }
 }
