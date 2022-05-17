@@ -13,7 +13,10 @@ import java.util.Map;
 public class TestController {
     @GetMapping
     public Map<String, String> get() {
-        return Map.of("id", "123");
+        Map<String, String> map = new java.util.HashMap<>();
+        map.put("id", "123");
+        map.put("null", null);
+        return map;
     }
 
     @GetMapping("/bad")

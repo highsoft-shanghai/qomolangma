@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import javax.annotation.Resource;
 
 import static com.example.scaffold.frameworks.test.web.EqBodyMatcher.eq;
+import static com.example.scaffold.frameworks.test.web.NotNullBodyMatcher.isNotNull;
+import static com.example.scaffold.frameworks.test.web.NullBodyMatcher.isNull;
 import static com.example.scaffold.frameworks.test.web.ResponseMatcher.*;
 
 @IntegrationTest
@@ -14,7 +16,11 @@ public class TestResponseTest {
     @Test
     void should_be_able_to_validate_ok_and_body_eq_when_giving_right_json_rest_api_request() {
         TestResponse response = restTemplate.get("/test");
-        response.is(ok()).is(body("$.id", eq("123"))).is(textBody(eq("{\"id\":\"123\"}")));
+        response.is(ok())
+                .is(body("$.id", isNotNull()))
+                .is(body("$.id", eq("123")))
+                .is(textBody(eq("{\"null\":null,\"id\":\"123\"}")))
+                .is(body("$.null", isNull()));
     }
 
     @Test
