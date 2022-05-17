@@ -11,6 +11,10 @@ public interface ResponseMatcher {
         return o -> matcher.match(o.value(jsonPath));
     }
 
+    static ResponseMatcher body(String jsonPath, ResponseBodyMultiValuesMatcher matcher) {
+        return o -> matcher.match(o.values(jsonPath));
+    }
+
     static ResponseMatcher textBody(ResponseBodyMatcher matcher) {
         return o -> matcher.match(o.textBody());
     }

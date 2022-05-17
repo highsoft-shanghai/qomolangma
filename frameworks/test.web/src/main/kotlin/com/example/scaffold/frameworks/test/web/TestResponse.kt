@@ -14,7 +14,7 @@ class TestResponse(private val response: ResponseEntity<String>) {
         return JsonPath.compile(jsonPath).read(response.body)
     }
 
-    fun jsonValues(jsonPath: String): Array<Any> {
+    fun values(jsonPath: String): Array<Any> {
         return JsonPath.compile(jsonPath).read<JSONArray>(response.body).toTypedArray()
     }
 
