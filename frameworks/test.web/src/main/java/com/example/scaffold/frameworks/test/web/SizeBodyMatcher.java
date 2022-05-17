@@ -2,10 +2,10 @@ package com.example.scaffold.frameworks.test.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SizeBodyMatcher implements ResponseBodyMultiValuesMatcher {
+public final class SizeBodyMatcher implements ResponseBodyMultiValuesMatcher {
     private final int size;
 
-    public SizeBodyMatcher(int size) {
+    private SizeBodyMatcher(int size) {
         this.size = size;
     }
 

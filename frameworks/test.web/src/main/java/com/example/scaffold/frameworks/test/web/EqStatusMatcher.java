@@ -4,10 +4,10 @@ import org.springframework.http.HttpStatus;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EqStatusMatcher implements ResponseStatusMatcher {
+public final class EqStatusMatcher implements ResponseStatusMatcher {
     private final HttpStatus status;
 
-    public EqStatusMatcher(HttpStatus status) {
+    private EqStatusMatcher(HttpStatus status) {
         this.status = status;
     }
 

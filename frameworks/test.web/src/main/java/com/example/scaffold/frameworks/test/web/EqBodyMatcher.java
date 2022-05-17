@@ -2,10 +2,10 @@ package com.example.scaffold.frameworks.test.web;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EqBodyMatcher implements ResponseBodyMatcher {
+public final class EqBodyMatcher implements ResponseBodyMatcher {
     private final Object value;
 
-    public EqBodyMatcher(Object value) {
+    private EqBodyMatcher(Object value) {
         this.value = value;
     }
 
