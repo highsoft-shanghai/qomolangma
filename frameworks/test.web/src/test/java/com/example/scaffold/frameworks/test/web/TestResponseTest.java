@@ -14,7 +14,7 @@ public class TestResponseTest {
     @Test
     void should_be_able_to_validate_ok_and_body_eq_when_giving_right_json_rest_api_request() {
         TestResponse response = restTemplate.get("/test");
-        response.is(ok()).is(body("$.id", eq("123"))).is(textBody("{\"id\":\"123\"}"));
+        response.is(ok()).is(body("$.id", eq("123"))).is(textBody(eq("{\"id\":\"123\"}")));
     }
 
     @Test

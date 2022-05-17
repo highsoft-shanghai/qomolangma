@@ -11,8 +11,8 @@ public interface ResponseMatcher {
         return o -> matcher.match(o.value(jsonPath));
     }
 
-    static ResponseMatcher textBody(Object value) {
-        return o -> assertEquals(o.textBody(), value);
+    static ResponseMatcher textBody(ResponseBodyMatcher matcher) {
+        return o -> matcher.match(o.textBody());
     }
 
     static ResponseMatcher ok() {
