@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableMap;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
+import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,6 +15,7 @@ import java.io.File;
 import java.net.URI;
 import java.util.Map;
 
+@Component
 public class TestRequestTemplate {
     private @Resource TestRestTemplate testRestTemplate;
 

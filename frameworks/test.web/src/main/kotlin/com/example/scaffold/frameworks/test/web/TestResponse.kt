@@ -25,4 +25,9 @@ class TestResponse(private val response: ResponseEntity<String>) {
     fun header(header: String): List<String>? {
         return response.headers[header]
     }
+
+    fun `is`(matcher: ResponseMatcher): TestResponse {
+        matcher.match(this)
+        return this
+    }
 }
