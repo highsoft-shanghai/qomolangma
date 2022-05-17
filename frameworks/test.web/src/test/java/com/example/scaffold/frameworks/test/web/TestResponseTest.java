@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.annotation.Resource;
 
+import static com.example.scaffold.frameworks.test.web.ContainsExactlyMultiValuesMatcher.containsExactly;
 import static com.example.scaffold.frameworks.test.web.ContainsMultiValuesMatcher.contains;
 import static com.example.scaffold.frameworks.test.web.EqBodyMatcher.eq;
 import static com.example.scaffold.frameworks.test.web.NotEqBodyMatcher.notEq;
@@ -22,6 +23,7 @@ public class TestResponseTest {
         response.is(ok())
                 .is(body("$.list", size(3)))
                 .is(body("$.list", contains("1", "2")))
+                .is(body("$.list", containsExactly("1", "2", "3")))
                 .is(body("$.id", isNotNull()))
                 .is(body("$.id", eq("123")))
                 .is(body("$.id", notEq("1234")))
