@@ -1,6 +1,6 @@
 package com.example.scaffold.frameworks.test.web;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public final class NotNullBodyMatcher implements GeneralResponseBodyMatcher {
     NotNullBodyMatcher() {
@@ -8,7 +8,7 @@ public final class NotNullBodyMatcher implements GeneralResponseBodyMatcher {
 
     @Override
     public void match(Object target) {
-        assertNotEquals(target, null);
+        assertThat(target).isNotNull();
     }
 
 }

@@ -33,26 +33,45 @@ public interface ResponseBodyMatcher {
      * This assertion will succeed:
      * <pre><code class='java'> String bookName = &quot;A Game of Thrones&quot;
      * response.is(body(bookName, isNotEmpty()));</code></pre>
-     *
+     * <p>
      * Whereas these assertions will fail:
      * <pre><code class='java'> String emptyString = &quot;&quot;
      * response.is(body(emptyString, isNotEmpty()));
      *
      * String nullString = null;
      * response.is(body(nullString, isNotEmpty()));</code></pre>
-     *
      * @return {@code this} assertion object.
      * @throws AssertionError if the actual {@code CharSequence} is empty (has a length of 0).
      */
     static ResponseBodyMatcher isNotEmpty() {
         return new NotEmptyBodyCastStringMatcher();
     }
+    /**
+     * <em>Assert</em> that {@code expected} and {@code actual} are not equal.
+     *
+     * <p>Fails if both are {@code null}.
+     * @see Object#equals(Object)
+     */
     static ResponseBodyMatcher notEq(String value) {
         return new NotEqBodyMatcher(value);
     }
+    /**
+     * <em>Verifies</em> that the actual value is not null.
+     * <p>
+     * This assertion will succeed:
+     * <pre><code class='java'>response.is(body("123", isNotNull()));</code></pre>
+     * <p>
+     * This assertion will succeed:
+     * <pre><code class='java'>assertThat(null).isNotNull();</code></pre>
+     * @return {@code this} assertion object.
+     * @throws AssertionError if the actual {@code object} is null.
+     */
     static ResponseBodyMatcher isNotNull() {
         return new NotNullBodyMatcher();
     }
+    /**
+     * <em>Assert</em> that {@code actual} is {@code null}.
+     */
     static NullBodyMatcher isNull() {
         return new NullBodyMatcher();
     }
