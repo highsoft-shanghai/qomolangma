@@ -1,12 +1,12 @@
 package com.example.scaffold.frameworks.test.web;
 
-import static com.example.scaffold.frameworks.test.web.BadResponseStatusMatcher.badStatus;
-import static com.example.scaffold.frameworks.test.web.CreatedResponseStatusMatcher.createdStatus;
-import static com.example.scaffold.frameworks.test.web.ErrorResponseStatusMatcher.errorStatus;
-import static com.example.scaffold.frameworks.test.web.ForbiddenResponseStatusMatcher.forbiddenStatus;
-import static com.example.scaffold.frameworks.test.web.NotFoundResponseStatusMatcher.notFoundStatus;
-import static com.example.scaffold.frameworks.test.web.OkResponseStatusMatcher.okStatus;
-import static com.example.scaffold.frameworks.test.web.UnauthorizedResponseStatusMatcher.unauthorizedStatus;
+import static com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.badStatus;
+import static com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.createdStatus;
+import static com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.errorStatus;
+import static com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.forbiddenStatus;
+import static com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.notFoundStatus;
+import static com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.okStatus;
+import static com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.unauthorizedStatus;
 
 public interface ResponseMatcher {
     void match(TestResponse response);

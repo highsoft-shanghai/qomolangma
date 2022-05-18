@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import javax.annotation.Resource;
 import java.util.Map;
 
-import static com.example.scaffold.frameworks.test.web.EqBodyMatcher.eq;
+import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.eq;
 import static com.example.scaffold.frameworks.test.web.ResponseMatcher.body;
 import static com.example.scaffold.frameworks.test.web.ResponseMatcher.ok;
 

@@ -5,12 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 public final class NotEqBodyMatcher implements GeneralResponseBodyMatcher {
     private final String value;
 
-    private NotEqBodyMatcher(String value) {
+    NotEqBodyMatcher(String value) {
         this.value = value;
-    }
-
-    public static ResponseBodyMatcher notEq(String value) {
-        return new NotEqBodyMatcher(value);
     }
 
     @Override

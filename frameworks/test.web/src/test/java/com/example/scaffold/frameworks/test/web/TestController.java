@@ -19,6 +19,7 @@ public class TestController {
         map.put("id", "123");
         map.put("null", null);
         map.put("list", List.of("1", "2", "3"));
+        map.put("empty", "");
         return map;
     }
 

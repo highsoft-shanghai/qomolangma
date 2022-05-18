@@ -5,16 +5,9 @@ import org.springframework.http.HttpStatus;
 
 import javax.annotation.Resource;
 
-import static com.example.scaffold.frameworks.test.web.ContainsExactlyMultiValuesMatcher.containsExactly;
-import static com.example.scaffold.frameworks.test.web.ContainsMultiValuesMatcher.contains;
-import static com.example.scaffold.frameworks.test.web.EqBodyMatcher.eq;
-import static com.example.scaffold.frameworks.test.web.HasSizeBodyCastStringMatcher.hasSize;
-import static com.example.scaffold.frameworks.test.web.NotEmptyBodyCastStringMatcher.isNotEmpty;
-import static com.example.scaffold.frameworks.test.web.NotEqBodyMatcher.notEq;
-import static com.example.scaffold.frameworks.test.web.NotNullBodyMatcher.isNotNull;
-import static com.example.scaffold.frameworks.test.web.NullBodyMatcher.isNull;
+import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.*;
+import static com.example.scaffold.frameworks.test.web.ResponseBodyMultiValuesMatcher.*;
 import static com.example.scaffold.frameworks.test.web.ResponseMatcher.*;
-import static com.example.scaffold.frameworks.test.web.SizeBodyMatcher.size;
 
 @IntegrationTest
 public class TestResponseTest {
@@ -29,16 +22,17 @@ public class TestResponseTest {
                 .is(body("$.id", isNotNull()))
                 .is(body("$.id", eq("123")))
                 .is(body("$.id", isNotEmpty()))
+                .is(body("$.empty", isEmpty()))
                 .is(body("$.id", hasSize(3)))
                 .is(body("$.id", notEq("1234")))
-                .is(textBody(eq("{\"null\":null,\"id\":\"123\",\"list\":[\"1\",\"2\",\"3\"]}")))
+                .is(textBody(eq("{\"null\":null,\"id\":\"123\",\"list\":[\"1\",\"2\",\"3\"],\"empty\":\"\"}")))
                 .is(body("$.null", isNull()));
     }
 
     @Test
     void should_be_able_to_validate_bad_request_when_giving_bad_request() {
         restTemplate.get("/test/bad").is(bad())
-                .is(statusCode(com.example.scaffold.frameworks.test.web.EqStatusMatcher.eq(HttpStatus.BAD_REQUEST)));
+                .is(statusCode(ResponseStatusMatcher.eq(HttpStatus.BAD_REQUEST)));
     }
 
     @Test
