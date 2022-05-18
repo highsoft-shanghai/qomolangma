@@ -19,5 +19,8 @@ public interface ResponseBodyMultiValuesMatcher {
     static ResponseBodyMultiValuesMatcher contains(Object... matchValues) {
         return new ContainsMultiValuesMatcher(matchValues);
     }
+    static ResponseBodyMultiValuesMatcher containsExactlyInAnyOrder(Object... matchValues) {
+        return new ContainsExactlyInAnyOrderMultiValuesMatcher(matchValues);
+    }
     void match(Object[] values);
 }

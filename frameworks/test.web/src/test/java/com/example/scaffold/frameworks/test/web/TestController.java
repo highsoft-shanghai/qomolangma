@@ -25,6 +25,7 @@ public class TestController {
         map.put("num3", 0);
         map.put("true", true);
         map.put("false", false);
+        map.put("long", 123123123L);
         return map;
     }
 

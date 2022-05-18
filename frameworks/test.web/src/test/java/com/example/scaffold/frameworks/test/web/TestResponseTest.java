@@ -19,6 +19,7 @@ public class TestResponseTest {
                 .is(body("$.list", size(3)))
                 .is(body("$.list", contains("1", "2")))
                 .is(body("$.list", containsExactly("1", "2", "3")))
+                .is(body("$.list", containsExactlyInAnyOrder("1", "2", "3")))
                 .is(body("$.id", isNotNull()))
                 .is(body("$.id", eq("123")))
                 .is(body("$.id", isNotEmpty()))
