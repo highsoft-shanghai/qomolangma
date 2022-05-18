@@ -88,5 +88,8 @@ public interface ResponseBodyMatcher {
     static IsOneBodyCastIntegerMatcher isOne() {
         return new IsOneBodyCastIntegerMatcher();
     }
+    static IsTrueBodyCastBooleanMatcher isTrue() {
+        return new IsTrueBodyCastBooleanMatcher();
+    }
     void match(Object target);
 }

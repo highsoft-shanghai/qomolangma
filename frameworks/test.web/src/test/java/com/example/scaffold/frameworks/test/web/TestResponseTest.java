@@ -32,6 +32,7 @@ public class TestResponseTest {
                 .is(body("$.num", isGreaterThan(0)))
                 .is(body("$.num", isGreaterThanOrEqualTo(1)))
                 .is(body("$.num", isLessThan(2)))
+                .is(body("$.num", isLessThanOrEqualTo(1)))
                 .is(body("$.num", isPositive()))
                 .is(body("$.num", isNotNegative()))
                 .is(body("$.num", isOdd()))
@@ -40,7 +41,8 @@ public class TestResponseTest {
                 .is(body("$.num2", isNotPositive()))
                 .is(body("$.num2", isEven()))
                 .is(body("$.num2", isNotZero()))
-                .is(body("$.num3", isZero()));
+                .is(body("$.num3", isZero()))
+                .is(body("$.true", isTrue()));
     }
 
     @Test
