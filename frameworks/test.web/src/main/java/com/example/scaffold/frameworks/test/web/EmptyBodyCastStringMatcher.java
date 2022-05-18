@@ -7,7 +7,7 @@ public final class EmptyBodyCastStringMatcher extends BodyCastStringMatcher {
     }
 
     @Override
-    public void realMatch(Object target) {
-        assertThat((String) target).isEmpty();
+    public void realMatch(String target) {
+        assertThat(target).isEmpty();
     }
 }

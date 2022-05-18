@@ -2,12 +2,16 @@ package com.example.scaffold.frameworks.test.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public final class IsNotNegativeBodyCastIntegerMatcher extends BodyCastComparableMatcher {
+public final class IsNotNegativeBodyCastIntegerMatcher<T extends Number & Comparable<T>> extends BodyCastNumberMatcher<T> {
     IsNotNegativeBodyCastIntegerMatcher() {
     }
 
     @Override
-    protected void realMatch(Object value) {
-        assertThat((Integer) value).isNotNegative();
+    protected void realMatch(T value) {
+        if (value instanceof Integer) assertThat((Integer) value).isNotNegative();
+        if (value instanceof Long) assertThat((Long) value).isNotNegative();
+        if (value instanceof Double) assertThat((Double) value).isNotNegative();
+        if (value instanceof Float) assertThat((Float) value).isNotNegative();
+        if (value instanceof Short) assertThat((Short) value).isNotNegative();
     }
 }

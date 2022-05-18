@@ -2,12 +2,16 @@ package com.example.scaffold.frameworks.test.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public final class IsOneBodyCastIntegerMatcher extends BodyCastComparableMatcher {
+public final class IsOneBodyCastIntegerMatcher<T extends Number & Comparable<T>> extends BodyCastNumberMatcher<T> {
     IsOneBodyCastIntegerMatcher() {
     }
 
     @Override
-    protected void realMatch(Object value) {
-        assertThat((Integer) value).isOne();
+    protected void realMatch(T value) {
+        if (value instanceof Integer) assertThat((Integer) value).isOne();
+        if (value instanceof Long) assertThat((Long) value).isOne();
+        if (value instanceof Double) assertThat((Double) value).isOne();
+        if (value instanceof Float) assertThat((Float) value).isOne();
+        if (value instanceof Short) assertThat((Short) value).isOne();
     }
 }

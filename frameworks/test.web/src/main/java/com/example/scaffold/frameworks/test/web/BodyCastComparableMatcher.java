@@ -2,15 +2,15 @@ package com.example.scaffold.frameworks.test.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public abstract class BodyCastComparableMatcher extends BodyCastTypeMatcher {
+public abstract class BodyCastComparableMatcher<T extends Comparable<T>> extends BodyCastTypeMatcher<T> {
     @Override
-    public void match(Object value) {
-        assertThat(typeClass()).isAssignableFrom(value.getClass());
+    public void match(T value) {
+        assertThat(Comparable.class).isAssignableFrom(value.getClass());
         realMatch(value);
     }
 
     @Override
-    protected Class<?> typeClass() {
-        return Comparable.class;
+    protected Class<T> typeClass() {
+        return null;
     }
 }

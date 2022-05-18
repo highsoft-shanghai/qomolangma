@@ -7,7 +7,7 @@ public final class IsTrueBodyCastBooleanMatcher extends BodyCastBooleanMatcher {
     }
 
     @Override
-    protected void realMatch(Object value) {
-        assertThat((Boolean) value).isTrue();
+    protected void realMatch(Boolean value) {
+        assertThat(value).isTrue();
     }
 }

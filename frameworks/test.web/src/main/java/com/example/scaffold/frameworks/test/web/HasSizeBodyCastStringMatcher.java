@@ -10,7 +10,7 @@ public final class HasSizeBodyCastStringMatcher extends BodyCastStringMatcher {
     }
 
     @Override
-    public void realMatch(Object target) {
-        assertThat((String) target).hasSize(size);
+    public void realMatch(String target) {
+        assertThat(target).hasSize(size);
     }
 }

@@ -1,10 +1,10 @@
 package com.example.scaffold.frameworks.test.web;
 
-public abstract class BodyCastStringMatcher extends BodyCastTypeMatcher {
-    protected abstract void realMatch(Object value);
+public abstract class BodyCastStringMatcher extends BodyCastTypeMatcher<String> {
+    protected abstract void realMatch(String value);
 
     @Override
-    protected Class<?> typeClass() {
+    protected Class<String> typeClass() {
         return String.class;
     }
 }

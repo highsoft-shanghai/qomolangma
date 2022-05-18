@@ -26,7 +26,7 @@ public class TestResponseTest {
                 .is(body("$.empty", isEmpty()))
                 .is(body("$.id", hasSize(3)))
                 .is(body("$.id", notEq("1234")))
-                .is(textBody(eq("{\"null\":null,\"num\":1,\"true\":true,\"false\":false,\"id\":\"123\",\"list\":[\"1\",\"2\",\"3\"],\"num3\":0,\"long\":123123123,\"empty\":\"\",\"num2\":-2}")))
+                .is(textBody(eq("{\"null\":null,\"num\":1,\"true\":true,\"false\":false,\"id\":\"123\",\"list\":[\"1\",\"2\",\"3\"],\"num3\":0,\"long\":1231231212351235133,\"empty\":\"\",\"num2\":-2}")))
                 .is(body("$.null", isNull()))
                 .is(body("$.null", isNullOrEmpty()))
                 .is(body("$.empty", isNullOrEmpty()))
@@ -44,7 +44,8 @@ public class TestResponseTest {
                 .is(body("$.num2", isNotZero()))
                 .is(body("$.num3", isZero()))
                 .is(body("$.true", isTrue()))
-                .is(body("$.false", isFalse()));
+                .is(body("$.false", isFalse()))
+                .is(body("$.long", isGreaterThan(1L)));
     }
 
     @Test

@@ -2,13 +2,13 @@ package com.example.scaffold.frameworks.test.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public final class IsGreaterThanBodyCastIntegerMatcher extends SingleValueConstructBodyCastIntegerMatcher {
-    IsGreaterThanBodyCastIntegerMatcher(Integer num) {
+public final class IsGreaterThanBodyCastIntegerMatcher<T extends Comparable<T>> extends SingleValueConstructBodyCastIntegerMatcher<T> {
+    IsGreaterThanBodyCastIntegerMatcher(T num) {
         super(num);
     }
 
     @Override
-    protected void realMatch(Object value) {
-        assertThat((Integer) value).isGreaterThan(value());
+    protected void realMatch(T value) {
+        assertThat(value).isGreaterThan(value());
     }
 }

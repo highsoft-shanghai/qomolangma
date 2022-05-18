@@ -8,7 +8,7 @@ public final class IsFalseBodyCastBooleanMatcher extends BodyCastBooleanMatcher 
 
     @Override
     @SuppressWarnings("all")
-    protected void realMatch(Object value) {
-        assertThat((Boolean) value).isFalse();
+    protected void realMatch(Boolean value) {
+        assertThat(value).isFalse();
     }
 }
