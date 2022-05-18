@@ -49,5 +49,29 @@ public interface ResponseBodyMatcher {
     static ResponseBodyMatcher isNullOrEmpty() {
         return new IsNullOrEmptyBodyCastStringMatcher();
     }
+    static ResponseBodyMatcher isGreaterThan(Integer num) {
+        return new IsGreaterThanBodyCastIntegerMatcher(num);
+    }
+    static ResponseBodyMatcher isGreaterThanOrEqualTo(Integer num) {
+        return new IsGreaterThanOrEqualToBodyCastIntegerMatcher(num);
+    }
+    static IsLessThanBodyCastIntegerMatcher isLessThan(Integer value) {
+        return new IsLessThanBodyCastIntegerMatcher(value);
+    }
+    static IsLessThanOrEqualToBodyCastIntegerMatcher isLessThanOrEqualTo(Integer value) {
+        return new IsLessThanOrEqualToBodyCastIntegerMatcher(value);
+    }
+    static IsNegativeBodyCastIntegerMatcher isNegative() {
+        return new IsNegativeBodyCastIntegerMatcher();
+    }
+    static IsPositiveBodyCastIntegerMatcher isPositive() {
+        return new IsPositiveBodyCastIntegerMatcher();
+    }
+    static IsNotNegativeBodyCastIntegerMatcher isNotNegative() {
+        return new IsNotNegativeBodyCastIntegerMatcher();
+    }
+    static IsNotPositiveBodyCastIntegerMatcher isNotPositive() {
+        return new IsNotPositiveBodyCastIntegerMatcher();
+    }
     void match(Object target);
 }

@@ -20,6 +20,8 @@ public class TestController {
         map.put("null", null);
         map.put("list", List.of("1", "2", "3"));
         map.put("empty", "");
+        map.put("num", 1);
+        map.put("num2", -1);
         return map;
     }
 
