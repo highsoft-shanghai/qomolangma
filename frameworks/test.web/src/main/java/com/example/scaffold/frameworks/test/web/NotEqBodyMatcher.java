@@ -2,7 +2,7 @@ package com.example.scaffold.frameworks.test.web;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public final class NotEqBodyMatcher implements ResponseBodyMatcher {
+public final class NotEqBodyMatcher implements GeneralResponseBodyMatcher {
     private final String value;
 
     private NotEqBodyMatcher(String value) {

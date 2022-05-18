@@ -2,7 +2,7 @@ package com.example.scaffold.frameworks.test.web;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public final class NullBodyMatcher implements ResponseBodyMatcher {
+public final class NullBodyMatcher implements GeneralResponseBodyMatcher {
     private NullBodyMatcher() {
     }
 

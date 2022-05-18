@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import static com.example.scaffold.frameworks.test.web.ContainsExactlyMultiValuesMatcher.containsExactly;
 import static com.example.scaffold.frameworks.test.web.ContainsMultiValuesMatcher.contains;
 import static com.example.scaffold.frameworks.test.web.EqBodyMatcher.eq;
+import static com.example.scaffold.frameworks.test.web.NotEmptyBodyCastStringMatcher.isNotEmpty;
 import static com.example.scaffold.frameworks.test.web.NotEqBodyMatcher.notEq;
 import static com.example.scaffold.frameworks.test.web.NotNullBodyMatcher.isNotNull;
 import static com.example.scaffold.frameworks.test.web.NullBodyMatcher.isNull;
@@ -26,6 +27,7 @@ public class TestResponseTest {
                 .is(body("$.list", containsExactly("1", "2", "3")))
                 .is(body("$.id", isNotNull()))
                 .is(body("$.id", eq("123")))
+                .is(body("$.id", isNotEmpty()))
                 .is(body("$.id", notEq("1234")))
                 .is(textBody(eq("{\"null\":null,\"id\":\"123\",\"list\":[\"1\",\"2\",\"3\"]}")))
                 .is(body("$.null", isNull()));
