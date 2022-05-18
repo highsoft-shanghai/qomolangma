@@ -2,25 +2,20 @@ package com.example.scaffold.frameworks.test.web;
 
 public interface ResponseBodyMultiValuesMatcher {
     /**
-     * Verifies that the number of values in the actual group is equal to the given one.
-     * <p>
-     * This assertion will succeed:
-     * <pre><code class='java'> assertThat(new String[] { "a", "b" }).hasSize(2);</code></pre>
-     * <pre><code class='java'> assertThat(Arrays.asList(1, 2, 3)).hasSize(3);</code></pre>
-     * <p>
-     * Whereas this assertion will fail:
-     * <pre><code class='java'> assertThat(new ArrayList()).hasSize(1);</code></pre>
-     * <pre><code class='java'> assertThat(new int[] { 1, 2, 3 }).hasSize(2);</code></pre>
-     * @param value the expected length of the actual group.
-     * @return {@code this} assertion object.
-     * @throws AssertionError if the number of values of the actual group is not equal to the given one.
+     * Delegated to assertj, see also {@link org.assertj.core.api.AbstractObjectArrayAssert#hasSize(int)}
      */
     static ResponseBodyMultiValuesMatcher size(int value) {
         return new SizeBodyMatcher(value);
     }
+    /**
+     * Delegated to assertj, see also {@link org.assertj.core.api.AbstractObjectArrayAssert#containsExactly(Object[])}
+     */
     static ContainsExactlyMultiValuesMatcher containsExactly(Object... matchValues) {
         return new ContainsExactlyMultiValuesMatcher(matchValues);
     }
+    /**
+     * Delegated to assertj, see also {@link org.assertj.core.api.AbstractObjectArrayAssert#contains(Object[])}
+     */
     static ResponseBodyMultiValuesMatcher contains(Object... matchValues) {
         return new ContainsMultiValuesMatcher(matchValues);
     }
