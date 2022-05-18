@@ -21,7 +21,7 @@ public class TestController {
         map.put("list", List.of("1", "2", "3"));
         map.put("empty", "");
         map.put("num", 1);
-        map.put("num2", -1);
+        map.put("num2", -2);
         map.put("num3", 0);
         return map;
     }

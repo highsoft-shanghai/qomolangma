@@ -76,5 +76,8 @@ public interface ResponseBodyMatcher {
     static IsZeroBodyCastIntegerMatcher isZero() {
         return new IsZeroBodyCastIntegerMatcher();
     }
+    static IsNotZeroBodyCastIntegerMatcher isNotZero() {
+        return new IsNotZeroBodyCastIntegerMatcher();
+    }
     void match(Object target);
 }
