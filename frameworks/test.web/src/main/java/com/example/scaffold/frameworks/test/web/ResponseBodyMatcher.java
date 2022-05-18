@@ -26,6 +26,24 @@ public interface ResponseBodyMatcher {
     static ResponseBodyMatcher hasSize(int size) {
         return new HasSizeBodyCastStringMatcher(size);
     }
+    /**
+     * Verifies that the actual {@code CharSequence} is not empty, i.e., is not {@code null} and has a length of 1 or
+     * more.
+     * <p>
+     * This assertion will succeed:
+     * <pre><code class='java'> String bookName = &quot;A Game of Thrones&quot;
+     * response.is(body(bookName, isNotEmpty()));</code></pre>
+     *
+     * Whereas these assertions will fail:
+     * <pre><code class='java'> String emptyString = &quot;&quot;
+     * response.is(body(emptyString, isNotEmpty()));
+     *
+     * String nullString = null;
+     * response.is(body(nullString, isNotEmpty()));</code></pre>
+     *
+     * @return {@code this} assertion object.
+     * @throws AssertionError if the actual {@code CharSequence} is empty (has a length of 0).
+     */
     static ResponseBodyMatcher isNotEmpty() {
         return new NotEmptyBodyCastStringMatcher();
     }
