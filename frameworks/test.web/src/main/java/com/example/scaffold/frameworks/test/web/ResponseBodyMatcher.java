@@ -95,6 +95,25 @@ public interface ResponseBodyMatcher {
     static ResponseBodyMatcher isEmpty() {
         return new EmptyBodyCastStringMatcher();
     }
+    /**
+     * Verifies that the actual {@code CharSequence} is empty, i.e., it has a length of 0, or is {@code null}.
+     * <p>
+     * If you do not want to accept a {@code null} value, use
+     * {@link #isEmpty()} instead.
+     * <p>
+     * Both of these assertions will succeed:
+     * <pre><code class='java'> String emptyString = &quot;&quot;
+     * response.is(body(emptyString, isNullOrEmpty()));
+     *
+     * String nullString = null;
+     * response.is(body(nullString, isNullOrEmpty()));</code></pre>
+     *
+     * Whereas these assertions will fail:
+     * <pre><code class='java'> response.is(body("a", isEmpty()));
+     * response.is(body("   ", isEmpty()));</code></pre>
+     *
+     * @throws AssertionError if the actual {@code CharSequence} has a non-zero length.
+     */
     static ResponseBodyMatcher isNullOrEmpty() {
         return new IsNullOrEmptyBodyCastStringMatcher();
     }

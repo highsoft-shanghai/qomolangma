@@ -26,7 +26,9 @@ public class TestResponseTest {
                 .is(body("$.id", hasSize(3)))
                 .is(body("$.id", notEq("1234")))
                 .is(textBody(eq("{\"null\":null,\"id\":\"123\",\"list\":[\"1\",\"2\",\"3\"],\"empty\":\"\"}")))
-                .is(body("$.null", isNull()));
+                .is(body("$.null", isNull()))
+                .is(body("$.null", isNullOrEmpty()))
+                .is(body("$.empty", isNullOrEmpty()));
     }
 
     @Test
