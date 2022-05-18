@@ -1,6 +1,7 @@
 package com.example.scaffold.frameworks.test.web;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
 
 import javax.annotation.Resource;
 
@@ -32,7 +33,8 @@ public class TestResponseTest {
 
     @Test
     void should_be_able_to_validate_bad_request_when_giving_bad_request() {
-        restTemplate.get("/test/bad").is(bad());
+        restTemplate.get("/test/bad").is(bad())
+                .is(statusCode(com.example.scaffold.frameworks.test.web.EqStatusMatcher.eq(HttpStatus.BAD_REQUEST)));
     }
 
     @Test
