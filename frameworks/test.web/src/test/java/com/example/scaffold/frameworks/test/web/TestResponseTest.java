@@ -34,6 +34,7 @@ public class TestResponseTest {
                 .is(body("$.num", isLessThan(2)))
                 .is(body("$.num", isPositive()))
                 .is(body("$.num", isNotNegative()))
+                .is(body("$.num", isOdd()))
                 .is(body("$.num2", isNegative()))
                 .is(body("$.num2", isNotPositive()))
                 .is(body("$.num2", isEven()))
