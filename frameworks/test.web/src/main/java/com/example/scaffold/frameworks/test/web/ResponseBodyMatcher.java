@@ -73,5 +73,8 @@ public interface ResponseBodyMatcher {
     static IsNotPositiveBodyCastIntegerMatcher isNotPositive() {
         return new IsNotPositiveBodyCastIntegerMatcher();
     }
+    static IsZeroBodyCastIntegerMatcher isZero() {
+        return new IsZeroBodyCastIntegerMatcher();
+    }
     void match(Object target);
 }

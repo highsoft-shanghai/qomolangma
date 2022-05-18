@@ -35,7 +35,8 @@ public class TestResponseTest {
                 .is(body("$.num", isPositive()))
                 .is(body("$.num", isNotNegative()))
                 .is(body("$.num2", isNegative()))
-                .is(body("$.num2", isNotPositive()));
+                .is(body("$.num2", isNotPositive()))
+                .is(body("$.num3", isZero()));
     }
 
     @Test

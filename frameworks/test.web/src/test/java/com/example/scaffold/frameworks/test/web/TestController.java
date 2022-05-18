@@ -22,6 +22,7 @@ public class TestController {
         map.put("empty", "");
         map.put("num", 1);
         map.put("num2", -1);
+        map.put("num3", 0);
         return map;
     }
 
