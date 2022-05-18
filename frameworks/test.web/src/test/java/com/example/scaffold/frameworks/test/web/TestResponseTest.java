@@ -5,9 +5,17 @@ import org.springframework.http.HttpStatus;
 
 import javax.annotation.Resource;
 
-import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.*;
+import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.eq;
+import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.hasSize;
+import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.isEmpty;
+import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.isNotEmpty;
+import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.isNotNull;
+import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.isNull;
+import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.isNullOrEmpty;
+import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.notEq;
 import static com.example.scaffold.frameworks.test.web.ResponseBodyMultiValuesMatcher.*;
 import static com.example.scaffold.frameworks.test.web.ResponseMatcher.*;
+import static com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.eq;
 
 @IntegrationTest
 public class TestResponseTest {
@@ -33,7 +41,7 @@ public class TestResponseTest {
 
     @Test
     void should_be_able_to_validate_bad_request_when_giving_bad_request() {
-        restTemplate.get("/test/bad").is(bad()).is(statusCode(ResponseStatusMatcher.eq(HttpStatus.BAD_REQUEST)));
+        restTemplate.get("/test/bad").is(bad()).is(statusCode(eq(HttpStatus.BAD_REQUEST)));
     }
 
     @Test
