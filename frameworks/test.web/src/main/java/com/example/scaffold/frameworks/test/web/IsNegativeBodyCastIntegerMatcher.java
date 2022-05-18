@@ -2,7 +2,7 @@ package com.example.scaffold.frameworks.test.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public final class IsNegativeBodyCastIntegerMatcher extends BodyCastIntegerMatcher {
+public final class IsNegativeBodyCastIntegerMatcher extends BodyCastComparableMatcher {
     IsNegativeBodyCastIntegerMatcher() {
     }
 

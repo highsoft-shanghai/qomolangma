@@ -2,7 +2,7 @@ package com.example.scaffold.frameworks.test.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public final class IsLessThanBodyCastIntegerMatcher extends ComparableBodyCastIntegerMatcher {
+public final class IsLessThanBodyCastIntegerMatcher extends SingleValueConstructBodyCastIntegerMatcher {
     IsLessThanBodyCastIntegerMatcher(Integer value) {
         super(value);
     }
