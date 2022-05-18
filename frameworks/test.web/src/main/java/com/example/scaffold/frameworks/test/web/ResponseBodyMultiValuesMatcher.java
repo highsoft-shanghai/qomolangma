@@ -10,7 +10,7 @@ public interface ResponseBodyMultiValuesMatcher {
     /**
      * Delegated to assertj, see also {@link org.assertj.core.api.AbstractObjectArrayAssert#containsExactly(Object[])}.
      */
-    static ContainsExactlyMultiValuesMatcher containsExactly(Object... matchValues) {
+    static ResponseBodyMultiValuesMatcher containsExactly(Object... matchValues) {
         return new ContainsExactlyMultiValuesMatcher(matchValues);
     }
     /**

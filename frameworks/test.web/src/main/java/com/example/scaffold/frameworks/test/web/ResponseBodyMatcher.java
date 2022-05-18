@@ -55,43 +55,43 @@ public interface ResponseBodyMatcher {
     static ResponseBodyMatcher isGreaterThanOrEqualTo(Integer num) {
         return new IsGreaterThanOrEqualToBodyCastIntegerMatcher(num);
     }
-    static IsLessThanBodyCastIntegerMatcher isLessThan(Integer value) {
+    static ResponseBodyMatcher isLessThan(Integer value) {
         return new IsLessThanBodyCastIntegerMatcher(value);
     }
-    static IsLessThanOrEqualToBodyCastIntegerMatcher isLessThanOrEqualTo(Integer value) {
+    static ResponseBodyMatcher isLessThanOrEqualTo(Integer value) {
         return new IsLessThanOrEqualToBodyCastIntegerMatcher(value);
     }
-    static IsNegativeBodyCastIntegerMatcher isNegative() {
+    static ResponseBodyMatcher isNegative() {
         return new IsNegativeBodyCastIntegerMatcher();
     }
-    static IsPositiveBodyCastIntegerMatcher isPositive() {
+    static ResponseBodyMatcher isPositive() {
         return new IsPositiveBodyCastIntegerMatcher();
     }
-    static IsNotNegativeBodyCastIntegerMatcher isNotNegative() {
+    static ResponseBodyMatcher isNotNegative() {
         return new IsNotNegativeBodyCastIntegerMatcher();
     }
-    static IsNotPositiveBodyCastIntegerMatcher isNotPositive() {
+    static ResponseBodyMatcher isNotPositive() {
         return new IsNotPositiveBodyCastIntegerMatcher();
     }
-    static IsZeroBodyCastIntegerMatcher isZero() {
+    static ResponseBodyMatcher isZero() {
         return new IsZeroBodyCastIntegerMatcher();
     }
-    static IsNotZeroBodyCastIntegerMatcher isNotZero() {
+    static ResponseBodyMatcher isNotZero() {
         return new IsNotZeroBodyCastIntegerMatcher();
     }
-    static IsEvenBodyCastIntegerMatcher isEven() {
+    static ResponseBodyMatcher isEven() {
         return new IsEvenBodyCastIntegerMatcher();
     }
-    static IsOddBodyCastIntegerMatcher isOdd() {
+    static ResponseBodyMatcher isOdd() {
         return new IsOddBodyCastIntegerMatcher();
     }
-    static IsOneBodyCastIntegerMatcher isOne() {
+    static ResponseBodyMatcher isOne() {
         return new IsOneBodyCastIntegerMatcher();
     }
-    static IsTrueBodyCastBooleanMatcher isTrue() {
+    static ResponseBodyMatcher isTrue() {
         return new IsTrueBodyCastBooleanMatcher();
     }
-    static IsFalseBodyCastBooleanMatcher isFalse() {
+    static ResponseBodyMatcher isFalse() {
         return new IsFalseBodyCastBooleanMatcher();
     }
     void match(Object target);
