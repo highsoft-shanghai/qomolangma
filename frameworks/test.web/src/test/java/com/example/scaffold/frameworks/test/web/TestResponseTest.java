@@ -42,7 +42,8 @@ public class TestResponseTest {
                 .is(body("$.num2", isEven()))
                 .is(body("$.num2", isNotZero()))
                 .is(body("$.num3", isZero()))
-                .is(body("$.true", isTrue()));
+                .is(body("$.true", isTrue()))
+                .is(body("$.false", isFalse()));
     }
 
     @Test

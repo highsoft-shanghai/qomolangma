@@ -91,5 +91,8 @@ public interface ResponseBodyMatcher {
     static IsTrueBodyCastBooleanMatcher isTrue() {
         return new IsTrueBodyCastBooleanMatcher();
     }
+    static IsFalseBodyCastBooleanMatcher isFalse() {
+        return new IsFalseBodyCastBooleanMatcher();
+    }
     void match(Object target);
 }
