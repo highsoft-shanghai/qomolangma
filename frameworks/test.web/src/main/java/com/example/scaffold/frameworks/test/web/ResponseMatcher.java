@@ -1,8 +1,12 @@
 package com.example.scaffold.frameworks.test.web;
 
-import org.springframework.http.HttpStatus;
-
-import static com.example.scaffold.frameworks.test.web.EqStatusMatcher.eq;
+import static com.example.scaffold.frameworks.test.web.BadResponseStatusMatcher.badStatus;
+import static com.example.scaffold.frameworks.test.web.CreatedResponseStatusMatcher.createdStatus;
+import static com.example.scaffold.frameworks.test.web.ErrorResponseStatusMatcher.errorStatus;
+import static com.example.scaffold.frameworks.test.web.ForbiddenResponseStatusMatcher.forbiddenStatus;
+import static com.example.scaffold.frameworks.test.web.NotFoundResponseStatusMatcher.notFoundStatus;
+import static com.example.scaffold.frameworks.test.web.OkResponseStatusMatcher.okStatus;
+import static com.example.scaffold.frameworks.test.web.UnauthorizedResponseStatusMatcher.unauthorizedStatus;
 
 public interface ResponseMatcher {
     void match(TestResponse response);
@@ -20,19 +24,31 @@ public interface ResponseMatcher {
     }
 
     static ResponseMatcher ok() {
-        return o -> statusCode(eq(HttpStatus.OK)).match(o);
+        return statusCode(okStatus());
     }
 
     static ResponseMatcher created() {
-        return o -> statusCode(eq(HttpStatus.CREATED)).match(o);
+        return statusCode(createdStatus());
     }
 
     static ResponseMatcher bad() {
-        return o -> statusCode(eq(HttpStatus.BAD_REQUEST)).match(o);
+        return statusCode(badStatus());
     }
 
     static ResponseMatcher error() {
-        return o -> statusCode(eq(HttpStatus.INTERNAL_SERVER_ERROR)).match(o);
+        return statusCode(errorStatus());
+    }
+
+    static ResponseMatcher notFound() {
+        return statusCode(notFoundStatus());
+    }
+
+    static ResponseMatcher unauthorized() {
+        return statusCode(unauthorizedStatus());
+    }
+
+    static ResponseMatcher forbidden() {
+        return statusCode(forbiddenStatus());
     }
 
     static ResponseMatcher statusCode(ResponseStatusMatcher matcher) {

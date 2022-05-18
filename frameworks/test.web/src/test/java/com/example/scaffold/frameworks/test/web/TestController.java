@@ -37,4 +37,14 @@ public class TestController {
     public void created() {
     }
 
+    @GetMapping("/unauthorized")
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public void unauthorized() {
+    }
+
+    @GetMapping("/forbidden")
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public void forbidden() {
+    }
+
 }
