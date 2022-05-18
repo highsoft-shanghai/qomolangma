@@ -64,7 +64,7 @@ public interface ResponseBodyMatcher {
      * This assertion will succeed:
      * <pre><code class='java'>assertThat(null).isNotNull();</code></pre>
      * @return {@code this} assertion object.
-     * @throws AssertionError if the actual {@code object} is null.
+     * @throws AssertionError if the actual {@code object} is {@code null}.
      */
     static ResponseBodyMatcher isNotNull() {
         return new NotNullBodyMatcher();
@@ -75,8 +75,28 @@ public interface ResponseBodyMatcher {
     static NullBodyMatcher isNull() {
         return new NullBodyMatcher();
     }
+    /**
+     * Verifies that the actual {@code CharSequence} is empty, i.e., it has a length of 0 and is not {@code null}.
+     * <p>
+     * If you want to accept a {@code null} value as well as a 0 length, use
+     * {@link ResponseBodyMatcher#isNullOrEmpty()} instead.
+     * <p>
+     * This assertion will succeed:
+     * <pre><code class='java'> String emptyString = &quot;&quot;
+     * response.is(body(emptyString, isEmpty()));</code></pre>
+     * <p>
+     * Whereas these assertions will fail:
+     * <pre><code class='java'> String nullString = null;
+     * response.is(body(nullString, isEmpty()));
+     * response.is(body("123", isEmpty()));
+     * response.is(body("    ", isEmpty()));</code></pre>
+     * @throws AssertionError if the actual {@code CharSequence} has a non-zero length or is null.
+     */
     static ResponseBodyMatcher isEmpty() {
         return new EmptyBodyCastStringMatcher();
+    }
+    static ResponseBodyMatcher isNullOrEmpty() {
+        return new IsNullOrEmptyBodyCastStringMatcher();
     }
     void match(Object target);
 }
