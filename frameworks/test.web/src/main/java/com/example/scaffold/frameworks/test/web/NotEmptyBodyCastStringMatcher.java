@@ -2,7 +2,7 @@ package com.example.scaffold.frameworks.test.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public final class NotEmptyBodyCastStringMatcher implements BodyCastStringMatcher {
+public final class NotEmptyBodyCastStringMatcher extends BodyCastStringMatcher {
     private NotEmptyBodyCastStringMatcher() {
     }
 
@@ -11,8 +11,7 @@ public final class NotEmptyBodyCastStringMatcher implements BodyCastStringMatche
     }
 
     @Override
-    public void match(Object target) {
-        assertThat(target).isInstanceOf(String.class);
+    public void realMatch(Object target) {
         assertThat((String) target).isNotEmpty();
     }
 }
