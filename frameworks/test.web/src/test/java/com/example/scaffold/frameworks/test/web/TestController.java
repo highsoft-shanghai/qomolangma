@@ -23,6 +23,8 @@ public class TestController {
         map.put("num", 1);
         map.put("num2", -2);
         map.put("num3", 0);
+        map.put("true", true);
+        map.put("false", false);
         return map;
     }
 
