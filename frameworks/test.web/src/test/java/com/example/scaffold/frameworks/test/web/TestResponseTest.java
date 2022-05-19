@@ -103,6 +103,14 @@ public class TestResponseTest {
     }
 
     @Test
+    void should_be_able_to_test_is_not_zero() {
+        restTemplate.get("/test").statusCodeIs(ok())
+                .is(body("$.num2", isNotZero()))
+                .is(body("$.long2", isNotZero()))
+                .is(body("$.double4", isNotZero()));
+    }
+
+    @Test
     void should_be_able_to_validate_bad_request_when_giving_bad_request() {
         restTemplate.get("/test/bad").statusCodeIs(bad());
     }
