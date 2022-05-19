@@ -7,8 +7,8 @@ import javax.annotation.Resource;
 
 import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.*;
 import static com.example.scaffold.frameworks.test.web.ResponseBodyMultiValuesMatcher.*;
-import static com.example.scaffold.frameworks.test.web.ResponseMatcher.body;
-import static com.example.scaffold.frameworks.test.web.ResponseMatcher.textBody;
+import static com.example.scaffold.frameworks.test.web.ResponseHeaderMatcher.exist;
+import static com.example.scaffold.frameworks.test.web.ResponseMatcher.*;
 import static com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -146,5 +146,10 @@ public class TestResponseTest {
     @Test
     void should_be_able_to_validate_unauthorized_request_when_giving_unauthorized_path() {
         restTemplate.get("/test/unauthorized").statusCodeIs(unauthorized());
+    }
+
+    @Test
+    void should_be_able_to_validate_header() {
+        restTemplate.get("/test/created").statusCodeIs(created()).is(header("Connection", exist("keep-alive")));
     }
 }

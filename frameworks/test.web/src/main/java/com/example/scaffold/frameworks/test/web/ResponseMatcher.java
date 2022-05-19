@@ -14,4 +14,8 @@ public interface ResponseMatcher {
     static ResponseMatcher textBody(ResponseBodyMatcher<Object> matcher) {
         return o -> matcher.match(o.textBody());
     }
+
+    static ResponseMatcher header(String header, ResponseHeaderMatcher matcher) {
+        return response -> matcher.match(response, header);
+    }
 }
