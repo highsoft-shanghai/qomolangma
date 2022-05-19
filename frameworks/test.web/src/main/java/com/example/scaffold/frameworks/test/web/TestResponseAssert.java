@@ -11,4 +11,8 @@ public class TestResponseAssert {
         matcher.match(this.response);
         return this;
     }
+
+    public TestResponse response() {
+        return response;
+    }
 }

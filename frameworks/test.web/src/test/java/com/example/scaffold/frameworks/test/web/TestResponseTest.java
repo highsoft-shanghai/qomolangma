@@ -10,6 +10,7 @@ import static com.example.scaffold.frameworks.test.web.ResponseBodyMultiValuesMa
 import static com.example.scaffold.frameworks.test.web.ResponseMatcher.body;
 import static com.example.scaffold.frameworks.test.web.ResponseMatcher.textBody;
 import static com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @IntegrationTest
 public class TestResponseTest {
@@ -108,6 +109,13 @@ public class TestResponseTest {
                 .is(body("$.num2", isNotZero()))
                 .is(body("$.long2", isNotZero()))
                 .is(body("$.double4", isNotZero()));
+    }
+
+
+    @Test
+    void should_be_able_to_get_response_from_assert() {
+        TestResponse response = restTemplate.get("/test");
+        assertEquals(response, response.statusCodeIs(ok()).response());
     }
 
     @Test
