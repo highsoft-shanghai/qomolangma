@@ -1,5 +1,7 @@
 package com.example.scaffold.frameworks.test.web;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public final class ExistResponseHeaderMatcher extends SingleValueConstructResponseHeaderMatcher {
@@ -8,7 +10,7 @@ public final class ExistResponseHeaderMatcher extends SingleValueConstructRespon
     }
 
     @Override
-    public void match(TestResponse response, String header) {
-        assertThat(response.header(header)).contains(value());
+    public void match(List<String> headerValues) {
+        assertThat(headerValues).contains(value());
     }
 }

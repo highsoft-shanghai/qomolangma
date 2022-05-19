@@ -16,6 +16,6 @@ public interface ResponseMatcher {
     }
 
     static ResponseMatcher header(String header, ResponseHeaderMatcher matcher) {
-        return response -> matcher.match(response, header);
+        return response -> matcher.match(response.header(header));
     }
 }
