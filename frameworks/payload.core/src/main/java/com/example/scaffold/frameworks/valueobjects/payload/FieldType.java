@@ -21,8 +21,7 @@ public abstract class FieldType<T> {
 
     protected T from(@Nullable Object value) {
         if (value == null) return nullHandler.get();
-        Class<?> aClass = value.getClass();
-        if (!match(aClass)) throw new MalformedPayloadException("error.request.field-type-mismatch");
+        if (!match(value.getClass())) throw new MalformedPayloadException("error.request.field-type-mismatch");
         T result = convert(value);
         validate(result);
         return result;
