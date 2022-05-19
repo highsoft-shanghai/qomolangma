@@ -11,5 +11,5 @@ public abstract class BodyCastNumberMatcher<T extends Number & Comparable<T>> ex
         realMatch(value);
     }
 
-    private static final List<Class<?>> ALLOW_CLASSES = List.of(Integer.class, Long.class, Double.class, Float.class, Short.class);
+    private static final List<Class<?>> ALLOW_CLASSES = List.of(Integer.class, Long.class, Double.class);
 }

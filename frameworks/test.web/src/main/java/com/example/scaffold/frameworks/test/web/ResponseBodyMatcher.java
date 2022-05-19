@@ -61,6 +61,9 @@ public interface ResponseBodyMatcher<T> {
     static <T extends Comparable<T>> ResponseBodyMatcher<T> isLessThanOrEqualTo(T value) {
         return new IsLessThanOrEqualToBodyCastComparableMatcher<>(value);
     }
+    static <T extends Number & Comparable<T>> ResponseBodyMatcher<T> isNotPositive() {
+        return new IsNotPositiveBodyCastNumberMatcher<>();
+    }
     static <T extends Number & Comparable<T>> ResponseBodyMatcher<T> isNegative() {
         return new IsNegativeBodyCastNumberMatcher<>();
     }
@@ -70,23 +73,20 @@ public interface ResponseBodyMatcher<T> {
     static <T extends Number & Comparable<T>> ResponseBodyMatcher<T> isNotNegative() {
         return new IsNotNegativeBodyCastNumberMatcher<>();
     }
-    static <T extends Number & Comparable<T>> ResponseBodyMatcher<T> isNotPositive() {
-        return new IsNotPositiveBodyCastNumberMatcher<>();
+    static <T extends Number & Comparable<T>> ResponseBodyMatcher<T> isNotZero() {
+        return new IsNotZeroBodyCastIntegersMatcher<>();
     }
     static <T extends Number & Comparable<T>> ResponseBodyMatcher<T> isZero() {
         return new IsZeroBodyCastNumberMatcher<>();
     }
-    static <T extends Number & Comparable<T>> ResponseBodyMatcher<T> isNotZero() {
-        return new IsNotZeroBodyCastIntegersMatcher<>();
+    static <T extends Number & Comparable<T>> ResponseBodyMatcher<T> isOne() {
+        return new IsOneBodyCastIntegersMatcher<>();
     }
     static <T extends Number & Comparable<T>> ResponseBodyMatcher<T> isEven() {
         return new IsEvenBodyCastIntegersMatcher<>();
     }
     static <T extends Number & Comparable<T>> ResponseBodyMatcher<T> isOdd() {
         return new IsOddBodyCastIntegersMatcher<>();
-    }
-    static <T extends Number & Comparable<T>> ResponseBodyMatcher<T> isOne() {
-        return new IsOneBodyCastIntegersMatcher<>();
     }
     static ResponseBodyMatcher<Boolean> isTrue() {
         return new IsTrueBodyCastBooleanMatcher();

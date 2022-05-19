@@ -11,7 +11,5 @@ public final class IsOneBodyCastIntegersMatcher<T extends Number & Comparable<T>
         if (value instanceof Integer) assertThat((Integer) value).isOne();
         if (value instanceof Long) assertThat((Long) value).isOne();
         if (value instanceof Double) assertThat((Double) value).isOne();
-        if (value instanceof Float) assertThat((Float) value).isOne();
-        if (value instanceof Short) assertThat((Short) value).isOne();
     }
 }

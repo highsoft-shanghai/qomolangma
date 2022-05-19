@@ -10,6 +10,5 @@ public final class IsOddBodyCastIntegersMatcher<T extends Number & Comparable<T>
     protected void realMatch(T value) {
         if (value instanceof Integer) assertThat((Integer) value).isOdd();
         if (value instanceof Long) assertThat((Long) value).isOdd();
-        if (value instanceof Short) assertThat((Short) value).isOdd();
     }
 }

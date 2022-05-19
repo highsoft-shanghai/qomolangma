@@ -11,7 +11,5 @@ public final class IsNegativeBodyCastNumberMatcher<T extends Number & Comparable
         if (value instanceof Integer) assertThat((Integer) value).isNegative();
         if (value instanceof Long) assertThat((Long) value).isNegative();
         if (value instanceof Double) assertThat((Double) value).isNegative();
-        if (value instanceof Float) assertThat((Float) value).isNegative();
-        if (value instanceof Short) assertThat((Short) value).isNegative();
     }
 }

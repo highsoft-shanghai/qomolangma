@@ -10,6 +10,5 @@ public final class IsEvenBodyCastIntegersMatcher<T extends Number & Comparable<T
     protected void realMatch(T value) {
         if (value instanceof Integer) assertThat((Integer) value).isEven();
         if (value instanceof Long) assertThat((Long) value).isEven();
-        if (value instanceof Short) assertThat((Short) value).isEven();
     }
 }

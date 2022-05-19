@@ -11,7 +11,5 @@ public final class IsZeroBodyCastNumberMatcher<T extends Number & Comparable<T>>
         if (value instanceof Integer) assertThat((Integer) value).isZero();
         if (value instanceof Long) assertThat((Long) value).isZero();
         if (value instanceof Double) assertThat((Double) value).isZero();
-        if (value instanceof Float) assertThat((Float) value).isZero();
-        if (value instanceof Short) assertThat((Short) value).isZero();
     }
 }
