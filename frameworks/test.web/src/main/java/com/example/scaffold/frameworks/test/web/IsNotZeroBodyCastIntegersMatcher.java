@@ -2,8 +2,8 @@ package com.example.scaffold.frameworks.test.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public final class IsNotZeroBodyCastIntegerMatcher<T extends Number & Comparable<T>> extends BodyCastNumberMatcher<T> {
-    IsNotZeroBodyCastIntegerMatcher() {
+public final class IsNotZeroBodyCastIntegersMatcher<T extends Number & Comparable<T>> extends BodyCastNumberMatcher<T> {
+    IsNotZeroBodyCastIntegersMatcher() {
     }
 
     @Override
