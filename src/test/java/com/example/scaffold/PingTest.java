@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.eq;
 import static com.example.scaffold.frameworks.test.web.ResponseMatcher.body;
-import static com.example.scaffold.frameworks.test.web.ResponseMatcher.ok;
+import static com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.ok;
 
 @IntegrationTest
 public class PingTest {
@@ -19,6 +19,6 @@ public class PingTest {
     @Test
     void should_reply_pong() {
         TestResponse testResponse = testTemplate.post("/ping", Map.of("data", "pong"));
-        testResponse.is(ok()).is(body("$", eq("pong")));
+        testResponse.assertStatus(ok()).is(body("$", eq("pong")));
     }
 }

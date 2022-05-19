@@ -11,35 +11,35 @@ public class ResponseStatusMatcher {
         this.status = status;
     }
 
-    public static ResponseStatusMatcher badStatus() {
+    public static ResponseStatusMatcher bad() {
         return new BadResponseStatusMatcher();
     }
 
-    public static ResponseStatusMatcher createdStatus() {
+    public static ResponseStatusMatcher created() {
         return new CreatedResponseStatusMatcher();
     }
 
-    public static ResponseStatusMatcher eq(HttpStatus status) {
+    public static ResponseStatusMatcher statusCode(HttpStatus status) {
         return new EqStatusMatcher(status);
     }
 
-    public static ResponseStatusMatcher errorStatus() {
+    public static ResponseStatusMatcher error() {
         return new ErrorResponseStatusMatcher();
     }
 
-    public static ResponseStatusMatcher forbiddenStatus() {
+    public static ResponseStatusMatcher forbidden() {
         return new ForbiddenResponseStatusMatcher();
     }
 
-    public static ResponseStatusMatcher notFoundStatus() {
+    public static ResponseStatusMatcher notFound() {
         return new NotFoundResponseStatusMatcher();
     }
 
-    public static ResponseStatusMatcher okStatus() {
+    public static ResponseStatusMatcher ok() {
         return new OkResponseStatusMatcher();
     }
 
-    public static ResponseStatusMatcher unauthorizedStatus() {
+    public static ResponseStatusMatcher unauthorized() {
         return new UnauthorizedResponseStatusMatcher();
     }
 

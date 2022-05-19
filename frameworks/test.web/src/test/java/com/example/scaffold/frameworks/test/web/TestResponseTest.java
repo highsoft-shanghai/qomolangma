@@ -7,7 +7,9 @@ import javax.annotation.Resource;
 
 import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.*;
 import static com.example.scaffold.frameworks.test.web.ResponseBodyMultiValuesMatcher.*;
-import static com.example.scaffold.frameworks.test.web.ResponseMatcher.*;
+import static com.example.scaffold.frameworks.test.web.ResponseMatcher.body;
+import static com.example.scaffold.frameworks.test.web.ResponseMatcher.textBody;
+import static com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.*;
 
 @IntegrationTest
 public class TestResponseTest {
@@ -15,7 +17,8 @@ public class TestResponseTest {
 
     @Test
     void should_be_able_to_validate_ok_and_body_eq_when_giving_right_json_rest_api_request() {
-        restTemplate.get("/test").is(ok())
+        restTemplate.get("/test").assertStatus(statusCode(HttpStatus.OK));
+        restTemplate.get("/test").assertStatus(ok())
                 .is(body("$.list", size(3)))
                 .is(body("$.list", contains("1", "2")))
                 .is(body("$.list", containsExactly("1", "2", "3")))
@@ -49,32 +52,37 @@ public class TestResponseTest {
     }
 
     @Test
+    void should_be_able_to_test_integer() {
+        restTemplate.get("/test").assertStatus(ok());
+    }
+
+    @Test
     void should_be_able_to_validate_bad_request_when_giving_bad_request() {
-        restTemplate.get("/test/bad").is(bad()).is(statusCode(com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.eq(HttpStatus.BAD_REQUEST)));
+        restTemplate.get("/test/bad").assertStatus(bad());
     }
 
     @Test
     void should_be_able_to_validate_bad_request_when_giving_error_request() {
-        restTemplate.get("/test/error").is(error());
+        restTemplate.get("/test/error").assertStatus(error());
     }
 
     @Test
     void should_be_able_to_validate_bad_request_when_giving_created() {
-        restTemplate.get("/test/created").is(created());
+        restTemplate.get("/test/created").assertStatus(created());
     }
 
     @Test
     void should_be_able_to_validate_not_found_request_when_giving_not_found_path() {
-        restTemplate.get("/test/not-found-path").is(notFound());
+        restTemplate.get("/test/not-found-path").assertStatus(notFound());
     }
 
     @Test
     void should_be_able_to_validate_forbidden_request_when_giving_forbidden_path() {
-        restTemplate.get("/test/forbidden").is(forbidden());
+        restTemplate.get("/test/forbidden").assertStatus(forbidden());
     }
 
     @Test
     void should_be_able_to_validate_unauthorized_request_when_giving_unauthorized_path() {
-        restTemplate.get("/test/unauthorized").is(unauthorized());
+        restTemplate.get("/test/unauthorized").assertStatus(unauthorized());
     }
 }
