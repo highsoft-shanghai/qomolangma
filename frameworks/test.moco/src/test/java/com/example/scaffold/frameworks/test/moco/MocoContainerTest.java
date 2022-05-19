@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static com.github.dreamhead.moco.Moco.by;
+import static com.github.dreamhead.moco.Moco.uri;
+import static com.github.dreamhead.moco.MocoRequestHit.times;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @WithTestContainers(containers = {MocoContainer.class})
@@ -23,6 +26,7 @@ public class MocoContainerTest {
         connection.connect();
         assertEquals(connection.responseCode(), 200);
         assertEquals(connection.responseBody(), "pong");
+        MocoValidation.hit().verify(by(uri("/ping")), times(1));
     }
 
     @AfterEach
