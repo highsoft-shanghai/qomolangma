@@ -58,9 +58,18 @@ public class TestResponseTest {
                 .is(body("$.long2", isNegative()))
                 .is(body("$.long2", isNotPositive()))
                 .is(body("$.double", isNegative()))
-                .is(body("$.double", isNotPositive()))
-                .is(body("$.short", isNegative()))
-                .is(body("$.short", isNotPositive()));
+                .is(body("$.double", isNotPositive()));
+    }
+
+    @Test
+    void should_be_able_to_test_is_positive_and_is_not_negative() {
+        restTemplate.get("/test").statusCodeIs(ok())
+                .is(body("$.num", isPositive()))
+                .is(body("$.num", isNotNegative()))
+                .is(body("$.long", isPositive()))
+                .is(body("$.long", isNotNegative()))
+                .is(body("$.double2", isPositive()))
+                .is(body("$.double2", isNotNegative()));
     }
 
     @Test
