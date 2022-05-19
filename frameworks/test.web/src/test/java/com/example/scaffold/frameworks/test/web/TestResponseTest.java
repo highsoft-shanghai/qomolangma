@@ -80,6 +80,13 @@ public class TestResponseTest {
     }
 
     @Test
+    void should_be_able_to_test_is_even() {
+        restTemplate.get("/test").statusCodeIs(ok())
+                .is(body("$.num2", isOdd()))
+                .is(body("$.long2", isOdd()));
+    }
+
+    @Test
     void should_be_able_to_validate_bad_request_when_giving_bad_request() {
         restTemplate.get("/test/bad").statusCodeIs(bad());
     }
