@@ -1,8 +1,9 @@
 package com.example.scaffold.frameworks.test.web;
 
-
 import com.google.common.collect.ImmutableMap;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -16,8 +17,10 @@ import java.net.URI;
 import java.util.Map;
 
 @Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class TestRequestTemplate {
     private @Resource TestRestTemplate testRestTemplate;
+    private TestResponse lastResponse;
 
     public TestResponse post(String urlTemplate, Object body, Object... vars) {
         return exchange(getRequest(urlTemplate, body, vars, HttpMethod.POST));
@@ -58,7 +61,9 @@ public class TestRequestTemplate {
 
     public TestResponse exchange(RequestEntity<?> request) {
         ResponseEntity<String> response = testRestTemplate.exchange(request, String.class);
-        return new TestResponse(response);
+        TestResponse result = new TestResponse(response);
+        lastResponse = result;
+        return result;
     }
 
     public TestResponse postFile(String urlTemplate, File file) {
@@ -70,11 +75,16 @@ public class TestRequestTemplate {
         }
         HttpEntity<MultiValueMap<String, Object>> files = new HttpEntity<>(form, headers);
         ResponseEntity<String> response = testRestTemplate.postForEntity(urlTemplate, files, String.class);
-        return new TestResponse(response);
+        TestResponse result = new TestResponse(response);
+        lastResponse = result;
+        return result;
     }
 
     public HttpHeaders requestHeader() {
         return new HttpHeaders();
     }
 
+    public TestResponse lastResponse() {
+        return lastResponse;
+    }
 }

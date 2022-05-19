@@ -2,8 +2,10 @@ package com.example.scaffold.frameworks.test.web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.ResourceUtils;
 
 import javax.annotation.Resource;
+import java.io.FileNotFoundException;
 
 import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.*;
 import static com.example.scaffold.frameworks.test.web.ResponseBodyMultiValuesMatcher.*;
@@ -151,5 +153,11 @@ public class TestResponseTest {
     @Test
     void should_be_able_to_validate_header() {
         restTemplate.get("/test/created").statusCodeIs(created()).is(header("Connection", exist("keep-alive")));
+    }
+
+    @Test
+    void should_be_able_to_test_file_update() throws FileNotFoundException {
+        TestResponse response = restTemplate.postFile("/test/file", ResourceUtils.getFile("classpath:test-file.txt"));
+        response.statusCodeIs(ok()).is(textBody(eq("test-file.txt")));
     }
 }
