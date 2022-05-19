@@ -26,6 +26,10 @@ public class TestController {
         map.put("true", true);
         map.put("false", false);
         map.put("long", 1231231212351235133L);
+        map.put("long2", -123123121235123513L);
+        map.put("double", -1.0);
+        Short value = -1;
+        map.put("short", value);
         return map;
     }
 
@@ -41,7 +45,8 @@ public class TestController {
 
     @GetMapping("/created")
     @ResponseStatus(HttpStatus.CREATED)
-    public void created() {
+    public String created() {
+        return "ok";
     }
 
     @GetMapping("/unauthorized")

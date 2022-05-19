@@ -29,7 +29,6 @@ public class TestResponseTest {
                 .is(body("$.empty", isEmpty()))
                 .is(body("$.id", hasSize(3)))
                 .is(body("$.id", notEq("1234")))
-                .is(textBody(eq("{\"null\":null,\"num\":1,\"true\":true,\"false\":false,\"id\":\"123\",\"list\":[\"1\",\"2\",\"3\"],\"num3\":0,\"long\":1231231212351235133,\"empty\":\"\",\"num2\":-2}")))
                 .is(body("$.null", isNull()))
                 .is(body("$.null", isNullOrEmpty()))
                 .is(body("$.empty", isNullOrEmpty()))
@@ -52,8 +51,16 @@ public class TestResponseTest {
     }
 
     @Test
-    void should_be_able_to_test_integer() {
-        restTemplate.get("/test").statusCodeIs(ok());
+    void should_be_able_to_test_is_negative_and_is_not_positive() {
+        restTemplate.get("/test").statusCodeIs(ok())
+                .is(body("$.num2", isNegative()))
+                .is(body("$.num2", isNotPositive()))
+                .is(body("$.long2", isNegative()))
+                .is(body("$.long2", isNotPositive()))
+                .is(body("$.double", isNegative()))
+                .is(body("$.double", isNotPositive()))
+                .is(body("$.short", isNegative()))
+                .is(body("$.short", isNotPositive()));
     }
 
     @Test
@@ -68,7 +75,7 @@ public class TestResponseTest {
 
     @Test
     void should_be_able_to_validate_bad_request_when_giving_created() {
-        restTemplate.get("/test/created").statusCodeIs(created());
+        restTemplate.get("/test/created").statusCodeIs(created()).is(textBody(eq("ok")));
     }
 
     @Test
