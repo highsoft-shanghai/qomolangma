@@ -29,6 +29,10 @@ public class TestController {
         map.put("long2", -123123121235123512L);
         map.put("double", -1.0);
         map.put("double2", 1.0);
+        map.put("double3", 0.0);
+        map.put("double4", 1.0);
+        map.put("long3", 0L);
+        map.put("long4", 1L);
         return map;
     }
 

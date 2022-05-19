@@ -87,6 +87,22 @@ public class TestResponseTest {
     }
 
     @Test
+    void should_be_able_to_test_is_zero() {
+        restTemplate.get("/test").statusCodeIs(ok())
+                .is(body("$.num3", isZero()))
+                .is(body("$.long3", isZero()))
+                .is(body("$.double3", isZero()));
+    }
+
+    @Test
+    void should_be_able_to_test_is_one() {
+        restTemplate.get("/test").statusCodeIs(ok())
+                .is(body("$.num", isZero()))
+                .is(body("$.long4", isZero()))
+                .is(body("$.double4", isZero()));
+    }
+
+    @Test
     void should_be_able_to_validate_bad_request_when_giving_bad_request() {
         restTemplate.get("/test/bad").statusCodeIs(bad());
     }

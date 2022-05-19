@@ -9,7 +9,6 @@ public final class IsZeroBodyCastNumberMatcher<T extends Number & Comparable<T>>
     @Override
     protected void realMatch(T value) {
         if (value instanceof Integer) assertThat((Integer) value).isZero();
-        if (value instanceof Long) assertThat((Long) value).isZero();
         if (value instanceof Double) assertThat((Double) value).isZero();
     }
 }
