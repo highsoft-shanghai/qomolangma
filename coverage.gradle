@@ -1,3 +1,4 @@
 project.coverage.excludes = [
-    'com/example/scaffold/Application.class'
+    'com/example/scaffold/Application.class',
+    'com/example/scaffold/frameworks/test/web/TestRequestTemplate.class'
 ]
