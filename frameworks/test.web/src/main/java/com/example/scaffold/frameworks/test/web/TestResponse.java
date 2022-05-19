@@ -34,7 +34,7 @@ public class TestResponse {
         return response.getHeaders().get(header);
     }
 
-    public TestResponseAssert assertStatus(ResponseStatusMatcher matcher) {
+    public TestResponseAssert statusCodeIs(ResponseStatusMatcher matcher) {
         matcher.match(this);
         return new TestResponseAssert(this);
     }

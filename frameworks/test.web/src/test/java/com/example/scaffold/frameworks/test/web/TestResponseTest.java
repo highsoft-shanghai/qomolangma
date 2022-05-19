@@ -17,8 +17,8 @@ public class TestResponseTest {
 
     @Test
     void should_be_able_to_validate_ok_and_body_eq_when_giving_right_json_rest_api_request() {
-        restTemplate.get("/test").assertStatus(statusCode(HttpStatus.OK));
-        restTemplate.get("/test").assertStatus(ok())
+        restTemplate.get("/test").statusCodeIs(statusCode(HttpStatus.OK));
+        restTemplate.get("/test").statusCodeIs(ok())
                 .is(body("$.list", size(3)))
                 .is(body("$.list", contains("1", "2")))
                 .is(body("$.list", containsExactly("1", "2", "3")))
@@ -53,36 +53,36 @@ public class TestResponseTest {
 
     @Test
     void should_be_able_to_test_integer() {
-        restTemplate.get("/test").assertStatus(ok());
+        restTemplate.get("/test").statusCodeIs(ok());
     }
 
     @Test
     void should_be_able_to_validate_bad_request_when_giving_bad_request() {
-        restTemplate.get("/test/bad").assertStatus(bad());
+        restTemplate.get("/test/bad").statusCodeIs(bad());
     }
 
     @Test
     void should_be_able_to_validate_bad_request_when_giving_error_request() {
-        restTemplate.get("/test/error").assertStatus(error());
+        restTemplate.get("/test/error").statusCodeIs(error());
     }
 
     @Test
     void should_be_able_to_validate_bad_request_when_giving_created() {
-        restTemplate.get("/test/created").assertStatus(created());
+        restTemplate.get("/test/created").statusCodeIs(created());
     }
 
     @Test
     void should_be_able_to_validate_not_found_request_when_giving_not_found_path() {
-        restTemplate.get("/test/not-found-path").assertStatus(notFound());
+        restTemplate.get("/test/not-found-path").statusCodeIs(notFound());
     }
 
     @Test
     void should_be_able_to_validate_forbidden_request_when_giving_forbidden_path() {
-        restTemplate.get("/test/forbidden").assertStatus(forbidden());
+        restTemplate.get("/test/forbidden").statusCodeIs(forbidden());
     }
 
     @Test
     void should_be_able_to_validate_unauthorized_request_when_giving_unauthorized_path() {
-        restTemplate.get("/test/unauthorized").assertStatus(unauthorized());
+        restTemplate.get("/test/unauthorized").statusCodeIs(unauthorized());
     }
 }

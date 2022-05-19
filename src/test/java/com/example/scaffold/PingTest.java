@@ -19,6 +19,6 @@ public class PingTest {
     @Test
     void should_reply_pong() {
         TestResponse testResponse = testTemplate.post("/ping", Map.of("data", "pong"));
-        testResponse.assertStatus(ok()).is(body("$", eq("pong")));
+        testResponse.statusCodeIs(ok()).is(body("$", eq("pong")));
     }
 }
