@@ -26,3 +26,7 @@ documents/_book/
 # out
 out/
 /.ideaDataSources/84836c46-08f9-40c4-8d44-f2e670b765dd.xml
+
+# mac
+*/.DS_Stored
+**/.DS_Stored
