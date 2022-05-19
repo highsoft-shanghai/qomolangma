@@ -118,6 +118,7 @@ public class TestResponseTest {
     void should_be_able_to_get_response_from_assert() {
         TestResponse response = restTemplate.get("/test");
         assertEquals(response, response.statusCodeIs(ok()).response());
+        assertEquals(restTemplate.lastResponse(), response);
     }
 
     @Test
