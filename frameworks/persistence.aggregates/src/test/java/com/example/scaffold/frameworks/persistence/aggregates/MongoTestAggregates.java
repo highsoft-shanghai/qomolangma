@@ -47,17 +47,17 @@ final class MongoTestAggregates implements TestAggregates {
 
     @Override
     public TestAggregate getByName(String name) {
-        return aggregates.applyAsAggregate(TestRepository::findByName, name);
+        return aggregates.apply(TestRepository::findByName, name).domain();
     }
 
     @Override
     public TestAggregate getByNameAndId(String name, String id) {
-        return aggregates.applyAsAggregate(TestRepository::findByNameAndId, name, id);
+        return aggregates.apply(TestRepository::findByNameAndId, name, id).domain();
     }
 
     @Override
     public TestAggregate getByNameAndIdAndGender(String name, String id, String gender) {
-        return aggregates.applyAsAggregate(TestRepository::findByNameAndIdAndGender, name, id, gender);
+        return aggregates.apply(TestRepository::findByNameAndIdAndGender, name, id, gender).domain();
     }
 
     @Override
@@ -87,17 +87,17 @@ final class MongoTestAggregates implements TestAggregates {
 
     @Override
     public boolean containsByName(String name) {
-        return aggregates.apply(TestRepository::existsByName, name);
+        return aggregates.apply(TestRepository::existsByName, name).self();
     }
 
     @Override
     public boolean containsByNameAndId(String name, String id) {
-        return aggregates.apply(TestRepository::existsByNameAndId, name, id);
+        return aggregates.apply(TestRepository::existsByNameAndId, name, id).self();
     }
 
     @Override
     public boolean containsByNameAndIdAndGender(String name, String id, String gender) {
-        return aggregates.apply(TestRepository::existsByNameAndIdAndGender, name, id, gender);
+        return aggregates.apply(TestRepository::existsByNameAndIdAndGender, name, id, gender).self();
     }
 
 }

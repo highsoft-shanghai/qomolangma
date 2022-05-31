@@ -36,27 +36,6 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         consumer.accept(repository, param1, param2, param3)
     }
 
-    fun <P> applyAsAggregate(function: Function1<D, ID, R, P, D>, param: P): A {
-        return asDomain.apply(ensureExistence(apply(function, param)))
-    }
-
-    fun <P1, P2> applyAsAggregate(
-        function: Function2<D, ID, R, P1, P2, D>,
-        param1: P1,
-        param2: P2
-    ): A {
-        return asDomain.apply(ensureExistence(apply(function, param1, param2)))
-    }
-
-    fun <P1, P2, P3> applyAsAggregate(
-        function: Function3<D, ID, R, P1, P2, P3, D>,
-        param1: P1,
-        param2: P2,
-        param3: P3
-    ): A {
-        return asDomain.apply(ensureExistence(apply(function, param1, param2, param3)))
-    }
-
     fun applyAsAggregates(
         function: Function0<D, ID, R, List<D>>,
     ): List<A> {
@@ -91,12 +70,12 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         return AggregatesResult(function.apply(repository), asDomain)
     }
 
-    fun <P, E> apply(function: Function1<D, ID, R, P, E>, param: P): E {
-        return function.apply(repository, param)
+    fun <P, E> apply(function: Function1<D, ID, R, P, E>, param: P): AggregatesResult<E, D, A> {
+        return AggregatesResult(function.apply(repository, param), asDomain)
     }
 
-    fun <P1, P2, E> apply(function: Function2<D, ID, R, P1, P2, E>, param1: P1, param2: P2): E {
-        return function.apply(repository, param1, param2)
+    fun <P1, P2, E> apply(function: Function2<D, ID, R, P1, P2, E>, param1: P1, param2: P2): AggregatesResult<E, D, A> {
+        return AggregatesResult(function.apply(repository, param1, param2), asDomain)
     }
 
     fun <P1, P2, P3, E> apply(
@@ -104,8 +83,8 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         param1: P1,
         param2: P2,
         param3: P3
-    ): E {
-        return function.apply(repository, param1, param2, param3)
+    ): AggregatesResult<E, D, A> {
+        return AggregatesResult(function.apply(repository, param1, param2, param3), asDomain)
     }
 
     private fun ensureExistence(data: D): D {
