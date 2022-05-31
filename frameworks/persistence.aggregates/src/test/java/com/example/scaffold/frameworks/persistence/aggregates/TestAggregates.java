@@ -13,6 +13,7 @@ interface TestAggregates {
     TestAggregate getByName(String name);
     TestAggregate getByNameAndId(String name, String id);
     TestAggregate getByNameAndIdAndGender(String name, String id, String gender);
+    List<TestAggregate> get();
     List<TestAggregate> get(String name);
     List<TestAggregate> get(String name, String id);
     List<TestAggregate> get(String name, String id, String gender);

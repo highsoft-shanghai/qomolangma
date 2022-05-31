@@ -29,6 +29,7 @@ public class AggregatesTest {
         when(testRepository.findAllByName("test")).thenReturn(List.of(new TestData(new TestAggregate("test"))));
         when(testRepository.findAllByNameAndId("test", "id")).thenReturn(List.of(new TestData(new TestAggregate("test"))));
         when(testRepository.findAllByNameAndIdAndGender("test", "id", "gender")).thenReturn(List.of(new TestData(new TestAggregate("test"))));
+        when(testRepository.findAll()).thenReturn(List.of(new TestData(new TestAggregate("test"))));
         when(testRepository.countAll()).thenReturn(1);
         when(testRepository.getByNoArgs()).thenReturn(new TestData(new TestAggregate("test")));
         aggregates = new MongoTestAggregates(testRepository);
@@ -89,6 +90,11 @@ public class AggregatesTest {
     void should_be_able_to_apply_two_aggregates_function() {
         TestAggregate aggregate = aggregates.getByNameAndId("test", "id");
         assertEquals(aggregate.name(), "test");
+    }
+
+    @Test
+    void should_apply_aggregates_with_no_param() {
+        assertEquals(List.of(new TestAggregate("test")), aggregates.get());
     }
 
     @Test

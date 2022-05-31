@@ -61,6 +61,12 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         return asDomain.apply(ensureExistence(apply(function, param1, param2, param3)))
     }
 
+    fun applyAsAggregates(
+        function: Function0<D, ID, R, List<D>>,
+    ): List<A> {
+        return asDomain(function.apply(repository))
+    }
+
     fun <P> applyAsAggregates(
         function: Function1<D, ID, R, P, List<D>>,
         param: P

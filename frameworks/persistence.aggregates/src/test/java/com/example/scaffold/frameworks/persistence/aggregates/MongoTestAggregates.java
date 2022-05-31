@@ -61,6 +61,11 @@ final class MongoTestAggregates implements TestAggregates {
     }
 
     @Override
+    public List<TestAggregate> get() {
+        return aggregates.applyAsAggregates(TestRepository::findAll);
+    }
+
+    @Override
     public List<TestAggregate> get(String name) {
         return aggregates.applyAsAggregates(TestRepository::findAllByName, name);
     }
