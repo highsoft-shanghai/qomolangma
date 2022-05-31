@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.only;
@@ -24,6 +26,7 @@ public class AggregatesTest {
         when(testRepository.existsByNameAndId("test", "id")).thenReturn(true);
         when(testRepository.existsByNameAndIdAndGender("test", "id", "gender")).thenReturn(true);
         when(testRepository.findByNameAndIdAndGender("test null", "id", "gender")).thenReturn(null);
+        when(testRepository.findAllByName("test")).thenReturn(List.of(new TestData(new TestAggregate("test"))));
         aggregates = new MongoTestAggregates(testRepository);
     }
 
@@ -60,6 +63,11 @@ public class AggregatesTest {
     void should_be_able_to_apply_two_aggregates_function() {
         TestAggregate aggregate = aggregates.getByNameAndId("test", "id");
         assertEquals(aggregate.name(), "test");
+    }
+
+    @Test
+    void should_apply_aggregates_with_one_param() {
+        assertEquals(List.of(new TestAggregate("test")), aggregates.get("test"));
     }
 
     @Test

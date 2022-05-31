@@ -4,6 +4,7 @@ import com.example.scaffold.frameworks.persistence.aggregates.AggregatesConsumer
 import org.springframework.data.repository.Repository
 import java.util.*
 import java.util.function.Function
+import java.util.stream.Collectors
 
 class Aggregates<A, D, R : Repository<D, ID>, ID>(
     private val repository: R,
@@ -45,6 +46,16 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         param3: P3
     ): A {
         return asDomain.apply(ensureExistence(apply(function, param1, param2, param3)))
+    }
+
+    fun <P> applyAsAggregates(
+        function: AggregatesFunctions.Function1<D, ID, R, P, List<D>>,
+        param: P
+    ): List<A> {
+        return function.apply(repository, param).stream()
+            .peek(this::ensureExistence)
+            .map(this.asDomain::apply)
+            .collect(Collectors.toList())
     }
 
     fun <P, E> apply(function: AggregatesFunctions.Function1<D, ID, R, P, E>, param: P): E {

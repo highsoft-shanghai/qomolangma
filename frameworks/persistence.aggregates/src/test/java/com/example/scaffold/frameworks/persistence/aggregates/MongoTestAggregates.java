@@ -1,5 +1,7 @@
 package com.example.scaffold.frameworks.persistence.aggregates;
 
+import java.util.List;
+
 final class MongoTestAggregates implements TestAggregates {
 
     private final Aggregates<TestAggregate, TestData, TestRepository, String> aggregates;
@@ -41,6 +43,11 @@ final class MongoTestAggregates implements TestAggregates {
     @Override
     public TestAggregate getByNameAndIdAndGender(String name, String id, String gender) {
         return aggregates.applyAsAggregate(TestRepository::findByNameAndIdAndGender, name, id, gender);
+    }
+
+    @Override
+    public List<TestAggregate> get(String name) {
+        return aggregates.applyAsAggregates(TestRepository::findAllByName, name);
     }
 
     @Override
