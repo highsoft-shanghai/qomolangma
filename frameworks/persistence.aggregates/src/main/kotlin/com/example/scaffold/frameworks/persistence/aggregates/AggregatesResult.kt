@@ -16,7 +16,6 @@ class AggregatesResult<E, D, A>(private val data: E, private val asDomain: Funct
 
     fun domains(): List<A> {
         return (data as List<D>).stream()
-            .peek(this::ensureExistence)
             .map(this.asDomain::apply)
             .collect(Collectors.toList())
     }
