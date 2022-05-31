@@ -4,6 +4,7 @@ import java.util.*
 import java.util.function.Function
 import java.util.stream.Collectors
 
+@Suppress("UNCHECKED_CAST")
 class AggregatesResult<E, D, A>(private val data: E, private val asDomain: Function<D, A>) {
     fun self(): E {
         return data
