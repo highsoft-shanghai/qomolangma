@@ -58,6 +58,17 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
             .collect(Collectors.toList())
     }
 
+    fun <P1, P2> applyAsAggregates(
+        function: AggregatesFunctions.Function2<D, ID, R, P1, P2, List<D>>,
+        param1: P1,
+        param2: P2
+    ): List<A> {
+        return function.apply(repository, param1, param2).stream()
+            .peek(this::ensureExistence)
+            .map(this.asDomain::apply)
+            .collect(Collectors.toList())
+    }
+
     fun <P, E> apply(function: AggregatesFunctions.Function1<D, ID, R, P, E>, param: P): E {
         return function.apply(repository, param)
     }

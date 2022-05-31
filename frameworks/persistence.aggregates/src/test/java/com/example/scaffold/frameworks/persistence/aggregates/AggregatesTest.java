@@ -27,6 +27,7 @@ public class AggregatesTest {
         when(testRepository.existsByNameAndIdAndGender("test", "id", "gender")).thenReturn(true);
         when(testRepository.findByNameAndIdAndGender("test null", "id", "gender")).thenReturn(null);
         when(testRepository.findAllByName("test")).thenReturn(List.of(new TestData(new TestAggregate("test"))));
+        when(testRepository.findAllByNameAndId("test", "id")).thenReturn(List.of(new TestData(new TestAggregate("test"))));
         aggregates = new MongoTestAggregates(testRepository);
     }
 
@@ -68,6 +69,11 @@ public class AggregatesTest {
     @Test
     void should_apply_aggregates_with_one_param() {
         assertEquals(List.of(new TestAggregate("test")), aggregates.get("test"));
+    }
+
+    @Test
+    void should_apply_aggregates_with_two_params() {
+        assertEquals(List.of(new TestAggregate("test")), aggregates.get("test", "id"));
     }
 
     @Test

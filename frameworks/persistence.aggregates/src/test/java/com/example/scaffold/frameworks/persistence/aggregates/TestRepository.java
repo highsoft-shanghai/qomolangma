@@ -14,6 +14,7 @@ interface TestRepository extends Repository<TestData, String> {
     TestData findByNameAndId(String name, String id);
     TestData findByNameAndIdAndGender(String name, String id, String gender);
     List<TestData> findAllByName(String name);
+    List<TestData> findAllByNameAndId(String name, String id);
     boolean existsByName(String name);
     boolean existsByNameAndId(String name, String id);
     boolean existsByNameAndIdAndGender(String name, String id, String gender);
