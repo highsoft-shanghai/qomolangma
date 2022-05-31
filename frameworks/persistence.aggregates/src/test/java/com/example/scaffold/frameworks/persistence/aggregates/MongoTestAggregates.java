@@ -42,7 +42,7 @@ final class MongoTestAggregates implements TestAggregates {
 
     @Override
     public TestAggregate getByNoArgs() {
-        return aggregates.applyAsAggregate(TestRepository::getByNoArgs);
+        return aggregates.apply(TestRepository::getByNoArgs).domain();
     }
 
     @Override
@@ -82,7 +82,7 @@ final class MongoTestAggregates implements TestAggregates {
 
     @Override
     public int size() {
-        return aggregates.apply(TestRepository::countAll);
+        return aggregates.apply(TestRepository::countAll).self();
     }
 
     @Override
