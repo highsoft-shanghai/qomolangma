@@ -9,6 +9,7 @@ interface TestAggregates {
     void clearByName(String name);
     void clearByNameAndId(String name, String id);
     void clearByNameAndIdAndGender(String name, String id, String gender);
+    TestAggregate getByNoArgs();
     TestAggregate getByName(String name);
     TestAggregate getByNameAndId(String name, String id);
     TestAggregate getByNameAndIdAndGender(String name, String id, String gender);

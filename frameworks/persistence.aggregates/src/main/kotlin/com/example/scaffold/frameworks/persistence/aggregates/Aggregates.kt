@@ -36,6 +36,10 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         consumer.accept(repository, param1, param2, param3)
     }
 
+    fun applyAsAggregate(function: Function0<D, ID, R, D>): A {
+        return asDomain.apply(ensureExistence(apply(function)))
+    }
+
     fun <P> applyAsAggregate(function: Function1<D, ID, R, P, D>, param: P): A {
         return asDomain.apply(ensureExistence(apply(function, param)))
     }

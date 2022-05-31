@@ -12,6 +12,7 @@ interface TestRepository extends Repository<TestData, String> {
     void deleteByName(String name);
     void deleteByNameAndId(String name, String id);
     void deleteByNameAndIdAndGender(String name, String id, String gender);
+    TestData getByNoArgs();
     TestData findByName(String name);
     TestData findByNameAndId(String name, String id);
     TestData findByNameAndIdAndGender(String name, String id, String gender);
