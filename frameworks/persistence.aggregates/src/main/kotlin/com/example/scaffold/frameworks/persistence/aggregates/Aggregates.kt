@@ -81,6 +81,10 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         return asDomain(function.apply(repository, param1, param2, param3))
     }
 
+    fun <E> apply(function: Function0<D, ID, R, E>): E {
+        return function.apply(repository)
+    }
+
     fun <P, E> apply(function: Function1<D, ID, R, P, E>, param: P): E {
         return function.apply(repository, param)
     }

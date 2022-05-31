@@ -71,6 +71,11 @@ final class MongoTestAggregates implements TestAggregates {
     }
 
     @Override
+    public int size() {
+        return aggregates.apply(TestRepository::countAll);
+    }
+
+    @Override
     public boolean containsByName(String name) {
         return aggregates.apply(TestRepository::existsByName, name);
     }

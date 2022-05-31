@@ -18,6 +18,7 @@ interface TestRepository extends Repository<TestData, String> {
     List<TestData> findAllByName(String name);
     List<TestData> findAllByNameAndId(String name, String id);
     List<TestData> findAllByNameAndIdAndGender(String name, String id, String gender);
+    int countAll();
     boolean existsByName(String name);
     boolean existsByNameAndId(String name, String id);
     boolean existsByNameAndIdAndGender(String name, String id, String gender);

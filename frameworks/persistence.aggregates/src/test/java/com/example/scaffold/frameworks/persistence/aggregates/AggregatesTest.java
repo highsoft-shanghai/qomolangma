@@ -29,6 +29,7 @@ public class AggregatesTest {
         when(testRepository.findAllByName("test")).thenReturn(List.of(new TestData(new TestAggregate("test"))));
         when(testRepository.findAllByNameAndId("test", "id")).thenReturn(List.of(new TestData(new TestAggregate("test"))));
         when(testRepository.findAllByNameAndIdAndGender("test", "id", "gender")).thenReturn(List.of(new TestData(new TestAggregate("test"))));
+        when(testRepository.countAll()).thenReturn(1);
         aggregates = new MongoTestAggregates(testRepository);
     }
 
@@ -60,6 +61,11 @@ public class AggregatesTest {
     void should_be_able_to_apply_one_aggregate_function() {
         TestAggregate aggregate = aggregates.getByName("test");
         assertEquals(aggregate.name(), "test");
+    }
+
+    @Test
+    void should_be_able_to_apply_no_param_function() {
+        assertEquals(1, aggregates.size());
     }
 
     @Test
