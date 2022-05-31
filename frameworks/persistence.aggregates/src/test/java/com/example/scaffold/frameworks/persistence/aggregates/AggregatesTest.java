@@ -28,7 +28,7 @@ public class AggregatesTest {
         when(testRepository.findByNameAndIdAndGender("test null", "id", "gender")).thenReturn(null);
         when(testRepository.findAllByName("test")).thenReturn(List.of(new TestData(new TestAggregate("test"))));
         when(testRepository.findAllByNameAndId("test", "id")).thenReturn(List.of(new TestData(new TestAggregate("test"))));
-        when(testRepository.findAllByNameAndIdAndGender("test", "id", "gender")).thenReturn(List.of(new TestData(new TestAggregate("test"))));
+        when(testRepository.findAllByNameAndIdAndGender("test", "id", "gender")).thenReturn(List.of(new TestData(new TestAggregate("test")), new TestData(new TestAggregate("test"))));
         when(testRepository.findAll()).thenReturn(List.of(new TestData(new TestAggregate("test"))));
         when(testRepository.countAll()).thenReturn(1);
         when(testRepository.getByNoArgs()).thenReturn(new TestData(new TestAggregate("test")));
@@ -109,7 +109,7 @@ public class AggregatesTest {
 
     @Test
     void should_apply_aggregates_with_three_params() {
-        assertEquals(List.of(new TestAggregate("test")), aggregates.get("test", "id", "gender"));
+        assertEquals(List.of(new TestAggregate("test"), new TestAggregate("test")), aggregates.get("test", "id", "gender"));
     }
 
     @Test
