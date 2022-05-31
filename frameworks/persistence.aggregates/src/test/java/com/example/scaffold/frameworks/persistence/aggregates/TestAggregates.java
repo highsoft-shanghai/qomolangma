@@ -12,6 +12,7 @@ interface TestAggregates {
     TestAggregate getByNameAndIdAndGender(String name, String id, String gender);
     List<TestAggregate> get(String name);
     List<TestAggregate> get(String name, String id);
+    List<TestAggregate> get(String name, String id, String gender);
     boolean containsByName(String name);
     boolean containsByNameAndId(String name, String id);
     boolean containsByNameAndIdAndGender(String name, String id, String gender);
