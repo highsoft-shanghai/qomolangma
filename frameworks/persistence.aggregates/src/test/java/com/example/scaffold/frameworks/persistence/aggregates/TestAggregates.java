@@ -3,6 +3,7 @@ package com.example.scaffold.frameworks.persistence.aggregates;
 import java.util.List;
 
 interface TestAggregates {
+    void clear();
     void add(TestAggregate aggregate);
     void add(List<TestAggregate> aggregate);
     void clearByName(String name);

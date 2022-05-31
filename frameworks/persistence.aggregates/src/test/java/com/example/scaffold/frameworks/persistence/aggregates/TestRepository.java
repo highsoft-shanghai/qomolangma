@@ -6,6 +6,7 @@ import java.util.List;
 
 @SuppressWarnings("all")
 interface TestRepository extends Repository<TestData, String> {
+    void deleteAll();
     void save(TestData data);
     void save(List<TestData> data);
     void deleteByName(String name);

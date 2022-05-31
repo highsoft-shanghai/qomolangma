@@ -1,6 +1,7 @@
 package com.example.scaffold.frameworks.persistence.aggregates
 
 import com.example.scaffold.frameworks.persistence.aggregates.AggregatesConsumers.*
+import com.example.scaffold.frameworks.persistence.aggregates.AggregatesFunctions.*
 import org.springframework.data.repository.Repository
 import java.util.*
 import java.util.function.Function
@@ -19,6 +20,10 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         this.accept(consumer, asData(aggregates))
     }
 
+    fun accept(consumer: Consumer0<D, ID, R>) {
+        consumer.accept(repository)
+    }
+
     fun <P> accept(consumer: Consumer1<D, ID, R, P>, param: P) {
         consumer.accept(repository, param)
     }
@@ -31,12 +36,12 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         consumer.accept(repository, param1, param2, param3)
     }
 
-    fun <P> applyAsAggregate(function: AggregatesFunctions.Function1<D, ID, R, P, D>, param: P): A {
+    fun <P> applyAsAggregate(function: Function1<D, ID, R, P, D>, param: P): A {
         return asDomain.apply(ensureExistence(apply(function, param)))
     }
 
     fun <P1, P2> applyAsAggregate(
-        function: AggregatesFunctions.Function2<D, ID, R, P1, P2, D>,
+        function: Function2<D, ID, R, P1, P2, D>,
         param1: P1,
         param2: P2
     ): A {
@@ -44,7 +49,7 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
     }
 
     fun <P1, P2, P3> applyAsAggregate(
-        function: AggregatesFunctions.Function3<D, ID, R, P1, P2, P3, D>,
+        function: Function3<D, ID, R, P1, P2, P3, D>,
         param1: P1,
         param2: P2,
         param3: P3
@@ -53,14 +58,14 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
     }
 
     fun <P> applyAsAggregates(
-        function: AggregatesFunctions.Function1<D, ID, R, P, List<D>>,
+        function: Function1<D, ID, R, P, List<D>>,
         param: P
     ): List<A> {
         return asDomain(function.apply(repository, param))
     }
 
     fun <P1, P2> applyAsAggregates(
-        function: AggregatesFunctions.Function2<D, ID, R, P1, P2, List<D>>,
+        function: Function2<D, ID, R, P1, P2, List<D>>,
         param1: P1,
         param2: P2
     ): List<A> {
@@ -68,7 +73,7 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
     }
 
     fun <P1, P2, P3> applyAsAggregates(
-        function: AggregatesFunctions.Function3<D, ID, R, P1, P2, P3, List<D>>,
+        function: Function3<D, ID, R, P1, P2, P3, List<D>>,
         param1: P1,
         param2: P2,
         param3: P3
@@ -76,16 +81,16 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         return asDomain(function.apply(repository, param1, param2, param3))
     }
 
-    fun <P, E> apply(function: AggregatesFunctions.Function1<D, ID, R, P, E>, param: P): E {
+    fun <P, E> apply(function: Function1<D, ID, R, P, E>, param: P): E {
         return function.apply(repository, param)
     }
 
-    fun <P1, P2, E> apply(function: AggregatesFunctions.Function2<D, ID, R, P1, P2, E>, param1: P1, param2: P2): E {
+    fun <P1, P2, E> apply(function: Function2<D, ID, R, P1, P2, E>, param1: P1, param2: P2): E {
         return function.apply(repository, param1, param2)
     }
 
     fun <P1, P2, P3, E> apply(
-        function: AggregatesFunctions.Function3<D, ID, R, P1, P2, P3, E>,
+        function: Function3<D, ID, R, P1, P2, P3, E>,
         param1: P1,
         param2: P2,
         param3: P3

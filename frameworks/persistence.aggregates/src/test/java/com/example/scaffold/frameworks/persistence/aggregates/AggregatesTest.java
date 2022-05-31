@@ -33,6 +33,12 @@ public class AggregatesTest {
     }
 
     @Test
+    void should_be_able_to_accept_no_aggregate_consumer() {
+        aggregates.clear();
+        then(testRepository).should(only()).deleteAll();
+    }
+
+    @Test
     void should_be_able_to_accept_one_aggregate_consumer() {
         aggregates.add(new TestAggregate(""));
         then(testRepository).should(only()).save(new TestData(new TestAggregate("")));

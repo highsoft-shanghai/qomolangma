@@ -11,6 +11,11 @@ final class MongoTestAggregates implements TestAggregates {
     }
 
     @Override
+    public void clear() {
+        aggregates.accept(TestRepository::deleteAll);
+    }
+
+    @Override
     public void add(TestAggregate aggregate) {
         aggregates.acceptByAggregate(TestRepository::save, aggregate);
     }
