@@ -4,6 +4,7 @@ import java.util.List;
 
 interface TestAggregates {
     void add(TestAggregate aggregate);
+    void add(List<TestAggregate> aggregate);
     void clearByName(String name);
     void clearByNameAndId(String name, String id);
     void clearByNameAndIdAndGender(String name, String id, String gender);

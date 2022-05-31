@@ -15,6 +15,10 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         this.accept(consumer, asData.apply(aggregate))
     }
 
+    fun acceptByAggregates(consumer: Consumer1<D, ID, R, List<D>>, aggregates: List<A>) {
+        this.accept(consumer, asData(aggregates))
+    }
+
     fun <P> accept(consumer: Consumer1<D, ID, R, P>, param: P) {
         consumer.accept(repository, param)
     }
@@ -52,10 +56,7 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         function: AggregatesFunctions.Function1<D, ID, R, P, List<D>>,
         param: P
     ): List<A> {
-        return function.apply(repository, param).stream()
-            .peek(this::ensureExistence)
-            .map(this.asDomain::apply)
-            .collect(Collectors.toList())
+        return asDomain(function.apply(repository, param))
     }
 
     fun <P1, P2> applyAsAggregates(
@@ -63,10 +64,7 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         param1: P1,
         param2: P2
     ): List<A> {
-        return function.apply(repository, param1, param2).stream()
-            .peek(this::ensureExistence)
-            .map(this.asDomain::apply)
-            .collect(Collectors.toList())
+        return asDomain(function.apply(repository, param1, param2))
     }
 
     fun <P1, P2, P3> applyAsAggregates(
@@ -75,10 +73,7 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         param2: P2,
         param3: P3
     ): List<A> {
-        return function.apply(repository, param1, param2, param3).stream()
-            .peek(this::ensureExistence)
-            .map(this.asDomain::apply)
-            .collect(Collectors.toList())
+        return asDomain(function.apply(repository, param1, param2, param3))
     }
 
     fun <P, E> apply(function: AggregatesFunctions.Function1<D, ID, R, P, E>, param: P): E {
@@ -101,4 +96,13 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
     private fun ensureExistence(data: D): D {
         return Optional.ofNullable(data).orElseThrow { RuntimeException("error.can-not-get-aggregate") }
     }
+
+    private fun asDomain(data: List<D>) = data.stream()
+        .peek(this::ensureExistence)
+        .map(this.asDomain::apply)
+        .collect(Collectors.toList())
+
+    private fun asData(aggregates: List<A>) = aggregates.stream()
+        .map(this.asData::apply)
+        .collect(Collectors.toList())
 }

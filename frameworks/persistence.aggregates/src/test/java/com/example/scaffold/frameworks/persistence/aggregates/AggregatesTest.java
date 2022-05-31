@@ -39,6 +39,12 @@ public class AggregatesTest {
     }
 
     @Test
+    void should_be_able_to_accept_one_aggregates_consumer() {
+        aggregates.add(List.of(new TestAggregate("")));
+        then(testRepository).should(only()).save(List.of(new TestData(new TestAggregate(""))));
+    }
+
+    @Test
     void should_be_able_to_accept_one_param_consumer() {
         aggregates.clearByName("test");
         then(testRepository).should(only()).deleteByName("test");
