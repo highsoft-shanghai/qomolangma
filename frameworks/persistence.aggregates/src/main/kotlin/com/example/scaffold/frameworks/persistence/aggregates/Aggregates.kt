@@ -3,7 +3,6 @@ package com.example.scaffold.frameworks.persistence.aggregates
 import com.example.scaffold.frameworks.persistence.aggregates.AggregatesConsumers.*
 import com.example.scaffold.frameworks.persistence.aggregates.AggregatesFunctions.*
 import org.springframework.data.repository.Repository
-import java.util.*
 import java.util.function.Function
 import java.util.stream.Collectors
 
@@ -36,36 +35,6 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
         consumer.accept(repository, param1, param2, param3)
     }
 
-    fun applyAsAggregates(
-        function: Function0<D, ID, R, List<D>>,
-    ): List<A> {
-        return asDomain(function.apply(repository))
-    }
-
-    fun <P> applyAsAggregates(
-        function: Function1<D, ID, R, P, List<D>>,
-        param: P
-    ): List<A> {
-        return asDomain(function.apply(repository, param))
-    }
-
-    fun <P1, P2> applyAsAggregates(
-        function: Function2<D, ID, R, P1, P2, List<D>>,
-        param1: P1,
-        param2: P2
-    ): List<A> {
-        return asDomain(function.apply(repository, param1, param2))
-    }
-
-    fun <P1, P2, P3> applyAsAggregates(
-        function: Function3<D, ID, R, P1, P2, P3, List<D>>,
-        param1: P1,
-        param2: P2,
-        param3: P3
-    ): List<A> {
-        return asDomain(function.apply(repository, param1, param2, param3))
-    }
-
     fun <E> apply(function: Function0<D, ID, R, E>): AggregatesResult<E, D, A> {
         return AggregatesResult(function.apply(repository), asDomain)
     }
@@ -86,15 +55,6 @@ class Aggregates<A, D, R : Repository<D, ID>, ID>(
     ): AggregatesResult<E, D, A> {
         return AggregatesResult(function.apply(repository, param1, param2, param3), asDomain)
     }
-
-    private fun ensureExistence(data: D): D {
-        return Optional.ofNullable(data).orElseThrow { RuntimeException("error.can-not-get-aggregate") }
-    }
-
-    private fun asDomain(data: List<D>) = data.stream()
-        .peek(this::ensureExistence)
-        .map(this.asDomain::apply)
-        .collect(Collectors.toList())
 
     private fun asData(aggregates: List<A>) = aggregates.stream()
         .map(this.asData::apply)
