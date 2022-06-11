@@ -37,7 +37,7 @@ allprojects {
     apply from: "$rootDir/gradle/config/scripts/junit.gradle"
     apply from: "$rootDir/gradle/config/scripts/style.gradle"
     apply from: "$rootDir/gradle/config/scripts/coverage.gradle"
-    apply from: "$rootDir/style.gradle"
+    apply from: "$rootDir/gradle/config/scripts/style-ignored.gradle"
     apply plugin: "kotlin"
     apply plugin: "kotlin-allopen"
     apply plugin: "kotlin-spring"
