@@ -22,6 +22,8 @@ build
 **/node_modules/
 **/package-lock.json
 documents/_book/
+**/yarn.lock
+**/.eslintcache
 
 # out
 out/

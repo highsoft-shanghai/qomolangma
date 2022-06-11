@@ -1,6 +1,6 @@
 enableFeaturePreview("VERSION_CATALOGS")
 
-rootProject.name = 'kotlin-ci-scaffold'
+rootProject.name = 'qomolangma'
 
 file("modules").eachDir {
     include it.name
