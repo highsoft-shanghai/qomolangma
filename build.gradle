@@ -97,10 +97,10 @@ dependencies {
     testImplementation libs.test.spring.restdocs.restassured
     testImplementation libs.moco
 }
-if (!project.hasProperty('jacocoDisabled')) {
-    apply from: "$rootDir/gradle/config/scripts/coverage-all.gradle"
-    apply from: "$rootDir/gradle/config/scripts/coverage-ignored.gradle"
-}
+
+apply from: "$rootDir/gradle/config/scripts/coverage-all.gradle"
+apply from: "$rootDir/gradle/config/scripts/coverage-ignored.gradle"
+
 jar {
     enabled = false
 }
