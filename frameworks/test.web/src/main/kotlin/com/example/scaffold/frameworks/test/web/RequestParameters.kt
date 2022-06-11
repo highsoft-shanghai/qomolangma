@@ -1,21 +1,14 @@
-package com.example.scaffold.frameworks.test.web;
+package com.example.scaffold.frameworks.test.web
 
-import java.util.Map;
-
-public class RequestParameters {
-
-    private final Map<String, ?> variables;
-
-    public static RequestParameters parameters(Map<String, ?> variables) {
-        return new RequestParameters(variables);
+class RequestParameters(private val variables: Map<String, *>) {
+    fun asMap(): Map<String, *> {
+        return variables
     }
 
-    public RequestParameters(Map<String, ?> variables) {
-        this.variables = variables;
+    companion object {
+        @JvmStatic
+        fun parameters(variables: Map<String, *>): RequestParameters {
+            return RequestParameters(variables)
+        }
     }
-
-    public Map<String, ?> asMap() {
-        return variables;
-    }
-
 }

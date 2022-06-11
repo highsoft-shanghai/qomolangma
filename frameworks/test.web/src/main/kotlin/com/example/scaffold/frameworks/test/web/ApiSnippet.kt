@@ -1,22 +1,12 @@
-package com.example.scaffold.frameworks.test.web;
+package com.example.scaffold.frameworks.test.web
 
-import org.springframework.restdocs.operation.Operation;
-import org.springframework.restdocs.snippet.TemplatedSnippet;
+import org.springframework.restdocs.operation.Operation
+import org.springframework.restdocs.snippet.TemplatedSnippet
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class ApiSnippet extends TemplatedSnippet {
-
-    protected ApiSnippet() {
-        super("api", null);
+class ApiSnippet : TemplatedSnippet("api", null) {
+    override fun createModel(operation: Operation): Map<String, Any> {
+        val model: MutableMap<String, Any> = HashMap()
+        model["identifier"] = operation.name
+        return model
     }
-
-    @Override
-    protected Map<String, Object> createModel(Operation operation) {
-        Map<String, Object> model = new HashMap<>();
-        model.put("identifier", operation.getName());
-        return model;
-    }
-
 }

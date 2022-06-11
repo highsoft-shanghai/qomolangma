@@ -1,21 +1,14 @@
-package com.example.scaffold.frameworks.test.web;
+package com.example.scaffold.frameworks.test.web
 
-import java.util.Map;
-
-public class PathVariables {
-
-    private final Map<String, ?> variables;
-
-    public static PathVariables variables(Map<String, ?> variables) {
-        return new PathVariables(variables);
+class PathVariables(private val variables: Map<String, *>) {
+    fun asMap(): Map<String, *> {
+        return variables
     }
 
-    public PathVariables(Map<String, ?> variables) {
-        this.variables = variables;
+    companion object {
+        @JvmStatic
+        fun variables(variables: Map<String, *>): PathVariables {
+            return PathVariables(variables)
+        }
     }
-
-    public Map<String, ?> asMap() {
-        return variables;
-    }
-
 }

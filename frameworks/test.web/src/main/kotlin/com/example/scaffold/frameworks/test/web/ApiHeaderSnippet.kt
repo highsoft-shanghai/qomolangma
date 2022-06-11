@@ -1,32 +1,26 @@
-package com.example.scaffold.frameworks.test.web;
+package com.example.scaffold.frameworks.test.web
 
-import org.springframework.restdocs.operation.Operation;
-import org.springframework.restdocs.snippet.TemplatedSnippet;
+import com.example.scaffold.frameworks.test.web.YesNo.Companion.of
+import org.springframework.restdocs.operation.Operation
+import org.springframework.restdocs.snippet.TemplatedSnippet
 
-import java.util.HashMap;
-import java.util.Map;
+class ApiHeaderSnippet(authorizationRequired: Boolean) : TemplatedSnippet("api-header", null) {
+    private val authorizationRequired: YesNo
 
-public class ApiHeaderSnippet extends TemplatedSnippet {
-
-    private final YesNo authorizationRequired;
-
-    protected ApiHeaderSnippet(boolean authorizationRequired) {
-        super("api-header", null);
-        this.authorizationRequired = YesNo.of(authorizationRequired);
+    init {
+        this.authorizationRequired = of(authorizationRequired)
     }
 
-    @Override
-    protected Map<String, Object> createModel(Operation operation) {
-        Map<String, Object> model = new HashMap<>();
-        model.put("urlTemplate", getUrlTemplate(operation));
-        model.put("httpMethod", operation.getRequest().getMethod());
-        model.put("authorizationRequired", authorizationRequired.toString());
-        return model;
+    override fun createModel(operation: Operation): Map<String, Any> {
+        val model: MutableMap<String, Any> = HashMap()
+        model["urlTemplate"] = getUrlTemplate(operation)
+        model["httpMethod"] = operation.request.method
+        model["authorizationRequired"] = authorizationRequired.toString()
+        return model
     }
 
-    private Object getUrlTemplate(Operation operation) {
-        String key = "org.springframework.restdocs.urlTemplate";
-        return operation.getAttributes().getOrDefault(key, operation.getRequest().getUri().getPath());
+    private fun getUrlTemplate(operation: Operation): Any {
+        val key = "org.springframework.restdocs.urlTemplate"
+        return operation.attributes.getOrDefault(key, operation.request.uri.path)
     }
-
 }
