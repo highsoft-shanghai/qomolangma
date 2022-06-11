@@ -62,7 +62,7 @@ public class AggregatesTest {
     @Test
     void should_be_able_to_apply_one_aggregate_function() {
         TestAggregate aggregate = aggregates.getByName("test");
-        assertEquals(aggregate.name(), "test");
+        assertEquals("test", aggregate.name());
     }
 
     @Test
@@ -89,7 +89,7 @@ public class AggregatesTest {
     @Test
     void should_be_able_to_apply_two_aggregates_function() {
         TestAggregate aggregate = aggregates.getByNameAndId("test", "id");
-        assertEquals(aggregate.name(), "test");
+        assertEquals("test", aggregate.name());
     }
 
     @Test
@@ -126,7 +126,7 @@ public class AggregatesTest {
     @Test
     void should_be_able_to_apply_three_aggregates_function() {
         TestAggregate aggregate = aggregates.getByNameAndIdAndGender("test", "id", "gender");
-        assertEquals(aggregate.name(), "test");
+        assertEquals("test", aggregate.name());
     }
 
     @Test

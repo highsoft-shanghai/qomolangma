@@ -24,8 +24,8 @@ public class MocoContainerTest {
     @Test
     void should_be_able_to_start_one_moco_container_at_target_port() throws IOException {
         connection.connect();
-        assertEquals(connection.responseCode(), 200);
-        assertEquals(connection.responseBody(), "pong");
+        assertEquals(200, connection.responseCode());
+        assertEquals("pong", connection.responseBody());
         MocoValidation.hit().verify(by(uri("/ping")), times(1));
     }
 

@@ -11,7 +11,7 @@ class ApiResponseWrapperTest {
     @Test
     void should_get_empty_when_given_null() {
         Object response = new ApiResponseWrapper().beforeBodyWrite(null, null, null, null, null, null);
-        assertEquals(response, Map.of("body", Map.of()));
+        assertEquals(Map.of("body", Map.of()), response);
     }
 
     @Test
