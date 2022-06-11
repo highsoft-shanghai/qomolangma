@@ -26,7 +26,7 @@ public class ApiResponseWrapper implements ResponseBodyAdvice<Object> {
             @Nullable Object body, @NotNull MethodParameter returnType, @NotNull MediaType selectedContentType,
             @NotNull Class<? extends HttpMessageConverter<?>> selectedConverterType, @NotNull ServerHttpRequest request, @NotNull ServerHttpResponse response
     ) {
-        if (body == null) return response();
+        if (body == null) return response().getValue();
         if (body instanceof ResponsePayload payload) return payload.getValue();
         return body;
     }

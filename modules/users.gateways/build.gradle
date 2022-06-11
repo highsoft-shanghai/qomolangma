@@ -1,6 +1,7 @@
 dependencies {
     api project(":users.application")
     api(project(":users.domain"))
+    api(project(":payload.core"))
     implementation libs.springContext
     implementation libs.springBootWeb
     implementation libs.springdoc
