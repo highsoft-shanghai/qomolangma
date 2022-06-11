@@ -19,30 +19,6 @@ apply from: "$rootDir/gradle/config/scripts/library.gradle"
 apply from: "$rootDir/gradle/config/scripts/asciidoctor.gradle"
 apply from: "$rootDir/gradle/config/scripts/all-projects.gradle"
 apply from: "$rootDir/gradle/config/scripts/sub-projects.gradle"
-
-dependencies {
-    implementation project(":domain.core")
-    implementation project(":payload.core")
-    implementation project(":bean.core")
-    implementation project(":application.core")
-    implementation project(":users.gateways")
-    testImplementation project(":test.web")
-    testImplementation project(":core.test")
-    implementation libs.springBootActuator
-    implementation libs.kotlinStdlib
-    testImplementation libs.kotlinTest
-    implementation libs.kotlinReflect
-    implementation libs.springBootWeb
-    implementation libs.springBootAop
-    implementation libs.flyaway
-    implementation libs.springdoc
-    implementation libs.h2
-    annotationProcessor libs.springBootConfigurationProcessor
-    testImplementation libs.springBootTest
-    testImplementation libs.testcontainersJunitJupiter
-    testImplementation libs.test.spring.restdocs.restassured
-    testImplementation libs.moco
-}
-
+apply from: "$rootDir/gradle/config/scripts/root.gradle"
 apply from: "$rootDir/gradle/config/scripts/coverage-all.gradle"
 apply from: "$rootDir/gradle/config/scripts/coverage-ignored.gradle"

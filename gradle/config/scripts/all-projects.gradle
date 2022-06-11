@@ -10,16 +10,9 @@ allprojects {
     apply from: "$rootDir/gradle/config/scripts/style.gradle"
     apply from: "$rootDir/gradle/config/scripts/coverage.gradle"
     apply from: "$rootDir/gradle/config/scripts/style-ignored.gradle"
-    apply plugin: "kotlin"
-    apply plugin: "kotlin-allopen"
-    apply plugin: "kotlin-spring"
-    apply plugin: "kotlin-jpa"
-    apply plugin: "kotlin-noarg"
+    apply from: "$rootDir/gradle/config/scripts/kotlin.gradle"
 
     dependencies {
-        implementation libs.kotlinStdlib
-        testImplementation libs.kotlinTest
-        implementation libs.kotlinReflect
         compileOnly libs.lombok
         implementation libs.guava
         implementation libs.commonsLang3
@@ -29,9 +22,4 @@ allprojects {
     }
 
     test.dependsOn(checkstyleMain)
-
-    sourceSets {
-        main.kotlin.srcDirs += 'src/main/kotlin'
-        main.java.srcDirs += 'src/main/java'
-    }
 }

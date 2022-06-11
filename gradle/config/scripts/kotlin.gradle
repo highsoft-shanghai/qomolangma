@@ -1,0 +1,16 @@
+apply plugin: "kotlin"
+apply plugin: "kotlin-allopen"
+apply plugin: "kotlin-spring"
+apply plugin: "kotlin-jpa"
+apply plugin: "kotlin-noarg"
+
+dependencies {
+    implementation libs.kotlinStdlib
+    testImplementation libs.kotlinTest
+    implementation libs.kotlinReflect
+}
+
+sourceSets {
+    main.kotlin.srcDirs += 'src/main/kotlin'
+    main.java.srcDirs += 'src/main/java'
+}

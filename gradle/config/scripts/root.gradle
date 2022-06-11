@@ -1,0 +1,20 @@
+dependencies {
+    implementation project(":domain.core")
+    implementation project(":payload.core")
+    implementation project(":bean.core")
+    implementation project(":application.core")
+    implementation project(":users.gateways")
+    testImplementation project(":test.web")
+    testImplementation project(":core.test")
+    implementation libs.springBootActuator
+    implementation libs.springBootWeb
+    implementation libs.springBootAop
+    implementation libs.flyaway
+    implementation libs.springdoc
+    implementation libs.h2
+    annotationProcessor libs.springBootConfigurationProcessor
+    testImplementation libs.springBootTest
+    testImplementation libs.testcontainersJunitJupiter
+    testImplementation libs.test.spring.restdocs.restassured
+    testImplementation libs.moco
+}
