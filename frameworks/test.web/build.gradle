@@ -3,6 +3,7 @@ dependencies {
     implementation libs.springBootWeb
     implementation libs.jsonpath
     implementation libs.springBootTest
+    implementation libs.test.spring.restdocs.restassured
     implementation project(":core.test")
     implementation project(":test.moco")
 }

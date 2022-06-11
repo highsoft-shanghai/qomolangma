@@ -1,24 +1,16 @@
 package com.example.scaffold;
 
 import com.example.scaffold.frameworks.test.web.IntegrationTest;
-import com.example.scaffold.frameworks.test.web.TestRequestTemplate;
-import com.example.scaffold.frameworks.test.web.TestResponse;
 import org.junit.jupiter.api.Test;
 
-import javax.annotation.Resource;
 import java.util.Map;
 
-import static com.example.scaffold.frameworks.test.web.ResponseBodyMatcher.eq;
-import static com.example.scaffold.frameworks.test.web.ResponseMatcher.body;
-import static com.example.scaffold.frameworks.test.web.ResponseStatusMatcher.ok;
+import static com.example.scaffold.frameworks.test.web.PathVariables.variables;
+import static org.hamcrest.Matchers.is;
 
-@IntegrationTest
-public class PingTest {
-    private @Resource TestRequestTemplate testTemplate;
-
+public class PingTest extends IntegrationTest {
     @Test
     void should_reply_pong() {
-        TestResponse testResponse = testTemplate.post("/ping", Map.of("data", "pong"));
-        testResponse.statusCodeIs(ok()).is(body("$", eq("pong")));
+        post("/ping", variables(Map.of()), Map.of("data", "pong"), null).statusCode(is(200)).body("data", is("pong"));
     }
 }

@@ -90,6 +90,7 @@ dependencies {
     annotationProcessor libs.springBootConfigurationProcessor
     testImplementation libs.springBootTest
     testImplementation libs.testcontainersJunitJupiter
+    testImplementation libs.test.spring.restdocs.restassured
     testImplementation libs.moco
 }
 if (!project.hasProperty('jacocoDisabled')) {
