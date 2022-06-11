@@ -7,8 +7,10 @@ import org.testcontainers.lifecycle.Startable
 class MocoTestContainer(config: MocoServerConfig) : Startable {
     private val runner: Runner
 
+    private val server = config.configure()
+
     init {
-        runner = Runner.runner(config.configure())
+        runner = Runner.runner(server)
     }
 
     override fun start() {
@@ -21,5 +23,5 @@ class MocoTestContainer(config: MocoServerConfig) : Startable {
     }
 
     val url: String
-        get() = "http://localhost:12306"
+        get() = "http://localhost:" + server.port()
 }
