@@ -30,8 +30,8 @@ allprojects {
     if (subprojects.size() > 0 && name != rootProject.name) return
     if (name == "documents" || projectDir.parentFile.name == "frontends") return
 
-    group = 'qomolangma'
-    version '1.0.0'
+    group = "$project_name"
+    version "$project_version"
 
     apply from: "$rootDir/gradle/config/scripts/java.gradle"
     apply from: "$rootDir/gradle/config/scripts/junit.gradle"
