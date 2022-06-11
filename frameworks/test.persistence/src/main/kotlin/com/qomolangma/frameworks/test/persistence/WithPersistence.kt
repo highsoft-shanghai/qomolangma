@@ -9,4 +9,4 @@ import kotlin.reflect.KClass
 @ExtendWith(
     PersistenceExtension::class
 )
-annotation class PersistenceTest(val containers: Array<KClass<*>> = [])
+annotation class WithPersistence(val containers: Array<KClass<*>> = [])
