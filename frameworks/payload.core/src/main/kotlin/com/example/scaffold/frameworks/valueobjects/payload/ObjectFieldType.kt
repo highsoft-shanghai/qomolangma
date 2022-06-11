@@ -1,8 +1,8 @@
 package com.example.scaffold.frameworks.valueobjects.payload
 
-class ObjectFieldType : FieldType<Payload>() {
+class ObjectFieldType : FieldType<RequestPayload>() {
     fun nullToEmpty(): ObjectFieldType {
-        setNullHandler { Payload(emptyMap<Any, Any>()) }
+        setNullHandler { RequestPayload(emptyMap<Any, Any>()) }
         return this
     }
 
@@ -10,8 +10,8 @@ class ObjectFieldType : FieldType<Payload>() {
         return MutableMap::class.java.isAssignableFrom(underlyingType)
     }
 
-    override fun convert(value: Any): Payload {
-        return Payload(value)
+    override fun convert(value: Any): RequestPayload {
+        return RequestPayload(value)
     }
 
     companion object {

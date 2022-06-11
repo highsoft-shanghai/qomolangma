@@ -1,6 +1,6 @@
 package com.example.scaffold.frameworks.config.center;
 
-import com.example.scaffold.frameworks.valueobjects.payload.Payload;
+import com.example.scaffold.frameworks.valueobjects.payload.RequestPayload;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.lang.NonNull;
@@ -20,14 +20,14 @@ public class PayloadHandlerMethodArgumentResolver extends AbstractMessageConvert
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterType().isAssignableFrom(Payload.class);
+        return parameter.getParameterType().isAssignableFrom(RequestPayload.class);
     }
 
     @Override
     public Object resolveArgument(@NonNull MethodParameter parameter, ModelAndViewContainer mavContainer, @NonNull NativeWebRequest webRequest,
                                   WebDataBinderFactory binderFactory) throws Exception {
         Object arg = readWithMessageConverters(webRequest, parameter, LinkedHashMap.class.getGenericSuperclass());
-        return new Payload(arg);
+        return new RequestPayload(arg);
     }
 
     @Override
