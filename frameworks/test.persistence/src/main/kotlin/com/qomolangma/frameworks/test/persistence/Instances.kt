@@ -1,30 +1,21 @@
-package com.qomolangma.frameworks.test.persistence;
+package com.qomolangma.frameworks.test.persistence
 
-import com.qomolangma.frameworks.domain.core.Exceptions;
+import com.qomolangma.frameworks.domain.core.Exceptions.execute
+import java.lang.reflect.Field
+import java.util.*
+import java.util.function.Consumer
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.List;
-
-public class Instances {
-
-    private final List<Object> instances;
-
-    public Instances(List<Object> instances) {
-        this.instances = instances;
+class Instances(private val instances: List<Any>) {
+    fun autoAssignPersistence() {
+        instances.forEach(Consumer { instance: Any -> this.autoAssignPersistence(instance) })
     }
 
-    public void autoAssignPersistence() {
-        this.instances.forEach(this::autoAssignPersistence);
+    private fun autoAssignPersistence(instance: Any) {
+        val fields = instance.javaClass.declaredFields
+        Arrays.stream(fields).forEach { field: Field ->
+            if (!Persistences.exist(field.type)) return@forEach
+            field.isAccessible = true
+            execute { field[instance] = Persistences.fetchByType(field.type) }
+        }
     }
-
-    private void autoAssignPersistence(Object instance) {
-        Field[] fields = instance.getClass().getDeclaredFields();
-        Arrays.stream(fields).forEach(field -> {
-            if (!Persistences.exist(field.getType())) return;
-            field.setAccessible(true);
-            Exceptions.execute(() -> field.set(instance, Persistences.fetchByType(field.getType())));
-        });
-    }
-
 }
