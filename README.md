@@ -1,4 +1,4 @@
-# Everest
+# QOMOLANGMA
 
 This repository contains all the materials you need to quickly build a new development environment.
 
@@ -75,13 +75,13 @@ sh ./scripts/check-all
 ## Run frontend tests
 
 ```shell script
-./gradlew :everest.webui:npm_start
+./gradlew :qomolangma.webui:npm_start
 ```
 
 ## Listen to frontend tests
 
 ```shell script
-./gradlew :everest.webui:npmWatchTest
+./gradlew :qomolangma.webui:npmWatchTest
 ```
 
 ## Build a docker image and push it to the image repository

@@ -1,0 +1,25 @@
+package com.qomolangma.frameworks.valueobjects.payload;
+
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.*;
+
+class StringFieldTypeTest {
+
+    @Test
+    void should_be_able_to_convert_into_strings_from_strings() {
+        assertThat(StringFieldType.asString().from("text")).isEqualTo("text");
+    }
+
+    @Test
+    void should_be_able_to_convert_into_strings_from_null_values() {
+        assertThat(StringFieldType.asString().nullToEmpty().from(null)).isEqualTo("");
+    }
+
+    @Test
+    void should_reject_type_mismatched_inputs() {
+        Throwable caught = catchThrowable(() -> StringFieldType.asString().from(1));
+        assertThat(caught).isInstanceOf(MalformedPayloadException.class);
+        assertThat(caught).hasMessage("error.request.field-type-mismatch");
+    }
+}
