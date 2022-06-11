@@ -1,3 +1,5 @@
+import org.asciidoctor.gradle.jvm.AsciidoctorJPlugin
+
 buildscript {
     ext.kotlin_version = '1.6.21'
     dependencies {
@@ -5,6 +7,7 @@ buildscript {
         classpath("org.jetbrains.kotlinx:kover:0.5.0")
         classpath("org.jetbrains.kotlin:kotlin-allopen:$kotlin_version")
         classpath("org.jetbrains.kotlin:kotlin-noarg:$kotlin_version")
+        classpath "org.asciidoctor:asciidoctor-gradle-jvm:3.3.2"
     }
 }
 
@@ -21,6 +24,7 @@ apply plugin: "kotlin-allopen"
 apply plugin: "kotlin-spring"
 apply plugin: "kotlin-jpa"
 apply plugin: "kotlin-noarg"
+apply plugin: AsciidoctorJPlugin
 
 allprojects {
     if (subprojects.size() > 0 && name != rootProject.name) return
@@ -108,4 +112,19 @@ jacoco {
 sourceSets {
     main.kotlin.srcDirs += 'src/main/kotlin'
     main.java.srcDirs += 'src/main/java'
+}
+
+ext {
+    set('snippetsDir', file("build/generated-snippets"))
+}
+
+tasks.named('test') {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+}
+
+tasks.named('asciidoctor') {
+    inputs.dir snippetsDir
+    attributes 'snippets': snippetsDir
+    dependsOn test
 }
