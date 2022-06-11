@@ -1,7 +1,7 @@
 package com.qomolangma
 
-import com.qomolangma.frameworks.valueobjects.payload.RequestPayload
-import com.qomolangma.frameworks.valueobjects.payload.ResponsePayload
+import com.qomolangma.frameworks.payload.core.RequestPayload
+import com.qomolangma.frameworks.payload.core.ResponsePayload
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RestController
 import javax.annotation.Resource

@@ -1,6 +1,6 @@
 package com.qomolangma.frameworks.bean.core;
 
-import com.qomolangma.frameworks.valueobjects.payload.ResponsePayload;
+import com.qomolangma.frameworks.payload.core.ResponsePayload;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import javax.annotation.Nullable;
 
-import static com.qomolangma.frameworks.valueobjects.payload.ResponsePayload.response;
+import static com.qomolangma.frameworks.payload.core.ResponsePayload.response;
 
 @RestControllerAdvice(basePackages = {"com.qomolangma", "org.springframework.boot.autoconfigure.web.servlet.error"})
 public class ApiResponseWrapper implements ResponseBodyAdvice<Object> {

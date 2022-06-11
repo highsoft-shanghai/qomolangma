@@ -1,11 +1,11 @@
 package com.qomolangma;
 
 import com.qomolangma.frameworks.application.core.UseCase;
-import com.qomolangma.frameworks.valueobjects.payload.RequestPayload;
-import com.qomolangma.frameworks.valueobjects.payload.ResponsePayload;
-import com.qomolangma.frameworks.valueobjects.payload.StringFieldType;
+import com.qomolangma.frameworks.payload.core.RequestPayload;
+import com.qomolangma.frameworks.payload.core.ResponsePayload;
+import com.qomolangma.frameworks.payload.core.StringFieldType;
 
-import static com.qomolangma.frameworks.valueobjects.payload.ResponsePayload.response;
+import static com.qomolangma.frameworks.payload.core.ResponsePayload.response;
 
 @UseCase
 public class PingUseCase {

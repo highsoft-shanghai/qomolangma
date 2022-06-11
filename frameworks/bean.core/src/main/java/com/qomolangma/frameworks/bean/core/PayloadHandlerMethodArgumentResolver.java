@@ -1,6 +1,6 @@
 package com.qomolangma.frameworks.bean.core;
 
-import com.qomolangma.frameworks.valueobjects.payload.RequestPayload;
+import com.qomolangma.frameworks.payload.core.RequestPayload;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.lang.NonNull;
