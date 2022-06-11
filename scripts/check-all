@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
-cd ./frontends/scaffold.webui/ && yarn test
+cd ./frontends/scaffold.webui/ && yarn install && yarn test
 cd ../../ && ./gradlew --warning-mode none -P chainTests clean checkstyleMain checkstyleTest check asciidoctor
