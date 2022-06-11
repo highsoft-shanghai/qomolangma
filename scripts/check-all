@@ -1,2 +1,3 @@
 #!/usr/bin/env sh
-./gradlew --warning-mode none -P chainTests clean checkstyleMain checkstyleTest check asciidoctor
+cd ./frontends/scaffold.webui/ && yarn test
+cd ../../ && ./gradlew --warning-mode none -P chainTests clean checkstyleMain checkstyleTest check asciidoctor
