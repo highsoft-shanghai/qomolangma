@@ -1,6 +1,6 @@
 package com.qomolangma.frameworks.test.moco
 
-import com.qomolangma.frameworks.test.moco.MocoValidation.hit
+import com.qomolangma.frameworks.test.moco.MocoHit.hit
 import com.github.dreamhead.moco.HttpServer
 import com.github.dreamhead.moco.Moco.*
 

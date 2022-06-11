@@ -26,7 +26,7 @@ public class MocoContainerTest {
         connection.connect();
         assertEquals(200, connection.responseCode());
         assertEquals("pong", connection.responseBody());
-        MocoValidation.hit().verify(by(uri("/ping")), times(1));
+        MocoHit.hit().verify(by(uri("/ping")), times(1));
     }
 
     @AfterEach
