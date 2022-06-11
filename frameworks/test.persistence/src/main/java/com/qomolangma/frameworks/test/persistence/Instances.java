@@ -1,7 +1,6 @@
 package com.qomolangma.frameworks.test.persistence;
 
 import com.qomolangma.frameworks.domain.core.Exceptions;
-import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -20,22 +19,12 @@ public class Instances {
     }
 
     private void autoAssignPersistence(Object instance) {
-        Class<?> instanceClass = instance.getClass();
-        Field[] fields = instanceClass.getDeclaredFields();
+        Field[] fields = instance.getClass().getDeclaredFields();
         Arrays.stream(fields).forEach(field -> {
-            if (!field.isAnnotationPresent(Persistence.class)) return;
+            if (!Persistences.exist(field.getType())) return;
             field.setAccessible(true);
-            Exceptions.execute(() -> field.set(instance, Persistences.fetchByType(type(field))));
+            Exceptions.execute(() -> field.set(instance, Persistences.fetchByType(field.getType())));
         });
-    }
-
-    @NotNull
-    protected Class<?> type(Field field) {
-        Class<?> type = field.getType();
-        if (!Persistences.exist(type)) throw new PersistenceException("Error! The type is not register in Persistence:" + type.getName()
-                + ". You need to check if the type is valid. If it is a new persistence template, you can add it to Persistence in " +
-                "frameworks.test.persistence.");
-        return type;
     }
 
 }
