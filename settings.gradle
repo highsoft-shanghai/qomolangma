@@ -1,6 +1,6 @@
 enableFeaturePreview("VERSION_CATALOGS")
 
-rootProject.name = 'qomolangma'
+rootProject.name = 'everest'
 
 file("modules").eachDir {
     include it.name

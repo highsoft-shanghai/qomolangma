@@ -1,4 +1,4 @@
-# Kotlin CI Scaffold
+# Everest
 
 This repository contains all the materials you need to quickly build a new development environment.
 
@@ -75,13 +75,13 @@ sh ./scripts/check-all
 ## Run frontend tests
 
 ```shell script
-./gradlew :scaffold.webui:npm_start
+./gradlew :everest.webui:npm_start
 ```
 
 ## Listen to frontend tests
 
 ```shell script
-./gradlew :scaffold.webui:npmWatchTest
+./gradlew :everest.webui:npmWatchTest
 ```
 
 ## Build a docker image and push it to the image repository

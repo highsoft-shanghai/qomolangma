@@ -30,7 +30,7 @@ allprojects {
     if (subprojects.size() > 0 && name != rootProject.name) return
     if (name == "documents" || projectDir.parentFile.name == "frontends") return
 
-    group = 'qomolangma'
+    group = 'everest'
     version '1.0.0'
 
     apply from: "$rootDir/gradle/config/scripts/java.gradle"
