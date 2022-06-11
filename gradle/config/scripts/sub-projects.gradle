@@ -1,0 +1,9 @@
+subprojects {
+    apply plugin: 'java-library'
+    tasks.named('test') { test ->
+        if (!rootProject.hasProperty('chainTests')) return
+        rootProject.tasks.named('test') {
+            it.dependsOn(test)
+        }
+    }
+}

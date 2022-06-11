@@ -1,0 +1,14 @@
+import org.asciidoctor.gradle.jvm.AsciidoctorJPlugin
+
+buildscript {
+    repositories {
+        maven {
+            url "${pluginRepositoryUrl}"
+        }
+    }
+    dependencies {
+        classpath(project.extensions.getByType(VersionCatalogsExtension).named("libs").findLibrary("asciidoctor.plugin").get())
+    }
+}
+
+apply plugin: AsciidoctorJPlugin

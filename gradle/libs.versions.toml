@@ -31,6 +31,7 @@ jsonpath = "2.4.0"
 logging-logback = "1.2.11"
 
 [libraries]
+asciidoctor-plugin = { module = "org.asciidoctor:asciidoctor-gradle-jvm", version.ref = "test-asciidoctor" }
 springBootWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot" }
 springSecurityCore = { module = "org.springframework.security:spring-security-core", version.ref = "springSecurityCore" }
 springBootSecurity = { module = "org.springframework.boot:spring-boot-starter-security" }
