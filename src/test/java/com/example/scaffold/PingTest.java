@@ -13,6 +13,6 @@ public class PingTest extends IntegrationTest {
     @Test
     void should_reply_pong() {
         ValidatableResponse post = post("/ping", variables(Map.of()), Map.of("data", "pong"), null);
-        post.statusCode(is(200)).body("ping", is("pong"));
+        post.statusCode(is(200)).body("body.ping", is("pong"));
     }
 }

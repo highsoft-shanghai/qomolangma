@@ -12,6 +12,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import javax.annotation.Nullable;
 
+import static com.example.scaffold.frameworks.valueobjects.payload.ResponsePayload.response;
+
 @RestControllerAdvice(basePackages = {"com.example", "org.springframework.boot.autoconfigure.web.servlet.error"})
 public class ApiResponseWrapper implements ResponseBodyAdvice<Object> {
     @Override
@@ -24,7 +26,8 @@ public class ApiResponseWrapper implements ResponseBodyAdvice<Object> {
             @Nullable Object body, @NotNull MethodParameter returnType, @NotNull MediaType selectedContentType,
             @NotNull Class<? extends HttpMessageConverter<?>> selectedConverterType, @NotNull ServerHttpRequest request, @NotNull ServerHttpResponse response
     ) {
-        if (!(body instanceof ResponsePayload)) return body;
-        return ((ResponsePayload) body).getValue();
+        if (body == null) return response();
+        if (body instanceof ResponsePayload payload) return payload.getValue();
+        return body;
     }
 }

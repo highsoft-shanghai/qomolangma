@@ -1,20 +1,25 @@
 package com.example.scaffold.frameworks.valueobjects.payload;
 
-import lombok.Getter;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-@Getter
-public class ResponsePayload {
+public final class ResponsePayload {
     private final Map<String, Object> value;
 
-    public ResponsePayload() {
+    private ResponsePayload() {
         this.value = new LinkedHashMap<>();
+    }
+
+    public static ResponsePayload response() {
+        return new ResponsePayload();
     }
 
     public ResponsePayload append(String field, Object value) {
         this.value.put(field, value);
         return this;
+    }
+
+    public Map<String, Object> getValue() {
+        return Map.of("body", this.value);
     }
 }
