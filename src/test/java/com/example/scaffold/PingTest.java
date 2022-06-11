@@ -1,6 +1,7 @@
 package com.example.scaffold;
 
 import com.example.scaffold.frameworks.test.web.IntegrationTest;
+import io.restassured.response.ValidatableResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -11,6 +12,7 @@ import static org.hamcrest.Matchers.is;
 public class PingTest extends IntegrationTest {
     @Test
     void should_reply_pong() {
-        post("/ping", variables(Map.of()), Map.of("data", "pong"), null).statusCode(is(200)).body("data", is("pong"));
+        ValidatableResponse post = post("/ping", variables(Map.of()), Map.of("data", "pong"), null);
+        post.statusCode(is(200)).body("ping", is("pong"));
     }
 }
