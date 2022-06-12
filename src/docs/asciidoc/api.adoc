@@ -4,3 +4,8 @@ neilwang.wiki
 :toclevels: 3
 :sectnums:
 :partnums:
+
+== tests
+=== 接口连通性测试
+
+include::{snippets}/test.ping/api.adoc[]
