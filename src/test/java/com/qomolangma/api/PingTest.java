@@ -1,4 +1,4 @@
-package com.qomolangma;
+package com.qomolangma.api;
 
 import com.qomolangma.frameworks.test.web.IntegrationTest;
 import com.qomolangma.frameworks.test.web.PathVariables;
