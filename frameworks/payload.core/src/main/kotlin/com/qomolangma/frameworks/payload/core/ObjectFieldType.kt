@@ -1,8 +1,8 @@
 package com.qomolangma.frameworks.payload.core
 
-class ObjectFieldType : FieldType<RequestPayload>() {
+class ObjectFieldType : FieldType<Payload>() {
     fun nullToEmpty(): ObjectFieldType {
-        setNullHandler { RequestPayload(emptyMap<Any, Any>()) }
+        setNullHandler { Payload(emptyMap<Any, Any>()) }
         return this
     }
 
@@ -10,8 +10,8 @@ class ObjectFieldType : FieldType<RequestPayload>() {
         return MutableMap::class.java.isAssignableFrom(underlyingType)
     }
 
-    override fun convert(value: Any): RequestPayload {
-        return RequestPayload(value)
+    override fun convert(value: Any): Payload {
+        return Payload(value)
     }
 
     companion object {

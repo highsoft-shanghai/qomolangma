@@ -1,6 +1,6 @@
 package com.qomolangma.frameworks.bean.core;
 
-import com.qomolangma.frameworks.payload.core.RequestPayload;
+import com.qomolangma.frameworks.payload.core.Payload;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.lang.NonNull;
@@ -20,14 +20,14 @@ public class PayloadHandlerMethodArgumentResolver extends AbstractMessageConvert
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterType().isAssignableFrom(RequestPayload.class);
+        return parameter.getParameterType().isAssignableFrom(Payload.class);
     }
 
     @Override
     public Object resolveArgument(@NonNull MethodParameter parameter, ModelAndViewContainer mavContainer, @NonNull NativeWebRequest webRequest,
                                   WebDataBinderFactory binderFactory) throws Exception {
         Object arg = readWithMessageConverters(webRequest, parameter, LinkedHashMap.class.getGenericSuperclass());
-        return new RequestPayload(arg);
+        return new Payload(arg);
     }
 
     @Override
