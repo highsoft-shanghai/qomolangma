@@ -6,6 +6,7 @@ neilwang.wiki
 :partnums:
 
 == tests
-=== 接口连通性测试
+=== api
+==== 接口连通性测试
 
 include::{snippets}/test.ping/api.adoc[]
