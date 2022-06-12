@@ -3,6 +3,7 @@ dependencies {
     implementation project(":payload.core")
     implementation project(":bean.core")
     implementation project(":application.core")
+    implementation project(":gateways.core")
     implementation project(":users.gateways")
     testImplementation project(":test.web")
     testImplementation project(":core.test")

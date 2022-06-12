@@ -3,13 +3,14 @@ package com.qomolangma;
 import com.qomolangma.frameworks.application.core.UseCase;
 import com.qomolangma.frameworks.payload.core.RequestPayload;
 import com.qomolangma.frameworks.payload.core.ResponsePayload;
-import com.qomolangma.frameworks.payload.core.StringFieldType;
 
-import static com.qomolangma.frameworks.payload.core.ResponsePayload.response;
+import javax.annotation.Resource;
 
 @UseCase
 public class PingUseCase {
+    private @Resource Ping ping;
+
     public ResponsePayload execute(RequestPayload payload) {
-        return response().append("ping", payload.get("data", StringFieldType.asString()));
+        return ping.pong(payload);
     }
 }
