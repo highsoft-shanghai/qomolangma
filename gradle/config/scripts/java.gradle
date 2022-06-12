@@ -1,8 +1,5 @@
 apply plugin: 'java'
 
-sourceCompatibility = 17
-targetCompatibility = 17
-
 repositories {
     mavenCentral()
 }
@@ -10,4 +7,16 @@ repositories {
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
     options.compilerArgs << "-parameters"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
