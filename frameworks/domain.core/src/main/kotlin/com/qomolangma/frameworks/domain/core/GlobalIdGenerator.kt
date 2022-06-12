@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 object GlobalIdGenerator {
-    private var idGenerator: IdGenerator = UuidBasedIdGenerator()
+    private var idGenerator: Id = UuidBasedId()
 
     @JvmStatic
     fun nextId(): String {
@@ -18,7 +18,7 @@ object GlobalIdGenerator {
     }
 
     @JvmStatic
-    fun reset(idGenerator: IdGenerator) {
+    fun reset(idGenerator: Id) {
         GlobalIdGenerator.idGenerator = idGenerator
     }
 }

@@ -9,8 +9,8 @@ class FixedIdGeneratorTest {
 
     @Test
     void should_generate_fixed_identity() {
-        IdGenerator idGenerator = new FixedIdGenerator(FIXED);
-        assertThat(idGenerator.next()).isEqualTo(FIXED);
-        assertThat(idGenerator.nextReadable()).isEqualTo(FIXED);
+        Id id = new FixedId(FIXED);
+        assertThat(id.next()).isEqualTo(FIXED);
+        assertThat(id.nextReadable()).isEqualTo(FIXED);
     }
 }

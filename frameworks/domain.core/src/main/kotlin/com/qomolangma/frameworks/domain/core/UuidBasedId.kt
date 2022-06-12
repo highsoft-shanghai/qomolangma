@@ -6,7 +6,7 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class UuidBasedIdGenerator : IdGenerator {
+class UuidBasedId : Id {
     override fun next(): String {
         return UUID.randomUUID().toString().lowercase(Locale.getDefault()).replace("-", "")
     }

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 object GlobalIdGeneratorResetter {
     @JvmStatic
-    fun reset(idGenerator: IdGenerator) {
+    fun reset(idGenerator: Id) {
         GlobalIdGenerator.reset(idGenerator)
     }
 }

@@ -6,34 +6,34 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class UuidBasedIdGeneratorTest {
 
-    private IdGenerator idGenerator;
+    private Id id;
 
     @BeforeEach
     public void setUp() {
-        idGenerator = new UuidBasedIdGenerator();
+        id = new UuidBasedId();
     }
 
     @Test
     public void should_generate_identity_correctly() {
-        assertThat(32).isEqualTo(idGenerator.next().length());
+        assertThat(32).isEqualTo(id.next().length());
     }
 
     @Test
     public void should_generate_non_duplicated_identities() {
-        String id = idGenerator.next();
-        assertThat(id).isNotEqualTo(idGenerator.next());
+        String id = this.id.next();
+        assertThat(id).isNotEqualTo(this.id.next());
     }
 
     @Test
     public void should_generate_readable_identity_correctly() {
-        assertThat(idGenerator.nextReadable().length()).isEqualTo(21);
-        assertThat(idGenerator.nextReadable().chars().allMatch(Character::isDigit)).isTrue();
+        assertThat(id.nextReadable().length()).isEqualTo(21);
+        assertThat(id.nextReadable().chars().allMatch(Character::isDigit)).isTrue();
     }
 
     @Test
     public void should_generate_non_duplicated_readable_identities() {
-        String id = idGenerator.nextReadable();
-        assertThat(idGenerator.nextReadable()).isNotEqualTo(id);
+        String id = this.id.nextReadable();
+        assertThat(this.id.nextReadable()).isNotEqualTo(id);
     }
 
 }

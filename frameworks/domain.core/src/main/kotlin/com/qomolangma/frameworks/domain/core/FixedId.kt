@@ -1,6 +1,6 @@
 package com.qomolangma.frameworks.domain.core
 
-class FixedIdGenerator(private val id: String) : IdGenerator {
+class FixedId(private val id: String) : Id {
     override fun next(): String {
         return nextReadable()
     }
