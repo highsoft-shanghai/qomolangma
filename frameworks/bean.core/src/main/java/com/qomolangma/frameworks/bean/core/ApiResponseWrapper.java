@@ -1,6 +1,6 @@
 package com.qomolangma.frameworks.bean.core;
 
-import com.qomolangma.frameworks.payload.core.ResponsePayload;
+import com.qomolangma.frameworks.payload.core.Payload;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import javax.annotation.Nullable;
 
-import static com.qomolangma.frameworks.payload.core.ResponsePayload.response;
+import static com.qomolangma.frameworks.payload.core.MapFieldType.asMap;
 
 @RestControllerAdvice(basePackages = {"com.qomolangma", "org.springframework.boot.autoconfigure.web.servlet.error"})
 public class ApiResponseWrapper implements ResponseBodyAdvice<Object> {
@@ -26,8 +26,7 @@ public class ApiResponseWrapper implements ResponseBodyAdvice<Object> {
             @Nullable Object body, @NotNull MethodParameter returnType, @NotNull MediaType selectedContentType,
             @NotNull Class<? extends HttpMessageConverter<?>> selectedConverterType, @NotNull ServerHttpRequest request, @NotNull ServerHttpResponse response
     ) {
-        if (body == null) return response().getValue();
-        if (body instanceof ResponsePayload payload) return payload.getValue();
+        if (body instanceof Payload payload) return payload.get(asMap());
         return body;
     }
 }
