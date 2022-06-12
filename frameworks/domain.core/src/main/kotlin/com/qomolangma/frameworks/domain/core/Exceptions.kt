@@ -6,7 +6,7 @@ object Exceptions {
         try {
             runnable.run()
         } catch (e: Exception) {
-            throw wrap(e);
+            throw wrap(e)
         }
     }
 

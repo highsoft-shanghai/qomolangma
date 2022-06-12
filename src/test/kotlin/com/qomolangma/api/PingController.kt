@@ -9,6 +9,6 @@ import javax.annotation.Resource
 class PingController(@Resource private val pingUseCase: PingUseCase) {
     @PostMapping("/ping")
     fun ping(payload: Payload): Payload {
-        return pingUseCase.execute(payload);
+        return pingUseCase.execute(payload)
     }
 }
