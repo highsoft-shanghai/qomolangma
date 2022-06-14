@@ -1,11 +1,10 @@
-package com.qomolangma.api;
+package com.qomolangma.api
 
-import com.qomolangma.frameworks.gateways.core.Aggregates;
+import com.qomolangma.frameworks.gateways.core.Aggregates
 
 @Aggregates
-public class TestPings implements Pings {
-    @Override
-    public String get() {
-        return "ping";
+class TestPings : Pings {
+    override fun get(): String {
+        return "ping"
     }
 }

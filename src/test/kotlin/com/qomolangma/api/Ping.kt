@@ -1,7 +1,7 @@
-package com.qomolangma.api;
+package com.qomolangma.api
 
-import com.qomolangma.frameworks.payload.core.Payload;
+import com.qomolangma.frameworks.payload.core.Payload
 
-public interface Ping {
-    Payload pong(Payload payload);
+interface Ping {
+    fun pong(payload: Payload): Payload
 }

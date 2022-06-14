@@ -1,13 +1,12 @@
-package com.qomolangma;
+package com.qomolangma
 
-import com.qomolangma.frameworks.test.web.IntegrationTest;
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.test.web.IntegrationTest
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class CanaryTest extends IntegrationTest {
+class CanaryTest : IntegrationTest() {
     @Test
-    void should_be_able_to_run_spring_tests() {
-        assertThat("Use-case test environment OK").isNotBlank();
+    fun should_be_able_to_run_spring_tests() {
+        Assertions.assertThat("Use-case test environment OK").isNotBlank
     }
 }

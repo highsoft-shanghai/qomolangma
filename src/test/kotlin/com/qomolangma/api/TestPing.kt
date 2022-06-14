@@ -1,19 +1,17 @@
-package com.qomolangma.api;
+package com.qomolangma.api
 
-import com.qomolangma.frameworks.gateways.core.AntiCorruptionLayer;
-import com.qomolangma.frameworks.payload.core.Payload;
-import com.qomolangma.frameworks.payload.core.StringFieldType;
-
-import javax.annotation.Resource;
+import com.qomolangma.frameworks.gateways.core.AntiCorruptionLayer
+import com.qomolangma.frameworks.payload.core.Payload
+import com.qomolangma.frameworks.payload.core.StringFieldType.Companion.asString
+import javax.annotation.Resource
 
 @AntiCorruptionLayer
-public class TestPing implements Ping {
-    private @Resource Pings pings;
-
-    @Override
-    public Payload pong(Payload payload) {
-        return Payload.append(pings.get(), payload.get("data", StringFieldType.asString()))
-                .append("message", "ok")
-                .build();
+class TestPing : Ping {
+    @Resource
+    private val pings: Pings? = null
+    override fun pong(payload: Payload): Payload {
+        return Payload.append(pings!!.get(), payload.get("data", asString()))
+            .append("message", "ok")
+            .build()
     }
 }

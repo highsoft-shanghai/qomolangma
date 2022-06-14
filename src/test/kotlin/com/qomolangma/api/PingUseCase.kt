@@ -1,15 +1,15 @@
-package com.qomolangma.api;
+package com.qomolangma.api
 
-import com.qomolangma.frameworks.application.core.UseCase;
-import com.qomolangma.frameworks.payload.core.Payload;
-
-import javax.annotation.Resource;
+import com.qomolangma.frameworks.application.core.UseCase
+import com.qomolangma.frameworks.payload.core.Payload
+import javax.annotation.Resource
 
 @UseCase
-public class PingUseCase {
-    private @Resource Ping ping;
+class PingUseCase {
+    @Resource
+    private val ping: Ping? = null
 
-    public Payload execute(Payload payload) {
-        return ping.pong(payload);
+    fun execute(payload: Payload): Payload {
+        return ping!!.pong(payload)
     }
 }

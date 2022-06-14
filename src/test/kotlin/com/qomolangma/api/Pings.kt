@@ -1,5 +1,5 @@
-package com.qomolangma.api;
+package com.qomolangma.api
 
-public interface Pings {
-    String get();
+interface Pings {
+    fun get(): String
 }
