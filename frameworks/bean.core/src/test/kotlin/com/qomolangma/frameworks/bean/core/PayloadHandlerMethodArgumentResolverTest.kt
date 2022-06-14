@@ -1,20 +1,18 @@
-package com.qomolangma.frameworks.bean.core;
+package com.qomolangma.frameworks.bean.core
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.catchThrowable
+import org.junit.jupiter.api.Test
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 
-import java.util.List;
-
-class PayloadHandlerMethodArgumentResolverTest {
-
+internal class PayloadHandlerMethodArgumentResolverTest {
     @Test
-    @SuppressWarnings("all")
-    void should_return_false() {
-        PayloadHandlerMethodArgumentResolver payloadHandlerMethodArgumentResolver = new PayloadHandlerMethodArgumentResolver(List.of(new MappingJackson2HttpMessageConverter()));
-        Assertions.assertThat(payloadHandlerMethodArgumentResolver.supportsReturnType(null)).isFalse();
-        Throwable throwable = Assertions.catchThrowable(() -> payloadHandlerMethodArgumentResolver.handleReturnValue(null, null, null, null));
-        Assertions.assertThat(throwable).isNull();
+    fun should_return_false() {
+        val payloadHandlerMethodArgumentResolver =
+            PayloadHandlerMethodArgumentResolver(listOf(MappingJackson2HttpMessageConverter()))
+        assertThat(payloadHandlerMethodArgumentResolver.supportsReturnType(null)).isFalse
+        val throwable =
+            catchThrowable { payloadHandlerMethodArgumentResolver.handleReturnValue(null, null, null, null) }
+        assertThat(throwable).isNull()
     }
-
 }
