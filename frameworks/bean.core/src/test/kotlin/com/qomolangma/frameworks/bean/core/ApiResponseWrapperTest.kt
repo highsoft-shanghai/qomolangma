@@ -1,17 +1,28 @@
-package com.qomolangma.frameworks.bean.core;
+package com.qomolangma.frameworks.bean.core
 
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.bean.core.PayloadHandlerMethodArgumentResolverTest.AnyMethodParameter
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+import org.springframework.http.MediaType.ALL
+import org.springframework.http.converter.FormHttpMessageConverter
+import org.springframework.http.server.ServletServerHttpRequest
+import org.springframework.http.server.ServletServerHttpResponse
+import org.springframework.mock.web.MockHttpServletRequest
+import org.springframework.mock.web.MockHttpServletResponse
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class ApiResponseWrapperTest {
-
+internal class ApiResponseWrapperTest {
     @Test
-    void should_get_self_when_given_not_payload() {
-        Object response = new ApiResponseWrapper().beforeBodyWrite(new NotResponsePayload(), null, null, null, null, null);
-        assertThat(response).isInstanceOf(NotResponsePayload.class);
+    fun should_get_self_when_given_not_payload() {
+        val response = ApiResponseWrapper().beforeBodyWrite(
+            NotResponsePayload(),
+            AnyMethodParameter(this.javaClass.getConstructor(), -1),
+            ALL,
+            FormHttpMessageConverter().javaClass,
+            ServletServerHttpRequest(MockHttpServletRequest()),
+            ServletServerHttpResponse(MockHttpServletResponse())
+        );
+        assertThat(response).isInstanceOf(NotResponsePayload::class.java)
     }
 
-    private static final class NotResponsePayload {
-    }
+    private class NotResponsePayload
 }
