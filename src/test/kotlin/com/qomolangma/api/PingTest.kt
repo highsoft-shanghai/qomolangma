@@ -3,7 +3,7 @@ package com.qomolangma.api
 import com.qomolangma.frameworks.test.web.Documentation
 import com.qomolangma.frameworks.test.web.IntegrationTest
 import com.qomolangma.frameworks.test.web.PathVariables.Companion.variables
-import org.hamcrest.Matchers
+import org.hamcrest.Matchers.`is`
 import org.junit.jupiter.api.Test
 import org.springframework.restdocs.payload.PayloadDocumentation.*
 
@@ -12,7 +12,7 @@ class PingTest : IntegrationTest() {
     fun should_reply_pong() {
 
         val post = post("/ping", variables(HashMap<String, Any>()), mapOf(Pair("data", "pong")), documentation())
-        post.statusCode(Matchers.`is`(200)).body("ping", Matchers.`is`("pong")).body("message", Matchers.`is`("ok"))
+        post.statusCode(`is`(200)).body("ping", `is`("pong")).body("message", `is`("ok"))
     }
 
     fun documentation(): Documentation {
