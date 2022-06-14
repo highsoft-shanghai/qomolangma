@@ -1,12 +1,11 @@
-package com.qomolangma.frameworks.gateways.core;
+package com.qomolangma.frameworks.gateways.core
 
-import org.junit.jupiter.api.Test;
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class CanaryTest {
+class CanaryTest {
     @Test
-    void should_be_able_to_run_tests() {
-        assertThat("ok").isEqualTo("ok");
+    fun should_be_able_to_run_tests() {
+        assertThat("ok").isEqualTo("ok")
     }
 }
