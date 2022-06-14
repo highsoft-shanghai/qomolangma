@@ -23,20 +23,20 @@ public class Payload {
         return type.from(get(asMap()).get(key));
     }
 
-    public static ValueBuilder append(String key, Object value) {
-        ValueBuilder builder = new ValueBuilder();
+    public static PayloadBuilder append(String key, Object value) {
+        PayloadBuilder builder = new PayloadBuilder();
         builder.append(key, value);
         return builder;
     }
 
-    public static class ValueBuilder {
+    public static class PayloadBuilder {
         private final LinkedHashMap<String, Object> value;
 
-        public ValueBuilder() {
+        public PayloadBuilder() {
             this.value = new LinkedHashMap<>();
         }
 
-        public ValueBuilder append(String key, Object value) {
+        public PayloadBuilder append(String key, Object value) {
             this.value.put(key, value);
             return this;
         }
