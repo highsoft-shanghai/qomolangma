@@ -1,39 +1,38 @@
-package com.qomolangma.frameworks.domain.core;
+package com.qomolangma.frameworks.domain.core
 
-import org.junit.jupiter.api.*;
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class UuidBasedIdGeneratorTest {
-
-    private Id id;
+class UuidBasedIdGeneratorTest {
+    private var id: Id? = null
 
     @BeforeEach
-    public void setUp() {
-        id = new UuidBasedId();
+    fun setUp() {
+        id = UuidBasedId()
     }
 
     @Test
-    public void should_generate_identity_correctly() {
-        assertThat(32).isEqualTo(id.next().length());
+    fun should_generate_identity_correctly() {
+        Assertions.assertThat(32).isEqualTo(id!!.next().length)
     }
 
     @Test
-    public void should_generate_non_duplicated_identities() {
-        String id = this.id.next();
-        assertThat(id).isNotEqualTo(this.id.next());
+    fun should_generate_non_duplicated_identities() {
+        val id = id!!.next()
+        Assertions.assertThat(id).isNotEqualTo(this.id!!.next())
     }
 
     @Test
-    public void should_generate_readable_identity_correctly() {
-        assertThat(id.nextReadable().length()).isEqualTo(21);
-        assertThat(id.nextReadable().chars().allMatch(Character::isDigit)).isTrue();
+    fun should_generate_readable_identity_correctly() {
+        Assertions.assertThat(id!!.nextReadable().length).isEqualTo(21)
+        Assertions.assertThat(
+            id!!.nextReadable().chars().allMatch { codePoint: Int -> Character.isDigit(codePoint) }).isTrue
     }
 
     @Test
-    public void should_generate_non_duplicated_readable_identities() {
-        String id = this.id.nextReadable();
-        assertThat(this.id.nextReadable()).isNotEqualTo(id);
+    fun should_generate_non_duplicated_readable_identities() {
+        val id = id!!.nextReadable()
+        Assertions.assertThat(this.id!!.nextReadable()).isNotEqualTo(id)
     }
-
 }

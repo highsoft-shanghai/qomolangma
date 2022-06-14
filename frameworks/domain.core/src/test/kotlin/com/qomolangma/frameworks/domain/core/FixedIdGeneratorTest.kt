@@ -1,16 +1,18 @@
-package com.qomolangma.frameworks.domain.core;
+package com.qomolangma.frameworks.domain.core
 
-import org.junit.jupiter.api.Test;
+import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class FixedIdGeneratorTest {
-    public static final String FIXED = "fixed";
-
+internal class FixedIdGeneratorTest {
     @Test
-    void should_generate_fixed_identity() {
-        Id id = new FixedId(FIXED);
-        assertThat(id.next()).isEqualTo(FIXED);
-        assertThat(id.nextReadable()).isEqualTo(FIXED);
+    fun should_generate_fixed_identity() {
+        val id: Id = FixedId(FIXED)
+        assertThat(id.next()).isEqualTo(FIXED)
+        assertThat(id.nextReadable()).isEqualTo(FIXED)
+    }
+
+    companion object {
+        const val FIXED = "fixed"
     }
 }

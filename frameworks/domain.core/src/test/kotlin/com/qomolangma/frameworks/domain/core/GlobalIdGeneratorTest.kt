@@ -1,14 +1,16 @@
-package com.qomolangma.frameworks.domain.core;
+package com.qomolangma.frameworks.domain.core
 
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.domain.core.GlobalIdGenerator.nextId
+import com.qomolangma.frameworks.domain.core.GlobalIdGenerator.nextReadableId
+import com.qomolangma.frameworks.domain.core.GlobalIdGeneratorResetter.reset
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class GlobalIdGeneratorTest {
+class GlobalIdGeneratorTest {
     @Test
-    void should_be_able_to_generate_identities_from_underlying_identity_service() {
-        GlobalIdGeneratorResetter.reset(new UuidBasedId());
-        assertThat(GlobalIdGenerator.nextId()).hasSize(32);
-        assertThat(GlobalIdGenerator.nextReadableId()).hasSize(21);
+    fun should_be_able_to_generate_identities_from_underlying_identity_service() {
+        reset(UuidBasedId())
+        assertThat(nextId()).hasSize(32)
+        assertThat(nextReadableId()).hasSize(21)
     }
 }
