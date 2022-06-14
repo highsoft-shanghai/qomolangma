@@ -1,11 +1,14 @@
-package com.qomolangma;
+package com.qomolangma
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
-public class QomolangmaApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(QomolangmaApplication.class, args);
+class QomolangmaApplication {
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            SpringApplication.run(QomolangmaApplication::class.java, *args)
+        }
     }
 }
