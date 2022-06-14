@@ -1,3 +1,4 @@
 project.coverage.excludes = [
-    'com/qomolangma/QomolangmaApplication.class'
+    'com/qomolangma/QomolangmaApplication.class',
+    'com/qomolangma/QomolangmaApplication.Companion'
 ]

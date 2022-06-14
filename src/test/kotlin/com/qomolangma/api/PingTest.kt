@@ -10,7 +10,6 @@ import org.springframework.restdocs.payload.PayloadDocumentation.*
 class PingTest : IntegrationTest() {
     @Test
     fun should_reply_pong() {
-
         val post = post("/ping", variables(HashMap<String, Any>()), mapOf(Pair("data", "pong")), documentation())
         post.statusCode(`is`(200)).body("ping", `is`("pong")).body("message", `is`("ok"))
     }
