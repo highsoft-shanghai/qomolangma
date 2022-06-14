@@ -15,7 +15,7 @@ class PayloadInTest {
     @Test
     void should_transform_domain_to_map() {
         TestClass testClass = new TestClass("name", "email");
-        Map<String, Object> map = one(rule("name", TestClass::name), rule("email", TestClass::email)).transform(testClass);
+        Map<String, Object> map = one(rule("name", TestClass::name), rule("email", TestClass::email), rule("email", TestClass::email)).transform(testClass);
         assertEquals("name", map.get("name"));
         assertEquals("email", map.get("email"));
     }
