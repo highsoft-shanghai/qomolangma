@@ -1,23 +1,23 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.stream.Collectors
 
-public class ListElement<D> {
-    private final ConvertRules<D> conventions;
+class ListElement<D> constructor(vararg conventions: ConvertRule<D>) {
+    private val conventions: ConvertRules<D>
 
-    @SafeVarargs
-    public ListElement(ConvertRule<D>... conventions) {
-        this.conventions = new ConvertRules<>(conventions);
+    init {
+        this.conventions = ConvertRules(*conventions)
     }
 
-    @SafeVarargs
-    public static <D> ListElement<D> list(ConvertRule<D>... conventions) {
-        return new ListElement<>(conventions);
+    fun transform(objects: List<D>): List<Map<String, Any>> {
+        return objects.stream().map { d: D -> conventions.convert(d) }
+            .collect(Collectors.toList())
     }
 
-    public List<Map<String, Object>> transform(List<D> objects) {
-        return objects.stream().map(conventions::convert).collect(Collectors.toList());
+    companion object {
+        @JvmStatic
+        fun <D> list(vararg conventions: ConvertRule<D>): ListElement<D> {
+            return ListElement(*conventions)
+        }
     }
 }

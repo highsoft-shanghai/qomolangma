@@ -1,25 +1,20 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
-import java.util.function.Function;
+import java.util.function.Function
 
-public final class ConvertRule<D> {
-    private final String name;
-    private final Function<D, Object> function;
-
-    private ConvertRule(String name, Function<D, Object> function) {
-        this.name = name;
-        this.function = function;
+class ConvertRule<D> private constructor(private val name: String, private val function: Function<D, Any>) {
+    fun apply(d: D): Any {
+        return function.apply(d)
     }
 
-    public static <D> ConvertRule<D> rule(String name, Function<D, Object> function) {
-        return new ConvertRule<>(name, function);
+    fun name(): String {
+        return name
     }
 
-    public Object apply(D d) {
-        return function.apply(d);
-    }
-
-    public String name() {
-        return name;
+    companion object {
+        @JvmStatic
+        fun <D> rule(name: String, function: Function<D, Any>): ConvertRule<D> {
+            return ConvertRule(name, function)
+        }
     }
 }

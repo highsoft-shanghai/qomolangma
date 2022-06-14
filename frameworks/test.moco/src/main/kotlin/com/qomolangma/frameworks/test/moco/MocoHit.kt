@@ -1,17 +1,13 @@
-package com.qomolangma.frameworks.test.moco;
+package com.qomolangma.frameworks.test.moco
 
-import com.github.dreamhead.moco.RequestHit;
+import com.github.dreamhead.moco.MocoRequestHit.requestHit
+import com.github.dreamhead.moco.RequestHit
 
-import static com.github.dreamhead.moco.MocoRequestHit.requestHit;
+object MocoHit {
+    private val IMPL = requestHit()
 
-public final class MocoHit {
-
-    private MocoHit() {
-    }
-
-    private static final RequestHit IMPL = requestHit();
-
-    public static RequestHit hit() {
-        return IMPL;
+    @JvmStatic
+    fun hit(): RequestHit {
+        return IMPL
     }
 }

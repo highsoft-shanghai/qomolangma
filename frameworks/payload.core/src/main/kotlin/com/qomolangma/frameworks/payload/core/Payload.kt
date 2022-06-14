@@ -1,48 +1,34 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
+import com.qomolangma.frameworks.payload.core.MapFieldType.Companion.asMap
 
-import lombok.Getter;
-
-import java.util.LinkedHashMap;
-
-import static com.qomolangma.frameworks.payload.core.MapFieldType.asMap;
-
-@Getter
-public class Payload {
-    private final Object value;
-
-    public Payload(Object value) {
-        this.value = value;
+class Payload(private val value: Any) {
+    operator fun <I> get(type: FieldType<I>): I {
+        return type.from(value)
     }
 
-    public <I> I get(FieldType<I> type) {
-        return type.from(value);
+    operator fun <I> get(key: String?, type: FieldType<I>): I {
+        return type.from(get(asMap())[key])
     }
 
-    public <I> I get(String key, FieldType<I> type) {
-        return type.from(get(asMap()).get(key));
-    }
+    class PayloadBuilder {
+        private val value: LinkedHashMap<String, Any> = LinkedHashMap()
 
-    public static PayloadBuilder append(String key, Object value) {
-        PayloadBuilder builder = new PayloadBuilder();
-        builder.append(key, value);
-        return builder;
-    }
-
-    public static class PayloadBuilder {
-        private final LinkedHashMap<String, Object> value;
-
-        public PayloadBuilder() {
-            this.value = new LinkedHashMap<>();
+        fun append(key: String, value: Any): PayloadBuilder {
+            this.value[key] = value
+            return this
         }
 
-        public PayloadBuilder append(String key, Object value) {
-            this.value.put(key, value);
-            return this;
+        fun build(): Payload {
+            return Payload(value)
         }
+    }
 
-        public Payload build() {
-            return new Payload(this.value);
+    companion object {
+        fun append(key: String, value: Any): PayloadBuilder {
+            val builder = PayloadBuilder()
+            builder.append(key, value)
+            return builder
         }
     }
 }

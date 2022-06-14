@@ -1,21 +1,20 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
-import java.util.Map;
+class OneElement<D> constructor(vararg conventions: ConvertRule<D>) {
+    private val conventions: ConvertRules<D>
 
-public class OneElement<D> {
-    private final ConvertRules<D> conventions;
-
-    @SafeVarargs
-    public OneElement(ConvertRule<D>... conventions) {
-        this.conventions = new ConvertRules<>(conventions);
+    init {
+        this.conventions = ConvertRules(*conventions)
     }
 
-    @SafeVarargs
-    public static <D> OneElement<D> one(ConvertRule<D>... conventions) {
-        return new OneElement<>(conventions);
+    fun transform(d: D): Map<String, Any> {
+        return conventions.convert(d)
     }
 
-    public Map<String, Object> transform(D d) {
-        return conventions.convert(d);
+    companion object {
+        @JvmStatic
+        fun <D> one(vararg conventions: ConvertRule<D>): OneElement<D> {
+            return OneElement(*conventions)
+        }
     }
 }
