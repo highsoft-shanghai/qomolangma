@@ -1,4 +1,4 @@
-package com.qomolangma.api
+package com.qomolangma.infra
 
 import com.qomolangma.frameworks.test.web.Documentation
 import com.qomolangma.frameworks.test.web.IntegrationTest
@@ -11,7 +11,7 @@ class PingTest : IntegrationTest() {
     @Test
     fun should_reply_pong() {
         val post = post("/ping", variables(HashMap<String, Any>()), mapOf(Pair("data", "pong")), documentation())
-        post.statusCode(`is`(200)).body("ping", `is`("pong")).body("message", `is`("ok"))
+        post.statusCode(`is`(200)).body("data.ping", `is`("pong")).body("data.message", `is`("ok"))
     }
 
     fun documentation(): Documentation {
@@ -19,8 +19,11 @@ class PingTest : IntegrationTest() {
             "test.ping", requestFields(
                 fieldWithPath("data").description("测试数据")
             ), responseFields(
-                fieldWithPath("ping").description("ping"),
-                fieldWithPath("message").description("message")
+                fieldWithPath("code").description("response code"),
+                fieldWithPath("msg").description("response msg"),
+                fieldWithPath("data").description("response data"),
+                fieldWithPath("data.ping").ignored(),
+                fieldWithPath("data.message").ignored()
             )
         )
     }

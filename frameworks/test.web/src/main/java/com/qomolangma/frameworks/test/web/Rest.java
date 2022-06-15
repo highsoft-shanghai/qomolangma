@@ -10,8 +10,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.restdocs.ManualRestDocumentation;
 import org.springframework.restdocs.restassured3.RestAssuredOperationPreprocessorsConfigurer;
 
@@ -28,7 +28,7 @@ public class Rest {
 
     private final ManualRestDocumentation documentation = new ManualRestDocumentation();
     private RequestSpecification spec;
-    private @LocalServerPort int port;
+    private @Value("${local.server.port}") int port;
 
     protected ValidatableResponse get(String path) {
         return given(null).when().get(path).then();

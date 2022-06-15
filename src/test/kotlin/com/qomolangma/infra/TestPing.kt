@@ -1,4 +1,4 @@
-package com.qomolangma.api
+package com.qomolangma.infra
 
 import com.qomolangma.frameworks.gateways.core.AntiCorruptionLayer
 import com.qomolangma.frameworks.payload.core.Payload

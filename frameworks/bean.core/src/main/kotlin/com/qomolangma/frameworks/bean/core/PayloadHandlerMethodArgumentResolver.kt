@@ -21,13 +21,15 @@ open class PayloadHandlerMethodArgumentResolver constructor(converters: List<Htt
         webRequest: NativeWebRequest,
         binderFactory: WebDataBinderFactory?
     ): Any? {
-        return Payload(
-            readWithMessageConverters<Any>(
-                webRequest,
-                parameter,
-                LinkedHashMap::class.java.genericSuperclass
+        return readWithMessageConverters<Any>(
+            webRequest,
+            parameter,
+            LinkedHashMap::class.java.genericSuperclass
+        )?.let {
+            Payload(
+                it
             )
-        )
+        }
     }
 
     override fun supportsReturnType(returnType: MethodParameter): Boolean = false

@@ -3,6 +3,7 @@ package com.qomolangma.frameworks.bean.core
 import com.qomolangma.frameworks.payload.core.MapFieldType.Companion.asMap
 import com.qomolangma.frameworks.payload.core.Payload
 import org.springframework.core.MethodParameter
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.converter.HttpMessageConverter
 import org.springframework.http.server.ServerHttpRequest
@@ -23,7 +24,9 @@ class ApiResponseWrapper : ResponseBodyAdvice<Any> {
         request: ServerHttpRequest,
         response: ServerHttpResponse
     ): Any? {
-        if (body is Payload) return body.get(asMap())
-        return body
+        response.setStatusCode(HttpStatus.OK)
+        return ApiResult.of(request, body(body))
     }
+
+    private fun body(body: Any?) = if (body is Payload) body[asMap()] else body
 }

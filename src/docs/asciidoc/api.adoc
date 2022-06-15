@@ -1,12 +1,18 @@
-= QOMOLANGMA API文档
+= QOMOLANGMA API DOCUMENT
 neilwang.wiki
 :toc2: left
 :toclevels: 3
 :sectnums:
 :partnums:
 
-== tests
+== examples
+
 === api
-==== 接口连通性测试
+
+==== General request
+
+include::{snippets}/test.ping/api.adoc[]
+
+==== Exception request
 
 include::{snippets}/test.ping/api.adoc[]

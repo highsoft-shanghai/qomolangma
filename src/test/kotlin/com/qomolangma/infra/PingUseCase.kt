@@ -1,4 +1,4 @@
-package com.qomolangma.api
+package com.qomolangma.infra
 
 import com.qomolangma.frameworks.application.core.UseCase
 import com.qomolangma.frameworks.payload.core.Payload
