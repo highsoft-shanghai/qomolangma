@@ -21,7 +21,7 @@ internal class ApiResponseWrapperTest {
             ServletServerHttpRequest(MockHttpServletRequest()),
             ServletServerHttpResponse(MockHttpServletResponse())
         );
-        assertThat(response).isInstanceOf(NotResponsePayload::class.java)
+        assertThat(response).isInstanceOf(ApiResult::class.java)
     }
 
     private class NotResponsePayload
