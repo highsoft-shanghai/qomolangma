@@ -1,6 +1,7 @@
 package com.qomolangma.frameworks.bean.core
 
 import com.qomolangma.frameworks.payload.core.Payload
+import lombok.Generated
 import org.springframework.core.MethodParameter
 import org.springframework.http.converter.HttpMessageConverter
 import org.springframework.web.bind.support.WebDataBinderFactory
@@ -15,6 +16,7 @@ open class PayloadHandlerMethodArgumentResolver constructor(converters: List<Htt
     }
 
     @Throws(Exception::class)
+    @Generated
     override fun resolveArgument(
         parameter: MethodParameter,
         mavContainer: ModelAndViewContainer?,
