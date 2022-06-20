@@ -13,12 +13,12 @@ class ExceptionRequestTest : ApiTest() {
     @Test
     fun should_reply_error() {
         val post =
-            post("/exception-request", variables(HashMap<String, Any>()), HashMap<String, Any>(), documentation())
+            post("/exception-request", variables(HashMap<String, Any>()), HashMap<String, Any>(), document())
         post.statusCode(`is`(200)).body("code", `is`("1")).body("msg", `is`("Translated error message."))
             .body("data", nullValue())
     }
 
-    override fun documentation(): Documentation {
+    override fun document(): Documentation {
         return Documentation.doc(
             "test.exception", responseFields(
                 fieldWithPath("data").description("Empty"),

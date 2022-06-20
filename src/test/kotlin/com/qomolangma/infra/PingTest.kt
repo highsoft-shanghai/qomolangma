@@ -10,11 +10,11 @@ import org.springframework.restdocs.payload.PayloadDocumentation.*
 class PingTest : ApiTest() {
     @Test
     fun should_reply_pong() {
-        val post = post("/ping", variables(HashMap<String, Any>()), mapOf(Pair("data", "pong")), documentation())
+        val post = post("/ping", variables(HashMap<String, Any>()), mapOf(Pair("data", "pong")), document())
         post.statusCode(`is`(200)).body("data.ping", `is`("pong")).body("data.message", `is`("ok"))
     }
 
-    override fun documentation(): Documentation {
+    override fun document(): Documentation {
         return Documentation.doc(
             "test.ping", requestFields(
                 fieldWithPath("data").description("测试数据")
