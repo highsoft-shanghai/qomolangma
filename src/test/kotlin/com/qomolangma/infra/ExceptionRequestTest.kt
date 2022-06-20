@@ -1,13 +1,15 @@
 package com.qomolangma.infra
 
+import com.qomolangma.frameworks.test.web.ApiTest
 import com.qomolangma.frameworks.test.web.Documentation
-import com.qomolangma.frameworks.test.web.IntegrationTest
 import com.qomolangma.frameworks.test.web.PathVariables.Companion.variables
-import org.hamcrest.Matchers.*
+import org.hamcrest.Matchers.`is`
+import org.hamcrest.Matchers.nullValue
 import org.junit.jupiter.api.Test
-import org.springframework.restdocs.payload.PayloadDocumentation.*
+import org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath
+import org.springframework.restdocs.payload.PayloadDocumentation.responseFields
 
-class ExceptionRequestTest : IntegrationTest() {
+class ExceptionRequestTest : ApiTest() {
     @Test
     fun should_reply_error() {
         val post =
@@ -16,7 +18,7 @@ class ExceptionRequestTest : IntegrationTest() {
             .body("data", nullValue())
     }
 
-    fun documentation(): Documentation {
+    override fun documentation(): Documentation {
         return Documentation.doc(
             "test.exception", responseFields(
                 fieldWithPath("data").description("Empty"),
