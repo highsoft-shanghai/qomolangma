@@ -1,6 +1,6 @@
 package com.qomolangma.frameworks.domain.core
 
-interface Id {
+interface IdGenerator {
     operator fun next(): String
     fun nextReadable(): String
 }

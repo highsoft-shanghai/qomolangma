@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 class GlobalIdGeneratorTest {
     @Test
     fun should_be_able_to_generate_identities_from_underlying_identity_service() {
-        reset(UuidBasedId())
+        reset(UuidBasedIdGenerator())
         assertThat(nextId()).hasSize(32)
         assertThat(nextReadableId()).hasSize(21)
     }

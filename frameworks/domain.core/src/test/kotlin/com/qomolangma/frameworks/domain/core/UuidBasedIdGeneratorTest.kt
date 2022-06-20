@@ -5,34 +5,34 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class UuidBasedIdGeneratorTest {
-    private var id: Id? = null
+    private var idGenerator: IdGenerator? = null
 
     @BeforeEach
     fun setUp() {
-        id = UuidBasedId()
+        idGenerator = UuidBasedIdGenerator()
     }
 
     @Test
     fun should_generate_identity_correctly() {
-        Assertions.assertThat(32).isEqualTo(id!!.next().length)
+        Assertions.assertThat(32).isEqualTo(idGenerator!!.next().length)
     }
 
     @Test
     fun should_generate_non_duplicated_identities() {
-        val id = id!!.next()
-        Assertions.assertThat(id).isNotEqualTo(this.id!!.next())
+        val id = idGenerator!!.next()
+        Assertions.assertThat(id).isNotEqualTo(this.idGenerator!!.next())
     }
 
     @Test
     fun should_generate_readable_identity_correctly() {
-        Assertions.assertThat(id!!.nextReadable().length).isEqualTo(21)
+        Assertions.assertThat(idGenerator!!.nextReadable().length).isEqualTo(21)
         Assertions.assertThat(
-            id!!.nextReadable().chars().allMatch { codePoint: Int -> Character.isDigit(codePoint) }).isTrue
+            idGenerator!!.nextReadable().chars().allMatch { codePoint: Int -> Character.isDigit(codePoint) }).isTrue
     }
 
     @Test
     fun should_generate_non_duplicated_readable_identities() {
-        val id = id!!.nextReadable()
-        Assertions.assertThat(this.id!!.nextReadable()).isNotEqualTo(id)
+        val id = idGenerator!!.nextReadable()
+        Assertions.assertThat(this.idGenerator!!.nextReadable()).isNotEqualTo(id)
     }
 }
