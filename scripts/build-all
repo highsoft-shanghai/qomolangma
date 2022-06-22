@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+./scripts/check-all
+./gradlew build
+docker build . -t qomolangma:latest
