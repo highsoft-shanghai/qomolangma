@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 ./scripts/check-all
 ./gradlew build
+docker build ./frontends/qomolangma.webui -t qomolangma.webui:latest
 docker build . -t qomolangma:latest
