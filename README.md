@@ -45,19 +45,13 @@ service deployment scripts. To build a completely new environment,
 execute the following command in the project root directory.
 
 ```shell
-. /scripts/setup-local
+sh ./scripts/setup-local
 ```
 
 ## Install all frontend dependencies
 
 ```shell script
 ./gradlew npm_install
-```
-
-## Run document objects
-
-```shell script
-./gradlew :documents:npm_start
 ```
 
 ## Code check before commit and push
@@ -72,20 +66,20 @@ sh ./scripts/check-all
 ./gradlew bootRun
 ```
 
-## Run frontend tests
+## Build frontend dependencies
 
 ```shell script
-./gradlew :qomolangma.webui:npm_start
+./gradlew :qomolangma.webui:yarn_build
 ```
 
 ## Listen to frontend tests
 
 ```shell script
-./gradlew :qomolangma.webui:npmWatchTest
+./gradlew :qomolangma.webui:yarn_test
 ```
 
 ## Build a docker image and push it to the image repository
 
 ```shell script
-./gradlew clean npm_install build push
+sh ./scripts/build-all
 ```

@@ -1,3 +1,2 @@
 #!/usr/bin/env sh
-cd ./frontends/qomolangma.webui/ && yarn install && yarn test
-cd ../../ && ./gradlew --warning-mode none -P chainTests clean checkstyleMain checkstyleTest check asciidoctor
+./gradlew --warning-mode none -P chainTests clean :qomolangma.webui:yarn_build :qomolangma.webui:yarn_test checkstyleMain checkstyleTest check asciidoctor
