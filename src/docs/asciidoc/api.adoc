@@ -9,7 +9,7 @@ neilwang.wiki
 
 === api
 
-==== General request
+==== General successfully request
 
 include::{snippets}/test.ping/api.adoc[]
 
