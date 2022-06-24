@@ -1,0 +1,12 @@
+
+== examples
+
+=== api
+
+==== General successfully request
+
+include::{snippets}/test.ping/api.adoc[]
+
+==== Exception request
+
+include::{snippets}/test.exception/api.adoc[]
