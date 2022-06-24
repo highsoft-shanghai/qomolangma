@@ -1,5 +1,7 @@
 # QOMOLANGMA
 
+## [English](./README.md) | [Chinese](./README.zh.md)
+
 This repository contains all the materials you need to quickly build a new development environment.
 
 ## Environment preparation
@@ -48,38 +50,44 @@ execute the following command in the project root directory.
 sh ./scripts/setup-local
 ```
 
-## Install all frontend dependencies
+### Scripts
+
+#### Install all frontend dependencies
 
 ```shell script
 ./gradlew npm_install
 ```
 
-## Code check before commit and push
+#### Code check before commit and push
 
 ```shell script
 sh ./scripts/check-all
 ```
 
-## Run main project
+#### Run main project
 
 ```shell script
 ./gradlew bootRun
 ```
 
-## Build frontend dependencies
+#### Build frontend dependencies
 
 ```shell script
 ./gradlew :qomolangma.webui:yarn_build
 ```
 
-## Listen to frontend tests
+#### Listen to frontend tests
 
 ```shell script
 ./gradlew :qomolangma.webui:yarn_test
 ```
 
-## Build a docker image and push it to the image repository
+#### Build a docker image
 
 ```shell script
 sh ./scripts/build-all
 ```
+
+## Technical Architecture
+
+We use 
