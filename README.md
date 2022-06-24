@@ -99,4 +99,153 @@ sh ./scripts/build-all
 
 ## Technical Architecture
 
-We use 
+In contrast to traditional development frameworks, we use a neat architecture as the guiding framework for our projects,
+and implement Test Driven Development (TDD) + Domain Driven Design (DDD).
+
+[https://medium.com/@matiasvarela/hexagonal-architecture-in-go-cfd4e436faa3](https://medium.com/@matiasvarela/hexagonal-architecture-in-go-cfd4e436faa3)
+
+[https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+![](documents/clean-archetecture.png)
+
+### Project directory architecture
+
+#### home directory
+
+~~~shell
+. /src
+~~~
+
+### Core
+
+~~~shell
+. /frameworks
+~~~
+
+#### module
+
+~~~shell
+. /modules
+~~~
+
+#### scripts
+
+~~~shell
+. /scripts
+~~~
+
+#### frontend
+
+~~~shell
+. /frontends
+~~~
+
+### Test Driven Development (TDD)
+
+Test Driven Development is the best way to develop high quality software, for more theory on TDD please refer yourself
+to the web literature.
+[https://en.wikipedia.org/wiki/Test-driven_development](https://en.wikipedia.org/wiki/Test-driven_development)
+
+[https://www.oreilly.com/library/view/modern-c-programming/9781941222423/f_0055.html](https://www.oreilly.com/library/view/modern-c-programming/9781941222423/f_0055.html)
+
+The project strictly follows the TDD principle. Since testing comes first, the business code should have relative
+response tests for each kind of path, in this case, any uncovered code is redundant, so the project has extremely high
+requirements for code coverage, and must ensure 100% code coverage.
+
+#### Note
+
+1. Integration testing should be done in `. /src/test/{kotlin:java}/... /usecases/{corresponding domain}/`.
+2. Integration tests need to inherit from `IntegrationTest`, and if api is involved, it needs to inherit from `ApiTest`.
+3. unit tests should be written in the corresponding module
+
+### Domain Driven Design
+
+Domain-driven design is the core solution for complex software. The project practices domain-driven design, and it is
+recommended to develop in accordance with it.
+
+#### model concept
+
+##### domain
+
+Core layer, no third-party dependencies allowed, only the cleanest business code is kept.
+
+##### application
+
+Use case layer, a scenario corresponds to a UseCase, UseCase only allows to call objects in the domain layer, by the
+object to carry out its own corresponding behavior.
+
+##### gateways
+
+The gateway layer, where any third-party calls are implemented, is abstracted by the dependency inversion technique into
+the interface of the domain layer.
+
+#### Note
+
+1. **Only the dependencies shown are allowed** (gateways depends on application depends on domain for the same domain,
+   domain depends on core and gateways depends on application for different domains), any other dependencies are
+   forbidden.
+2. modules can depend on the corresponding frameworks domain.
+3. **Prohibit the introduction of any third-party dependencies in the domain layer and application layer**, third-party
+   dependencies are only allowed to be referenced in gateways, and dependencies are inverted using the Adaptor idea when
+   the domain is used.
+4. **Prohibit annotations**, methods are annotations, and the code corresponds to different tests that are different use
+   cases.
+
+#### Example
+
+##### module
+
+![img.png](. /documents/module.png)
+
+##### Simple call link
+
+![img.png](documents/simple-api.png)
+
+##### Call links for third-party dependencies
+
+![img.png](documents/acl.png)
+
+##### cross-domain
+
+![img.png](documents/cross-acl.png)
+
+### Foundational capabilities of the framework
+
+#### quality
+
+#### Quality gating
+
+#### engineering
+
+#### multi-module
+
+#### Continuous Integration, Continuous Deployment
+
+#### Unified Dependency Versioning
+
+~~~shell
+. /gradle/libs.versions.toml
+~~~
+
+#### Database Version Control
+
+#### Api documentation
+
+Project integration with restdocs, api documentation needs to be maintained in the test
+
+#### payload
+
+Use payload as api context object to eliminate redundant, cumbersome Input, Output(vo, dto).
+
+#### Uniform return and exception handling
+
+#### internationalization
+
+#### test containers
+
+#### persistent layer testing
+
+#### Mockito
+
+#### Moco Server
+
+#### Frontend Testing

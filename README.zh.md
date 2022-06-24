@@ -100,7 +100,40 @@ sh ./scripts/build-all
 [https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 ![](documents/clean-archetecture.png)
 
+### 项目目录架构
+
+#### 主目录
+
+~~~shell
+./src
+~~~
+
+### 核心
+
+~~~shell
+./frameworks
+~~~
+
+#### 模块
+
+~~~shell
+./modules
+~~~
+
+#### 脚本
+
+~~~shell
+./scripts
+~~~
+
+#### 前端
+
+~~~shell
+./frontends
+~~~
+
 ### 测试驱动开发（TDD）
+
 测试驱动开发是开发高质量软件的最佳途径，更多TDD的理论请自行参考网络文献：
 
 [https://en.wikipedia.org/wiki/Test-driven_development](https://en.wikipedia.org/wiki/Test-driven_development)
@@ -109,8 +142,93 @@ sh ./scripts/build-all
 
 项目严格遵循TDD原则，由于测试先行，业务代码应对每一种path应均有相对应对测试，在这种情况下，任何未被覆盖的代码都是冗余的，所以项目对代码覆盖率有极高的要求，必须保证100%的代码覆盖率。
 
-#### 规定
-1. 集成测试请在./src/test/{kotlin:java}/.../usecases/{相应的领域}/下编写。
+#### 注意
 
-### 其他注意事项
-1. 拒绝注释，代码对应的不同测试即各种不同的用例。
+1. 集成测试请在`./src/test/{kotlin:java}/.../usecases/{相应的领域}/`下编写。
+2. 集成测试需要继承`IntegrationTest`，若涉及api需要继承`ApiTest`
+3. 单元测试请在对应模块中编写
+
+### 领域驱动设计
+
+领域驱动设计是复杂软件的核心解决之道，项目实践了领域驱动设计，建议按照领域驱动设计的方式进行开发。
+
+#### 模型概念
+
+##### domain
+
+核心层，不允许任何第三方依赖，只保留最干净的业务代码。
+
+##### application
+
+用例层，一个场景对应一个UseCase，UseCase只允许调用domain层的对象，由对象去进行自身对应的行为。
+
+##### gateways
+
+网关层，任何第三方调用均在这里实现，由依赖倒置技术抽象成domain层的接口。
+
+#### 注意
+
+1. **只允许图示的依赖方式**（同领域下gateways依赖application依赖domain，不同领域下domain依赖core，gateways依赖application），禁止任何其他依赖方式。
+2. modules可以依赖相对应的frameworks领域。
+3. **禁止在domain层及application层中引入任何的第三方依赖**，第三方依赖只允许在gateways中引用，domain使用时，运用Adaptor思想进行依赖倒置。
+4. **禁止注释**，方法即注释，代码对应的不同测试即各种不同的用例。
+
+#### 图示
+
+##### 模块
+
+![img.png](./documents/module.png)
+
+##### 简单的调用链路
+
+![img.png](documents/simple-api.png)
+
+##### 第三方依赖的调用链路
+
+![img.png](documents/acl.png)
+
+##### 跨域
+
+![img.png](documents/cross-acl.png)
+
+### 框架的基础能力
+
+#### 质量
+
+#### 质量门禁
+
+#### 工程
+
+#### 多模块
+
+#### 持续集成，持续部署
+
+#### 统一依赖版本管理
+
+~~~shell
+./gradle/libs.versions.toml
+~~~
+
+#### 数据库版本控制
+
+#### Api文档
+
+项目集成restdocs，api文档需要在测试中维护
+
+#### payload
+
+使用Payload作为api上下文对象，消除冗余、繁杂的Input, Output(vo, dto).
+
+#### 统一返回及异常处理
+
+#### 国际化
+
+#### 测试容器
+
+#### 持久层测试
+
+#### Mockito
+
+#### Moco Server
+
+#### 前端测试
