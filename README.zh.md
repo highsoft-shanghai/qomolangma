@@ -1,5 +1,7 @@
 # QOMOLANGMA
 
+![img.png](documents/img/icon.svg)
+
 ## [英文](./README.md) | [中文](./README.zh.md)
 
 本仓库包含开发全部所需材料，使用这些材料即可快速构建一个全新的开发环境。
@@ -98,7 +100,7 @@ sh ./scripts/build-all
 [https://medium.com/@matiasvarela/hexagonal-architecture-in-go-cfd4e436faa3](https://medium.com/@matiasvarela/hexagonal-architecture-in-go-cfd4e436faa3)
 
 [https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-![](documents/clean-archetecture.png)
+![](documents/img/clean-archetecture.png)
 
 ### 项目目录架构
 
@@ -177,19 +179,19 @@ sh ./scripts/build-all
 
 ##### 模块
 
-![img.png](./documents/module.png)
+![img.png](documents/img/module.png)
 
 ##### 简单的调用链路
 
-![img.png](documents/simple-api.png)
+![img.png](documents/img/simple-api.png)
 
 ##### 第三方依赖的调用链路
 
-![img.png](documents/acl.png)
+![img.png](documents/img/acl.png)
 
 ##### 跨域
 
-![img.png](documents/cross-acl.png)
+![img.png](documents/img/cross-acl.png)
 
 ### 框架的基础能力
 

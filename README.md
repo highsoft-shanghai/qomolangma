@@ -1,5 +1,7 @@
 # QOMOLANGMA
 
+![img.png](documents/img/icon.svg)
+
 ## [English](./README.md) | [Chinese](./README.zh.md)
 
 This repository contains all the materials you need to quickly build a new development environment.
@@ -105,7 +107,7 @@ and implement Test Driven Development (TDD) + Domain Driven Design (DDD).
 [https://medium.com/@matiasvarela/hexagonal-architecture-in-go-cfd4e436faa3](https://medium.com/@matiasvarela/hexagonal-architecture-in-go-cfd4e436faa3)
 
 [https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-![](documents/clean-archetecture.png)
+![](documents/img/clean-archetecture.png)
 
 ### Project directory architecture
 
@@ -194,19 +196,19 @@ the interface of the domain layer.
 
 ##### module
 
-![img.png](. /documents/module.png)
+![img.png](./documents/img/module.png)
 
 ##### Simple call link
 
-![img.png](documents/simple-api.png)
+![img.png](documents/img/simple-api.png)
 
 ##### Call links for third-party dependencies
 
-![img.png](documents/acl.png)
+![img.png](documents/img/acl.png)
 
 ##### cross-domain
 
-![img.png](documents/cross-acl.png)
+![img.png](documents/img/cross-acl.png)
 
 ### Foundational capabilities of the framework
 
