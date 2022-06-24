@@ -1,3 +1,18 @@
+= QOMOLANGMA API DOCUMENT
+neilwang.wiki
+:toc2: left
+:toclevels: 3
+:sectnums:
+:partnums:
 
-include::head.adoc[]
-include::examples.adoc[]
+== examples
+
+=== api
+
+==== General successfully request
+
+include::{snippets}/test.ping/api.adoc[]
+
+==== Exception request
+
+include::{snippets}/test.exception/api.adoc[]

@@ -1,7 +1,0 @@
-
-= QOMOLANGMA API DOCUMENT
-neilwang.wiki
-:toc2: left
-:toclevels: 3
-:sectnums:
-:partnums:
