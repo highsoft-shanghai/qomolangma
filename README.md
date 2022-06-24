@@ -40,7 +40,9 @@ tool: IntelliJ IDEA:
 
 - IntelliJ IDEA: https://www.jetbrains.com/idea/
 
-### Dependency Services
+### Scripts
+
+#### Dependency Services
 
 All dependency services for this project can be built in an automated way. You will need to write your dependency
 service deployment scripts. To build a completely new environment,
@@ -50,8 +52,6 @@ execute the following command in the project root directory.
 sh ./scripts/setup-local
 ```
 
-### Scripts
-
 #### Install all frontend dependencies
 
 ```shell script
@@ -59,6 +59,15 @@ sh ./scripts/setup-local
 ```
 
 #### Code check before commit and push
+
+In order to maintain the quality baseline and provide the necessary foundation for continuous integration, the project
+provides the necessary infrastructure, one of which is the quality gatekeeper.
+
+The quality gatekeeper provides various quality checks such as static code checks, unit tests, integration tests, test
+coverage, front-end tests, etc.
+**Developers must perform quality gatekeeper checks locally before each code push to the code repository**, and the
+build server will also trigger quality gatekeeper after the code is pushed to the code repository. Execute quality
+checks locally by directly executing the following commands.
 
 ```shell script
 sh ./scripts/check-all
