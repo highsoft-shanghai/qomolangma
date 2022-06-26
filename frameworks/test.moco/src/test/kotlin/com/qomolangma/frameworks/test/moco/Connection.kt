@@ -1,44 +1,49 @@
-package com.qomolangma.frameworks.test.moco;
+package com.qomolangma.frameworks.test.moco
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
 
-public final class Connection {
+class Connection private constructor(url: String) {
+    private val connection: HttpURLConnection
 
-    private final HttpURLConnection connection;
-
-    public static Connection by(String url) throws IOException {
-        return new Connection(url);
+    init {
+        connection = URL(url).openConnection() as HttpURLConnection
     }
 
-    private Connection(String url) throws IOException {
-        this.connection = (HttpURLConnection) new URL(url).openConnection();
+    fun disconnect() {
+        connection.disconnect()
     }
 
-    public void disconnect() {
-        connection.disconnect();
+    @Throws(IOException::class)
+    fun connect() {
+        connection.connect()
     }
 
-    public void connect() throws IOException {
-        connection.connect();
+    @Throws(IOException::class)
+    fun responseCode(): Int {
+        return connection.responseCode
     }
 
-    public int responseCode() throws IOException {
-        return connection.getResponseCode();
-    }
-
-    public String responseBody() throws IOException {
-        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
+    @Throws(IOException::class)
+    fun responseBody(): String {
+        val `in` = BufferedReader(InputStreamReader(connection.inputStream))
+        var inputLine: String?
+        val response = StringBuilder()
+        while (`in`.readLine().also { inputLine = it } != null) {
+            response.append(inputLine)
         }
-        in.close();
-        return String.valueOf(response);
+        `in`.close()
+        return response.toString()
     }
 
+    companion object {
+        @JvmStatic
+        @Throws(IOException::class)
+        fun by(url: String): Connection {
+            return Connection(url)
+        }
+    }
 }

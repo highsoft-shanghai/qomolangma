@@ -1,16 +1,12 @@
-package com.qomolangma.frameworks.test.web;
+package com.qomolangma.frameworks.test.web
 
-import io.restassured.response.ValidatableResponse;
-import org.junit.jupiter.api.Test;
+import org.hamcrest.Matchers
+import org.junit.jupiter.api.Test
 
-import static org.hamcrest.Matchers.is;
-
-public class RestTestTest extends IntegrationTest {
-
+class RestTestTest : IntegrationTest() {
     @Test
-    void should_be_able_to_call_simple_get() {
-        ValidatableResponse response = get("/web-test/simple-get");
-        response.statusCode(is(200)).body("name", is("John"));
+    fun should_be_able_to_call_simple_get() {
+        val response = get("/web-test/simple-get")
+        response.statusCode(Matchers.`is`(200)).body("name", Matchers.`is`("John"))
     }
-
 }

@@ -1,19 +1,17 @@
-package com.qomolangma.frameworks.test.web;
+package com.qomolangma.frameworks.test.web
 
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.test.web.YesNo.Companion.of
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class YesNoTest {
-
+internal class YesNoTest {
     @Test
-    void should_format_true_as_yes() {
-        assertThat(YesNo.of(true).toString()).isEqualTo("Yes");
+    fun should_format_true_as_yes() {
+        assertThat(of(true).toString()).isEqualTo("Yes")
     }
 
     @Test
-    void should_format_false_as_no() {
-        assertThat(YesNo.of(false).toString()).isEqualTo("No");
+    fun should_format_false_as_no() {
+        assertThat(of(false).toString()).isEqualTo("No")
     }
-
 }

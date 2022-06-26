@@ -1,52 +1,47 @@
-package com.qomolangma.frameworks.test.web;
+package com.qomolangma.frameworks.test.web
 
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/web-test")
-public class WebTestController {
-
+class WebTestController {
     @GetMapping("simple-get")
-    public Object simpleGet() {
-        return Map.of("name", "John");
+    fun simpleGet(): Any {
+        return mapOf(Pair("name", "John"))
     }
 
     @GetMapping("api-header/{id}")
-    public Object documentApiHeader(@PathVariable String id) {
-        return Map.of("id", id);
+    fun documentApiHeader(@PathVariable id: String): Any {
+        return mapOf(Pair("id", id))
     }
 
     @GetMapping("api-header")
-    public Object documentApiHeader() {
-        return Map.of("id", "1");
+    fun documentApiHeader(): Any {
+        return mapOf(Pair("id", "1"))
     }
 
     @PostMapping("document-constrained-fields/{id}")
-    public Object documentConstrainedFields(@PathVariable String id) {
-        return Map.of("id", id);
+    fun documentConstrainedFields(@PathVariable id: String): Any {
+        return mapOf(Pair("id", id))
     }
 
     @GetMapping("document-constrained-parameters")
-    public Object documentConstrainedParameters() {
-        return Map.of("content", "test");
+    fun documentConstrainedParameters(): Any {
+        return mapOf(Pair("content", "test"))
     }
 
     @GetMapping("document-paged-response")
-    public Object documentPagedResponse() {
-        return Map.of(
-                "first", true,
-                "last", true,
-                "numberOfTotalPages", 1,
-                "numberOfTotalElements", 1,
-                "numberOfElements", 1,
-                "size", 10,
-                "number", 0,
-                "sort", List.of(Map.of("property", "name", "direction", "ASC")),
-                "content", List.of(Map.of("name", "John"))
-        );
+    fun documentPagedResponse(): Any {
+        return mapOf(
+            Pair("first", true),
+            Pair("last", true),
+            Pair("numberOfTotalPages", 1),
+            Pair("numberOfTotalElements", 1),
+            Pair("numberOfElements", 1),
+            Pair("size", 10),
+            Pair("number", 0),
+            Pair("sort", listOf(mapOf(Pair("property", "name"), Pair("direction", "ASC")))),
+            Pair("content", listOf(mapOf(Pair("name", "John"))))
+        )
     }
-
 }

@@ -1,14 +1,11 @@
-package com.qomolangma.frameworks.test.moco;
+package com.qomolangma.frameworks.test.moco
 
-import org.junit.jupiter.api.Test;
+import org.assertj.core.api.Assertions.assertThat
+import kotlin.test.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class CanaryTest {
-
+internal class CanaryTest {
     @Test
-    void should_be_able_to_run_tests() {
-        assertThat("ok").isEqualTo("ok");
+    fun should_be_able_to_run_tests() {
+        assertThat("ok").isEqualTo("ok")
     }
-
 }

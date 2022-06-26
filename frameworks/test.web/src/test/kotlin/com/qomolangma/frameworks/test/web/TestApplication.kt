@@ -1,7 +1,6 @@
-package com.qomolangma.frameworks.test.web;
+package com.qomolangma.frameworks.test.web
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
-public class TestApplication {
-}
+class TestApplication 

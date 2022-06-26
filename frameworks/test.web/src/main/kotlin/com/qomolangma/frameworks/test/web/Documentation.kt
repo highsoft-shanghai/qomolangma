@@ -1,27 +1,25 @@
-package com.qomolangma.frameworks.test.web;
+package com.qomolangma.frameworks.test.web
 
-import org.springframework.restdocs.snippet.Snippet;
+import org.springframework.restdocs.snippet.Snippet
 
-public final class Documentation {
+class Documentation(private val identifier: String, vararg snippets: Snippet) {
+    private val snippets: Array<Snippet>
 
-    private final String identifier;
-    private final Snippet[] snippets;
-
-    public static Documentation doc(String identifier, Snippet... snippets) {
-        return new Documentation(identifier, snippets);
+    init {
+        this.snippets = snippets as Array<Snippet>
     }
 
-    public Documentation(String identifier, Snippet... snippets) {
-        this.identifier = identifier;
-        this.snippets = snippets;
+    fun identifier(): String {
+        return identifier
     }
 
-    public String identifier() {
-        return identifier;
+    fun snippets(): Array<Snippet> {
+        return snippets
     }
 
-    public Snippet[] snippets() {
-        return snippets;
+    companion object {
+        fun doc(identifier: String, vararg snippets: Snippet): Documentation {
+            return Documentation(identifier, *snippets)
+        }
     }
-
 }
