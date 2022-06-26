@@ -1,58 +1,52 @@
-package com.qomolangma.frameworks.bean.core;
+package com.qomolangma.frameworks.bean.core
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.http.HttpRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
+import org.apache.commons.lang3.StringUtils
+import org.springframework.http.HttpRequest
 
-import javax.annotation.Nullable;
-import java.util.Map;
+open class ApiResult<T> protected constructor(request: HttpRequest, body: T?) {
+    @get:JsonProperty("code")
+    val code: String
 
-public class ApiResult<T> {
-    private final String code;
-    private final String message;
-    private final T data;
+    @get:JsonProperty("msg")
+    val message: String
+    private val data: T?
 
-    protected ApiResult(HttpRequest request, @Nullable T body) {
-        this.code = resolveCode(request);
-        this.message = resolveMessage(body);
-        this.data = isError() ? null : body;
+    init {
+        this.code = resolveCode(request)
+        message = resolveMessage(body)
+        data = if (isError) null else body
     }
 
-    public static <U> ApiResult<U> of(HttpRequest request, @Nullable U body) {
-        return new ApiResult<>(request, body);
+    private fun resolveCode(request: HttpRequest): String {
+        return if (StringUtils.endsWith(request.uri.path, "/error")) "1" else "0"
     }
 
-    private String resolveCode(HttpRequest request) {
-        return StringUtils.endsWith(request.getURI().getPath(), "/error") ? "1" : "0";
+    private fun resolveMessage(body: Any?): String {
+        if (!isError) return ""
+        val errors = body as Map<String, Any>?
+        val error = errors!!["error"] as String?
+        val message = errors["message"] as String?
+        return if (StringUtils.equals("No message available", message)) if (StringUtils.equals(
+                "Not Found",
+                error
+            )
+        ) "not-found" else "unknown" else message!!
     }
 
-    @SuppressWarnings("unchecked")
-    private String resolveMessage(@Nullable Object body) {
-        if (!isError()) return "";
-        Map<String, Object> errors = (Map<String, Object>) body;
-        String error = (String) errors.get("error");
-        String message = (String) errors.get("message");
-        return StringUtils.equals("No message available", message) ? (StringUtils.equals("Not Found", error) ? "not-found" : "unknown") : message;
-    }
-
-    @JsonIgnore
-    private boolean isError() {
-        return !StringUtils.equals("0", code);
-    }
-
-    @JsonProperty("code")
-    public String getCode() {
-        return code;
-    }
-
-    @JsonProperty("msg")
-    public String getMessage() {
-        return message;
-    }
+    @get:JsonIgnore
+    private val isError: Boolean
+        get() = !StringUtils.equals("0", code)
 
     @JsonProperty("data")
-    public @Nullable T getData() {
-        return data;
+    fun getData(): T? {
+        return data
+    }
+
+    companion object {
+        fun <U> of(request: HttpRequest, body: U?): ApiResult<U?> {
+            return ApiResult(request, body)
+        }
     }
 }

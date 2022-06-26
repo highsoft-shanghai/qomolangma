@@ -17,7 +17,7 @@ internal class ApiResultTest {
         val result: ApiResult<*> = ApiResult.of(request, body)
         Assertions.assertThat(result.code).isEqualTo("0")
         Assertions.assertThat(result.message).isEmpty()
-        Assertions.assertThat(result.data).isEqualTo(body)
+        Assertions.assertThat(result.getData()).isEqualTo(body)
     }
 
     @Test
@@ -29,7 +29,7 @@ internal class ApiResultTest {
         val result: ApiResult<*> = ApiResult.of(request, body)
         Assertions.assertThat(result.code).isEqualTo("1")
         Assertions.assertThat(result.message).isEqualTo("not-found")
-        Assertions.assertThat(result.data).isNull()
+        Assertions.assertThat(result.getData()).isNull()
     }
 
     @Test
@@ -41,7 +41,7 @@ internal class ApiResultTest {
         val result: ApiResult<*> = ApiResult.of(request, body)
         Assertions.assertThat(result.code).isEqualTo("1")
         Assertions.assertThat(result.message).isEqualTo("error.user-not-found")
-        Assertions.assertThat(result.data).isNull()
+        Assertions.assertThat(result.getData()).isNull()
     }
 
     @Test
@@ -53,6 +53,6 @@ internal class ApiResultTest {
         val result: ApiResult<*> = ApiResult.of(request, body)
         Assertions.assertThat(result.code).isEqualTo("1")
         Assertions.assertThat(result.message).isEqualTo("unknown")
-        Assertions.assertThat(result.data).isNull()
+        Assertions.assertThat(result.getData()).isNull()
     }
 }
