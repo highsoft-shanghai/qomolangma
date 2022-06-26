@@ -1,34 +1,27 @@
-package com.qomolangma.frameworks.test.container;
+package com.qomolangma.frameworks.test.container
 
-import org.jetbrains.annotations.NotNull;
-import org.testcontainers.lifecycle.Startable;
+import org.testcontainers.lifecycle.Startable
 
-public class DummyTestContainer extends TestContainer<Startable> {
-
-    static int numberOfStarts;
-    static int numberOfEnvironmentSetups;
-
-    public DummyTestContainer() {
-        super();
-    }
-
-    @Override
-    protected @NotNull Startable createContainer() {
-        return new Startable() {
-            @Override
-            public void start() {
-                numberOfStarts += 1;
+class DummyTestContainer : TestContainer<Startable>() {
+    override fun createContainer(): Startable {
+        return object : Startable {
+            override fun start() {
+                numberOfStarts += 1
             }
 
-            @Override
-            public void stop() {
-            }
-        };
+            override fun stop() {}
+        }
     }
 
-    @Override
-    protected void setupEnvironment() {
-        numberOfEnvironmentSetups += 1;
+    override fun setupEnvironment() {
+        numberOfEnvironmentSetups += 1
     }
 
+    companion object {
+        @JvmField
+        var numberOfStarts = 0
+
+        @JvmField
+        var numberOfEnvironmentSetups = 0
+    }
 }

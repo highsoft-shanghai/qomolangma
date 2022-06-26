@@ -1,16 +1,20 @@
-package com.qomolangma.frameworks.persistence.spring;
+package com.qomolangma.frameworks.persistence.spring
 
-import org.junit.jupiter.api.Test;
-import org.springframework.data.domain.Sort;
+import com.qomolangma.frameworks.persistence.spring.SpringSort.of
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+import org.springframework.data.domain.Sort
+import org.springframework.data.domain.Sort.Order.asc
+import org.springframework.data.domain.Sort.Order.desc
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class SpringSortTest {
-
+internal class SpringSortTest {
     @Test
-    void should_be_able_to_carry_sort_orders() {
-        var sort = SpringSort.of(Sort.by(Sort.Order.desc("a"), Sort.Order.asc("b")));
-        assertThat(sort.orders()).containsExactly(SpringSortOrder.of(Sort.Order.desc("a")), SpringSortOrder.of(Sort.Order.asc("b")));
+    fun should_be_able_to_carry_sort_orders() {
+        val sort = of(Sort.by(desc("a"), asc("b")))
+        assertThat(sort.orders()).containsExactly(
+            SpringSortOrder.of(desc("a")), SpringSortOrder.of(
+                asc("b")
+            )
+        )
     }
-
 }

@@ -1,14 +1,11 @@
-package com.qomolangma.frameworks.persistence.spring;
+package com.qomolangma.frameworks.persistence.spring
 
-import org.junit.jupiter.api.Test;
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class CanaryTest {
-
+class CanaryTest {
     @Test
-    void should_be_able_to_run_tests() {
-        assertThat("ok").isEqualTo("ok");
+    fun should_be_able_to_run_tests() {
+        Assertions.assertThat("ok").isEqualTo("ok")
     }
-
 }

@@ -1,40 +1,30 @@
-package com.qomolangma.frameworks.test.container;
+package com.qomolangma.frameworks.test.container
 
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.platform.commons.util.AnnotationUtils;
-import org.junit.platform.commons.util.ReflectionUtils;
+import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.platform.commons.util.AnnotationUtils
+import org.junit.platform.commons.util.ReflectionUtils
+import java.util.concurrent.ConcurrentHashMap
+import java.util.function.Function
 
-import java.lang.annotation.Annotation;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
-
-public class Containers<A extends Annotation> {
-
-    private static final Map<Class<?>, TestContainer<?>> CONTAINERS = new ConcurrentHashMap<>();
-
-    private final ExtensionContext context;
-    private final Class<A> type;
-    private final Function<A, Class<?>[]> containers;
-
-    public Containers(ExtensionContext context, Class<A> type, Function<A, Class<?>[]> containers) {
-        this.context = context;
-        this.type = type;
-        this.containers = containers;
+class Containers<A : Annotation?>(
+    private val context: ExtensionContext,
+    private val type: Class<A>,
+    private val containers: Function<A, Array<Class<*>>>
+) {
+    fun startContainer() {
+        val annotation = AnnotationUtils.findAnnotation(context.requiredTestClass, type)
+        val containerClasses = listOf(*annotation.map(containers).orElse(arrayOf()))
+        val newContainerClasses = containerClasses.stream().filter { x: Class<*> -> !CONTAINERS.containsKey(x) }
+        newContainerClasses.parallel().forEach { containerClass: Class<*> -> this.startContainer(containerClass) }
     }
 
-    public void startContainer() {
-        var annotation = AnnotationUtils.findAnnotation(this.context.getRequiredTestClass(), this.type);
-        var containerClasses = List.of(annotation.map(this.containers).orElse(new Class[0]));
-        var newContainerClasses = containerClasses.stream().filter(x -> !CONTAINERS.containsKey(x));
-        newContainerClasses.parallel().forEach(this::startContainer);
+    private fun startContainer(containerClass: Class<*>) {
+        val container = ReflectionUtils.newInstance(containerClass) as TestContainer<*>
+        container.start()
+        CONTAINERS[containerClass] = container
     }
 
-    private void startContainer(Class<?> containerClass) {
-        var container = (TestContainer<?>) ReflectionUtils.newInstance(containerClass);
-        container.start();
-        CONTAINERS.put(containerClass, container);
+    companion object {
+        private val CONTAINERS: MutableMap<Class<*>, TestContainer<*>> = ConcurrentHashMap()
     }
-
 }

@@ -1,36 +1,27 @@
-package com.qomolangma.frameworks.persistence.spring;
+package com.qomolangma.frameworks.persistence.spring
 
-import com.qomolangma.frameworks.domain.core.Pagination;
-import com.qomolangma.frameworks.domain.core.Sort;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import com.qomolangma.frameworks.domain.core.Pagination
+import com.qomolangma.frameworks.domain.core.Sort
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Pageable
 
-public class SpringPagination implements Pagination {
-
-    private final Pageable impl;
-
-    public static Pagination of(PageRequest impl) {
-        return new SpringPagination(impl);
+open class SpringPagination protected constructor(private val impl: Pageable) : Pagination {
+    override fun pageNumber(): Int {
+        return impl.pageNumber
     }
 
-    protected SpringPagination(Pageable pageable) {
-        this.impl = pageable;
+    override fun pageSize(): Int {
+        return impl.pageSize
     }
 
-    @Override
-    public int pageNumber() {
-        return impl.getPageNumber();
+    override fun sort(): Sort {
+        return SpringSort.of(impl.sort)
     }
 
-    @Override
-    public int pageSize() {
-        return impl.getPageSize();
+    companion object {
+        @JvmStatic
+        fun of(impl: PageRequest): Pagination {
+            return SpringPagination(impl)
+        }
     }
-
-    @Override
-    public @NotNull Sort sort() {
-        return SpringSort.of(impl.getSort());
-    }
-
 }

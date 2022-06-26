@@ -1,72 +1,55 @@
-package com.qomolangma.frameworks.persistence.spring;
+package com.qomolangma.frameworks.persistence.spring
 
-import com.qomolangma.frameworks.domain.core.Page;
-import com.qomolangma.frameworks.domain.core.Sort;
-import org.jetbrains.annotations.NotNull;
+import com.qomolangma.frameworks.domain.core.Sort
+import org.springframework.data.domain.Page
+import java.util.function.Function
 
-import java.util.List;
-import java.util.function.Function;
-
-public class SpringPage<T> implements Page<T> {
-
-    private final org.springframework.data.domain.Page<T> impl;
-
-    public static <T> SpringPage<T> from(org.springframework.data.domain.Page<T> page) {
-        return new SpringPage<>(page);
+open class SpringPage<T> protected constructor(private val impl: Page<T>) :
+    com.qomolangma.frameworks.domain.core.Page<T> {
+    override fun content(): List<T> {
+        return impl.content
     }
 
-    protected SpringPage(org.springframework.data.domain.Page<T> impl) {
-        this.impl = impl;
+    override fun size(): Int {
+        return impl.size
     }
 
-    @Override
-    public @NotNull List<T> content() {
-        return impl.getContent();
+    override fun number(): Int {
+        return impl.number
     }
 
-    @Override
-    public int size() {
-        return impl.getSize();
+    override fun numberOfElements(): Int {
+        return impl.numberOfElements
     }
 
-    @Override
-    public int number() {
-        return impl.getNumber();
+    override fun numberOfTotalPages(): Int {
+        return impl.totalPages
     }
 
-    @Override
-    public int numberOfElements() {
-        return impl.getNumberOfElements();
+    override fun numberOfTotalElements(): Long {
+        return impl.totalElements
     }
 
-    @Override
-    public int numberOfTotalPages() {
-        return impl.getTotalPages();
+    override fun first(): Boolean {
+        return impl.isFirst
     }
 
-    @Override
-    public long numberOfTotalElements() {
-        return impl.getTotalElements();
+    override fun last(): Boolean {
+        return impl.isLast
     }
 
-    @Override
-    public boolean first() {
-        return impl.isFirst();
+    override fun sort(): Sort {
+        return SpringSort.of(impl.sort)
     }
 
-    @Override
-    public boolean last() {
-        return impl.isLast();
+    override fun <U> map(converter: Function<in T, out U>): com.qomolangma.frameworks.domain.core.Page<U> {
+        return SpringPage(impl.map(converter))
     }
 
-    @Override
-    public @NotNull Sort sort() {
-        return SpringSort.of(impl.getSort());
+    companion object {
+        @JvmStatic
+        fun <T> from(page: Page<T>): SpringPage<T> {
+            return SpringPage(page)
+        }
     }
-
-    @Override
-    public @NotNull <U> Page<U> map(Function<? super T, ? extends U> converter) {
-        return new SpringPage<>(impl.map(converter));
-    }
-
 }

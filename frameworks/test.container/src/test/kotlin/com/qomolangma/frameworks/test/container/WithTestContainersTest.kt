@@ -1,16 +1,13 @@
-package com.qomolangma.frameworks.test.container;
+package com.qomolangma.frameworks.test.container
 
-import org.junit.jupiter.api.Test;
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-@WithTestContainers(containers = DummyTestContainer.class)
-class WithTestContainersTest {
-
+@WithTestContainers(containers = [DummyTestContainer::class])
+internal class WithTestContainersTest {
     @Test
-    void should_be_able_to_start_all_test_containers() {
-        assertThat(DummyTestContainer.numberOfStarts).isEqualTo(1);
-        assertThat(DummyTestContainer.numberOfEnvironmentSetups).isEqualTo(1);
+    fun should_be_able_to_start_all_test_containers() {
+        assertThat(DummyTestContainer.numberOfStarts).isEqualTo(1)
+        assertThat(DummyTestContainer.numberOfEnvironmentSetups).isEqualTo(1)
     }
-
 }
