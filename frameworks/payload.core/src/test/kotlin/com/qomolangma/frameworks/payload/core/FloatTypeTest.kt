@@ -1,13 +1,12 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.payload.core.FloatFieldType.Companion.asFloat
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class FloatTypeTest {
+internal class FloatTypeTest {
     @Test
-    void should_be_able_to_convert_into_floats_from_floats() {
-        assertThat(FloatFieldType.asFloat().from(1.3f)).isEqualTo(1.3f);
+    fun should_be_able_to_convert_into_floats_from_floats() {
+        assertThat(asFloat().from(1.3f)).isEqualTo(1.3f)
     }
-
 }

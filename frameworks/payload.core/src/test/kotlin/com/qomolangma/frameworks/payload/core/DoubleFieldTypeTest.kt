@@ -1,14 +1,12 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.payload.core.DoubleFieldType.Companion.asDouble
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class DoubleFieldTypeTest {
-
+internal class DoubleFieldTypeTest {
     @Test
-    void should_be_able_to_convert_into_doubles_from_doubles() {
-        assertThat(DoubleFieldType.asDouble().from(1.3)).isEqualTo(1.3);
+    fun should_be_able_to_convert_into_doubles_from_doubles() {
+        assertThat(asDouble().from(1.3)).isEqualTo(1.3)
     }
-
 }

@@ -1,28 +1,27 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.payload.core.StringFieldType.Companion.asString
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.catchThrowable
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.*;
-
-class FieldFieldTypeTest {
-
+internal class FieldFieldTypeTest {
     @Test
-    void should_be_able_to_convert_into_nulls_from_null_values() {
-        assertThat(StringFieldType.asString().allowNull().from(null)).isEqualTo(null);
+    fun should_be_able_to_convert_into_nulls_from_null_values() {
+        assertThat(asString().allowNull().from(null)).isEqualTo(null)
     }
 
     @Test
-    void should_reject_type_mismatched_inputs() {
-        Throwable caught = catchThrowable(() -> StringFieldType.asString().from(1));
-        assertThat(caught).isInstanceOf(MalformedPayloadException.class);
-        assertThat(caught).hasMessage("error.request.field-type-mismatch");
+    fun should_reject_type_mismatched_inputs() {
+        val caught = catchThrowable { asString().from(1) }
+        assertThat(caught).isInstanceOf(MalformedPayloadException::class.java)
+        assertThat(caught).hasMessage("error.request.field-type-mismatch")
     }
 
     @Test
-    void should_reject_null_inputs() {
-        Throwable caught = catchThrowable(() -> StringFieldType.asString().from(null));
-        assertThat(caught).isInstanceOf(MalformedPayloadException.class);
-        assertThat(caught).hasMessage("error.request.missing-field");
+    fun should_reject_null_inputs() {
+        val caught = catchThrowable { asString().from(null) }
+        assertThat(caught).isInstanceOf(MalformedPayloadException::class.java)
+        assertThat(caught).hasMessage("error.request.missing-field")
     }
-
 }

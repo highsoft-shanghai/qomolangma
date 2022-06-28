@@ -1,25 +1,25 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.payload.core.StringFieldType.Companion.asString
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.catchThrowable
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.*;
-
-class StringFieldTypeTest {
-
+internal class StringFieldTypeTest {
     @Test
-    void should_be_able_to_convert_into_strings_from_strings() {
-        assertThat(StringFieldType.asString().from("text")).isEqualTo("text");
+    fun should_be_able_to_convert_into_strings_from_strings() {
+        assertThat(asString().from("text")).isEqualTo("text")
     }
 
     @Test
-    void should_be_able_to_convert_into_strings_from_null_values() {
-        assertThat(StringFieldType.asString().nullToEmpty().from(null)).isEqualTo("");
+    fun should_be_able_to_convert_into_strings_from_null_values() {
+        assertThat(asString().nullToEmpty().from(null)).isEqualTo("")
     }
 
     @Test
-    void should_reject_type_mismatched_inputs() {
-        Throwable caught = catchThrowable(() -> StringFieldType.asString().from(1));
-        assertThat(caught).isInstanceOf(MalformedPayloadException.class);
-        assertThat(caught).hasMessage("error.request.field-type-mismatch");
+    fun should_reject_type_mismatched_inputs() {
+        val caught = catchThrowable { asString().from(1) }
+        assertThat(caught).isInstanceOf(MalformedPayloadException::class.java)
+        assertThat(caught).hasMessage("error.request.field-type-mismatch")
     }
 }

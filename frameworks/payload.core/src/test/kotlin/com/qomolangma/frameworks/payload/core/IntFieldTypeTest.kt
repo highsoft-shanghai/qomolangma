@@ -1,12 +1,12 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.payload.core.IntFieldType.Companion.asInt
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class IntFieldTypeTest {
+internal class IntFieldTypeTest {
     @Test
-    void should_be_able_to_convert_into_integers_from_integers() {
-        assertThat(IntFieldType.asInt().from(1)).isEqualTo(1);
+    fun should_be_able_to_convert_into_integers_from_integers() {
+        assertThat(asInt().from(1)).isEqualTo(1)
     }
 }

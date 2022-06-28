@@ -1,14 +1,12 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.payload.core.BooleanFieldType.Companion.asBoolean
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class BooleanFieldTypeTest {
-
+internal class BooleanFieldTypeTest {
     @Test
-    void should_be_able_to_convert_into_booleans_from_boolean_values() {
-        assertThat(BooleanFieldType.asBoolean().from(true)).isEqualTo(true);
+    fun should_be_able_to_convert_into_booleans_from_boolean_values() {
+        assertThat(asBoolean().from(true)).isEqualTo(true)
     }
-
 }

@@ -1,12 +1,12 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.payload.core.LongFieldType.Companion.asLong
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class LongFieldTypeTest {
+internal class LongFieldTypeTest {
     @Test
-    void should_be_able_to_convert_into_long_integers_from_long_integers() {
-        assertThat(LongFieldType.asLong().from(1L)).isEqualTo(1L);
+    fun should_be_able_to_convert_into_long_integers_from_long_integers() {
+        assertThat(asLong().from(1L)).isEqualTo(1L)
     }
 }

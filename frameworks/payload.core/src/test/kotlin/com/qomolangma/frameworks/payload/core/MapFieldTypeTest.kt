@@ -1,15 +1,12 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.payload.core.MapFieldType.Companion.asMap
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-class MapFieldTypeTest {
+internal class MapFieldTypeTest {
     @Test
-    void should_be_able_to_convert_into_maps_from_maps() {
-        assertThat(MapFieldType.asMap().from(Map.of("a", "b"))).isEqualTo(Map.of("a", "b"));
+    fun should_be_able_to_convert_into_maps_from_maps() {
+        assertThat(asMap().from(mapOf(Pair("a", "b")))).isEqualTo(mapOf(Pair("a", "b")))
     }
-
 }

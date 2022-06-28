@@ -1,24 +1,26 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.payload.core.DecimalFieldType.Companion.asDecimal
+import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+import java.math.BigDecimal
 
-import java.math.BigDecimal;
-
-import static org.assertj.core.api.Assertions.*;
-
-class DecimalFieldTypeTest {
+internal class DecimalFieldTypeTest {
     @Test
-    void should_be_able_to_convert_into_decimals_from_number_values() {
-        assertThat(DecimalFieldType.asDecimal().from(13.5)).isEqualTo(new BigDecimal("13.5"));
+    fun should_be_able_to_convert_into_decimals_from_number_values() {
+        assertThat(asDecimal().from(13.5)).isEqualTo(BigDecimal("13.5"))
     }
 
     @Test
-    void should_be_able_to_convert_into_decimals_from_string_values() {
-        assertThat(DecimalFieldType.asDecimal().from("13.5")).isEqualTo(new BigDecimal("13.5"));
+    fun should_be_able_to_convert_into_decimals_from_string_values() {
+        assertThat(asDecimal().from("13.5")).isEqualTo(BigDecimal("13.5"))
     }
 
     @Test
-    void should_reject_values_with_wrong_type() {
-        assertThatThrownBy(() -> DecimalFieldType.asDecimal().from(true)).isInstanceOf(MalformedPayloadException.class);
+    fun should_reject_values_with_wrong_type() {
+        Assertions.assertThatThrownBy { asDecimal().from(true) }.isInstanceOf(
+            MalformedPayloadException::class.java
+        )
     }
 }

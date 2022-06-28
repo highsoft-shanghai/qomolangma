@@ -1,19 +1,18 @@
-package com.qomolangma.frameworks.payload.core;
+package com.qomolangma.frameworks.payload.core
 
-import org.junit.jupiter.api.Test;
+import com.qomolangma.frameworks.payload.core.ObjectFieldType.Companion.asObject
+import com.qomolangma.frameworks.payload.core.StringFieldType.Companion.asString
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-class ObjectFieldTypeTest {
+internal class ObjectFieldTypeTest {
     @Test
-    void should_be_able_to_convert_into_objects_from_maps() {
-        assertThat(ObjectFieldType.asObject().from(Map.of("a", "b")).get("a", StringFieldType.asString())).isEqualTo("b");
+    fun should_be_able_to_convert_into_objects_from_maps() {
+        assertThat(asObject().from(mapOf(Pair("a", "b")))["a", asString()]).isEqualTo("b")
     }
 
     @Test
-    void should_be_able_to_convert_into_objects_from_null_values() {
-        assertThat(ObjectFieldType.asObject().nullToEmpty().from(null).get("a", StringFieldType.asString().allowNull())).isEqualTo(null);
+    fun should_be_able_to_convert_into_objects_from_null_values() {
+        assertThat(asObject().nullToEmpty().from(null)["a", asString().allowNull()]).isEqualTo(null)
     }
 }
