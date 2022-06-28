@@ -25,7 +25,7 @@ open class ApiResult<T> protected constructor(request: HttpRequest, body: T?) {
 
     private fun resolveMessage(body: Any?): String {
         if (!isError) return ""
-        val errors = body as Map<String, Any>?
+        val errors = body as Map<*, *>?
         val error = errors!!["error"] as String?
         val message = errors["message"] as String?
         return if (StringUtils.equals("No message available", message)) if (StringUtils.equals(

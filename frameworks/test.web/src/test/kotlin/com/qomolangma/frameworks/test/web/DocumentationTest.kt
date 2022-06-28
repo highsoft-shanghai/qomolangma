@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test
 import org.springframework.restdocs.payload.PayloadDocumentation
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.util.Map
 
 class DocumentationTest : IntegrationTest() {
     @Test
     fun should_be_able_to_generate_document_header() {
-        val response = get("/web-test/api-header/{id}", variables(Map.of("id", "5")), Documentation.doc("api-header"))
+        val response =
+            get("/web-test/api-header/{id}", variables(mapOf(Pair("id", "5"))), Documentation.doc("api-header"))
         response.statusCode(Matchers.`is`(200))
         assertThat(Files.exists(Paths.get("build/generated-snippets/api-header/api-header.adoc"))).isTrue
         assertThat(Files.exists(Paths.get("build/generated-snippets/api-header/api.adoc"))).isTrue
@@ -34,8 +34,8 @@ class DocumentationTest : IntegrationTest() {
     fun should_be_able_to_document_path_variables_and_constrained_fields() {
         val response = post(
             "/web-test/document-constrained-fields/{id}",
-            variables(Map.of("id", "5")),
-            Map.of("name", "John"),
+            variables(mapOf(Pair("id", "5"))),
+            mapOf(Pair("name", "John")),
             Documentation.doc(
                 "constrained-fields",
                 PayloadDocumentation.requestFields(
@@ -49,7 +49,7 @@ class DocumentationTest : IntegrationTest() {
 
     @Test
     fun should_be_able_to_document_constrained_parameters() {
-        val parameters = parameters(Map.of("q", "john", "size", 10, "page", 0))
+        val parameters = parameters(mapOf(Pair("q", "john"), Pair("size", 10), Pair("page", 0)))
         val response = get(
             "/web-test/document-constrained-parameters", parameters, Documentation.doc(
                 "constrained-parameters",
@@ -65,7 +65,7 @@ class DocumentationTest : IntegrationTest() {
     @Test
     fun should_be_able_to_document_paged_responses() {
         val response = get(
-            "/web-test/document-paged-response", parameters(Map.of<String, Any?>()), Documentation.doc(
+            "/web-test/document-paged-response", parameters(mapOf<String, Any?>()), Documentation.doc(
                 "paged-response",
                 pagedResponseFields(
                     PayloadDocumentation.fieldWithPath("content[].name").description("User name")
