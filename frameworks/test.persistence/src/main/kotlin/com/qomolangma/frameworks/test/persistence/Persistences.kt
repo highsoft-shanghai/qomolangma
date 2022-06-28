@@ -1,28 +1,23 @@
-package com.qomolangma.frameworks.test.persistence;
+@file:Suppress("UNCHECKED_CAST")
 
-import java.util.Map;
-import java.util.function.Supplier;
+package com.qomolangma.frameworks.test.persistence
 
-@SuppressWarnings("all")
-public final class Persistences {
+import java.util.function.Supplier
 
-    private Persistences() {
+object Persistences {
+    private val PERSISTENCE_MAP = mapOf<Class<*>, Supplier<Any>>(
+        Pair(TestClient::class.java, testClient())
+    )
+
+    fun <T> fetchByType(clazz: Class<T>): T {
+        return PERSISTENCE_MAP[clazz]!!.get() as T
     }
 
-    private static final Map<Class<?>, Supplier<Object>> PERSISTENCE_MAP = Map.of(
-            TestClient.class, testClient()
-    );
-
-    public static <T> T fetchByType(Class<T> clazz) {
-        return (T) PERSISTENCE_MAP.get(clazz).get();
+    fun exist(clazz: Class<*>): Boolean {
+        return PERSISTENCE_MAP.containsKey(clazz)
     }
 
-    public static boolean exist(Class<?> clazz) {
-        return PERSISTENCE_MAP.containsKey(clazz);
+    private fun testClient(): Supplier<Any> {
+        return Supplier { TestClient() }
     }
-
-    private static Supplier<Object> testClient() {
-        return () -> new TestClient();
-    }
-
 }
