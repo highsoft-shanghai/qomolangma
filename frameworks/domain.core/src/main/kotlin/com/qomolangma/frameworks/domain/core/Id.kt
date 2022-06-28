@@ -1,20 +1,9 @@
-package com.qomolangma.frameworks.domain.core;
+package com.qomolangma.frameworks.domain.core
 
-import lombok.EqualsAndHashCode;
+import com.qomolangma.frameworks.domain.core.GlobalIdGenerator.nextId
 
-@EqualsAndHashCode
-public class Id {
-    private final String id;
-
-    public Id() {
-        this(GlobalIdGenerator.nextId());
-    }
-
-    public Id(String id) {
-        this.id = id;
-    }
-
-    public String id() {
-        return id;
+data class Id @JvmOverloads constructor(private val id: String = nextId()) {
+    fun id(): String {
+        return id
     }
 }
