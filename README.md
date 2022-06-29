@@ -19,6 +19,8 @@ install Docker Desktop, for Linux system, please install Docker CE directly. the
 - Ubuntu: https://docs.docker.com/engine/install/ubuntu/
 - CentOS: https://docs.docker.com/engine/install/centos/
 
+The frontend dependencies installation depends on npm and yarn. If you have not installed npm and yarn, please install npm and yarn first.
+
 ### Development Platform
 
 This project uses a mix of Java and Kotlin development, heavily dependent on the Java ecosystem. Please install OpenJDK

@@ -18,6 +18,8 @@ CE.以下信息供参考：
 - Ubuntu: https://docs.docker.com/engine/install/ubuntu/
 - CentOS: https://docs.docker.com/engine/install/centos/
 
+本项目的前端依赖安装需要npm及yarn，如您尚未安装npm于yarn，请先自行安装npm与yarn
+
 ### 开发平台
 
 这个项目采用了Java和Kotlin的混合开发模式，严重依赖Java生态系统。请先安装OpenJDK
