@@ -77,6 +77,12 @@ sh ./scripts/check-all
 ./gradlew bootRun
 ```
 
+#### 运行前端项目
+
+~~~shell script
+./gradlew yarn_start
+~~~
+
 #### 安装前端依赖
 
 ```shell script
