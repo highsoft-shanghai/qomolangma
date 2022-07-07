@@ -1,6 +1,6 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
-import RootPage from "./components/rootPage";
+import RootPage from "./pages/rootPage";
 
 const App = () => {
     return (

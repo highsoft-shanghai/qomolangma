@@ -1,5 +1,5 @@
 import {screen} from '@testing-library/react';
-import RootPage from "../../components/rootPage"
+import RootPage from "../../pages/rootPage"
 import {ENRender} from "../ENRender";
 import {ZHRender} from "../ZHRender";
 
