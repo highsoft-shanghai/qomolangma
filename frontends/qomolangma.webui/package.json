@@ -37,10 +37,13 @@
     ],
     "coverageThreshold": {
       "global": {
+        "brancheds": 100,
+        "functions": 100,
         "lines": 100,
         "statements": 100
       }
-    }
+    },
+    "coverageReporters": ["text"]
   },
   "browserslist": {
     "production": [
