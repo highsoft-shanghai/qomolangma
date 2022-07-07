@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import logo from "../../logo.svg";
 import './RootPage.css'
+import {Format} from "../../locales/format";
 
 class RootPage extends Component<any, any> {
     render() {
@@ -9,7 +10,7 @@ class RootPage extends Component<any, any> {
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo"/>
                     <p>
-                        Qomolangma frontend app.
+                        {Format.format("project_app")}
                     </p>
                     <p>
                         Edit <code>src/App.tsx</code> and save to reload.
@@ -20,7 +21,7 @@ class RootPage extends Component<any, any> {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Learn React
+                        {Format.format("learn_react")}
                     </a>
                 </header>
             </div>

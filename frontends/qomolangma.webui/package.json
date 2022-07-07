@@ -40,7 +40,8 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!<rootDir>/node_modules/",
-      "!src/index.tsx"
+      "!src/index.tsx",
+      "!src/App.tsx"
     ],
     "coverageThreshold": {
       "global": {
