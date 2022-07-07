@@ -12,9 +12,6 @@ class RootPage extends Component<any, any> {
                     <p>
                         {Format.format("project_app")}
                     </p>
-                    <p>
-                        Edit <code>src/App.tsx</code> and save to reload.
-                    </p>
                     <a
                         className="App-link"
                         href="https://reactjs.org"
