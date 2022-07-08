@@ -1,4 +1,4 @@
-import {EnvironmentUrls} from "./EnvironmentUrls";
+import {EnvironmentUrls} from "../EnvironmentUrls";
 
 export function requestClassDecorator<T extends { new(...args: any[]): any }>(
     constructor: T

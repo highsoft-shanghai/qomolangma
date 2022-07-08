@@ -1,7 +1,7 @@
 import nock from 'nock';
 import AxiosHttp from '../../acl/AxiosHttp';
 import Http from '../../frameworks/http'
-import {EnvironmentUrls} from '../../frameworks/http/EnvironmentUrls';
+import {EnvironmentUrls} from '../../frameworks/EnvironmentUrls';
 
 const scope = nock(EnvironmentUrls['test'])
 
