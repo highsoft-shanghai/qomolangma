@@ -4,8 +4,8 @@ import makeSingleton from "../makeSingleton";
 
 @requestClassDecorator
 export class Http {
-    private readonly instance: AxiosInstance;
-    private requestUrl = "";
+    private readonly instance: AxiosInstance
+    private requestUrl = ""
 
     public constructor(props: AxiosRequestConfig) {
         this.instance = axios.create({
