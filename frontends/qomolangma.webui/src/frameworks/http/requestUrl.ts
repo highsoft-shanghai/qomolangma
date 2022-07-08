@@ -2,6 +2,15 @@ export function requestClassDecorator<T extends { new(...args: any[]): any }>(
     constructor: T
 ) {
     return class extends constructor {
-        requestUrl = 'http://localhost:8080'
+        requestUrl = requestUrl(process.env.NODE_ENV)
     };
+}
+
+export function requestUrl(env: string) {
+    // @ts-ignore
+    return urls[env] === undefined ? '' : urls[env]
+}
+
+const urls = {
+    'test': 'http://localhost:8080'
 }
