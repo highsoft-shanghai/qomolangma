@@ -12,6 +12,7 @@
     "@types/react-dom": "^18.0.0",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
     "less": "^4.1.1",
     "nock": "^13.2.8",
     "react": "^18.0.0",
