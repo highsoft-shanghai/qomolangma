@@ -8,7 +8,7 @@ import MultiLanguage from "./components/MultiLanguage";
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
-    <BrowserRouter>
-        <MultiLanguage ui={<App/>}/>
-    </BrowserRouter>
+  <BrowserRouter>
+    <MultiLanguage ui={<App/>}/>
+  </BrowserRouter>
 );

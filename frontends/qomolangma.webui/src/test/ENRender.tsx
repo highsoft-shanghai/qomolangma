@@ -3,11 +3,11 @@ import {IntlProvider} from "react-intl";
 import {messages} from '../locales/messages'
 
 export class ENRender {
-    public static render(ui: any) {
-        render(<>
-            <IntlProvider locale={"en-US"} messages={messages["en-US"]}>
-                {ui}
-            </IntlProvider>
-        </>)
-    }
+  public static render(ui: any) {
+    render(<>
+      <IntlProvider locale={"en-US"} messages={messages["en-US"]}>
+        {ui}
+      </IntlProvider>
+    </>)
+  }
 }
