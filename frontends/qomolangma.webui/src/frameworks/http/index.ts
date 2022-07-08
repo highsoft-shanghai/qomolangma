@@ -1,39 +1,23 @@
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
+import {AxiosRequestConfig} from "axios";
 import {requestClassDecorator} from "./requestUrl";
 import makeSingleton from "../makeSingleton";
+import {AxiosHttp} from "../../acl/AxiosHttp";
 
 @requestClassDecorator
 export class Http {
-    private readonly instance: AxiosInstance
+    private readonly instance: AxiosHttp
     private requestUrl = ""
 
     public constructor() {
-        this.instance = axios.create({
-            timeout: 10 * 1000
-        });
+        this.instance = new AxiosHttp()
     }
 
     public async get(url: string, options?: AxiosRequestConfig) {
-        const response = await this.instance.get(
-            url,
-            Object.assign(options || {}, {baseURL: this.requestUrl})
-        );
-        return this.response(response)
+        return this.instance.get(url, this.requestUrl, options);
     }
 
     public async post(url: string, options: AxiosRequestConfig) {
-        const response = await this.instance.post(
-            this.requestUrl + url,
-            options.data
-        );
-        return this.response(response);
-    }
-
-    response(response: AxiosResponse<any>) {
-        if (response.status === 200) return response.data
-        else {
-            throw new Error()
-        }
+        return this.instance.post(url, this.requestUrl, options)
     }
 }
 

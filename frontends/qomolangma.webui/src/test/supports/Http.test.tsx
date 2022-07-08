@@ -1,4 +1,5 @@
 import nock from 'nock';
+import AxiosHttp from '../../acl/AxiosHttp';
 import Http from '../../frameworks/http'
 
 const scope = nock('http://localhost:8080')
@@ -26,7 +27,7 @@ test('should invoke post request', async () => {
 })
 
 test('should response error throw', async () => {
-    expect(() => Http.response({
+    expect(() => AxiosHttp.response({
         data: 'Request failed with status code 500',
         status: 500,
         statusText: 'Request failed with status code 500',
