@@ -1,15 +1,15 @@
 import {AxiosRequestConfig} from "axios";
 import {requestClassDecorator} from "./requestUrl";
 import makeSingleton from "../makeSingleton";
-import {AxiosHttp} from "../../acl/AxiosHttp";
+import AxiosHttp from "../../acl/AxiosHttp";
 
 @requestClassDecorator
 export class Http {
-    private readonly instance: AxiosHttp
+    private readonly instance
     private requestUrl = ""
 
     public constructor() {
-        this.instance = new AxiosHttp()
+        this.instance = AxiosHttp
     }
 
     public async get(url: string, options?: AxiosRequestConfig) {
