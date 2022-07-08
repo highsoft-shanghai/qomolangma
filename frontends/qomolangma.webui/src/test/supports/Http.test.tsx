@@ -7,6 +7,7 @@ beforeEach(() => {
     scope.get(`/testHttp/ok`).reply(200, {message: 'ok'}, {'Access-Control-Allow-Origin': '*'})
     scope.get(`/testHttp/okWithParam?param=1`).reply(200, {message: 'ok'}, {'Access-Control-Allow-Origin': '*'})
     scope.get(`/testHttp/error`).reply(500, "Error", {'Access-Control-Allow-Origin': '*'})
+    scope.post(`/testHttp/ok`, {param: 1}).reply(200, {message: 'ok'}, {'Access-Control-Allow-Origin': '*'})
 })
 
 test('should invoke http request', async () => {
@@ -19,15 +20,19 @@ test('should invoke get request with params', async () => {
     expect(res.message).toBe('ok')
 })
 
-test('should invoke request report error', async () => {
-    try {
-        await Http.get('/testHttp/error')
-    } catch (e) {
-        // @ts-ignore
-        let actual = e.message;
-        // eslint-disable-next-line jest/no-conditional-expect
-        expect(actual).toBe('Request failed with status code 500')
-    }
+test('should invoke post request', async () => {
+    const res = await Http.post('/testHttp/ok', {data: {param: 1}})
+    expect(res.message).toBe('ok')
+})
+
+test('should response error throw', async () => {
+    expect(() => Http.response({
+        data: 'Request failed with status code 500',
+        status: 500,
+        statusText: 'Request failed with status code 500',
+        headers: {},
+        config: {}
+    })).toThrowError('')
 })
 
 afterEach(() => {

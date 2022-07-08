@@ -1,4 +1,4 @@
-import axios, {AxiosInstance, AxiosRequestConfig} from "axios";
+import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
 import {requestClassDecorator} from "./requestUrl";
 import makeSingleton from "../makeSingleton";
 
@@ -18,12 +18,7 @@ export class Http {
             url,
             Object.assign(options || {}, {baseURL: this.requestUrl})
         );
-        //eslint-disable-next-line
-        if (response.status == 200) {
-            return response.data;
-        } else {
-            throw new Error();
-        }
+        return this.response(response)
     }
 
     public async post(url: string, options: AxiosRequestConfig) {
@@ -31,17 +26,14 @@ export class Http {
             this.requestUrl + url,
             options.data
         );
-
-        //eslint-disable-next-line
-        if (response.status == 200) {
-            return response.data.data;
-        } else {
-            throw new Error();
-        }
+        return this.response(response);
     }
 
-    public getInstance() {
-        return this.instance;
+    response(response: AxiosResponse<any>) {
+        if (response.status === 200) return response.data
+        else {
+            throw new Error()
+        }
     }
 }
 
