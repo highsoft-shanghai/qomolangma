@@ -25,8 +25,10 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "lint": "eslint --ext .js --ext .tsx --ext .jsx --ext .ts src/ --fix",
+    "dll": "webpack --config scripts/webpack.dll.config.js",
+    "start": "cross-env NODE_ENV=development nodemon --watch scripts scripts/start.js",
+    "build": "cross-env NODE_ENV=production node scripts/build.js",
     "test": "react-scripts test --watchAll=false --coverage",
     "watch": "react-scripts test",
     "eject": "react-scripts eject"

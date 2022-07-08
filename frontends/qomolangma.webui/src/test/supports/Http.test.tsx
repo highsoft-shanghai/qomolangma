@@ -1,8 +1,9 @@
 import nock from 'nock';
 import AxiosHttp from '../../acl/AxiosHttp';
 import Http from '../../frameworks/http'
+import {EnvironmentUrls} from '../../frameworks/http/EnvironmentUrls';
 
-const scope = nock('http://localhost:8080')
+const scope = nock(EnvironmentUrls['test'])
 
 beforeEach(() => {
     scope.get(`/testHttp/ok`).reply(200, {message: 'ok'}, {'Access-Control-Allow-Origin': '*'})

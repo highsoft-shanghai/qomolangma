@@ -1,3 +1,5 @@
+import {EnvironmentUrls} from "./EnvironmentUrls";
+
 export function requestClassDecorator<T extends { new(...args: any[]): any }>(
     constructor: T
 ) {
@@ -8,9 +10,6 @@ export function requestClassDecorator<T extends { new(...args: any[]): any }>(
 
 export function requestUrl(env: string) {
     // @ts-ignore
-    return urls[env] === undefined ? '' : urls[env]
+    return EnvironmentUrls[env] === undefined ? '' : EnvironmentUrls[env]
 }
 
-const urls = {
-    'test': 'http://localhost:8080'
-}
