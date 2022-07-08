@@ -28,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false --coverage",
+    "test": "react-scripts test --watchAll=false --silent --coverage",
     "watch": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -54,7 +54,8 @@
       }
     },
     "coverageReporters": [
-      "text"
+      "text",
+      "html"
     ]
   },
   "browserslist": {
