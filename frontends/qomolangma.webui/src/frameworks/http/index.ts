@@ -7,9 +7,9 @@ export class Http {
     private readonly instance: AxiosInstance
     private requestUrl = ""
 
-    public constructor(props: AxiosRequestConfig) {
+    public constructor() {
         this.instance = axios.create({
-            timeout: (props && props.timeout) || 10 * 1000
+            timeout: 10 * 1000
         });
     }
 
