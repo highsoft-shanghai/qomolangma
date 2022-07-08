@@ -1,0 +1,4 @@
+dependencies {
+    api project(':context.core')
+    api project(':domain.core')
+}
