@@ -1,4 +1,4 @@
 export const EnvironmentUrls = {
-  'test': 'http://localhost:8080',
+  'test': 'https://test',
   'development': 'http://localhost:8080'
 }
