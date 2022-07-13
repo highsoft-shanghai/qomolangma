@@ -21,6 +21,6 @@ include::{snippets}/test.exception/api.adoc[]
 
 === access-tokens
 
-==== Get current token and authoritie
+==== Get current token and authorities
 
 include::{snippets}/iam.access-tokens-current/api.adoc[]
