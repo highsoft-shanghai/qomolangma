@@ -7,4 +7,5 @@ dependencies {
     implementation project(":core.test")
     implementation project(":test.moco")
     implementation project(":security.core")
+    implementation project(":gateways.core")
 }

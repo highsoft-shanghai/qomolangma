@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping
 
 @UseCase(requiredAuthorities = [Authorities.AUTHENTICATED])
 @OpenHostService
-class TestController {
+class TestApi{
     @GetMapping("/test-not-found")
     fun testNotFound() {
         throw AggregateNotFoundException("nothing found")

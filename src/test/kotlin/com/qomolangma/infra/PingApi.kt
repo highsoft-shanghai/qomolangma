@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import javax.annotation.Resource
 
 @OpenHostService
-class PingController(
+class PingApi(
     @Resource private val pingUseCase: PingUseCase,
     @Resource private val exceptionRequestUseCase: ExceptionRequestUseCase
 ) {
@@ -17,6 +17,6 @@ class PingController(
 
     @PostMapping("/exception-request")
     fun exceptionRequest() {
-        return exceptionRequestUseCase.execute();
+        return exceptionRequestUseCase.execute()
     }
 }

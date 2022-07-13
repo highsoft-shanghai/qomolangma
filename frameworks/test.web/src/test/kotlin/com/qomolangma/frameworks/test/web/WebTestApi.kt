@@ -1,10 +1,14 @@
 package com.qomolangma.frameworks.test.web
 
-import org.springframework.web.bind.annotation.*
+import com.qomolangma.frameworks.gateways.core.OpenHostService
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestMapping
 
-@RestController
+@OpenHostService
 @RequestMapping("/web-test")
-class WebTestController {
+class WebTestApi {
     @GetMapping("simple-get")
     fun simpleGet(): Any {
         return mapOf(Pair("name", "John"))

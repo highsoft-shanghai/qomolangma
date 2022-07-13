@@ -1,11 +1,11 @@
 package com.qomolangma.iam.gateways.persistence
 
+import com.qomolangma.frameworks.gateways.core.Aggregates
 import com.qomolangma.iam.domain.AccessToken
 import com.qomolangma.iam.domain.AccessTokens
-import org.springframework.stereotype.Component
 import java.util.*
 
-@Component
+@Aggregates
 class PersistenceAccessTokens : AccessTokens {
     override fun optionalAccessTokenFor(id: String): Optional<AccessToken> {
         return Optional.of(TOKEN.asDomain())
