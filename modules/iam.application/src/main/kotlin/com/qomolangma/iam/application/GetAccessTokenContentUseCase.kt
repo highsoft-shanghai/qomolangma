@@ -11,6 +11,6 @@ import com.qomolangma.iam.domain.AccessTokens
 class GetAccessTokenContentUseCase(private val accessTokenRepository: AccessTokens) {
     fun execute(): Payload {
         val accessToken = accessTokenRepository.optionalAccessTokenFor(securityContext().token())
-        return accessToken.map { obj -> obj.content() }.orElseThrow { RuntimeException("error.no-token") }
+        return accessToken.map { obj -> obj.content() }.get()
     }
 }
