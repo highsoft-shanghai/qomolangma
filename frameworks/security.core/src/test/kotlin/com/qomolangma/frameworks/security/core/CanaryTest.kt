@@ -1,11 +1,11 @@
 package com.qomolangma.frameworks.security.core
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 
 class CanaryTest {
     @Test
-    internal fun should_run_test() {
-        assertEquals("ok", "ok")
+    fun should_be_able_to_run_tests() {
+        assertThat("ok").isEqualTo("ok")
     }
 }

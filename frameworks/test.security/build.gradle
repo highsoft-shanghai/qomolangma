@@ -1,0 +1,5 @@
+dependencies {
+    api project(':security.core')
+    implementation libs.junitJupiter
+    implementation libs.junitJupiterEngine
+}

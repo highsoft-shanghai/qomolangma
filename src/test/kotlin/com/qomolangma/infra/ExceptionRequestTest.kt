@@ -1,6 +1,6 @@
 package com.qomolangma.infra
 
-import com.qomolangma.frameworks.test.web.ApiTest
+import com.qomolangma.ApiTest
 import com.qomolangma.frameworks.test.web.Documentation
 import com.qomolangma.frameworks.test.web.PathVariables.Companion.variables
 import org.hamcrest.Matchers.`is`

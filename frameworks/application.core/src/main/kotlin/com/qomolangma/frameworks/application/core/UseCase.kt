@@ -7,4 +7,4 @@ import org.springframework.transaction.annotation.Transactional
 @Retention(AnnotationRetention.RUNTIME)
 @Component
 @Transactional
-annotation class UseCase
+annotation class UseCase(val requiredAuthorities: Array<String>)

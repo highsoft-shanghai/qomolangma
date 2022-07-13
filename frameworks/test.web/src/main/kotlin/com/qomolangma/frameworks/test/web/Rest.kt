@@ -2,6 +2,7 @@ package com.qomolangma.frameworks.test.web
 
 import com.qomolangma.frameworks.test.web.ApiDocUtils.apiHeader
 import io.restassured.RestAssured
+import io.restassured.authentication.PreemptiveOAuth2HeaderScheme
 import io.restassured.builder.RequestSpecBuilder
 import io.restassured.filter.Filter
 import io.restassured.http.ContentType
@@ -16,7 +17,8 @@ import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDoc
 import org.springframework.restdocs.ManualRestDocumentation
 import org.springframework.restdocs.operation.preprocess.Preprocessors
 import org.springframework.restdocs.restassured3.RestAssuredOperationPreprocessorsConfigurer
-import org.springframework.restdocs.restassured3.RestAssuredRestDocumentation
+import org.springframework.restdocs.restassured3.RestAssuredRestDocumentation.document
+import org.springframework.restdocs.restassured3.RestAssuredRestDocumentation.documentationConfiguration
 import java.lang.reflect.Method
 
 @AutoConfigureRestDocs
@@ -47,7 +49,7 @@ open class Rest {
             .then()
     }
 
-    protected fun given(doc: Documentation?): RequestSpecification {
+    private fun given(doc: Documentation?): RequestSpecification {
         return RestAssured.given(spec).port(port).accept(ContentType.JSON).contentType(ContentType.JSON)
             .filter(docFilter(doc))
     }
@@ -55,9 +57,16 @@ open class Rest {
     @BeforeEach
     fun setupRestDoc(info: TestInfo) {
         val builder = RequestSpecBuilder()
+        GlobalTestContext.token().ifPresent { x -> setupAuth(builder, x) }
         spec = builder.addFilter(documentationFilter()).build()
         documentation.beforeTest(javaClass, info.testMethod.map { obj: Method -> obj.name }
             .orElse(""))
+    }
+
+    private fun setupAuth(builder: RequestSpecBuilder, token: String) {
+        val scheme = PreemptiveOAuth2HeaderScheme()
+        scheme.accessToken = token
+        builder.setAuth(scheme)
     }
 
     @AfterEach
@@ -66,14 +75,13 @@ open class Rest {
     }
 
     private fun docFilter(doc: Documentation?): Filter {
-        return if (doc == null) EmptyFilter.INSTANCE else RestAssuredRestDocumentation.document(
-            doc.identifier(),
-            *ArrayUtils.addAll(doc.snippets(), apiHeader(false), ApiSnippet())
-        )
+        if (doc == null) return EmptyFilter.INSTANCE
+        val authRequired: Boolean = GlobalTestContext.token().isPresent
+        return document(doc.identifier(), *ArrayUtils.addAll(doc.snippets(), apiHeader(authRequired), ApiSnippet()))
     }
 
     private fun documentationFilter(): RestAssuredOperationPreprocessorsConfigurer {
-        return RestAssuredRestDocumentation.documentationConfiguration(documentation).operationPreprocessors()
+        return documentationConfiguration(documentation).operationPreprocessors()
             .withRequestDefaults(Preprocessors.prettyPrint()).withResponseDefaults(Preprocessors.prettyPrint())
     }
 }

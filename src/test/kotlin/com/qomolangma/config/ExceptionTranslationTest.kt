@@ -1,6 +1,6 @@
 package com.qomolangma.config
 
-import com.qomolangma.frameworks.test.web.IntegrationTest
+import com.qomolangma.IntegrationTest
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.nullValue
 import org.junit.jupiter.api.Test

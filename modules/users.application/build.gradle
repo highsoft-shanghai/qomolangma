@@ -1,6 +1,0 @@
-dependencies {
-    implementation project(":domain.core")
-    implementation project(":application.core")
-    implementation project(":payload.core")
-    api(project(":users.domain"))
-}

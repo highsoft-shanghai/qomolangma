@@ -6,4 +6,5 @@ dependencies {
     implementation libs.test.spring.restdocs.restassured
     implementation project(":core.test")
     implementation project(":test.moco")
+    implementation project(":security.core")
 }

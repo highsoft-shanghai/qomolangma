@@ -1,0 +1,11 @@
+dependencies {
+    api project(":iam.application")
+    api(project(":iam.domain"))
+    api(project(":payload.core"))
+    api(project(":gateways.core"))
+    implementation libs.springContext
+    implementation libs.springBootWeb
+    implementation libs.springdoc
+    implementation libs.springDataCommons
+    implementation libs.jpa
+}

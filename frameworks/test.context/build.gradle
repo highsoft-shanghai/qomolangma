@@ -1,0 +1,5 @@
+dependencies {
+    api project(':context.core')
+    implementation libs.junitJupiter
+    implementation libs.junitJupiterEngine
+}

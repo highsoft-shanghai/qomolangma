@@ -1,6 +1,5 @@
 package com.qomolangma
 
-import com.qomolangma.frameworks.test.web.IntegrationTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

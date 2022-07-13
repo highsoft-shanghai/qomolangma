@@ -16,3 +16,11 @@ include::{snippets}/test.ping/api.adoc[]
 ==== Exception request
 
 include::{snippets}/test.exception/api.adoc[]
+
+== iam
+
+=== access-tokens
+
+==== Get current token and authoritie
+
+include::{snippets}/iam.access-tokens-current/api.adoc[]

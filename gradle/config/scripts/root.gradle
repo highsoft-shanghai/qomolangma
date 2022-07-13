@@ -4,8 +4,11 @@ dependencies {
     implementation project(":bean.core")
     implementation project(":application.core")
     implementation project(":gateways.core")
-    implementation project(":users.gateways")
+    implementation project(":iam.gateways")
     testImplementation project(":test.web")
+    testImplementation project(":test.container")
+    testImplementation project(":test.moco")
+    testImplementation project(":test.persistence")
     testImplementation project(":core.test")
     implementation libs.springBootActuator
     implementation libs.springBootWeb

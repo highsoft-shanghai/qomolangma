@@ -3,8 +3,9 @@ package com.qomolangma.config
 import com.qomolangma.config.ApplicationExceptionAspectTest.OtherException
 import com.qomolangma.frameworks.application.core.UseCase
 import com.qomolangma.frameworks.domain.core.AccessDeniedException
+import com.qomolangma.frameworks.security.core.Authorities
 
-@UseCase
+@UseCase(requiredAuthorities = [Authorities.AUTHENTICATED])
 class AuthenticationExceptionTest {
     fun throwIllegalArgumentException() {
         throw IllegalArgumentException("error")
