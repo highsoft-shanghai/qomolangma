@@ -1,6 +1,7 @@
 package com.qomolangma.frameworks.bean.core
 
 import com.qomolangma.frameworks.security.core.ContextLoader
+import lombok.Generated
 import javax.servlet.http.HttpServletRequest
 
 class HttpHeaderContextLoader(authorizer: ContextLoader) : AutoCloseable {
@@ -14,6 +15,7 @@ class HttpHeaderContextLoader(authorizer: ContextLoader) : AutoCloseable {
         contextLoader.load(BearerToken(request.getHeader("Authorization")).value())
     }
 
+    @Generated
     override fun close() {
         contextLoader.clear()
     }
