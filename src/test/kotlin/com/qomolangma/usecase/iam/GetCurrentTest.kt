@@ -14,7 +14,6 @@ class GetCurrentTest : ApiTest() {
     @Test
     @WithGrantedAuthorities(["grantedAuthority"])
     fun should_report_error_info_correctly() {
-        removeAccessToken()
         val response = get("/access-tokens/current", document())
         response.statusCode(`is`(200))
             .body("code", `is`("0"))
