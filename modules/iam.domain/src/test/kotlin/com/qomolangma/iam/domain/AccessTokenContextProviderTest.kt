@@ -13,19 +13,18 @@ import org.mockito.Mock
 import java.util.*
 
 @WithMocks
-class AccessTokenContextProviderTest {
-    @Mock
-    private val accessTokens: AccessTokens? = null
-
+class AccessTokenContextProviderTest(
+    @Mock private val accessTokens: AccessTokens
+) {
     @BeforeEach
     fun setUp() {
-        given(accessTokens!!.optionalAccessTokenFor("token-id"))
+        given(accessTokens.optionalAccessTokenFor("token-id"))
             .willReturn(Optional.of(TOKEN_FROM_REPOSITORY))
     }
 
     @Test
     fun should_be_able_to_load_accesses_token_from_underling_repository() {
-        val provider: ContextProvider = AccessTokenContextProvider(accessTokens!!)
+        val provider: ContextProvider = AccessTokenContextProvider(accessTokens)
         assertThat(provider["token-id"]).isEqualTo(Optional.of(TOKEN_FROM_REPOSITORY))
     }
 

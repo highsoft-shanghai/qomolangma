@@ -14,10 +14,9 @@ import javax.servlet.http.HttpServletResponse
 
 @Component
 @WebFilter("/**")
-class SecurityFilter : OncePerRequestFilter() {
-    @Resource
-    private val contextLoader: ContextLoader? = null
-
+class SecurityFilter(
+    @Resource private val contextLoader: ContextLoader
+) : OncePerRequestFilter() {
     @Throws(ServletException::class, IOException::class)
     override fun doFilterInternal(
         request: HttpServletRequest,
@@ -32,7 +31,7 @@ class SecurityFilter : OncePerRequestFilter() {
         filterChain: FilterChain,
         response: HttpServletResponse
     ) {
-        val loader = HttpHeaderContextLoader(contextLoader!!)
+        val loader = HttpHeaderContextLoader(contextLoader)
         loader.load(request)
         filterChain.doFilter(request, response)
     }
