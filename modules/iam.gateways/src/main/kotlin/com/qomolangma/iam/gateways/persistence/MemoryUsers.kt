@@ -24,7 +24,7 @@ class MemoryUsers(
         return users.stream().filter { o -> name == o.name() }.findFirst().map(MemoryUser::asDomain)
     }
 
-    override fun save(user: User) {
+    override fun add(user: User) {
         users.add(MemoryUser(user))
     }
 

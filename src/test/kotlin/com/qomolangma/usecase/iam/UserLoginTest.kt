@@ -35,7 +35,7 @@ class UserLoginTest : ApiTest() {
 
     @BeforeEach
     internal fun setUp() {
-        users!!.save(user)
+        users!!.add(user)
     }
 
     @Test

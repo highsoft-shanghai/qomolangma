@@ -15,7 +15,7 @@ internal class MemoryAccessTokensTest {
     @Test
     internal fun should_empty_if_out_of_date() {
         val memoryAccessTokens = MemoryAccessTokens()
-        memoryAccessTokens.save(AccessToken("id", "token", Instant.EPOCH))
+        memoryAccessTokens.add(AccessToken("id", "token", Instant.EPOCH))
         assertEquals(Optional.empty(), memoryAccessTokens["token"])
     }
 }

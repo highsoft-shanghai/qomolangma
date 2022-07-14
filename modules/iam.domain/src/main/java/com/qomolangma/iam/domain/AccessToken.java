@@ -1,8 +1,11 @@
 package com.qomolangma.iam.domain;
 
+import com.qomolangma.frameworks.domain.core.GlobalClock;
 import com.qomolangma.frameworks.domain.core.Id;
+import com.qomolangma.frameworks.payload.core.Payload;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.Instant;
 
@@ -33,5 +36,20 @@ public class AccessToken {
 
     public Boolean outOfDate() {
         return loginTime.outOfDate();
+    }
+
+    @NotNull
+    public static AccessToken create(@NotNull User user) {
+        return new AccessToken(user.id(), "", GlobalClock.now());
+    }
+
+    @NotNull
+    public AccessToken addIn(@NotNull User.AccessTokens accessTokens) {
+        accessTokens.add(this);
+        return this;
+    }
+
+    public Payload content() {
+        return Payload.Companion.append("token", token).build();
     }
 }

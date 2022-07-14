@@ -44,8 +44,8 @@ abstract class IntegrationTest : Rest() {
                 context.securityContext().id(),
                 GlobalClock.now()
             )
-            accessTokens!!.save(accessToken!!)
-            users!!.save(user!!)
+            accessTokens!!.add(accessToken!!)
+            users!!.add(user!!)
         }
     }
 

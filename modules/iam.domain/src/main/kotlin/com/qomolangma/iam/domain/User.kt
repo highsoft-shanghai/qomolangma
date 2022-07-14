@@ -62,14 +62,19 @@ class User : Context {
     interface AccessTokens {
         operator fun get(token: String): Optional<AccessToken>
         fun getById(id: String): Optional<AccessToken>
-        fun save(accessToken: AccessToken)
+        fun add(accessToken: AccessToken)
         fun clear()
     }
 
     private fun register(confirmedPassword: String, users: Users) {
         owner.confirmPassword(confirmedPassword)
         owner.confirmUserName(users)
-        users.save(this)
+        users.add(this)
+    }
+
+    fun login(password: String, accessTokens: AccessTokens): Payload {
+        owner.checkPassword(password)
+        return AccessToken.create(this).addIn(accessTokens).content();
     }
 
     companion object {

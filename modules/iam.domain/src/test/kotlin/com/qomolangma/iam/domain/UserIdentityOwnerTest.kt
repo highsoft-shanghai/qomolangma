@@ -31,4 +31,10 @@ internal class UserIdentityOwnerTest(
         val owner = UserIdentityOwner.create(Identity.create(""), Identity.create("Neil"), Identity.create(""), "")
         assertThrows<IllegalArgumentException> { owner.confirmUserName(users) }
     }
+
+    @Test
+    internal fun should_throw_when_user_password_incorrect() {
+        val owner = UserIdentityOwner.create(Identity.create(""), Identity.create("Neil"), Identity.create(""), "12345")
+        assertThrows<IllegalArgumentException> { owner.checkPassword("1234") }
+    }
 }

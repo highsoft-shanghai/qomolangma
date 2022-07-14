@@ -19,7 +19,7 @@ class MemoryAccessTokens(
         return tokens.stream().filter { o -> id == o.id() }.findFirst().map(MemoryAccessToken::asDomain)
     }
 
-    override fun save(accessToken: AccessToken) {
+    override fun add(accessToken: AccessToken) {
         tokens.add(MemoryAccessToken(accessToken))
     }
 

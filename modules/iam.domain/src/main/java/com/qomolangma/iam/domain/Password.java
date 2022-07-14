@@ -21,7 +21,7 @@ public final class Password {
     }
 
     public static Password restore(String password) {
-        return new Password(new String(Base64.getDecoder().decode(password)));
+        return new Password(password);
     }
 
     public String password() {
@@ -30,5 +30,9 @@ public final class Password {
 
     public void confirm(String confirmedPassword) {
         if (!password.equals(newInstance(confirmedPassword).password())) throw new IllegalArgumentException("error.not-same-password");
+    }
+
+    public void check(String confirmedPassword) {
+        if (!password.equals(newInstance(confirmedPassword).password())) throw new IllegalArgumentException("error.login-fail");
     }
 }

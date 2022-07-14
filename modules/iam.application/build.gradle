@@ -2,4 +2,5 @@ dependencies {
     api project(":iam.domain")
     implementation project(":application.core")
     implementation project(":payload.core")
+    implementation project(":core.test")
 }

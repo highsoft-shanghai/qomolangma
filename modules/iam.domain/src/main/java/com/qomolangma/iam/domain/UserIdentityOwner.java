@@ -61,6 +61,10 @@ public final class UserIdentityOwner {
         this.password.confirm(confirmedPassword);
     }
 
+    public void checkPassword(@NotNull String confirmedPassword) {
+        this.password.check(confirmedPassword);
+    }
+
     public void confirmUserName(@NotNull Users users) {
         if (users.getByName(this.user().name()).isPresent()) throw new IllegalArgumentException("error.name-exist");
     }

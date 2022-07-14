@@ -27,8 +27,15 @@ internal class AccessTokenOwnerTest {
 
     @Test
     fun should_be_able_to_restore() {
-        assertThat(UserIdentityOwner.restore(account, neil, qomolangma, Base64.getEncoder().encodeToString("Qomolangma".toByteArray())).password())
-            .isEqualTo("Qomolangma")
+        assertThat(
+            UserIdentityOwner.restore(
+                account,
+                neil,
+                qomolangma,
+                Base64.getEncoder().encodeToString("Qomolangma".toByteArray())
+            ).password()
+        )
+            .isEqualTo(Base64.getEncoder().encodeToString("Qomolangma".toByteArray()))
     }
 
     @Test
