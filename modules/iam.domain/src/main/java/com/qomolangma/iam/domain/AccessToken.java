@@ -1,5 +1,6 @@
 package com.qomolangma.iam.domain;
 
+import com.qomolangma.frameworks.domain.core.BearerToken;
 import com.qomolangma.frameworks.domain.core.GlobalClock;
 import com.qomolangma.frameworks.domain.core.Id;
 import com.qomolangma.frameworks.payload.core.Payload;
@@ -15,7 +16,6 @@ public class AccessToken {
     private final Id id;
     private final String token;
     private final LoginTime loginTime;
-
     public AccessToken(String id, String token, Instant loginTime) {
         this.id = new Id(id);
         this.token = token;
@@ -27,7 +27,7 @@ public class AccessToken {
     }
 
     public String token() {
-        return token;
+        return BearerToken.create(token).value();
     }
 
     public Instant loginTime() {
@@ -51,6 +51,6 @@ public class AccessToken {
     }
 
     public Payload content() {
-        return Payload.Companion.append("token", token).build();
+        return Payload.Companion.append("token", token()).build();
     }
 }
