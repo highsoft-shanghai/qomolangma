@@ -31,7 +31,6 @@ class Root extends Component<any, User> {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {Format.format("learn_react")}
           </a>
         </header>
       </div>
