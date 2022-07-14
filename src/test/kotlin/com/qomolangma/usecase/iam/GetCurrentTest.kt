@@ -19,6 +19,9 @@ class GetCurrentTest : ApiTest() {
             .body("code", `is`("0"))
             .body("msg", `is`(""))
             .body("data.accessToken", `is`("Bearer tester-token-id"))
+            .body("data.userAccountName", `is`("Qomolangma"))
+            .body("data.tenantName", `is`("Qomolangma"))
+            .body("data.userName", `is`("Tester"))
             .body("data.authorities", contains("grantedAuthority"))
     }
 
@@ -28,6 +31,10 @@ class GetCurrentTest : ApiTest() {
             responseFields(
                 fieldWithPath("code").description("response code"),
                 fieldWithPath("msg").description("response msg"),
+                fieldWithPath("data.id").description("Id of current user"),
+                fieldWithPath("data.userAccountName").description("User account name of current user"),
+                fieldWithPath("data.userName").description("Username of current user"),
+                fieldWithPath("data.tenantName").description("Tenant name of current user"),
                 fieldWithPath("data.accessToken").description("Access token of current user"),
                 fieldWithPath("data.authorities").description("Authorities of current user")
             )

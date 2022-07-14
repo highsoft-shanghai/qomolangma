@@ -50,7 +50,11 @@ class User : Context {
     }
 
     fun content(accessTokens: AccessTokens): Payload {
-        return append("accessToken", displayAccessToken(accessTokens))
+        return append("id", id())
+            .append("userAccountName", owner.userAccount().name())
+            .append("userName", owner.user().name())
+            .append("tenantName", owner.tenant().name())
+            .append("accessToken", displayAccessToken(accessTokens))
             .append("authorities", grantedAuthorities.asSet())
             .build()
     }
