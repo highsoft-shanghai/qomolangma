@@ -8,21 +8,32 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode
-public class AccessTokenOwner {
+public final class AccessTokenOwner {
     private final Identity userAccount;
     private final Identity user;
     private final Identity tenant;
+    private final Password password;
 
-    public AccessTokenOwner(Identity userAccount, Identity user, Identity tenant) {
+    private AccessTokenOwner(Identity userAccount, Identity user, Identity tenant, Password password) {
         this.userAccount = userAccount;
         this.user = user;
         this.tenant = tenant;
+        this.password = password;
+    }
+
+    public static AccessTokenOwner create(Identity userAccount, Identity user, Identity tenant, String password) {
+        return new AccessTokenOwner(userAccount, user, tenant, Password.newInstance(password));
+    }
+
+    public static AccessTokenOwner restore(Identity userAccount, Identity user, Identity tenant, String password) {
+        return new AccessTokenOwner(userAccount, user, tenant, Password.restore(password));
     }
 
     public AccessTokenOwner(UserContext userContext) {
         this.userAccount = userContext.userAccount();
         this.user = userContext.user();
         this.tenant = userContext.tenant();
+        this.password = Password.newInstance(userContext.password());
     }
 
     public Identity userAccount() {
@@ -38,7 +49,10 @@ public class AccessTokenOwner {
     }
 
     public UserContext asUserContext() {
-        return new SimpleUserContext(userAccount(), user(), tenant());
+        return new SimpleUserContext(userAccount(), user(), tenant(), password());
     }
 
+    public String password() {
+        return password.password();
+    }
 }

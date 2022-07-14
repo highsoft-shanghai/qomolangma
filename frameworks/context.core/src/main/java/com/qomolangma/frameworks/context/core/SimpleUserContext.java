@@ -11,11 +11,13 @@ public class SimpleUserContext implements UserContext {
     private final Identity userAccount;
     private final Identity user;
     private final Identity tenant;
+    private final String password;
 
-    public SimpleUserContext(Identity userAccount, Identity user, Identity tenant) {
+    public SimpleUserContext(Identity userAccount, Identity user, Identity tenant, String password) {
         this.userAccount = userAccount;
         this.user = user;
         this.tenant = tenant;
+        this.password = password;
     }
 
     @NotNull
@@ -39,5 +41,11 @@ public class SimpleUserContext implements UserContext {
     @Override
     public boolean valid() {
         return true;
+    }
+
+    @NotNull
+    @Override
+    public String password() {
+        return password;
     }
 }

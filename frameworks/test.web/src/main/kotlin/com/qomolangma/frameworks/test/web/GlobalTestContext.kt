@@ -21,7 +21,7 @@ class GlobalTestContext {
 
         fun setup(grantedAuthorities: GrantedAuthorities?) {
             INSTANCE.context = SimpleContext(
-                SimpleUserContext(userAccount(), user(), tenant()),
+                SimpleUserContext(userAccount(), user(), tenant(), "Qomolangma"),
                 SimpleSecurityContext("tester-token-id", grantedAuthorities)
             )
         }

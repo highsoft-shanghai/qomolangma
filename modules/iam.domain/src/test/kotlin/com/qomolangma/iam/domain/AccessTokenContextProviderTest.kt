@@ -18,8 +18,7 @@ class AccessTokenContextProviderTest(
 ) {
     @BeforeEach
     fun setUp() {
-        given(accessTokens.optionalAccessTokenFor("token-id"))
-            .willReturn(Optional.of(TOKEN_FROM_REPOSITORY))
+        given(accessTokens.optionalAccessTokenFor("token-id")).willReturn(Optional.of(TOKEN_FROM_REPOSITORY))
     }
 
     @Test
@@ -29,10 +28,11 @@ class AccessTokenContextProviderTest(
     }
 
     companion object {
-        private val TOKEN_OWNER = AccessTokenOwner(
+        private val TOKEN_OWNER = AccessTokenOwner.create(
             Identity("tester@qomolangma", "Test"),
             Identity("tester", "Tester"),
-            Identity("qomolangma", "Qomolangma")
+            Identity("qomolangma", "Qomolangma"),
+            "Qomolangma"
         )
         private val TOKEN_FROM_REPOSITORY = restore("token-id", TOKEN_OWNER, GrantedAuthorities.of("f1"))
     }

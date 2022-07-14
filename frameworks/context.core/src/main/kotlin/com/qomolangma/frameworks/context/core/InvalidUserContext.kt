@@ -19,4 +19,8 @@ class InvalidUserContext : UserContext {
     override fun valid(): Boolean {
         return false
     }
+
+    override fun password(): String {
+        throw BadAccessTokenException()
+    }
 }

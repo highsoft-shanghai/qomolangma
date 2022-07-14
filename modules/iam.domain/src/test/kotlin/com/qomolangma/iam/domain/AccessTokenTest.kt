@@ -9,14 +9,16 @@ import com.qomolangma.iam.domain.AccessToken.Companion.create
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.util.Base64
 
 @WithGlobalId("fixed-id")
 internal class AccessTokenTest {
     private var owner: AccessTokenOwner? = null
     private var authorities: GrantedAuthorities? = null
+
     @BeforeEach
     fun setUp() {
-        owner = AccessTokenOwner(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA)
+        owner = AccessTokenOwner.create(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, "Qomolangma")
         authorities = GrantedAuthorities.of("f1", "f2")
     }
 
@@ -39,7 +41,7 @@ internal class AccessTokenTest {
     fun should_be_able_to_provide_user_context() {
         assertThat(create(owner!!, authorities!!).userContext()).isEqualTo(
             SimpleUserContext(
-                NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA
+                NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, Base64.getEncoder().encodeToString("Qomolangma".encodeToByteArray())
             )
         )
     }

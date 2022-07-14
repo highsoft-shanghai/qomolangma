@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 internal class GlobalUserContextTest {
     @BeforeEach
     fun setUp() {
-        GlobalUserContextResetter.reset(SimpleUserContext(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA))
+        GlobalUserContextResetter.reset(SimpleUserContext(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, "Qomolangma"))
     }
 
     @Test
@@ -30,6 +30,11 @@ internal class GlobalUserContextTest {
     fun should_be_able_to_hold_current_tenant() {
         assertThat(userContext().tenant()).isEqualTo(QOMOLANGMA)
         assertThat(userContext().tenant().id()).isEqualTo(QOMOLANGMA.id())
+    }
+
+    @Test
+    fun should_be_able_to_hold_current_password() {
+        assertThat(userContext().password()).isEqualTo("Qomolangma")
     }
 
     @Test

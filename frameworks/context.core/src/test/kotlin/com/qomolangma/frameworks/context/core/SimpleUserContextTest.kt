@@ -9,22 +9,27 @@ import org.junit.jupiter.api.Test
 internal class SimpleUserContextTest {
     @Test
     fun should_answer_yes_when_test_for_validity() {
-        assertThat(SimpleUserContext(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA).valid()).isTrue
+        assertThat(SimpleUserContext(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, "Qomolangma").valid()).isTrue
     }
 
     @Test
     fun should_be_able_to_hold_user_account() {
-        assertThat(SimpleUserContext(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA).userAccount()).isEqualTo(NEIL_IN_QOMOLANGMA)
+        assertThat(SimpleUserContext(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, "Qomolangma").userAccount()).isEqualTo(NEIL_IN_QOMOLANGMA)
     }
 
     @Test
     fun should_be_able_to_hold_user() {
-        assertThat(SimpleUserContext(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA).user()).isEqualTo(NEIL)
+        assertThat(SimpleUserContext(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, "Qomolangma").user()).isEqualTo(NEIL)
     }
 
     @Test
     fun should_be_able_to_hold_tenant() {
-        assertThat(SimpleUserContext(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA).tenant()).isEqualTo(QOMOLANGMA)
+        assertThat(SimpleUserContext(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, "Qomolangma").tenant()).isEqualTo(QOMOLANGMA)
+    }
+
+    @Test
+    fun should_be_able_to_hold_password() {
+        assertThat(SimpleUserContext(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, "Qomolangma").password()).isEqualTo("Qomolangma")
     }
 
     @Test

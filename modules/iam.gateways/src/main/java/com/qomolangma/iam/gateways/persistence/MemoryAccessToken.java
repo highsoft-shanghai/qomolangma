@@ -20,6 +20,7 @@ public class MemoryAccessToken {
     private String userName;
     private String tenantId;
     private String tenantName;
+    private String password;
     private Set<String> grantedAuthorities;
 
     public MemoryAccessToken(AccessToken accessToken) {
@@ -30,6 +31,7 @@ public class MemoryAccessToken {
         this.userName = accessToken.owner().user().name();
         this.tenantId = accessToken.owner().tenant().id();
         this.tenantName = accessToken.owner().tenant().name();
+        this.password = accessToken.owner().password();
         this.grantedAuthorities = accessToken.grantedAuthorities().asSet();
     }
 
@@ -38,10 +40,8 @@ public class MemoryAccessToken {
     }
 
     public AccessToken asDomain() {
-        return AccessToken.restore(
-                id, new AccessTokenOwner(new Identity(userAccountId, userAccountName), new Identity(userId, userName), new Identity(tenantId, tenantName)),
-                GrantedAuthorities.of(grantedAuthorities)
-        );
+        return AccessToken.restore(id, AccessTokenOwner.restore(new Identity(userAccountId, userAccountName), new Identity(userId, userName),
+                new Identity(tenantId, tenantName), password), GrantedAuthorities.of(grantedAuthorities));
     }
 
 }

@@ -7,10 +7,12 @@ interface UserContext {
     fun user(): Identity
     fun tenant(): Identity
     fun valid(): Boolean
+    fun password(): String
 
     companion object {
         val ANONYMOUS_IDENTITY = Identity("anonymous", "Anonymous")
-        val ANONYMOUS: UserContext = SimpleUserContext(ANONYMOUS_IDENTITY, ANONYMOUS_IDENTITY, ANONYMOUS_IDENTITY)
+        val ANONYMOUS: UserContext =
+            SimpleUserContext(ANONYMOUS_IDENTITY, ANONYMOUS_IDENTITY, ANONYMOUS_IDENTITY, "Anonymous")
         val INVALID: UserContext = InvalidUserContext()
     }
 }

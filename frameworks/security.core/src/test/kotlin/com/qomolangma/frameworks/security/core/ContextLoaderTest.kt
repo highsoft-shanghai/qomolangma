@@ -56,7 +56,7 @@ internal class ContextLoaderTest {
         private val USER_OF_TESTER: Identity = Identity("tester", "Tester")
         private val TENANT_OF_QOMOLANGMA: Identity = Identity("qomolangma", "Qomolangma")
         private val USER_CONTEXT: UserContext =
-            SimpleUserContext(USER_ACCOUNT_OF_TESTER, USER_OF_TESTER, TENANT_OF_QOMOLANGMA)
+            SimpleUserContext(USER_ACCOUNT_OF_TESTER, USER_OF_TESTER, TENANT_OF_QOMOLANGMA, "Qomolangma")
         private val SECURITY_CONTEXT: SecurityContext =
             SimpleSecurityContext("token-id", GrantedAuthorities.of("f1", "f2"))
         private val CONTEXT: Context = SimpleContext(USER_CONTEXT, SECURITY_CONTEXT)
