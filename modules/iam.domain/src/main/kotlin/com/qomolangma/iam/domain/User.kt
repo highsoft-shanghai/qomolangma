@@ -9,24 +9,24 @@ import com.qomolangma.frameworks.security.core.GrantedAuthorities
 import com.qomolangma.frameworks.security.core.SecurityContext
 import com.qomolangma.frameworks.security.core.SimpleSecurityContext
 
-class AccessToken : Context {
+class User : Context {
     private val id: Id
-    private val owner: AccessTokenOwner
+    private val owner: UserIdentityOwner
     private val grantedAuthorities: GrantedAuthorities
 
-    private constructor(id: String, owner: AccessTokenOwner, grantedAuthorities: GrantedAuthorities) {
+    private constructor(id: String, owner: UserIdentityOwner, grantedAuthorities: GrantedAuthorities) {
         this.id = Id(id)
         this.owner = owner
         this.grantedAuthorities = grantedAuthorities
     }
 
-    private constructor(owner: AccessTokenOwner, grantedAuthorities: GrantedAuthorities) {
+    private constructor(owner: UserIdentityOwner, grantedAuthorities: GrantedAuthorities) {
         id = Id()
         this.owner = owner
         this.grantedAuthorities = grantedAuthorities
     }
 
-    fun owner(): AccessTokenOwner {
+    fun owner(): UserIdentityOwner {
         return owner
     }
 
@@ -54,13 +54,13 @@ class AccessToken : Context {
 
     companion object {
         @JvmStatic
-        fun create(owner: AccessTokenOwner, authorities: GrantedAuthorities): AccessToken {
-            return AccessToken(owner, authorities)
+        fun create(owner: UserIdentityOwner, authorities: GrantedAuthorities): User {
+            return User(owner, authorities)
         }
 
         @JvmStatic
-        fun restore(id: String, owner: AccessTokenOwner, authorities: GrantedAuthorities): AccessToken {
-            return AccessToken(id, owner, authorities)
+        fun restore(id: String, owner: UserIdentityOwner, authorities: GrantedAuthorities): User {
+            return User(id, owner, authorities)
         }
     }
 }

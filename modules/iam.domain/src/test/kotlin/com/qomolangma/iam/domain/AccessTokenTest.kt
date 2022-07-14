@@ -5,7 +5,7 @@ import com.qomolangma.frameworks.domain.core.Identity
 import com.qomolangma.frameworks.security.core.GrantedAuthorities
 import com.qomolangma.frameworks.security.core.SimpleSecurityContext
 import com.qomolangma.frameworks.test.context.WithGlobalId
-import com.qomolangma.iam.domain.AccessToken.Companion.create
+import com.qomolangma.iam.domain.User.Companion.create
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -13,12 +13,12 @@ import java.util.Base64
 
 @WithGlobalId("fixed-id")
 internal class AccessTokenTest {
-    private var owner: AccessTokenOwner? = null
+    private var owner: UserIdentityOwner? = null
     private var authorities: GrantedAuthorities? = null
 
     @BeforeEach
     fun setUp() {
-        owner = AccessTokenOwner.create(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, "Qomolangma")
+        owner = UserIdentityOwner.create(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, "Qomolangma")
         authorities = GrantedAuthorities.of("f1", "f2")
     }
 

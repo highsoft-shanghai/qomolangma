@@ -12,28 +12,28 @@ internal class AccessTokenOwnerTest {
 
     @Test
     fun should_be_able_to_hold_user_account() {
-        assertThat(AccessTokenOwner.create(account, neil, qomolangma, "Qomolangma").userAccount()).isEqualTo(account)
+        assertThat(UserIdentityOwner.create(account, neil, qomolangma, "Qomolangma").userAccount()).isEqualTo(account)
     }
 
     @Test
     fun should_be_able_to_hold_user() {
-        assertThat(AccessTokenOwner.create(account, neil, qomolangma, "Qomolangma").user()).isEqualTo(neil)
+        assertThat(UserIdentityOwner.create(account, neil, qomolangma, "Qomolangma").user()).isEqualTo(neil)
     }
 
     @Test
     fun should_be_able_to_hold_tenant() {
-        assertThat(AccessTokenOwner.create(account, neil, qomolangma, "Qomolangma").tenant()).isEqualTo(qomolangma)
+        assertThat(UserIdentityOwner.create(account, neil, qomolangma, "Qomolangma").tenant()).isEqualTo(qomolangma)
     }
 
     @Test
     fun should_be_able_to_restore() {
-        assertThat(AccessTokenOwner.restore(account, neil, qomolangma, Base64.getEncoder().encodeToString("Qomolangma".toByteArray())).password())
+        assertThat(UserIdentityOwner.restore(account, neil, qomolangma, Base64.getEncoder().encodeToString("Qomolangma".toByteArray())).password())
             .isEqualTo("Qomolangma")
     }
 
     @Test
     fun should_be_able_to_compare_to_others_by_contents() {
-        assertThat(AccessTokenOwner.create(account, neil, qomolangma, "Qomolangma"))
-            .isEqualTo(AccessTokenOwner.create(account, neil, qomolangma, "Qomolangma"))
+        assertThat(UserIdentityOwner.create(account, neil, qomolangma, "Qomolangma"))
+            .isEqualTo(UserIdentityOwner.create(account, neil, qomolangma, "Qomolangma"))
     }
 }

@@ -9,7 +9,7 @@ import com.qomolangma.frameworks.security.core.ContextLoader
 import com.qomolangma.frameworks.security.core.GrantedAuthorities
 import com.qomolangma.frameworks.test.web.GlobalTestContext
 import com.qomolangma.frameworks.test.web.WithGrantedAuthorities
-import com.qomolangma.iam.domain.AccessTokens
+import com.qomolangma.iam.domain.Users
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
@@ -25,7 +25,7 @@ internal class ApplicationExceptionAspectTest : IntegrationTest() {
     private val contextLoader: ContextLoader? = null
 
     @Resource
-    private val accessTokens: AccessTokens? = null
+    private val users: Users? = null
 
     @BeforeEach
     internal fun setUp() {
@@ -64,7 +64,7 @@ internal class ApplicationExceptionAspectTest : IntegrationTest() {
     @AfterEach
     internal fun tearDown() {
         contextLoader!!.clear()
-        accessTokens!!.removeAll()
+        users!!.removeAll()
     }
 
     internal class OtherException(message: String?) : RuntimeException(message)

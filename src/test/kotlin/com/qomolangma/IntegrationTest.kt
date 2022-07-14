@@ -4,9 +4,9 @@ import com.qomolangma.frameworks.test.container.WithTestContainers
 import com.qomolangma.frameworks.test.moco.MocoContainer
 import com.qomolangma.frameworks.test.web.GlobalTestContext
 import com.qomolangma.frameworks.test.web.Rest
-import com.qomolangma.iam.domain.AccessToken
-import com.qomolangma.iam.domain.AccessTokenOwner
-import com.qomolangma.iam.domain.AccessTokens
+import com.qomolangma.iam.domain.User
+import com.qomolangma.iam.domain.UserIdentityOwner
+import com.qomolangma.iam.domain.Users
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.springframework.boot.test.context.SpringBootTest
@@ -18,24 +18,24 @@ import javax.annotation.Resource
 @WithTestContainers(containers = [MocoContainer::class])
 abstract class IntegrationTest : Rest() {
     @Resource
-    private val tokens: AccessTokens? = null
-    private var accessToken: AccessToken? = null
+    private val tokens: Users? = null
+    private var user: User? = null
 
     protected fun removeAccessToken() {
-        if (accessToken != null) {
-            tokens!!.remove(accessToken!!)
+        if (user != null) {
+            tokens!!.remove(user!!)
         }
     }
 
     @BeforeEach
     fun setupAccessToken() {
         GlobalTestContext.context().ifPresent { context ->
-            accessToken = AccessToken.restore(
+            user = User.restore(
                 context.securityContext().token(),
-                AccessTokenOwner(context.userContext()),
+                UserIdentityOwner(context.userContext()),
                 context.securityContext().grantedAuthorities()
             )
-            tokens!!.save(accessToken!!)
+            tokens!!.save(user!!)
         }
     }
 
