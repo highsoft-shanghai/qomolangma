@@ -19,7 +19,7 @@ class PingTest : ApiTest() {
     override fun document(): Documentation {
         return Documentation.doc(
             "test.ping", requestFields(
-                fieldWithPath("data").description("测试数据")
+                fieldWithPath("data").description("Test data")
             ), responseFields(
                 fieldWithPath("code").description("response code"),
                 fieldWithPath("msg").description("response msg"),
