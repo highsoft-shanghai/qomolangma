@@ -1,11 +1,11 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
-import RootPage from "./pages/rootPage";
+import Root from "./pages/root";
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<RootPage/>}/>
+      <Route path="/" element={<Root/>}/>
     </Routes>
   );
 };

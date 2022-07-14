@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import logo from "../../logo.svg";
-import './RootPage.css'
+import './Root.css'
 import {Format} from "../../locales/format";
 
-class RootPage extends Component<any, any> {
+class Root extends Component<any, any> {
   render() {
     return <>
       <div className="Main">
@@ -26,4 +26,4 @@ class RootPage extends Component<any, any> {
   }
 }
 
-export default RootPage;
+export default Root;
