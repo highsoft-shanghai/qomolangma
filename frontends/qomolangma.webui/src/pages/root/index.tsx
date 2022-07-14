@@ -29,8 +29,8 @@ class Root extends Component<any, User> {
             className="App-link"
             href="/user/login"
             target="_blank"
-            rel="noopener noreferrer"
           >
+            {Format.format("root_login")}
           </a>
         </header>
       </div>
