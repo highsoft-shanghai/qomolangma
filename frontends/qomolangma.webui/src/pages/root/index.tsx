@@ -5,6 +5,15 @@ import {Format} from "../../locales/format";
 import {User} from "../../domain/user/User";
 
 class Root extends Component<any, User> {
+  constructor(props: any) {
+    super(props);
+  }
+
+
+  async componentDidMount() {
+    this.state = await User.findCurrentUser()
+  }
+
   render() {
     return <>
       <div className="Main">

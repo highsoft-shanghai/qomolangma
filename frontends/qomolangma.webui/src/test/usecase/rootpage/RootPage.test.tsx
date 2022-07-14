@@ -1,7 +1,27 @@
 import {screen} from '@testing-library/react';
 import Root from "../../../pages/root"
 import {ENRender} from "../../ENRender";
-import {ZHRender} from "../../ZHRender";
+import nock from "nock";
+import {EnvironmentUrls} from '../../../frameworks/EnvironmentUrls';
+
+const scope = nock(EnvironmentUrls['test'])
+
+beforeEach(() => {
+  scope.get(`/access-tokens/current`).reply(200, {
+    "code": "0",
+    "msg": "",
+    "data": {
+      "id": "05103212a7e2426591411ee79a6c0297",
+      "userAccountName": "Qomolangma",
+      "userName": "Neil",
+      "tenantName": "qomolangma.com",
+      "accessToken": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblRpbWUiOiIyMDIyLTA3LTE0VDExOjM1OjE3LjMwODg1NloiLCJub3ciOiIyMDIyLTA3LTE0VDExOjM1OjE3LjMxMzEzNVoiLCJpZCI6IjA1MTAzMjEyYTdlMjQyNjU5MTQxMWVlNzlhNmMwMjk3IiwiZXhwIjoxNjU3ODA5MzE3fQ.MDQVqCL8N9pTAOVXMaU07aHoSyZcTHCXehO5QwNDzcY",
+      "authorities": [
+        "api-fox"
+      ]
+    }
+  }, {'Access-Control-Allow-Origin': '*'})
+})
 
 test('should render RootPage in English', () => {
   ENRender.render(new Root(null).render())
@@ -11,10 +31,12 @@ test('should render RootPage in English', () => {
   expect(linkElement2).toBeInTheDocument()
 })
 
-test('should render RootPage in Chinese', () => {
-  ZHRender.render(new Root(null).render())
-  const linkElement = screen.getByText(/学习 react/i)
-  expect(linkElement).toBeInTheDocument()
-  const linkElement2 = screen.getByText(/Qomolangma 前端应用。/i)
-  expect(linkElement2).toBeInTheDocument()
+test('should_set_state_about_user_in_root', async () => {
+  let root = new Root(null);
+  await root.componentDidMount()
+  expect(root.state.id).toBe("05103212a7e2426591411ee79a6c0297")
+})
+
+afterEach(() => {
+  scope.removeAllListeners()
 })
