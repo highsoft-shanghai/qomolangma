@@ -19,6 +19,12 @@ include::{snippets}/test.exception/api.adoc[]
 
 == iam
 
+=== user
+
+==== Register
+
+include::{snippets}/iam.user.register/api.adoc[]
+
 === access-tokens
 
 ==== Get current token and authorities

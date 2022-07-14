@@ -10,6 +10,7 @@ dependencies {
     testImplementation project(":test.container")
     testImplementation project(":test.moco")
     testImplementation project(":test.persistence")
+    testImplementation project(":test.context")
     testImplementation project(":core.test")
     implementation libs.springBootActuator
     implementation libs.springBootWeb

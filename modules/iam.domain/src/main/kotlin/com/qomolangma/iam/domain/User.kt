@@ -2,8 +2,10 @@ package com.qomolangma.iam.domain
 
 import com.qomolangma.frameworks.context.core.UserContext
 import com.qomolangma.frameworks.domain.core.Id
+import com.qomolangma.frameworks.domain.core.Identity
 import com.qomolangma.frameworks.payload.core.Payload
 import com.qomolangma.frameworks.payload.core.Payload.Companion.append
+import com.qomolangma.frameworks.payload.core.StringFieldType.Companion.asString
 import com.qomolangma.frameworks.security.core.Context
 import com.qomolangma.frameworks.security.core.GrantedAuthorities
 import com.qomolangma.frameworks.security.core.SecurityContext
@@ -62,13 +64,31 @@ class User : Context {
         fun getById(id: String): Optional<AccessToken>
         fun save(accessToken: AccessToken)
         fun remove(accessToken: AccessToken)
-        fun removeAll()
+        fun clear()
+    }
+
+    private fun register(confirmedPassword: String, users: Users) {
+        owner.confirmPassword(confirmedPassword)
+        owner.confirmUserName(users)
+        users.save(this)
     }
 
     companion object {
         @JvmStatic
         fun create(owner: UserIdentityOwner, authorities: GrantedAuthorities): User {
             return User(owner, authorities)
+        }
+
+        @JvmStatic
+        fun register(payload: Payload, users: Users) {
+            val owner = UserIdentityOwner.create(
+                Identity.create(payload["userAccountName", asString()]),
+                Identity.create(payload["userName", asString()]),
+                Identity.create(payload["tenantName", asString()]),
+                payload["password", asString()]
+            )
+            val user = User(owner, GrantedAuthorities.of(payload["grantedAuthorities", asString().array()].toSet()))
+            user.register(payload["confirmedPassword", asString()], users)
         }
 
         @JvmStatic

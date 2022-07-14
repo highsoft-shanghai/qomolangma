@@ -5,6 +5,7 @@ import com.qomolangma.frameworks.context.core.UserContext;
 import com.qomolangma.frameworks.domain.core.Identity;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.jetbrains.annotations.NotNull;
 
 @ToString
 @EqualsAndHashCode
@@ -54,5 +55,13 @@ public final class UserIdentityOwner {
 
     public String password() {
         return password.password();
+    }
+
+    public void confirmPassword(@NotNull String confirmedPassword) {
+        this.password.confirm(confirmedPassword);
+    }
+
+    public void confirmUserName(@NotNull Users users) {
+        if (users.getByName(this.user().name()).isPresent()) throw new IllegalArgumentException("error.name-exist");
     }
 }

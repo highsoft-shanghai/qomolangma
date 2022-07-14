@@ -27,4 +27,8 @@ public final class Password {
     public String password() {
         return password;
     }
+
+    public void confirm(String confirmedPassword) {
+        if (!password.equals(newInstance(confirmedPassword).password())) throw new IllegalArgumentException("error.not-same-password");
+    }
 }

@@ -1,16 +1,25 @@
 package com.qomolangma.usecase.iam
 
 import com.qomolangma.ApiTest
+import com.qomolangma.frameworks.test.context.WithGlobalId
 import com.qomolangma.frameworks.test.web.Documentation
 import com.qomolangma.frameworks.test.web.Documentation.Companion.doc
 import com.qomolangma.frameworks.test.web.PathVariables.Companion.variables
+import com.qomolangma.iam.domain.Users
 import org.hamcrest.Matchers.`is`
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.restdocs.payload.PayloadDocumentation
 import org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath
 import org.springframework.restdocs.payload.PayloadDocumentation.requestFields
+import javax.annotation.Resource
+import kotlin.test.assertEquals
 
+@WithGlobalId("id")
 class RegisterUserTest : ApiTest() {
+    @Resource
+    private val users: Users? = null
+
     @Test
     internal fun should_register_user_successfully() {
         val post = post(
@@ -24,11 +33,17 @@ class RegisterUserTest : ApiTest() {
             ), document()
         )
         post.statusCode(`is`(200)).body("code", `is`("0"))
+        assertEquals("Neil", users!!["id"].get().owner().user().name())
+    }
+
+    @AfterEach
+    internal fun tearDown() {
+        users!!.clear()
     }
 
     override fun document(): Documentation {
         return doc(
-            "test.ping", requestFields(
+            "iam.user.register", requestFields(
                 fieldWithPath("userAccountName").description("Account name of new user"),
                 fieldWithPath("userName").description("Name of new user"),
                 fieldWithPath("tenantName").description("Tenant name of new user"),
@@ -37,9 +52,9 @@ class RegisterUserTest : ApiTest() {
                 fieldWithPath("confirmedPassword").description("Password again of new user")
             ), PayloadDocumentation.responseFields(
                 fieldWithPath("code").description("response code"),
-                fieldWithPath("msg").description("response msg")
+                fieldWithPath("msg").description("response msg"),
+                fieldWithPath("data").ignored()
             )
         )
-
     }
 }

@@ -68,8 +68,8 @@ internal class ApplicationExceptionAspectTest : IntegrationTest() {
     @AfterEach
     internal fun tearDown() {
         contextLoader!!.clear()
-        users!!.removeAll()
-        accessTokens!!.removeAll()
+        users!!.clear()
+        accessTokens!!.clear()
     }
 
     internal class OtherException(message: String?) : RuntimeException(message)

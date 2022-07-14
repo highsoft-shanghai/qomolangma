@@ -13,7 +13,7 @@ class UseCaseAspect {
     private val authorizer: Authorizer = Authorizer()
 
     @Around("@within(useCase)")
-    fun process(joinPoint: ProceedingJoinPoint, useCase: UseCase): Any {
+    fun process(joinPoint: ProceedingJoinPoint, useCase: UseCase): Any? {
         authorizer.authorize(*useCase.requiredAuthorities)
         return joinPoint.proceed()
     }

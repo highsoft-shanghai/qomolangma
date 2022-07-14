@@ -7,6 +7,7 @@ import com.qomolangma.iam.domain.UserIdentityOwner;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
@@ -39,9 +40,13 @@ public class MemoryUser {
         return id;
     }
 
+    @NotNull
+    public String name() {
+        return userName;
+    }
+
     public User asDomain() {
         return User.restore(id, UserIdentityOwner.restore(new Identity(userAccountId, userAccountName), new Identity(userId, userName),
                 new Identity(tenantId, tenantName), password), GrantedAuthorities.of(grantedAuthorities));
     }
-
 }

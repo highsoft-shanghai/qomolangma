@@ -28,10 +28,8 @@ abstract class IntegrationTest : Rest() {
     private var accessToken: AccessToken? = null
 
     protected fun removeAccessToken() {
-        if (user != null) {
-            users!!.remove(user!!)
-            accessTokens!!.remove(accessToken!!)
-        }
+        users!!.clear()
+        accessTokens!!.clear()
     }
 
     @BeforeEach

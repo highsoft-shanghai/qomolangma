@@ -20,6 +20,10 @@ class MemoryUsers(
         return users.stream().filter { o -> id == o.id() }.findFirst().map(MemoryUser::asDomain)
     }
 
+    override fun getByName(name: String): Optional<User> {
+        return users.stream().filter { o -> name == o.name() }.findFirst().map(MemoryUser::asDomain)
+    }
+
     override fun save(user: User) {
         users.add(MemoryUser(user))
     }
@@ -28,7 +32,7 @@ class MemoryUsers(
         users.remove(MemoryUser(user))
     }
 
-    override fun removeAll() {
+    override fun clear() {
         users.clear()
     }
 }
