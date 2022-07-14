@@ -16,7 +16,7 @@ class GlobalTestContext {
         }
 
         fun token(): Optional<String> {
-            return context().map(Context::securityContext).map(SecurityContext::token)
+            return context().map(Context::securityContext).map(SecurityContext::id)
         }
 
         fun setup(grantedAuthorities: GrantedAuthorities?) {

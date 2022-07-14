@@ -13,7 +13,7 @@ internal class SimpleSecurityContextTest {
     @Test
     fun should_be_able_to_hold_granted_authorities() {
         val context = SimpleSecurityContext("simple", GrantedAuthorities.ANONYMOUS)
-        Assertions.assertThat(context.token()).isEqualTo("simple")
+        Assertions.assertThat(context.id()).isEqualTo("simple")
         Assertions.assertThat(context.grantedAuthorities()).isEqualTo(GrantedAuthorities.ANONYMOUS)
     }
 

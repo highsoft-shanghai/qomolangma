@@ -6,17 +6,17 @@ import lombok.*;
 @EqualsAndHashCode
 public class SimpleSecurityContext implements SecurityContext {
 
-    private final String token;
+    private final String id;
     private final GrantedAuthorities grantedAuthorities;
 
-    public SimpleSecurityContext(String token, GrantedAuthorities grantedAuthorities) {
-        this.token = token;
+    public SimpleSecurityContext(String id, GrantedAuthorities grantedAuthorities) {
+        this.id = id;
         this.grantedAuthorities = grantedAuthorities;
     }
 
     @Override
-    public String token() {
-        return token;
+    public String id() {
+        return id;
     }
 
     @Override

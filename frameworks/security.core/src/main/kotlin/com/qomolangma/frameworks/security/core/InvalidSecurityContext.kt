@@ -3,7 +3,7 @@ package com.qomolangma.frameworks.security.core
 import com.qomolangma.frameworks.domain.core.BadAccessTokenException
 
 class InvalidSecurityContext : SecurityContext {
-    override fun token(): String {
+    override fun id(): String {
         throw BadAccessTokenException()
     }
 

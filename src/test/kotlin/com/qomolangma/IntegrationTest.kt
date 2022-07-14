@@ -1,9 +1,11 @@
 package com.qomolangma
 
+import com.qomolangma.frameworks.domain.core.GlobalClock
 import com.qomolangma.frameworks.test.container.WithTestContainers
 import com.qomolangma.frameworks.test.moco.MocoContainer
 import com.qomolangma.frameworks.test.web.GlobalTestContext
 import com.qomolangma.frameworks.test.web.Rest
+import com.qomolangma.iam.domain.AccessToken
 import com.qomolangma.iam.domain.User
 import com.qomolangma.iam.domain.UserIdentityOwner
 import com.qomolangma.iam.domain.Users
@@ -18,29 +20,40 @@ import javax.annotation.Resource
 @WithTestContainers(containers = [MocoContainer::class])
 abstract class IntegrationTest : Rest() {
     @Resource
-    private val tokens: Users? = null
+    private val users: Users? = null
+
+    @Resource
+    private val accessTokens: User.AccessTokens? = null
     private var user: User? = null
+    private var accessToken: AccessToken? = null
 
     protected fun removeAccessToken() {
         if (user != null) {
-            tokens!!.remove(user!!)
+            users!!.remove(user!!)
+            accessTokens!!.remove(accessToken!!)
         }
     }
 
     @BeforeEach
     fun setupAccessToken() {
         GlobalTestContext.context().ifPresent { context ->
-            user = User.restore(
-                context.securityContext().token(),
+            user = User.create(
                 UserIdentityOwner(context.userContext()),
                 context.securityContext().grantedAuthorities()
             )
-            tokens!!.save(user!!)
+            accessToken = AccessToken(
+                user!!.id(),
+                context.securityContext().id(),
+                GlobalClock.now()
+            )
+            accessTokens!!.save(accessToken!!)
+            users!!.save(user!!)
         }
     }
 
     @AfterEach
     fun teardownAccessToken() {
         removeAccessToken()
+
     }
 }

@@ -24,7 +24,7 @@ public class MemoryUser {
     private Set<String> grantedAuthorities;
 
     public MemoryUser(User user) {
-        this.id = user.token();
+        this.id = user.id();
         this.userAccountId = user.owner().userAccount().id();
         this.userAccountName = user.owner().userAccount().name();
         this.userId = user.owner().user().id();

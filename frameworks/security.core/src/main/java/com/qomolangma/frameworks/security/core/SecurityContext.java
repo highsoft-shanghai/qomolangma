@@ -10,7 +10,7 @@ public interface SecurityContext {
         grantedAuthorities().authorize(requiredAuthorities);
     }
 
-    String token();
+    String id();
 
     GrantedAuthorities grantedAuthorities();
 

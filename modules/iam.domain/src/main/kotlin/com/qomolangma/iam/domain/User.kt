@@ -8,6 +8,7 @@ import com.qomolangma.frameworks.security.core.Context
 import com.qomolangma.frameworks.security.core.GrantedAuthorities
 import com.qomolangma.frameworks.security.core.SecurityContext
 import com.qomolangma.frameworks.security.core.SimpleSecurityContext
+import java.util.*
 
 class User : Context {
     private val id: Id
@@ -30,7 +31,7 @@ class User : Context {
         return owner
     }
 
-    fun token(): String {
+    fun id(): String {
         return id.id()
     }
 
@@ -43,13 +44,24 @@ class User : Context {
     }
 
     override fun securityContext(): SecurityContext {
-        return SimpleSecurityContext(token(), grantedAuthorities())
+        return SimpleSecurityContext(id(), grantedAuthorities())
     }
 
-    fun content(): Payload {
-        return append("accessToken", token())
+    fun content(accessTokens: AccessTokens): Payload {
+        return append("accessToken", accessToken(accessTokens))
             .append("authorities", grantedAuthorities.asSet())
             .build()
+    }
+
+    private fun accessToken(accessTokens: AccessTokens): String {
+        return accessTokens.getById(id()).get().token()
+    }
+
+    interface AccessTokens {
+        operator fun get(token: String): Optional<AccessToken>
+        fun getById(id: String): Optional<AccessToken>
+        fun save(accessToken: AccessToken)
+        fun remove(accessToken: AccessToken)
     }
 
     companion object {

@@ -13,7 +13,7 @@ internal class InvalidSecurityContextTest {
 
     @Test
     fun should_report_error_when_try_to_get_token() {
-        assertThatThrownBy { InvalidSecurityContext().token() }.isInstanceOf(
+        assertThatThrownBy { InvalidSecurityContext().id() }.isInstanceOf(
             AuthenticationException::class.java
         ).hasMessage("error.bad-token")
     }

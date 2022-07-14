@@ -34,7 +34,7 @@ internal class AccessTokenTest {
 
     @Test
     fun should_be_able_to_generate_id() {
-        assertThat(create(owner!!, authorities!!).token()).isEqualTo("fixed-id")
+        assertThat(create(owner!!, authorities!!).id()).isEqualTo("fixed-id")
     }
 
     @Test
