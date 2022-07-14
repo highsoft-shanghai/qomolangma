@@ -2,8 +2,9 @@ import React, {Component} from "react";
 import logo from "../../logo.svg";
 import './Root.css'
 import {Format} from "../../locales/format";
+import {User} from "../../domain/user/User";
 
-class Root extends Component<any, any> {
+class Root extends Component<any, User> {
   render() {
     return <>
       <div className="Main">
