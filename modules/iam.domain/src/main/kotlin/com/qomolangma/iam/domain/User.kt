@@ -62,6 +62,7 @@ class User : Context {
         fun getById(id: String): Optional<AccessToken>
         fun save(accessToken: AccessToken)
         fun remove(accessToken: AccessToken)
+        fun removeAll()
     }
 
     companion object {

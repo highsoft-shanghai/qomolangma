@@ -2,10 +2,12 @@ package com.qomolangma.iam.gateways.persistence;
 
 import com.qomolangma.iam.domain.AccessToken;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
+@EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemoryAccessToken {
     private String id;

@@ -24,4 +24,8 @@ class MemoryAccessTokens(
     override fun remove(accessToken: AccessToken) {
         tokens.remove(MemoryAccessToken(accessToken))
     }
+
+    override fun removeAll() {
+        tokens.clear()
+    }
 }

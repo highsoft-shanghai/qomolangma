@@ -54,6 +54,5 @@ abstract class IntegrationTest : Rest() {
     @AfterEach
     fun teardownAccessToken() {
         removeAccessToken()
-
     }
 }
