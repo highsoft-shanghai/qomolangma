@@ -18,7 +18,7 @@ class GetCurrentTest : ApiTest() {
         response.statusCode(`is`(200))
             .body("code", `is`("0"))
             .body("msg", `is`(""))
-            .body("data.accessToken", `is`("tester-token-id"))
+            .body("data.accessToken", `is`("Bearer tester-token-id"))
             .body("data.authorities", contains("grantedAuthority"))
     }
 
