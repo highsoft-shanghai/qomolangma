@@ -27,7 +27,7 @@ class GlobalTestContext {
         }
 
         fun teardown() {
-            INSTANCE.context = Context.ANONYMOUS
+            INSTANCE.context = null
         }
 
         private fun tenant(): Identity {

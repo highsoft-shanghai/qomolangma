@@ -8,6 +8,5 @@ interface Context {
 
     companion object {
         val INVALID: Context = SimpleContext(UserContext.INVALID, SecurityContext.INVALID)
-        val ANONYMOUS: Context = SimpleContext(UserContext.ANONYMOUS, SecurityContext.ANONYMOUS)
     }
 }
