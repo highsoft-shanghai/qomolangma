@@ -11,12 +11,12 @@ import java.time.Instant;
 public class AccessToken {
     private final Id id;
     private final String token;
-    private final Instant loginTime;
+    private final LoginTime loginTime;
 
     public AccessToken(String id, String token, Instant loginTime) {
         this.id = new Id(id);
         this.token = token;
-        this.loginTime = loginTime;
+        this.loginTime = new LoginTime(loginTime);
     }
 
     public String id() {
@@ -28,6 +28,10 @@ public class AccessToken {
     }
 
     public Instant loginTime() {
-        return loginTime;
+        return loginTime.loginTime();
+    }
+
+    public Boolean outOfDate() {
+        return loginTime.outOfDate();
     }
 }

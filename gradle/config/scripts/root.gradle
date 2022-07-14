@@ -5,6 +5,7 @@ dependencies {
     implementation project(":application.core")
     implementation project(":gateways.core")
     implementation project(":iam.gateways")
+    testImplementation project(":context.test")
     testImplementation project(":test.web")
     testImplementation project(":test.container")
     testImplementation project(":test.moco")
