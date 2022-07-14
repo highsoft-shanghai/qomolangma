@@ -8,7 +8,7 @@ class BearerToken(private val value: String?) {
     companion object {
         @JvmStatic
         fun create(token: String): BearerToken {
-            return BearerToken(token)
+            return BearerToken(BEARER + token)
         }
 
         @JvmStatic

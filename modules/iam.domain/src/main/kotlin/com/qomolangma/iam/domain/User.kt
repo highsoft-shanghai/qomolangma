@@ -50,13 +50,13 @@ class User : Context {
     }
 
     fun content(accessTokens: AccessTokens): Payload {
-        return append("accessToken", accessToken(accessTokens))
+        return append("accessToken", displayAccessToken(accessTokens))
             .append("authorities", grantedAuthorities.asSet())
             .build()
     }
 
-    fun accessToken(accessTokens: AccessTokens): String {
-        return accessTokens.getById(id()).get().token()
+    fun displayAccessToken(accessTokens: AccessTokens): String {
+        return accessTokens.getById(id()).get().displayToken()
     }
 
     interface AccessTokens {
@@ -75,7 +75,7 @@ class User : Context {
 
     fun login(password: String, accessTokens: AccessTokens, generator: TokenGenerator): Payload {
         owner.checkPassword(password)
-        return AccessToken.create(this, generator).addIn(accessTokens).content();
+        return AccessToken.create(this, generator).addIn(accessTokens).content()
     }
 
     companion object {

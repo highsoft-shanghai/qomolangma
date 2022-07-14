@@ -16,6 +16,7 @@ public class AccessToken {
     private final Id id;
     private final String token;
     private final LoginTime loginTime;
+
     public AccessToken(String id, String token, Instant loginTime) {
         this.id = new Id(id);
         this.token = token;
@@ -27,6 +28,10 @@ public class AccessToken {
     }
 
     public String token() {
+        return token;
+    }
+
+    public String displayToken() {
         return BearerToken.create(token).value();
     }
 
@@ -51,6 +56,6 @@ public class AccessToken {
     }
 
     public Payload content() {
-        return Payload.Companion.append("token", token()).build();
+        return Payload.Companion.append("token", displayToken()).build();
     }
 }
