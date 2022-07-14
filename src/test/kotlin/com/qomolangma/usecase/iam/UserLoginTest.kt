@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.restdocs.payload.PayloadDocumentation
 import org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath
 import org.springframework.restdocs.payload.PayloadDocumentation.requestFields
+import java.time.Instant
 import java.util.*
 import javax.annotation.Resource
 
@@ -36,6 +37,9 @@ class UserLoginTest : ApiTest() {
     @BeforeEach
     internal fun setUp() {
         users!!.add(user)
+        accessTokens!!.add(AccessToken(user.id(), "previous-token", Instant.now()))
+        accessTokens.add(AccessToken(user.id(), "previous-token", Instant.now()))
+        accessTokens.add(AccessToken("", "previous-token", Instant.now()))
     }
 
     @Test
@@ -46,9 +50,11 @@ class UserLoginTest : ApiTest() {
                 Pair("password", "123456"),
             ), document()
         )
+        val accessToken = user.accessToken(accessTokens!!)
+        assertThat(accessToken).isNotEqualTo("previous-token")
         post.statusCode(`is`(200))
             .body("code", `is`("0"))
-            .body("data.token", `is`(user.accessToken(accessTokens!!)))
+            .body("data.token", `is`(accessToken))
         assertThat(user.accessToken(accessTokens)).isNotEqualTo(Optional.empty<AccessToken>())
     }
 

@@ -45,6 +45,7 @@ public class AccessToken {
 
     @NotNull
     public AccessToken addIn(@NotNull User.AccessTokens accessTokens) {
+        accessTokens.remove(id());
         accessTokens.add(this);
         return this;
     }

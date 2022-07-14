@@ -10,8 +10,7 @@ class MemoryAccessTokens(
     private val tokens: MutableSet<MemoryAccessToken> = mutableSetOf(),
 ) : User.AccessTokens {
     override fun get(token: String): Optional<AccessToken> {
-        val optionalToken = tokens.stream().filter { o -> token == o.token() }.findFirst()
-        if (optionalToken.isPresent && optionalToken.get().asDomain().outOfDate()) tokens.remove(optionalToken.get())
+        tokens.removeIf { token == it.token() && it.asDomain().outOfDate() }
         return tokens.stream().filter { o -> token == o.token() }.findFirst().map(MemoryAccessToken::asDomain)
     }
 
@@ -21,6 +20,10 @@ class MemoryAccessTokens(
 
     override fun add(accessToken: AccessToken) {
         tokens.add(MemoryAccessToken(accessToken))
+    }
+
+    override fun remove(id: String) {
+        tokens.removeIf { id == it.id() }
     }
 
     override fun clear() {

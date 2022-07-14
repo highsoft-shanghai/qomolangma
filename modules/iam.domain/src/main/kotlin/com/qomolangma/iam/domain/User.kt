@@ -63,6 +63,7 @@ class User : Context {
         operator fun get(token: String): Optional<AccessToken>
         fun getById(id: String): Optional<AccessToken>
         fun add(accessToken: AccessToken)
+        fun remove(id: String)
         fun clear()
     }
 
