@@ -55,7 +55,7 @@ class User : Context {
             .build()
     }
 
-    private fun accessToken(accessTokens: AccessTokens): String {
+    fun accessToken(accessTokens: AccessTokens): String {
         return accessTokens.getById(id()).get().token()
     }
 
