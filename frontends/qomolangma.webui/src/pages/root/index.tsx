@@ -5,11 +5,6 @@ import {Format} from "../../locales/format";
 import {User} from "../../domain/user/User";
 
 class Root extends Component<any, User> {
-  constructor(props: any) {
-    super(props);
-  }
-
-
   async componentDidMount() {
     this.state = await User.findCurrentUser()
   }
@@ -25,6 +20,14 @@ class Root extends Component<any, User> {
           <a
             className="App-link"
             href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {Format.format("learn_react")}
+          </a>
+          <a
+            className="App-link"
+            href="/user/login"
             target="_blank"
             rel="noopener noreferrer"
           >
