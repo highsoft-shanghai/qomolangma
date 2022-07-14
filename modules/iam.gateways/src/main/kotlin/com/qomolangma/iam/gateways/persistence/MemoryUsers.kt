@@ -28,10 +28,6 @@ class MemoryUsers(
         users.add(MemoryUser(user))
     }
 
-    override fun remove(user: User) {
-        users.remove(MemoryUser(user))
-    }
-
     override fun clear() {
         users.clear()
     }

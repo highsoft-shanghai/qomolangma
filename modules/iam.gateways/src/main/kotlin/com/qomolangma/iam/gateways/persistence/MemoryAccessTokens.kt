@@ -23,10 +23,6 @@ class MemoryAccessTokens(
         tokens.add(MemoryAccessToken(accessToken))
     }
 
-    override fun remove(accessToken: AccessToken) {
-        tokens.remove(MemoryAccessToken(accessToken))
-    }
-
     override fun clear() {
         tokens.clear()
     }
