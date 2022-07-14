@@ -8,4 +8,5 @@ dependencies {
     implementation libs.springdoc
     implementation libs.springDataCommons
     implementation libs.jpa
+    implementation libs.jwt
 }

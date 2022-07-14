@@ -10,6 +10,10 @@ class LoginTime(private val loginTime: Instant) {
     }
 
     fun outOfDate(): Boolean {
-        return loginTime.plus(3, ChronoUnit.HOURS).isBefore(now())
+        return expireTime().isBefore(now())
+    }
+
+    fun expireTime(): Instant {
+        return loginTime.plus(3, ChronoUnit.HOURS)
     }
 }

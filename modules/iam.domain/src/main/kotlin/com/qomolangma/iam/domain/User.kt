@@ -73,9 +73,9 @@ class User : Context {
         users.add(this)
     }
 
-    fun login(password: String, accessTokens: AccessTokens): Payload {
+    fun login(password: String, accessTokens: AccessTokens, generator: TokenGenerator): Payload {
         owner.checkPassword(password)
-        return AccessToken.create(this).addIn(accessTokens).content();
+        return AccessToken.create(this, generator).addIn(accessTokens).content();
     }
 
     companion object {

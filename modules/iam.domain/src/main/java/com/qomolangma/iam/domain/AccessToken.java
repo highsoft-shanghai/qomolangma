@@ -39,8 +39,8 @@ public class AccessToken {
     }
 
     @NotNull
-    public static AccessToken create(@NotNull User user) {
-        return new AccessToken(user.id(), "", GlobalClock.now());
+    public static AccessToken create(@NotNull User user, TokenGenerator generator) {
+        return new AccessToken(user.id(), generator.generate(user.id(), GlobalClock.now()), GlobalClock.now());
     }
 
     @NotNull

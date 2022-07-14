@@ -4,18 +4,20 @@ import com.qomolangma.frameworks.application.core.UseCase
 import com.qomolangma.frameworks.payload.core.Payload
 import com.qomolangma.frameworks.payload.core.StringFieldType.Companion.asString
 import com.qomolangma.frameworks.security.core.Authorities
+import com.qomolangma.iam.domain.TokenGenerator
 import com.qomolangma.iam.domain.User
 import com.qomolangma.iam.domain.Users
 
 @UseCase([Authorities.ANONYMOUS])
 class LoginUseCase(
     private val users: Users,
-    private val accessTokens: User.AccessTokens
+    private val accessTokens: User.AccessTokens,
+    private val generator: TokenGenerator
 ) {
     fun execute(payload: Payload): Payload {
         return users
             .getByName(payload["userName", asString()])
-            .map { it.login(payload["password", asString()], accessTokens) }
+            .map { it.login(payload["password", asString()], accessTokens, generator) }
             .orElseThrow { IllegalArgumentException("error.login-fail") }
     }
 }

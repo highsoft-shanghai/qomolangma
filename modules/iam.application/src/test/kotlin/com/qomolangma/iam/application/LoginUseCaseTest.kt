@@ -2,6 +2,7 @@ package com.qomolangma.iam.application
 
 import com.qomolangma.frameworks.core.test.WithMocks
 import com.qomolangma.frameworks.payload.core.Payload
+import com.qomolangma.iam.domain.TokenGenerator
 import com.qomolangma.iam.domain.User
 import com.qomolangma.iam.domain.Users
 import org.junit.jupiter.api.Assertions.assertThrows
@@ -14,7 +15,8 @@ import java.util.*
 @WithMocks
 internal class LoginUseCaseTest(
     @Mock private val users: Users,
-    @Mock private val accessTokens: User.AccessTokens
+    @Mock private val accessTokens: User.AccessTokens,
+    @Mock private val generator: TokenGenerator
 ) {
     @BeforeEach
     internal fun setUp() {
@@ -24,10 +26,9 @@ internal class LoginUseCaseTest(
     @Test
     internal fun should_throw_when_no_this_user() {
         assertThrows(IllegalArgumentException::class.java) {
-            LoginUseCase(
-                users,
-                accessTokens
-            ).execute(Payload.append("userName", "Neil").append("password", "123456").build())
+            LoginUseCase(users, accessTokens, generator).execute(
+                Payload.append("userName", "Neil").append("password", "123456").build()
+            )
         }
     }
 }
