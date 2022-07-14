@@ -6,7 +6,7 @@ import com.qomolangma.frameworks.gateways.core.OpenHostService
 import com.qomolangma.frameworks.security.core.Authorities
 import org.springframework.web.bind.annotation.GetMapping
 
-@UseCase(requiredAuthorities = [Authorities.AUTHENTICATED])
+@UseCase(requiredAuthorities = [Authorities.ANONYMOUS])
 @OpenHostService
 class TestApi{
     @GetMapping("/test-not-found")

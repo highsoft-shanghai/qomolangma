@@ -6,7 +6,10 @@ import com.qomolangma.frameworks.bean.core.Application401Exception
 import com.qomolangma.frameworks.bean.core.Application409Exception
 import com.qomolangma.frameworks.bean.core.ApplicationException
 import com.qomolangma.frameworks.security.core.ContextLoader
+import com.qomolangma.frameworks.security.core.GrantedAuthorities
+import com.qomolangma.frameworks.test.web.GlobalTestContext
 import com.qomolangma.frameworks.test.web.WithGrantedAuthorities
+import com.qomolangma.iam.domain.AccessTokens
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
@@ -21,9 +24,13 @@ internal class ApplicationExceptionAspectTest : IntegrationTest() {
     @Resource
     private val contextLoader: ContextLoader? = null
 
+    @Resource
+    private val accessTokens: AccessTokens? = null
+
     @BeforeEach
     internal fun setUp() {
-        contextLoader!!.load("grantedAuthority")
+        GlobalTestContext.setup(GrantedAuthorities.of("grantedAuthority"))
+        contextLoader!!.load("tester-token-id")
     }
 
     @Test
@@ -57,6 +64,7 @@ internal class ApplicationExceptionAspectTest : IntegrationTest() {
     @AfterEach
     internal fun tearDown() {
         contextLoader!!.clear()
+        accessTokens!!.removeAll()
     }
 
     internal class OtherException(message: String?) : RuntimeException(message)
