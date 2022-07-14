@@ -1,7 +1,7 @@
 import {screen} from '@testing-library/react';
-import RootPage from "../../pages/rootPage"
-import {ENRender} from "../ENRender";
-import {ZHRender} from "../ZHRender";
+import RootPage from "../../../pages/rootPage"
+import {ENRender} from "../../ENRender";
+import {ZHRender} from "../../ZHRender";
 
 test('should render RootPage in English', () => {
   ENRender.render(new RootPage(null).render())
