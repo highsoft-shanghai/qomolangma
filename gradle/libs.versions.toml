@@ -16,7 +16,7 @@ flyaway = "8.5.12"
 springBootJDBC = "2.6.1"
 springdoc = "1.6.1"
 mongock = "4.3.8"
-jjwt = "3.18.2"
+jwt = "3.18.2"
 springSecurityCore = "5.1.5.RELEASE"
 spring-doc = "1.6.1"
 spring-restdocs = "2.0.6.RELEASE"
@@ -58,7 +58,7 @@ springBootConfigurationProcessor = { module = "org.springframework.boot:spring-b
 flyaway = { module = "org.flywaydb:flyway-core", version.ref = "flyaway" }
 springBootJDBC = { module = "org.springframework.boot:spring-boot-starter-jdbc", version.ref = "springBootJDBC" }
 springdoc = { module = "org.springdoc:springdoc-openapi-ui", version.ref = "springdoc" }
-jjwt = { module = "com.auth0:java-jwt", version.ref = "jjwt" }
+jwt = { module = "com.auth0:java-jwt", version.ref = "jjwt" }
 moco = { module = "com.github.dreamhead:moco-core", version.ref = "moco" }
 spring-doc = { module = "org.springdoc:springdoc-openapi-ui", version.ref = "spring-doc" }
 h2 = { module = "com.h2database:h2", version.ref = "h2" }
