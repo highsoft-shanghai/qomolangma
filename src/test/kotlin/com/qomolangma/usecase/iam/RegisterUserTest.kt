@@ -1,6 +1,9 @@
 package com.qomolangma.usecase.iam
 
 import com.qomolangma.ApiTest
+import com.qomolangma.frameworks.domain.core.FixedIdGenerator
+import com.qomolangma.frameworks.domain.core.GlobalIdGeneratorResetter
+import com.qomolangma.frameworks.domain.core.UuidBasedIdGenerator
 import com.qomolangma.frameworks.test.context.WithGlobalId
 import com.qomolangma.frameworks.test.web.Documentation
 import com.qomolangma.frameworks.test.web.Documentation.Companion.doc
@@ -22,6 +25,7 @@ class RegisterUserTest : ApiTest() {
 
     @Test
     internal fun should_register_user_successfully() {
+        GlobalIdGeneratorResetter.reset(FixedIdGenerator("1234"))
         val post = post(
             "/user/register", variables(mapOf<String, Any>()), mapOf(
                 Pair("userAccountName", "Qomolangma"),
@@ -33,12 +37,13 @@ class RegisterUserTest : ApiTest() {
             ), document()
         )
         post.statusCode(`is`(200)).body("code", `is`("0"))
-        assertEquals("Neil", users!!["id"].get().owner().user().name())
+        assertEquals("Neil", users!!["1234"].get().owner().user().name())
     }
 
     @AfterEach
     internal fun tearDown() {
         users!!.clear()
+        GlobalIdGeneratorResetter.reset(UuidBasedIdGenerator())
     }
 
     override fun document(): Documentation {
