@@ -28,6 +28,15 @@ object Exceptions {
     }
 
     @JvmStatic
+    fun <R> ignored(supplier: SupplierWithCheckedException<R?>, default: R?): R? {
+        return try {
+            supplier.get()
+        } catch (ignored: Exception) {
+            default
+        }
+    }
+
+    @JvmStatic
     fun wrap(throwable: Throwable): RuntimeException {
         return if (throwable is RuntimeException) throwable else RuntimeException(throwable)
     }

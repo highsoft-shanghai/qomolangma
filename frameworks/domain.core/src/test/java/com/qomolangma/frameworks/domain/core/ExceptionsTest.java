@@ -63,6 +63,18 @@ public class ExceptionsTest {
     }
 
     @Test
+    void should_evaluate_ignored_method_when_method_is_good() throws IOException {
+        when(mock.evaluate()).thenReturn("");
+        assertEquals("", Exceptions.ignored(mock::evaluate, ""));
+    }
+
+    @Test
+    void should_return_default_when_evaluate_method_throws() throws IOException {
+        when(mock.evaluate()).thenThrow(new IOException());
+        assertEquals("abc", Exceptions.ignored(mock::evaluate, "abc"));
+    }
+
+    @Test
     void should_be_able_to_evaluate_method_when_method_is_good() {
         assertEquals("test", Exceptions.evaluate(() -> "test"));
     }
