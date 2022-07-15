@@ -19,7 +19,6 @@ import org.springframework.restdocs.operation.preprocess.Preprocessors
 import org.springframework.restdocs.restassured3.RestAssuredOperationPreprocessorsConfigurer
 import org.springframework.restdocs.restassured3.RestAssuredRestDocumentation.document
 import org.springframework.restdocs.restassured3.RestAssuredRestDocumentation.documentationConfiguration
-import java.lang.reflect.Method
 
 @AutoConfigureRestDocs
 open class Rest {
@@ -57,10 +56,9 @@ open class Rest {
     @BeforeEach
     fun setupRestDoc(info: TestInfo) {
         val builder = RequestSpecBuilder()
-        GlobalTestContext.token().ifPresent { x -> setupAuth(builder, x) }
+        GlobalTestContext.token().ifPresent { setupAuth(builder, it) }
         spec = builder.addFilter(documentationFilter()).build()
-        documentation.beforeTest(javaClass, info.testMethod.map { obj: Method -> obj.name }
-            .orElse(""))
+        documentation.beforeTest(javaClass, info.testMethod.map { it.name }.orElse(""))
     }
 
     private fun setupAuth(builder: RequestSpecBuilder, token: String) {

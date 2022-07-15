@@ -10,11 +10,11 @@ open class ExceptionTranslator(private val messageResolver: MessageResolver) {
     }
 
     private fun initializeHandlerChain() {
-        handlerChain.add(BiFunction { error, throwable -> handleApplicationException(error, throwable) })
+        handlerChain.add { error, throwable -> handleApplicationException(error, throwable) }
     }
 
     fun handle(error: MutableMap<String, Any>, throwable: Throwable?) {
-        handlerChain.stream().anyMatch { x -> x.apply(error, throwable) }
+        handlerChain.stream().anyMatch { it.apply(error, throwable) }
     }
 
     fun handleApplicationException(error: MutableMap<String, Any>, throwable: Throwable?): Boolean {

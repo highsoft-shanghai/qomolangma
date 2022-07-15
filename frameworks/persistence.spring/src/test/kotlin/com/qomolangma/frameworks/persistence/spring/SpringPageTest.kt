@@ -60,7 +60,7 @@ internal class SpringPageTest {
     @Test
     fun should_be_able_to_map_to_others() {
         val page = from(PageImpl(listOf("a", "b"), Pageable.ofSize(5).next().next(), 30))
-        Assertions.assertThat(page.map { x: String -> x + x }.content()).containsExactly("aa", "bb")
+        Assertions.assertThat(page.map { it + it }.content()).containsExactly("aa", "bb")
     }
 
     @Test

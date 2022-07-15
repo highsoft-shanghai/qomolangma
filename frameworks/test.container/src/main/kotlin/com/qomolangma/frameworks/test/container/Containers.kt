@@ -14,8 +14,8 @@ class Containers<A : Annotation?>(
     fun startContainer() {
         val annotation = AnnotationUtils.findAnnotation(context.requiredTestClass, type)
         val containerClasses = listOf(*annotation.map(containers).orElse(arrayOf()))
-        val newContainerClasses = containerClasses.stream().filter { x: Class<*> -> !CONTAINERS.containsKey(x) }
-        newContainerClasses.parallel().forEach { containerClass: Class<*> -> this.startContainer(containerClass) }
+        val newContainerClasses = containerClasses.stream().filter { !CONTAINERS.containsKey(it) }
+        newContainerClasses.parallel().forEach { this.startContainer(it) }
     }
 
     private fun startContainer(containerClass: Class<*>) {

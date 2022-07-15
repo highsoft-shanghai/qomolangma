@@ -16,8 +16,8 @@ class ConvertRules<D> @SafeVarargs constructor(vararg conventions: ConvertRule<D
     fun convert(d: D): Map<String, Any> {
         return conventions().stream().collect(
             Collectors.toMap(
-                { obj -> obj.name() },
-                { c -> c.apply(d) },
+                { it.name() },
+                { it.apply(d) },
                 { _, o2 -> o2 },
                 { LinkedHashMap() })
         )

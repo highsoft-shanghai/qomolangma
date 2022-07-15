@@ -17,11 +17,11 @@ class MemoryUsers(
     }
 
     override fun get(id: String): Optional<User> {
-        return users.stream().filter { o -> id == o.id() }.findFirst().map(MemoryUser::asDomain)
+        return users.stream().filter { id == it.id() }.findFirst().map(MemoryUser::asDomain)
     }
 
     override fun getByName(name: String): Optional<User> {
-        return users.stream().filter { o -> name == o.name() }.findFirst().map(MemoryUser::asDomain)
+        return users.stream().filter { name == it.name() }.findFirst().map(MemoryUser::asDomain)
     }
 
     override fun add(user: User) {

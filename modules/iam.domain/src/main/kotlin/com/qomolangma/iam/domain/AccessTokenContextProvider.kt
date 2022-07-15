@@ -6,6 +6,6 @@ import java.util.*
 
 class AccessTokenContextProvider(private val users: Users) : ContextProvider {
     override fun get(token: String): Optional<Context> {
-        return users.optionalAccessTokenFor(token).map { x -> x }
+        return users.optionalAccessTokenFor(token).map { it }
     }
 }

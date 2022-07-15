@@ -11,11 +11,11 @@ class MemoryAccessTokens(
 ) : User.AccessTokens {
     override fun get(token: String): Optional<AccessToken> {
         tokens.removeIf { token == it.token() && it.asDomain().outOfDate() }
-        return tokens.stream().filter { o -> token == o.token() }.findFirst().map(MemoryAccessToken::asDomain)
+        return tokens.stream().filter { token == it.token() }.findFirst().map(MemoryAccessToken::asDomain)
     }
 
     override fun getById(id: String): Optional<AccessToken> {
-        return tokens.stream().filter { o -> id == o.id() }.findFirst().map(MemoryAccessToken::asDomain)
+        return tokens.stream().filter { id == it.id() }.findFirst().map(MemoryAccessToken::asDomain)
     }
 
     override fun add(accessToken: AccessToken) {

@@ -10,6 +10,6 @@ import com.qomolangma.iam.domain.Users
 @UseCase(requiredAuthorities = [Authorities.AUTHENTICATED])
 class GetAccessTokenContentUseCase(private val users: Users, private val accessTokens: User.AccessTokens) {
     fun execute(): Payload {
-        return users[securityContext().id()].map { obj -> obj.content(accessTokens) }.get()
+        return users[securityContext().id()].map { it.content(accessTokens) }.get()
     }
 }

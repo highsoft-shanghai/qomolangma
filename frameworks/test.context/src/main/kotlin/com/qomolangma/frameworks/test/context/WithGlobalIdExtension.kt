@@ -11,7 +11,7 @@ import org.junit.platform.commons.util.AnnotationUtils
 class WithGlobalIdExtension : BeforeEachCallback, AfterEachCallback {
     override fun beforeEach(context: ExtensionContext) {
         val annotation = AnnotationUtils.findAnnotation(context.requiredTestClass, WithGlobalId::class.java)
-        annotation.ifPresent { x: WithGlobalId -> reset(FixedIdGenerator(x.value)) }
+        annotation.ifPresent { reset(FixedIdGenerator(it.value)) }
     }
 
     override fun afterEach(context: ExtensionContext) {

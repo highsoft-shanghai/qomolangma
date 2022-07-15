@@ -34,14 +34,14 @@ abstract class IntegrationTest : Rest() {
 
     @BeforeEach
     fun setupAccessToken() {
-        GlobalTestContext.context().ifPresent { context ->
+        GlobalTestContext.context().ifPresent {
             user = User.create(
-                UserIdentityOwner(context.userContext()),
-                context.securityContext().grantedAuthorities()
+                UserIdentityOwner(it.userContext()),
+                it.securityContext().grantedAuthorities()
             )
             accessToken = AccessToken(
                 user!!.id(),
-                context.securityContext().id(),
+                it.securityContext().id(),
                 GlobalClock.now()
             )
             accessTokens!!.add(accessToken!!)

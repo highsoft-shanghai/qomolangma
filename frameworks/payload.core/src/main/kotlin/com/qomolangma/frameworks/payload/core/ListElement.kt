@@ -10,8 +10,7 @@ class ListElement<D> constructor(vararg conventions: ConvertRule<D>) {
     }
 
     fun transform(objects: List<D>): List<Map<String, Any>> {
-        return objects.stream().map { d: D -> conventions.convert(d) }
-            .collect(Collectors.toList())
+        return objects.stream().map(conventions::convert).collect(Collectors.toList())
     }
 
     companion object {

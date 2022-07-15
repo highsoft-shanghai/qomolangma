@@ -27,7 +27,8 @@ class UuidBasedIdGeneratorTest {
     fun should_generate_readable_identity_correctly() {
         Assertions.assertThat(idGenerator!!.nextReadable().length).isEqualTo(21)
         Assertions.assertThat(
-            idGenerator!!.nextReadable().chars().allMatch { codePoint: Int -> Character.isDigit(codePoint) }).isTrue
+            idGenerator!!.nextReadable().chars().allMatch(Character::isDigit)
+        ).isTrue
     }
 
     @Test
