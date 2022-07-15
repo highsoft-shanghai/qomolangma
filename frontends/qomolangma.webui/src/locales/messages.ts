@@ -5,14 +5,10 @@ export const messages = {
     test: 'test translate',
     project_app: 'Qomolangma frontend app.',
     learn_react: 'Learn React',
-
-    root_login: 'Login'
   },
   [LOCALES.CHINESE]: {
     test: '测试翻译',
     project_app: 'Qomolangma 前端应用。',
     learn_react: '学习 React',
-
-    root_login: '登录'
   }
 }

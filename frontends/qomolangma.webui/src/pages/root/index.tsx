@@ -6,7 +6,11 @@ import {User} from "../../domain/user/User";
 
 class Root extends Component<any, User> {
   async componentDidMount() {
-    this.state = await User.findCurrentUser()
+    try {
+      this.state = await User.findCurrentUser()
+    } catch (e) {
+      window.location.href = "/user/login"
+    }
   }
 
   render() {
@@ -24,13 +28,6 @@ class Root extends Component<any, User> {
             rel="noopener noreferrer"
           >
             {Format.format("learn_react")}
-          </a>
-          <a
-            className="App-link"
-            href="/user/login"
-            target="_blank"
-          >
-            {Format.format("root_login")}
           </a>
         </header>
       </div>
