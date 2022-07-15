@@ -20,6 +20,14 @@ object Exceptions {
     }
 
     @JvmStatic
+    fun ignored(runnable: RunnableWithCheckedException) {
+        try {
+            runnable.run()
+        } catch (ignored: Exception) {
+        }
+    }
+
+    @JvmStatic
     fun wrap(throwable: Throwable): RuntimeException {
         return if (throwable is RuntimeException) throwable else RuntimeException(throwable)
     }

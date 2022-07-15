@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
@@ -46,6 +47,19 @@ public class ExceptionsTest {
         when(mock.evaluate()).thenReturn("");
         Exceptions.execute(mock::execute);
         then(mock).should(only()).execute();
+    }
+
+    @Test
+    void should_execute_method_when_method_is_good() throws IOException {
+        when(mock.evaluate()).thenReturn("");
+        Exceptions.ignored(mock::execute);
+        then(mock).should(only()).execute();
+    }
+
+    @Test
+    void should_not_throw_when_method_throws() throws IOException {
+        when(mock.evaluate()).thenThrow(IOException.class);
+        assertDoesNotThrow(() -> Exceptions.ignored(mock::execute));
     }
 
     @Test
