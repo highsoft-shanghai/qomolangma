@@ -58,7 +58,7 @@ public class ExceptionsTest {
 
     @Test
     void should_not_throw_when_method_throws() throws IOException {
-        when(mock.evaluate()).thenThrow(IOException.class);
+        doThrow(new RuntimeException()).when(mock).execute();
         assertDoesNotThrow(() -> Exceptions.ignored(mock::execute));
     }
 
