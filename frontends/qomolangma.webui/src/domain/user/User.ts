@@ -11,12 +11,15 @@ export class User {
   readonly accessToken?: String | undefined
   readonly authorities?: String[] | undefined
 
-  constructor(userName: String, password: String, userAccountName?: String, tenantName?: String, authorities?: String[]) {
+  constructor(userName: String, password: String, userAccountName?: String, tenantName?: String, authorities?: String[],
+              id?: String, accessToken?: String) {
     this.password = password;
     this.userName = userName;
     this.userAccountName = userAccountName;
     this.tenantName = tenantName;
     this.authorities = authorities;
+    this.id = id;
+    this.accessToken = accessToken;
   }
 
   async login() {

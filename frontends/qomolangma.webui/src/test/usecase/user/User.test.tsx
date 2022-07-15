@@ -2,6 +2,7 @@ import nock from 'nock';
 import AxiosHttp from '../../../acl/AxiosHttp';
 import {User} from '../../../domain/user/User';
 import {EnvironmentUrls} from '../../../frameworks/EnvironmentUrls';
+import Http from "../../../frameworks/http";
 
 const scope = nock(EnvironmentUrls['test'])
 let assignMock: jest.Mock<any, any>
@@ -77,6 +78,6 @@ test('should register one user', async () => {
 
 afterEach(() => {
   scope.removeAllListeners()
-  AxiosHttp.reset()
+  Http.reset()
   assignMock.mockClear()
 })

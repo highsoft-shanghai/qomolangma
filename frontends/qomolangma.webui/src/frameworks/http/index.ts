@@ -24,6 +24,10 @@ export class Http {
   public async login(user: User) {
     await this.instance.login(this.requestUrl, user)
   }
+
+  reset() {
+    this.instance.reset()
+  }
 }
 
 export default makeSingleton(Http)();

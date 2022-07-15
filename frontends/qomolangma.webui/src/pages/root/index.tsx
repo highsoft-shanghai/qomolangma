@@ -3,14 +3,28 @@ import logo from "../../logo.svg";
 import './Root.css'
 import {Format} from "../../locales/format";
 import {User} from "../../domain/user/User";
+import Http from "../../frameworks/http";
 
 class Root extends Component<any, User> {
-  async componentDidMount() {
-    try {
-      this.state = await User.findCurrentUser()
-    } catch (e) {
-      window.location.href = "/user/login"
-    }
+  constructor(props: any) {
+    super(props);
+    this.state = new User('Not login yet.', '', '', '', [], '', '')
+  }
+
+  componentDidMount() {
+    User.findCurrentUser()
+      .then(user => this.setState(user))
+      .catch(e => {
+        if (e.message === "error.bad-token") {
+          alert('Login expired.')
+          Http.reset()
+        }
+        if (e.message === "error.authentication-required") {
+          alert('Not login yet.')
+          window.location.href = "/user/login"
+        }
+        if (e.message === "Network Error") alert(e.message)
+      })
   }
 
   render() {
@@ -29,6 +43,9 @@ class Root extends Component<any, User> {
           >
             {Format.format("learn_react")}
           </a>
+          <p>
+            {Format.format('current_user')}: {this.state.userName}
+          </p>
         </header>
       </div>
     </>;
