@@ -1,12 +1,12 @@
 import {CurrentUserFetcher} from "../../acl/CurrentUserFetcher";
 
 export class User {
-  id: String | undefined
-  userAccountName: String | undefined
-  userName: String | undefined
-  tenantName: String | undefined
-  accessToken: String | undefined
-  authorities: String[] | undefined
+  readonly id: String | undefined
+  readonly userAccountName: String | undefined
+  readonly userName: String | undefined
+  readonly tenantName: String | undefined
+  readonly accessToken: String | undefined
+  readonly authorities: String[] | undefined
 
   static async findCurrentUser(): Promise<User> {
     return new CurrentUserFetcher().fetch()
