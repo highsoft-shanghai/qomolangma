@@ -21,6 +21,20 @@ beforeEach(() => {
       ]
     }
   }, {'Access-Control-Allow-Origin': '*'})
+  scope.post(`/user/register`, {
+    "userAccountName": "Qomolangma",
+    "userName": "Neil",
+    "tenantName": "qomolangma.com",
+    "password": "123456",
+    "confirmedPassword": "123456",
+    "grantedAuthorities": [
+      "system"
+    ]
+  }).reply(200, {
+    "code": "0",
+    "msg": "",
+    "data": null
+  })
   scope.post(`/user/login`, {
     "userName": "Neil",
     "password": "123456"
@@ -48,12 +62,17 @@ test('should fetch current user', async () => {
   expect(user.authorities).toStrictEqual(["api-fox"])
 })
 
-test('should login successfully', async () => {
+test('should login', async () => {
   let user = new User("Neil", "123456")
   await user.login()
   expect(AxiosHttp.headers).not.toBeUndefined()
   // @ts-ignore
   expect(AxiosHttp.headers.Authorization).toBe("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblRpbWUiOiIyMDIyLTA3LTE1VDA4OjEwOjQyLjg1MDkyNloiLCJub3ciOiIyMDIyLTA3LTE1VDA4OjEwOjQyLjg1NTIwOFoiLCJpZCI6IjQ0NzcxMjE4NzliMDRlNjhiNzRhODI5NDhhNzVmZjZlIiwiZXhwIjoxNjU3ODgzNDQyfQ.ZmvJSA3S3ZUXb8BzhKSWKNd9bAo3Eoi2gq8KRDmLPBw")
+})
+
+test('should register one user', async () => {
+  let user = new User("Neil", "123456", "Qomolangma", "qomolangma.com", ["system"])
+  await user.register("123456")
 })
 
 afterEach(() => {

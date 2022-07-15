@@ -27,7 +27,7 @@ export class AxiosHttp {
   }
 
   async login(requestUrl: string, user: User) {
-    let res = await this.post("/user/login", requestUrl, user.loginData())
+    let res = await this.post("/user/login", requestUrl, user.loginContext())
     this._headers = {Authorization: res.token}
   }
 

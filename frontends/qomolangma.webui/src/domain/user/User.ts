@@ -1,5 +1,6 @@
 import {CurrentUserFetcher} from "../../acl/CurrentUserFetcher";
 import {LoginFetcher} from "../../acl/LoginFetcher";
+import {RegisterFetcher} from "../../acl/RegisterFetcher";
 
 export class User {
   readonly id?: String | undefined
@@ -23,7 +24,12 @@ export class User {
     window.location.href = "/"
   }
 
-  loginData() {
+  async register(confirmedPassword: string) {
+    await new RegisterFetcher().fetch(this, confirmedPassword)
+    window.location.href = "/user/login"
+  }
+
+  loginContext() {
     return {
       data: {
         "userName": this.userName,
@@ -32,6 +38,18 @@ export class User {
     }
   }
 
+  registerContext(confirmedPassword: string) {
+    return {
+      data: {
+        "userAccountName": this.userAccountName,
+        "userName": this.userName,
+        "tenantName": this.tenantName,
+        "password": this.password,
+        "confirmedPassword": confirmedPassword,
+        "grantedAuthorities": this.authorities
+      }
+    }
+  }
 
   static async findCurrentUser(): Promise<User> {
     return new CurrentUserFetcher().fetch()
