@@ -14,6 +14,8 @@ class Login extends Component<any, any> {
         </div>
         <button onClick={this.login.bind(this)}>Login
         </button>
+        <button onClick={this.register.bind(this)}>Register
+        </button>
       </div>
     </>;
   }
@@ -26,6 +28,10 @@ class Login extends Component<any, any> {
       document.getElementById('password').value)
       .login()
       .catch(error => alert(error.message))
+  }
+
+  public register() {
+    window.location.href = "/user/register"
   }
 }
 
