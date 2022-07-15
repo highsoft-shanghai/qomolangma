@@ -16,6 +16,8 @@ class Login extends Component<any, any> {
         </button>
         <button onClick={this.register.bind(this)}>Register
         </button>
+        <button onClick={this.back.bind(this)}>Main
+        </button>
       </div>
     </>;
   }
@@ -32,6 +34,10 @@ class Login extends Component<any, any> {
 
   public register() {
     window.location.href = "/user/register"
+  }
+
+  public back() {
+    window.location.href = "/"
   }
 }
 

@@ -21,7 +21,6 @@ class Root extends Component<any, User> {
         }
         if (e.message === "error.authentication-required") {
           alert('Not login yet.')
-          window.location.href = "/user/login"
         }
         if (e.message === "Network Error") alert(e.message)
       })
@@ -46,9 +45,22 @@ class Root extends Component<any, User> {
           <p>
             {Format.format('current_user')}: {this.state.userName}
           </p>
+          <button onClick={this.login.bind(this)}>Login
+          </button>
+          <button onClick={this.logout.bind(this)}>Logout
+          </button>
         </header>
       </div>
     </>;
+  }
+
+  public login() {
+    window.location.href = "/user/login"
+  }
+
+  public logout() {
+    Http.reset()
+    this.setState(new User('Not login yet.', '', '', '', [], '', ''))
   }
 }
 

@@ -27,6 +27,8 @@ class Register extends Component<any, any> {
         </div>
         <button onClick={this.register.bind(this)}>Register
         </button>
+        <button onClick={this.back.bind(this)}>Main
+        </button>
       </div>
     </>;
   }
@@ -52,6 +54,10 @@ class Register extends Component<any, any> {
         alert('Register success.')
       })
       .catch(error => alert(error.message))
+  }
+
+  public back() {
+    window.location.href = "/"
   }
 }
 
