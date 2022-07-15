@@ -3,18 +3,15 @@ import {User} from "../../domain/user/User";
 import makeSingleton from "../../frameworks/makeSingleton";
 
 export class AxiosHttp {
-  private readonly impl: AxiosInstance
-  private _headers: { Authorization: string } | undefined
-
-  public constructor() {
-    this.impl = axios.create({
+  public buildAxios(): AxiosInstance {
+    return axios.create({
       timeout: 10 * 1000,
-      headers: this._headers
+      headers: this.headers
     });
   }
 
   public async get(url: string, requestUrl: string, options?: AxiosRequestConfig) {
-    const response = await this.impl.get(
+    const response = await this.buildAxios().get(
       url,
       Object.assign(options || {}, {baseURL: requestUrl})
     );
@@ -22,17 +19,19 @@ export class AxiosHttp {
   }
 
   public async post(url: string, requestUrl: string, options: AxiosRequestConfig) {
-    const response = await this.impl.post(requestUrl + url, options.data);
+    const response = await this.buildAxios().post(requestUrl + url, options.data);
     return this.response(response);
   }
 
   async login(requestUrl: string, user: User) {
     let res = await this.post("/user/login", requestUrl, user.loginContext())
-    this._headers = {Authorization: res.token}
+    localStorage.setItem("Qomolangma Token", res.token)
   }
 
   get headers(): { Authorization: string } | undefined {
-    return this._headers;
+    if (localStorage.getItem("Qomolangma Token") === null) return undefined
+    // @ts-ignore
+    return {Authorization: localStorage.getItem("Qomolangma Token")}
   }
 
   public response(response: AxiosResponse<any>) {
@@ -42,7 +41,7 @@ export class AxiosHttp {
   }
 
   public reset() {
-    this._headers = undefined
+    localStorage.removeItem("Qomolangma Token")
   }
 }
 

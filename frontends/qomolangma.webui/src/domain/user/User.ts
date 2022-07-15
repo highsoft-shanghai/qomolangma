@@ -26,7 +26,7 @@ export class User {
 
   async register(confirmedPassword: string) {
     await new RegisterFetcher().fetch(this, confirmedPassword)
-    window.location.href = "/user/login"
+    // window.location.href = "/user/login"
   }
 
   loginContext() {
