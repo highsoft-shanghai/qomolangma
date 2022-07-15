@@ -4,6 +4,7 @@ import {User} from "../../../domain/user/User";
 import {EnvironmentUrls} from "../../../frameworks/EnvironmentUrls";
 
 const scope = nock(EnvironmentUrls['test'])
+let assignMock: jest.Mock<any, any>
 
 beforeEach(() => {
   scope.get(`/access-tokens/current`).reply(200, {
@@ -30,6 +31,11 @@ beforeEach(() => {
       "token": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblRpbWUiOiIyMDIyLTA3LTE1VDA4OjEwOjQyLjg1MDkyNloiLCJub3ciOiIyMDIyLTA3LTE1VDA4OjEwOjQyLjg1NTIwOFoiLCJpZCI6IjQ0NzcxMjE4NzliMDRlNjhiNzRhODI5NDhhNzVmZjZlIiwiZXhwIjoxNjU3ODgzNDQyfQ.ZmvJSA3S3ZUXb8BzhKSWKNd9bAo3Eoi2gq8KRDmLPBw"
     }
   }, {'Access-Control-Allow-Origin': '*'})
+  assignMock = jest.fn()
+  // @ts-ignore
+  delete window.location
+  // @ts-ignore
+  window.location = {assign: assignMock}
 })
 
 test('should fetch current user', async () => {
@@ -53,4 +59,5 @@ test('should login successfully', async () => {
 afterEach(() => {
   scope.removeAllListeners()
   AxiosHttp.reset()
+  assignMock.mockClear()
 })

@@ -10,13 +10,17 @@ export class User {
   readonly accessToken?: String | undefined
   readonly authorities?: String[] | undefined
 
-  constructor(userName: String | undefined, password: String | undefined) {
+  constructor(userName: String, password: String, userAccountName?: String, tenantName?: String, authorities?: String[]) {
     this.password = password;
     this.userName = userName;
+    this.userAccountName = userAccountName;
+    this.tenantName = tenantName;
+    this.authorities = authorities;
   }
 
   async login() {
     await new LoginFetcher().fetch(this)
+    window.location.href = "/"
   }
 
   loginData() {
