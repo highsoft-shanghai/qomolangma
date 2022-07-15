@@ -1,12 +1,15 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
+import {User} from "../../domain/user/User";
 import makeSingleton from "../../frameworks/makeSingleton";
 
 export class AxiosHttp {
   private readonly impl: AxiosInstance
+  private _headers: { Authorization: string } | undefined
 
   public constructor() {
     this.impl = axios.create({
-      timeout: 10 * 1000
+      timeout: 10 * 1000,
+      headers: this._headers
     });
   }
 
@@ -23,10 +26,23 @@ export class AxiosHttp {
     return this.response(response);
   }
 
+  async login(requestUrl: string, user: User) {
+    let res = await this.post("/user/login", requestUrl, user.loginData())
+    this._headers = {Authorization: res.token}
+  }
+
+  get headers(): { Authorization: string } | undefined {
+    return this._headers;
+  }
+
   public response(response: AxiosResponse<any>) {
     if (response.status !== 200) throw new Error("Error, server exception.")
     if (response.data.code === "0") return response.data.data
     else throw new Error(response.data.msg)
+  }
+
+  public reset() {
+    this._headers = undefined
   }
 }
 
