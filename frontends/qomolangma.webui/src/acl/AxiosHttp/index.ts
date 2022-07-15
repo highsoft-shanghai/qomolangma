@@ -24,6 +24,7 @@ export class AxiosHttp {
   }
 
   public response(response: AxiosResponse<any>) {
+    if (response.status !== 200) throw new Error("Error, server exception.")
     if (response.data.code === "0") return response.data.data
     else throw new Error(response.data.msg)
   }

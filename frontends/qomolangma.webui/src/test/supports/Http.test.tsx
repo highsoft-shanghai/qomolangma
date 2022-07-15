@@ -57,6 +57,20 @@ test('should response error throw', async () => {
   })).toThrowError('')
 })
 
+test('should response error throw2', async () => {
+  expect(() => AxiosHttp.response({
+    data: {
+      "code": "1",
+      "msg": "error",
+      "data": null
+    },
+    status: 404,
+    statusText: 'Request failed with status code 500',
+    headers: {},
+    config: {}
+  })).toThrowError('')
+})
+
 afterEach(() => {
   scope.removeAllListeners()
 })
