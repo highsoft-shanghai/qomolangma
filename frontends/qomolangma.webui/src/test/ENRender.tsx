@@ -4,7 +4,7 @@ import {messages} from '../locales/messages'
 
 export class ENRender {
   public static render(ui: any) {
-    render(<>
+    return render(<>
       <IntlProvider locale={"en-US"} messages={messages["en-US"]}>
         {ui}
       </IntlProvider>

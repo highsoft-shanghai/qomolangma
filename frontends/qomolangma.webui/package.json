@@ -43,7 +43,8 @@
       "src/**/*.{js,jsx,ts,tsx}",
       "!<rootDir>/node_modules/",
       "!src/index.tsx",
-      "!src/App.tsx"
+      "!src/App.tsx",
+      "!src/pages/**"
     ],
     "coverageThreshold": {
       "global": {
