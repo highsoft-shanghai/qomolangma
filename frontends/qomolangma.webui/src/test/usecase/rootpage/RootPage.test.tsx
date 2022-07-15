@@ -31,7 +31,7 @@ test('should render RootPage in English', () => {
   expect(linkElement2).toBeInTheDocument()
 })
 
-test('should_set_state_about_user_in_root', async () => {
+test('should set state about user in root', async () => {
   let root = new Root(null);
   await root.componentDidMount()
   expect(root.state.id).toBe("05103212a7e2426591411ee79a6c0297")
