@@ -17,7 +17,6 @@ springBootJDBC = "2.6.1"
 springdoc = "1.6.1"
 mongock = "4.3.8"
 jwt = "3.18.2"
-springSecurityCore = "5.1.5.RELEASE"
 spring-doc = "1.6.1"
 spring-restdocs = "2.0.6.RELEASE"
 test-asciidoctor = "3.3.2"
@@ -32,7 +31,6 @@ logging-logback = "1.2.11"
 [libraries]
 asciidoctor-plugin = { module = "org.asciidoctor:asciidoctor-gradle-jvm", version.ref = "test-asciidoctor" }
 springBootWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot" }
-springSecurityCore = { module = "org.springframework.security:spring-security-core", version.ref = "springSecurityCore" }
 springBootSecurity = { module = "org.springframework.boot:spring-boot-starter-security" }
 springBootActuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
 springDataCommons = { module = "org.springframework.data:spring-data-commons", version.ref = "springDataCommons" }
