@@ -17,6 +17,10 @@ include::{snippets}/test.ping/api.adoc[]
 
 include::{snippets}/test.exception/api.adoc[]
 
+==== Not found request
+
+include::{snippets}/test.not.found/api.adoc[]
+
 == iam
 
 === user
