@@ -2,17 +2,17 @@ enableFeaturePreview("VERSION_CATALOGS")
 
 rootProject.name = "$project_name"
 
-file("modules").eachDir {
-    include it.name
-    project(":${it.name}").projectDir = it
+includeModules("modules")
+includeModules("frameworks")
+includeModules("frontends")
+
+private includeModules(String packageName) {
+    file(packageName).eachDir {
+        includeModule(it)
+    }
 }
 
-file("frameworks").eachDir {
-    include it.name
-    project(":${it.name}").projectDir = it
-}
-
-file("frontends").eachDir {
+private void includeModule(File it) {
     include it.name
     project(":${it.name}").projectDir = it
 }
