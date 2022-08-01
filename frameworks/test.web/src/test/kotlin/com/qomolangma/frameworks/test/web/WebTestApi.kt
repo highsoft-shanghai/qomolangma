@@ -1,10 +1,7 @@
 package com.qomolangma.frameworks.test.web
 
 import com.qomolangma.frameworks.gateways.core.OpenHostService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.*
 
 @OpenHostService
 @RequestMapping("/web-test")
@@ -47,5 +44,9 @@ class WebTestApi {
             Pair("sort", listOf(mapOf(Pair("property", "name"), Pair("direction", "ASC")))),
             Pair("content", listOf(mapOf(Pair("name", "John"))))
         )
+    }
+
+    @DeleteMapping("/document-delete/{id}")
+    fun documentDeleteApi(@PathVariable id: String) {
     }
 }

@@ -48,6 +48,10 @@ open class Rest {
             .then()
     }
 
+    protected fun delete(path: String?, variables: PathVariables, doc: Documentation?): ValidatableResponse {
+        return given(doc).delete(path, variables.asMap()).then()
+    }
+
     private fun given(doc: Documentation?): RequestSpecification {
         return RestAssured.given(spec).port(port).accept(ContentType.JSON).contentType(ContentType.JSON)
             .filter(docFilter(doc))
