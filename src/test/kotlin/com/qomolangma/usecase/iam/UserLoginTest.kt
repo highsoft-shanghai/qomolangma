@@ -1,23 +1,20 @@
 package com.qomolangma.usecase.iam
 
 import com.qomolangma.ApiTest
-import com.qomolangma.frameworks.domain.core.Identity
-import com.qomolangma.frameworks.security.core.GrantedAuthorities
 import com.qomolangma.frameworks.test.web.Documentation
 import com.qomolangma.frameworks.test.web.Documentation.Companion.doc
 import com.qomolangma.frameworks.test.web.PathVariables.Companion.variables
 import com.qomolangma.iam.domain.AccessToken
 import com.qomolangma.iam.domain.User
-import com.qomolangma.iam.domain.UserIdentityOwner
 import com.qomolangma.iam.domain.Users
+import com.qomolangma.usecase.iam.TestUsers.Companion.system
 import org.assertj.core.api.Assertions.assertThat
 import org.hamcrest.Matchers.`is`
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.restdocs.payload.PayloadDocumentation
-import org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath
-import org.springframework.restdocs.payload.PayloadDocumentation.requestFields
+import org.springframework.restdocs.payload.PayloadDocumentation.*
 import java.time.Instant
 import java.util.*
 import javax.annotation.Resource
@@ -28,17 +25,12 @@ class UserLoginTest : ApiTest() {
 
     @Resource
     private val accessTokens: User.AccessTokens? = null
-    private val user = User.restore(
-        "1234",
-        UserIdentityOwner.create(Identity.create(""), Identity.create("Neil"), Identity.create(""), "123456"),
-        GrantedAuthorities.of("system")
-    )
 
     @BeforeEach
     internal fun setUp() {
-        users!!.add(user)
-        accessTokens!!.add(AccessToken(user.id(), "previous-token", Instant.now()))
-        accessTokens.add(AccessToken(user.id(), "previous-token", Instant.now()))
+        users!!.add(system())
+        accessTokens!!.add(AccessToken(system().id(), "previous-token", Instant.now()))
+        accessTokens.add(AccessToken(system().id(), "previous-token", Instant.now()))
         accessTokens.add(AccessToken("", "previous-token", Instant.now()))
     }
 
@@ -50,12 +42,12 @@ class UserLoginTest : ApiTest() {
                 Pair("password", "123456"),
             ), document()
         )
-        val accessToken = user.displayAccessToken(accessTokens!!)
+        val accessToken = system().displayAccessToken(accessTokens!!)
         assertThat(accessToken).isNotEqualTo("previous-token")
         post.statusCode(`is`(200))
             .body("code", `is`("0"))
             .body("data.token", `is`(accessToken))
-        assertThat(user.displayAccessToken(accessTokens)).isNotEqualTo(Optional.empty<AccessToken>())
+        assertThat(system().displayAccessToken(accessTokens)).isNotEqualTo(Optional.empty<AccessToken>())
     }
 
     @AfterEach
@@ -67,7 +59,7 @@ class UserLoginTest : ApiTest() {
             "iam.user.login", requestFields(
                 fieldWithPath("userName").description("Name of new user"),
                 fieldWithPath("password").description("Password of new user"),
-            ), PayloadDocumentation.responseFields(
+            ), responseFields(
                 fieldWithPath("code").description("response code"),
                 fieldWithPath("msg").description("response msg"),
                 fieldWithPath("data.token").description("Token of this user")
