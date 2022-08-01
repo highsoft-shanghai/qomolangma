@@ -28,6 +28,10 @@ class MemoryUsers(
         users.add(MemoryUser(user))
     }
 
+    override fun remove(id: String) {
+        users.removeIf { id == it.id() }
+    }
+
     override fun clear() {
         users.clear()
     }

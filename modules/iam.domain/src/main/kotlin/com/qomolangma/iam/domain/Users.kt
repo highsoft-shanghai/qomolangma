@@ -7,5 +7,6 @@ interface Users {
     operator fun get(id: String): Optional<User>
     fun getByName(name: String): Optional<User>
     fun add(user: User)
+    fun remove(id: String)
     fun clear()
 }

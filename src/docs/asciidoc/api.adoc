@@ -38,3 +38,9 @@ include::{snippets}/iam.user.login/api.adoc[]
 ==== Get current token and authorities
 
 include::{snippets}/iam.access-tokens-current/api.adoc[]
+
+=== Destroy user account
+
+==== System or admin destroy user account by id
+
+include::{snippets}/iam.user.delete/api.adoc[]

@@ -13,10 +13,8 @@ import org.hamcrest.Matchers.`is`
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.springframework.restdocs.payload.PayloadDocumentation
 import org.springframework.restdocs.payload.PayloadDocumentation.*
 import java.time.Instant
-import java.util.*
 import javax.annotation.Resource
 
 class UserLoginTest : ApiTest() {
@@ -47,11 +45,13 @@ class UserLoginTest : ApiTest() {
         post.statusCode(`is`(200))
             .body("code", `is`("0"))
             .body("data.token", `is`(accessToken))
-        assertThat(system().displayAccessToken(accessTokens)).isNotEqualTo(Optional.empty<AccessToken>())
+        assertThat(system().displayAccessToken(accessTokens)).isNotEqualTo("")
     }
 
     @AfterEach
     internal fun tearDown() {
+        users!!.clear()
+        accessTokens!!.clear()
     }
 
     override fun document(): Documentation {

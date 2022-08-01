@@ -13,6 +13,8 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.restdocs.payload.PayloadDocumentation.*
+import org.springframework.restdocs.request.RequestDocumentation.parameterWithName
+import org.springframework.restdocs.request.RequestDocumentation.pathParameters
 import java.util.*
 import javax.annotation.Resource
 import kotlin.test.assertSame
@@ -42,8 +44,8 @@ class DestroyUserAccountTest : ApiTest() {
 
     override fun document(): Documentation = doc(
         "iam.user.delete",
-        requestFields(
-            fieldWithPath("id").description("Id of user which is going to deleting.")
+        pathParameters(
+            parameterWithName("id").description("User id")
         ), responseFields(
             fieldWithPath("code").ignored(),
             fieldWithPath("msg").ignored(),
