@@ -13,11 +13,6 @@ class TestUsers {
         }
 
         @JvmStatic
-        fun admin(): User {
-            return user("admin")
-        }
-
-        @JvmStatic
         fun common(): User {
             return user("common")
         }
