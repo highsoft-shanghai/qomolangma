@@ -9,6 +9,7 @@ dependencies {
     testImplementation project(":test.container")
     testImplementation project(":test.moco")
     implementation libs.springBootAop
+    implementation libs.springBootActuator
     implementation libs.flyway
     implementation libs.h2
     testImplementation libs.testcontainersJunitJupiter

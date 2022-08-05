@@ -1,7 +1,6 @@
 dependencies {
     implementation project(":payload.core")
     implementation project(":gateways.core")
-    implementation libs.springBootActuator
     implementation libs.springBootWeb
     implementation libs.springContext
     implementation libs.springDataCommons
