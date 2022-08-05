@@ -13,10 +13,8 @@ plugins {
     alias(libs.plugins.kotlin)
 }
 
-apply from: "$rootDir/gradle/config/scripts/library.gradle"
-apply from: "$rootDir/gradle/config/scripts/asciidoctor.gradle"
-apply from: "$rootDir/gradle/config/scripts/all-projects.gradle"
-apply from: "$rootDir/gradle/config/scripts/sub-projects.gradle"
 apply from: "$rootDir/gradle/config/scripts/root.gradle"
-apply from: "$rootDir/gradle/config/scripts/coverage-all.gradle"
-apply from: "$rootDir/gradle/config/scripts/coverage-ignored.gradle"
+
+dependencies {
+    implementation project(":iam.gateways")
+}
