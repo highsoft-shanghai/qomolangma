@@ -5,7 +5,6 @@ dependencies {
     api(project(":gateways.core"))
     implementation libs.springContext
     implementation libs.springBootWeb
-    implementation libs.springdoc
     implementation libs.springDataCommons
     implementation libs.jpa
     implementation libs.jwt

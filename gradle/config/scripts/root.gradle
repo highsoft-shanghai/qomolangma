@@ -16,7 +16,6 @@ dependencies {
     implementation libs.springBootWeb
     implementation libs.springBootAop
     implementation libs.flyaway
-    implementation libs.springdoc
     implementation libs.h2
     annotationProcessor libs.springBootConfigurationProcessor
     testImplementation libs.springBootTest

@@ -8,6 +8,5 @@ dependencies {
     testImplementation project(":test.security")
     implementation libs.springBootWeb
     implementation libs.springBootTest
-    implementation libs.springdoc
     implementation libs.springBootAop
 }

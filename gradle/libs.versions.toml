@@ -14,7 +14,6 @@ assertj = "3.21.0"
 testcontainers = "1.17.2"
 flyaway = "8.5.12"
 springBootJDBC = "2.6.1"
-springdoc = "1.6.1"
 mongock = "4.3.8"
 jwt = "3.18.2"
 spring-doc = "1.6.1"
@@ -55,10 +54,8 @@ testcontainersJunitJupiter = { module = "org.testcontainers:junit-jupiter", vers
 springBootConfigurationProcessor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "springBoot" }
 flyaway = { module = "org.flywaydb:flyway-core", version.ref = "flyaway" }
 springBootJDBC = { module = "org.springframework.boot:spring-boot-starter-jdbc", version.ref = "springBootJDBC" }
-springdoc = { module = "org.springdoc:springdoc-openapi-ui", version.ref = "springdoc" }
 jwt = { module = "com.auth0:java-jwt", version.ref = "jwt" }
 moco = { module = "com.github.dreamhead:moco-core", version.ref = "moco" }
-spring-doc = { module = "org.springdoc:springdoc-openapi-ui", version.ref = "spring-doc" }
 h2 = { module = "com.h2database:h2", version.ref = "h2" }
 kotlinStdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 test-spring-restdocs-restassured = { module = "org.springframework.restdocs:spring-restdocs-restassured", version.ref = "spring-restdocs" }
