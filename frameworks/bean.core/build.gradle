@@ -5,7 +5,6 @@ dependencies {
     api project(":application.core")
     api project(':security.core')
     api project(':context.core')
-    testImplementation project(":test.security")
     implementation libs.springBootWeb
     implementation libs.springBootTest
     implementation libs.springBootAop

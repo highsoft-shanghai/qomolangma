@@ -1,13 +1,14 @@
 apply from: "$rootDir/gradle/config/scripts/web.gradle"
 
 dependencies {
-    implementation project(":domain.core")
-    implementation project(":bean.core")
-    implementation project(":application.core")
     implementation project(":iam.gateways")
+    implementation project(":domain.core")
+    implementation project(":application.core")
+    implementation project(":bean.core")
     testImplementation project(":test.web")
     testImplementation project(":test.container")
     testImplementation project(":test.moco")
+    testImplementation project(":test.security")
     implementation libs.springBootAop
     implementation libs.springBootActuator
     implementation libs.flyway
