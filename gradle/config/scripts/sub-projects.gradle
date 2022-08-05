@@ -6,4 +6,82 @@ subprojects {
             it.dependsOn(test)
         }
     }
+
+    def injectDependencies = parse(name).injectDependencies()
+    apply from: "$rootDir" + injectDependencies
+}
+
+private static Project parse(String name) {
+    if (isGateways(name)) return new GatewaysProject(name)
+    if (isApplication(name)) return new ApplicationProject(name)
+    if (isDomain(name)) return new DomainProject(name)
+    return new GeneralProject(name)
+}
+
+private static boolean isDomain(String name) {
+    name.endsWith(".domain")
+}
+
+private static boolean isApplication(String name) {
+    name.endsWith(".application")
+}
+
+private static boolean isGateways(String name) {
+    name.endsWith(".gateways")
+}
+
+interface Project {
+    String injectDependencies()
+}
+
+class DomainProject implements Project {
+
+    private final String name
+
+    DomainProject(String name) {
+        this.name = name
+    }
+
+    String injectDependencies() {
+        return "/gradle/config/scripts/domain.gradle"
+    }
+}
+
+class ApplicationProject implements Project {
+
+    private final String name
+
+    ApplicationProject(String name) {
+        this.name = name
+    }
+
+    String injectDependencies() {
+        return "/gradle/config/scripts/application.gradle"
+    }
+}
+
+class GatewaysProject implements Project {
+
+    private final String name
+
+    GatewaysProject(String name) {
+        this.name = name
+    }
+
+    String injectDependencies() {
+        return "/gradle/config/scripts/web.gradle"
+    }
+}
+
+class GeneralProject implements Project {
+
+    private final String name
+
+    GeneralProject(String name) {
+        this.name = name
+    }
+
+    String injectDependencies() {
+        return "/gradle/config/scripts/general.gradle"
+    }
 }

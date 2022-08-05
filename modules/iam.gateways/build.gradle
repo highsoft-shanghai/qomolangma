@@ -1,5 +1,3 @@
-apply from: "$rootDir/gradle/config/scripts/web.gradle"
-
 dependencies {
     api project(":iam.application")
     api(project(":iam.domain"))
