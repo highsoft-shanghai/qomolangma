@@ -12,7 +12,7 @@ junit = "5.8.1"
 mockito = "4.6.1"
 assertj = "3.21.0"
 testcontainers = "1.17.2"
-flyaway = "8.5.12"
+flyway = "8.5.12"
 springBootJDBC = "2.6.1"
 mongock = "4.3.8"
 jwt = "3.18.2"
@@ -52,7 +52,7 @@ springBootTest = { module = "org.springframework.boot:spring-boot-starter-test",
 springSecurityTest = { module = "org.springframework.security:spring-security-test", version.ref = "springSecurity" }
 testcontainersJunitJupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
 springBootConfigurationProcessor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "springBoot" }
-flyaway = { module = "org.flywaydb:flyway-core", version.ref = "flyaway" }
+flyway = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
 springBootJDBC = { module = "org.springframework.boot:spring-boot-starter-jdbc", version.ref = "springBootJDBC" }
 jwt = { module = "com.auth0:java-jwt", version.ref = "jwt" }
 moco = { module = "com.github.dreamhead:moco-core", version.ref = "moco" }
