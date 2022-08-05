@@ -1,25 +1,17 @@
+apply from: "$rootDir/gradle/config/scripts/web.gradle"
+
 dependencies {
     implementation project(":domain.core")
-    implementation project(":payload.core")
     implementation project(":bean.core")
     implementation project(":application.core")
-    implementation project(":gateways.core")
     implementation project(":iam.gateways")
-    testImplementation project(":context.test")
     testImplementation project(":test.web")
     testImplementation project(":test.container")
     testImplementation project(":test.moco")
-    testImplementation project(":test.persistence")
-    testImplementation project(":test.context")
-    testImplementation project(":core.test")
-    implementation libs.springBootActuator
-    implementation libs.springBootWeb
     implementation libs.springBootAop
     implementation libs.flyway
     implementation libs.h2
-    annotationProcessor libs.springBootConfigurationProcessor
-    testImplementation libs.springBootTest
     testImplementation libs.testcontainersJunitJupiter
-    testImplementation libs.test.spring.restdocs.restassured
     testImplementation libs.moco
+    annotationProcessor libs.springBootConfigurationProcessor
 }

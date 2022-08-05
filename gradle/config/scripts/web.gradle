@@ -1,0 +1,16 @@
+dependencies {
+    implementation project(":payload.core")
+    implementation project(":gateways.core")
+    implementation libs.springBootActuator
+    implementation libs.springBootWeb
+    implementation libs.springContext
+    implementation libs.springDataCommons
+    implementation libs.jpa
+
+    testImplementation project(":core.test")
+    testImplementation project(":test.context")
+    testImplementation project(":test.persistence")
+    testImplementation project(":context.test")
+    testImplementation libs.springBootTest
+    testImplementation libs.test.spring.restdocs.restassured
+}
