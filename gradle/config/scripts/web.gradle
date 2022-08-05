@@ -9,7 +9,6 @@ dependencies {
     testImplementation project(":core.test")
     testImplementation project(":test.context")
     testImplementation project(":test.persistence")
-    testImplementation project(":context.test")
     testImplementation libs.springBootTest
     testImplementation libs.test.spring.restdocs.restassured
 }

@@ -1,4 +1,4 @@
-package com.qomolangma.frameworks.context.test
+package com.qomolangma.frameworks.test.context
 
 import org.junit.jupiter.api.extension.ExtendWith
 

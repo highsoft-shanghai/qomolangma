@@ -1,4 +1,4 @@
-package com.qomolangma.frameworks.context.test
+package com.qomolangma.frameworks.test.context
 
 import com.qomolangma.frameworks.domain.core.GlobalClock.now
 import org.assertj.core.api.Assertions.assertThat

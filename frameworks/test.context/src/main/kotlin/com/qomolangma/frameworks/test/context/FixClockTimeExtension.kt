@@ -1,4 +1,4 @@
-package com.qomolangma.frameworks.context.test
+package com.qomolangma.frameworks.test.context
 
 import com.qomolangma.frameworks.domain.core.GlobalClockResetter
 import org.junit.jupiter.api.extension.AfterEachCallback
