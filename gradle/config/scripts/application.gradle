@@ -1,0 +1,6 @@
+dependencies {
+    implementation project(":application.core")
+    implementation project(":payload.core")
+    implementation project(":core.test")
+    implementation project(":test.context")
+}
