@@ -4,6 +4,7 @@ import com.qomolangma.frameworks.domain.core.Identity
 import com.qomolangma.frameworks.security.core.GrantedAuthorities
 import com.qomolangma.iam.domain.User
 import com.qomolangma.iam.domain.UserIdentityOwner
+import com.qomolangma.frameworks.test.web.GlobalTestContext.Companion as GlobalTestContext
 
 class TestUsers {
     companion object {
@@ -15,6 +16,20 @@ class TestUsers {
         @JvmStatic
         fun common(): User {
             return user("common")
+        }
+
+        @JvmStatic
+        fun tester(authority: String): User {
+            return User.restore(
+                "1234",
+                UserIdentityOwner.create(
+                    GlobalTestContext.userAccount(),
+                    GlobalTestContext.user(),
+                    GlobalTestContext.tenant(),
+                    GlobalTestContext.password()
+                ),
+                GrantedAuthorities.of(authority)
+            )
         }
 
         private fun user(authority: String): User {

@@ -17,6 +17,7 @@ class UserApi(
     @Resource private val registerUserUseCase: RegisterUserUseCase,
     @Resource private val loginUseCase: LoginUseCase,
     @Resource private val destoryUserBySpecialRuleUseCase: DestroyUserBySpecialRuleUseCase
+
 ) {
     @PostMapping("/register")
     fun register(payload: Payload) {
@@ -31,5 +32,9 @@ class UserApi(
     @DeleteMapping("/{id}")
     fun destroy(@PathVariable id: String) {
         destoryUserBySpecialRuleUseCase.execute(id)
+    }
+
+    @DeleteMapping("/me")
+    fun destroyMe() {
     }
 }

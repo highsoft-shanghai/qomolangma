@@ -21,7 +21,7 @@ class GlobalTestContext {
 
         fun setup(grantedAuthorities: GrantedAuthorities?) {
             INSTANCE.context = SimpleContext(
-                SimpleUserContext(userAccount(), user(), tenant(), "Qomolangma"),
+                SimpleUserContext(userAccount(), user(), tenant(), password()),
                 SimpleSecurityContext("tester-token-id", grantedAuthorities)
             )
         }
@@ -30,16 +30,18 @@ class GlobalTestContext {
             INSTANCE.context = null
         }
 
-        private fun tenant(): Identity {
+        fun tenant(): Identity {
             return Identity("qomolangma", "Qomolangma")
         }
 
-        private fun user(): Identity {
+        fun user(): Identity {
             return Identity("tester", "Tester")
         }
 
-        private fun userAccount(): Identity {
+        fun userAccount(): Identity {
             return Identity("qomolangma", "Qomolangma")
         }
+
+        fun password() = "Qomolangma"
     }
 }
