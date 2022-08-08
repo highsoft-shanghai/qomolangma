@@ -11,7 +11,6 @@ class DestroyUserBySpecialRuleUseCase(
     private val accessTokens: User.AccessTokens
 ) {
     fun execute(id: String) {
-        users.remove(id)
-        accessTokens.remove(id)
+        users[id].ifPresent { it.destroy(users, accessTokens) }
     }
 }

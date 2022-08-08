@@ -21,7 +21,7 @@ class TestUsers {
         @JvmStatic
         fun tester(authority: String): User {
             return User.restore(
-                "1234",
+                "tester",
                 UserIdentityOwner.create(
                     GlobalTestContext.userAccount(),
                     GlobalTestContext.user(),

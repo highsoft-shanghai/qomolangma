@@ -82,6 +82,11 @@ class User : Context {
         return AccessToken.create(this, generator).addIn(accessTokens).content()
     }
 
+    fun destroy(users: Users, accessTokens: AccessTokens) {
+        users.remove(id())
+        accessTokens.remove(id())
+    }
+
     companion object {
         @JvmStatic
         fun create(owner: UserIdentityOwner, authorities: GrantedAuthorities): User {

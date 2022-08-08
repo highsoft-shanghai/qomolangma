@@ -47,8 +47,8 @@ class DestroyUserAccountBySelfTest : ApiTest() {
         delete("/user/me", variables(mapOf<String, String>()), document())
             .statusCode(`is`(200))
             .body("code", `is`("0"))
-        assertSame(Optional.empty(), users!![tester.id()])
-        assertSame(Optional.empty(), accessTokens!![tester.id()])
+        assertSame(Optional.empty(), users!!.getByName(tester.owner().user().name()))
+        assertSame(Optional.empty(), accessTokens!!.getById(""))
     }
 
     @AfterEach

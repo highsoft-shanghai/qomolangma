@@ -2,6 +2,7 @@ package com.qomolangma.iam.gateways.ohs
 
 import com.qomolangma.frameworks.gateways.core.OpenHostService
 import com.qomolangma.frameworks.payload.core.Payload
+import com.qomolangma.iam.application.DestroyMeUseCase
 import com.qomolangma.iam.application.DestroyUserBySpecialRuleUseCase
 import com.qomolangma.iam.application.LoginUseCase
 import com.qomolangma.iam.application.RegisterUserUseCase
@@ -16,8 +17,8 @@ import javax.annotation.Resource
 class UserApi(
     @Resource private val registerUserUseCase: RegisterUserUseCase,
     @Resource private val loginUseCase: LoginUseCase,
-    @Resource private val destoryUserBySpecialRuleUseCase: DestroyUserBySpecialRuleUseCase
-
+    @Resource private val destoryUserBySpecialRuleUseCase: DestroyUserBySpecialRuleUseCase,
+    @Resource private val destoryMeUseCase: DestroyMeUseCase
 ) {
     @PostMapping("/register")
     fun register(payload: Payload) {
@@ -36,5 +37,6 @@ class UserApi(
 
     @DeleteMapping("/me")
     fun destroyMe() {
+        destoryMeUseCase.execute()
     }
 }
