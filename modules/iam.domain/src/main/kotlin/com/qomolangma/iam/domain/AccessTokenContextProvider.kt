@@ -2,6 +2,7 @@ package com.qomolangma.iam.domain
 
 import com.qomolangma.frameworks.security.core.Context
 import com.qomolangma.frameworks.security.core.ContextProvider
+import com.qomolangma.frameworks.security.core.Users
 import java.util.*
 
 class AccessTokenContextProvider(private val users: Users) : ContextProvider {

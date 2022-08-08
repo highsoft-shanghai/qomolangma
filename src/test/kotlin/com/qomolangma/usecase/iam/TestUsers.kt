@@ -2,8 +2,8 @@ package com.qomolangma.usecase.iam
 
 import com.qomolangma.frameworks.domain.core.Identity
 import com.qomolangma.frameworks.security.core.GrantedAuthorities
-import com.qomolangma.iam.domain.User
-import com.qomolangma.iam.domain.UserIdentityOwner
+import com.qomolangma.frameworks.security.core.User
+import com.qomolangma.frameworks.security.core.UserIdentityOwner
 
 class TestUsers {
     companion object {

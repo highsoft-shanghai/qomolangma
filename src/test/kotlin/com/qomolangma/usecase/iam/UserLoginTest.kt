@@ -4,9 +4,9 @@ import com.qomolangma.ApiTest
 import com.qomolangma.frameworks.test.web.Documentation
 import com.qomolangma.frameworks.test.web.Documentation.Companion.doc
 import com.qomolangma.frameworks.test.web.PathVariables.Companion.variables
-import com.qomolangma.iam.domain.AccessToken
-import com.qomolangma.iam.domain.User
-import com.qomolangma.iam.domain.Users
+import com.qomolangma.frameworks.security.core.AccessToken
+import com.qomolangma.frameworks.security.core.User
+import com.qomolangma.frameworks.security.core.Users
 import com.qomolangma.usecase.iam.TestUsers.Companion.system
 import org.assertj.core.api.Assertions.assertThat
 import org.hamcrest.Matchers.`is`
@@ -27,9 +27,27 @@ class UserLoginTest : ApiTest() {
     @BeforeEach
     internal fun setUp() {
         users!!.add(system())
-        accessTokens!!.add(AccessToken(system().id(), "previous-token", Instant.now()))
-        accessTokens.add(AccessToken(system().id(), "previous-token", Instant.now()))
-        accessTokens.add(AccessToken("", "previous-token", Instant.now()))
+        accessTokens!!.add(
+            AccessToken(
+                system().id(),
+                "previous-token",
+                Instant.now()
+            )
+        )
+        accessTokens.add(
+            AccessToken(
+                system().id(),
+                "previous-token",
+                Instant.now()
+            )
+        )
+        accessTokens.add(
+            AccessToken(
+                "",
+                "previous-token",
+                Instant.now()
+            )
+        )
     }
 
     @Test

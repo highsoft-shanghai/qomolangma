@@ -4,7 +4,9 @@ import com.qomolangma.frameworks.core.test.WithMocks
 import com.qomolangma.frameworks.domain.core.Identity
 import com.qomolangma.frameworks.security.core.ContextProvider
 import com.qomolangma.frameworks.security.core.GrantedAuthorities
-import com.qomolangma.iam.domain.User.Companion.restore
+import com.qomolangma.frameworks.security.core.User.Companion.restore
+import com.qomolangma.frameworks.security.core.UserIdentityOwner
+import com.qomolangma.frameworks.security.core.Users
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

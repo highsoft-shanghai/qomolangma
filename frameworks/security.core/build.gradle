@@ -1,6 +1,7 @@
 dependencies {
     api project(':context.core')
     api project(':domain.core')
+    implementation project(':payload.core')
     testImplementation project(':test.context')
     testImplementation project(':core.test')
 }

@@ -1,4 +1,4 @@
-package com.qomolangma.iam.domain;
+package com.qomolangma.frameworks.security.core;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

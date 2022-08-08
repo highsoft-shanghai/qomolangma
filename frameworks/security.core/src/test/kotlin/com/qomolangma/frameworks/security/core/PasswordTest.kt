@@ -1,5 +1,6 @@
-package com.qomolangma.iam.domain
+package com.qomolangma.frameworks.security.core
 
+import com.qomolangma.frameworks.security.core.Password
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

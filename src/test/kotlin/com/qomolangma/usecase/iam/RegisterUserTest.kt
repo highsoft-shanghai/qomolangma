@@ -8,7 +8,7 @@ import com.qomolangma.frameworks.test.context.WithGlobalId
 import com.qomolangma.frameworks.test.web.Documentation
 import com.qomolangma.frameworks.test.web.Documentation.Companion.doc
 import com.qomolangma.frameworks.test.web.PathVariables.Companion.variables
-import com.qomolangma.iam.domain.Users
+import com.qomolangma.frameworks.security.core.Users
 import org.hamcrest.Matchers.`is`
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test

@@ -1,4 +1,4 @@
-package com.qomolangma.iam.domain
+package com.qomolangma.frameworks.security.core
 
 import com.qomolangma.frameworks.context.core.UserContext
 import com.qomolangma.frameworks.domain.core.Id
@@ -6,10 +6,6 @@ import com.qomolangma.frameworks.domain.core.Identity
 import com.qomolangma.frameworks.payload.core.Payload
 import com.qomolangma.frameworks.payload.core.Payload.Companion.append
 import com.qomolangma.frameworks.payload.core.StringFieldType.Companion.asString
-import com.qomolangma.frameworks.security.core.Context
-import com.qomolangma.frameworks.security.core.GrantedAuthorities
-import com.qomolangma.frameworks.security.core.SecurityContext
-import com.qomolangma.frameworks.security.core.SimpleSecurityContext
 import java.util.*
 
 class User : Context {

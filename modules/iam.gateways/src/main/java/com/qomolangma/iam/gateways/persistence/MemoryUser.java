@@ -2,8 +2,8 @@ package com.qomolangma.iam.gateways.persistence;
 
 import com.qomolangma.frameworks.domain.core.Identity;
 import com.qomolangma.frameworks.security.core.GrantedAuthorities;
-import com.qomolangma.iam.domain.User;
-import com.qomolangma.iam.domain.UserIdentityOwner;
+import com.qomolangma.frameworks.security.core.User;
+import com.qomolangma.frameworks.security.core.UserIdentityOwner;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

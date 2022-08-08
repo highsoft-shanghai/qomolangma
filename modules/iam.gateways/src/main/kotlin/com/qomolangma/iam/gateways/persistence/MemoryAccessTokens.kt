@@ -1,8 +1,8 @@
 package com.qomolangma.iam.gateways.persistence
 
 import com.qomolangma.frameworks.gateways.core.Aggregates
-import com.qomolangma.iam.domain.AccessToken
-import com.qomolangma.iam.domain.User
+import com.qomolangma.frameworks.security.core.AccessToken
+import com.qomolangma.frameworks.security.core.User
 import java.util.*
 
 @Aggregates
