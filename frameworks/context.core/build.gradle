@@ -1,3 +1,4 @@
 dependencies {
     api project(':domain.core')
+    testImplementation project(":test.context")
 }

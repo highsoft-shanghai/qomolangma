@@ -2,6 +2,7 @@ package com.qomolangma.iam.domain;
 
 import com.qomolangma.frameworks.context.core.SimpleUserContext;
 import com.qomolangma.frameworks.context.core.UserContext;
+import com.qomolangma.frameworks.domain.core.Id;
 import com.qomolangma.frameworks.domain.core.Identity;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -49,8 +50,8 @@ public final class UserIdentityOwner {
         return tenant;
     }
 
-    public UserContext asUserContext() {
-        return new SimpleUserContext(userAccount(), user(), tenant(), password());
+    public UserContext asUserContext(Id id) {
+        return new SimpleUserContext(id, userAccount(), user(), tenant(), password());
     }
 
     public String password() {

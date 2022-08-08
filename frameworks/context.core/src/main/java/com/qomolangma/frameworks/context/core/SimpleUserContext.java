@@ -1,5 +1,6 @@
 package com.qomolangma.frameworks.context.core;
 
+import com.qomolangma.frameworks.domain.core.Id;
 import com.qomolangma.frameworks.domain.core.Identity;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -8,16 +9,24 @@ import org.jetbrains.annotations.NotNull;
 @ToString
 @EqualsAndHashCode
 public class SimpleUserContext implements UserContext {
+    private final Id id;
     private final Identity userAccount;
     private final Identity user;
     private final Identity tenant;
     private final String password;
 
-    public SimpleUserContext(Identity userAccount, Identity user, Identity tenant, String password) {
+    public SimpleUserContext(Id id, Identity userAccount, Identity user, Identity tenant, String password) {
+        this.id = id;
         this.userAccount = userAccount;
         this.user = user;
         this.tenant = tenant;
         this.password = password;
+    }
+
+    @NotNull
+    @Override
+    public String id() {
+        return id.id();
     }
 
     @NotNull

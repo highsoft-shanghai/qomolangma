@@ -1,8 +1,10 @@
 package com.qomolangma.frameworks.context.core
 
+import com.qomolangma.frameworks.domain.core.Id
 import com.qomolangma.frameworks.domain.core.Identity
 
 interface UserContext {
+    fun id(): String
     fun userAccount(): Identity
     fun user(): Identity
     fun tenant(): Identity
@@ -10,9 +12,16 @@ interface UserContext {
     fun password(): String
 
     companion object {
-        val ANONYMOUS_IDENTITY = Identity("anonymous", "Anonymous")
+        private const val ANONYMOUS_WORD = "Anonymous"
+        val ANONYMOUS_IDENTITY = Identity("anonymous", ANONYMOUS_WORD)
         val ANONYMOUS: UserContext =
-            SimpleUserContext(ANONYMOUS_IDENTITY, ANONYMOUS_IDENTITY, ANONYMOUS_IDENTITY, "Anonymous")
+            SimpleUserContext(
+                Id(ANONYMOUS_WORD),
+                ANONYMOUS_IDENTITY,
+                ANONYMOUS_IDENTITY,
+                ANONYMOUS_IDENTITY,
+                ANONYMOUS_WORD
+            )
         val INVALID: UserContext = InvalidUserContext()
     }
 }

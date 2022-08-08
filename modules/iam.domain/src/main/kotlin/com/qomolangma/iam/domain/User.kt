@@ -42,7 +42,7 @@ class User : Context {
     }
 
     override fun userContext(): UserContext {
-        return owner().asUserContext()
+        return owner().asUserContext(id)
     }
 
     override fun securityContext(): SecurityContext {

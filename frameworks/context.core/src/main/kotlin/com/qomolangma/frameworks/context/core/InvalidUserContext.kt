@@ -4,6 +4,10 @@ import com.qomolangma.frameworks.domain.core.BadAccessTokenException
 import com.qomolangma.frameworks.domain.core.Identity
 
 class InvalidUserContext : UserContext {
+    override fun id(): String {
+        throw BadAccessTokenException()
+    }
+
     override fun userAccount(): Identity {
         throw BadAccessTokenException()
     }

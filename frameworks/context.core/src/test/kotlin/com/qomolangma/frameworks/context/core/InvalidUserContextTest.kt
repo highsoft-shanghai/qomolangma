@@ -39,4 +39,11 @@ internal class InvalidUserContextTest {
             BadAccessTokenException::class.java
         ).hasMessage("error.bad-token")
     }
+
+    @Test
+    fun should_report_error_when_try_to_get_id() {
+        assertThatThrownBy { INVALID.id() }.isInstanceOf(
+            BadAccessTokenException::class.java
+        ).hasMessage("error.bad-token")
+    }
 }

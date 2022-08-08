@@ -1,20 +1,24 @@
 package com.qomolangma.frameworks.context.core
 
 import com.qomolangma.frameworks.context.core.GlobalUserContext.userContext
+import com.qomolangma.frameworks.domain.core.Id
 import com.qomolangma.frameworks.domain.core.Identity
+import com.qomolangma.frameworks.test.context.WithGlobalId
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
+@WithGlobalId("1234")
 internal class GlobalUserContextTest {
     @BeforeEach
     fun setUp() {
-        GlobalUserContextResetter.reset(SimpleUserContext(NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, "Qomolangma"))
+        GlobalUserContextResetter.reset(SimpleUserContext(Id(), NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, "Qomolangma"))
     }
 
     @Test
     fun should_be_able_to_hold_current_user_account() {
+        assertThat(userContext().id()).isEqualTo("1234")
         assertThat(userContext().userAccount()).isEqualTo(NEIL_IN_QOMOLANGMA)
         assertThat(userContext().userAccount().id()).isEqualTo(NEIL_IN_QOMOLANGMA.id())
         assertThat(userContext().userAccount().name()).isEqualTo(NEIL_IN_QOMOLANGMA.name())

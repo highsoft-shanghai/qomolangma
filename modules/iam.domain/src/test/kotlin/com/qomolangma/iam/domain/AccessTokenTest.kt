@@ -41,7 +41,7 @@ internal class AccessTokenTest {
     fun should_be_able_to_provide_user_context() {
         assertThat(create(owner!!, authorities!!).userContext()).isEqualTo(
             SimpleUserContext(
-                NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, Base64.getEncoder().encodeToString("Qomolangma".encodeToByteArray())
+                id, NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, Base64.getEncoder().encodeToString("Qomolangma".encodeToByteArray())
             )
         )
     }
