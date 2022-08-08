@@ -4,7 +4,6 @@ import com.qomolangma.frameworks.domain.core.Identity
 import com.qomolangma.frameworks.security.core.GrantedAuthorities
 import com.qomolangma.iam.domain.User
 import com.qomolangma.iam.domain.UserIdentityOwner
-import com.qomolangma.frameworks.test.web.GlobalTestContext.Companion as GlobalTestContext
 
 class TestUsers {
     companion object {
@@ -23,10 +22,10 @@ class TestUsers {
             return User.restore(
                 "tester",
                 UserIdentityOwner.create(
-                    GlobalTestContext.userAccount(),
-                    GlobalTestContext.user(),
-                    GlobalTestContext.tenant(),
-                    GlobalTestContext.password()
+                    Identity("qomolangma", "Qomolangma"),
+                    Identity("tester", "Tester"),
+                    Identity("qomolangma", "Qomolangma"),
+                    "Qomolangma"
                 ),
                 GrantedAuthorities.of(authority)
             )

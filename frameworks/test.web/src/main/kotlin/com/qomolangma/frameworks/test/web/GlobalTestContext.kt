@@ -1,6 +1,7 @@
 package com.qomolangma.frameworks.test.web
 
 import com.qomolangma.frameworks.context.core.SimpleUserContext
+import com.qomolangma.frameworks.domain.core.Id
 import com.qomolangma.frameworks.domain.core.Identity
 import com.qomolangma.frameworks.security.core.*
 import java.util.*
@@ -21,7 +22,13 @@ class GlobalTestContext {
 
         fun setup(grantedAuthorities: GrantedAuthorities?) {
             INSTANCE.context = SimpleContext(
-                SimpleUserContext(id, userAccount(), user(), tenant(), password()),
+                SimpleUserContext(
+                    Id("tester"),
+                    Identity("qomolangma", "Qomolangma"),
+                    Identity("tester", "Tester"),
+                    Identity("qomolangma", "Qomolangma"),
+                    "Qomolangma"
+                ),
                 SimpleSecurityContext("tester-token-id", grantedAuthorities)
             )
         }
@@ -30,18 +37,5 @@ class GlobalTestContext {
             INSTANCE.context = null
         }
 
-        fun tenant(): Identity {
-            return Identity("qomolangma", "Qomolangma")
-        }
-
-        fun user(): Identity {
-            return Identity("tester", "Tester")
-        }
-
-        fun userAccount(): Identity {
-            return Identity("qomolangma", "Qomolangma")
-        }
-
-        fun password() = "Qomolangma"
     }
 }
