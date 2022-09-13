@@ -5,10 +5,10 @@ import com.qomolangma.frameworks.test.container.WithTestContainers
 import com.qomolangma.frameworks.test.moco.MocoContainer
 import com.qomolangma.frameworks.test.web.GlobalTestContext
 import com.qomolangma.frameworks.test.web.Rest
-import com.qomolangma.frameworks.security.core.AccessToken
-import com.qomolangma.frameworks.security.core.User
-import com.qomolangma.frameworks.security.core.UserIdentityOwner
-import com.qomolangma.frameworks.security.core.Users
+import com.qomolangma.iam.domain.AccessToken
+import com.qomolangma.iam.domain.User
+import com.qomolangma.iam.domain.UserIdentityOwner
+import com.qomolangma.iam.domain.Users
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.springframework.boot.test.context.SpringBootTest

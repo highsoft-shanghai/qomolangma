@@ -6,10 +6,10 @@ import com.qomolangma.frameworks.test.web.Documentation
 import com.qomolangma.frameworks.test.web.Documentation.Companion.doc
 import com.qomolangma.frameworks.test.web.PathVariables.Companion.variables
 import com.qomolangma.frameworks.test.web.WithGrantedAuthorities
-import com.qomolangma.frameworks.security.core.AccessToken
-import com.qomolangma.frameworks.security.core.TokenGenerator
-import com.qomolangma.frameworks.security.core.User
-import com.qomolangma.frameworks.security.core.Users
+import com.qomolangma.iam.domain.AccessToken
+import com.qomolangma.iam.domain.TokenGenerator
+import com.qomolangma.iam.domain.User
+import com.qomolangma.iam.domain.Users
 import com.qomolangma.usecase.iam.TestUsers.Companion.tester
 import org.hamcrest.Matchers.`is`
 import org.junit.jupiter.api.AfterEach

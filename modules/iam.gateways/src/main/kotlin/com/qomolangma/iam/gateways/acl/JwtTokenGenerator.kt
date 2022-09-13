@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import com.qomolangma.frameworks.domain.core.GlobalClock
 import com.qomolangma.frameworks.gateways.core.AntiCorruptionLayer
-import com.qomolangma.frameworks.security.core.TokenGenerator
+import com.qomolangma.iam.domain.TokenGenerator
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.*

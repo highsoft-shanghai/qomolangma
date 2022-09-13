@@ -9,8 +9,8 @@ import com.qomolangma.frameworks.security.core.ContextLoader
 import com.qomolangma.frameworks.security.core.GrantedAuthorities
 import com.qomolangma.frameworks.test.web.GlobalTestContext
 import com.qomolangma.frameworks.test.web.WithGrantedAuthorities
-import com.qomolangma.frameworks.security.core.User
-import com.qomolangma.frameworks.security.core.Users
+import com.qomolangma.iam.domain.User
+import com.qomolangma.iam.domain.Users
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach

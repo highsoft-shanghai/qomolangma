@@ -1,4 +1,4 @@
-package com.qomolangma.frameworks.security.core;
+package com.qomolangma.iam.domain;
 
 import com.qomolangma.frameworks.context.core.SimpleUserContext;
 import com.qomolangma.frameworks.context.core.UserContext;

@@ -2,9 +2,9 @@ package com.qomolangma.iam.application
 
 import com.qomolangma.frameworks.core.test.WithMocks
 import com.qomolangma.frameworks.payload.core.Payload
-import com.qomolangma.frameworks.security.core.TokenGenerator
-import com.qomolangma.frameworks.security.core.User
-import com.qomolangma.frameworks.security.core.Users
+import com.qomolangma.iam.domain.TokenGenerator
+import com.qomolangma.iam.domain.User
+import com.qomolangma.iam.domain.Users
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

@@ -1,4 +1,4 @@
-package com.qomolangma.frameworks.security.core
+package com.qomolangma.iam.domain
 
 import java.time.Instant
 

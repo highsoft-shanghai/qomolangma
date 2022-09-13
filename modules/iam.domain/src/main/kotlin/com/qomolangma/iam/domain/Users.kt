@@ -1,6 +1,5 @@
-package com.qomolangma.frameworks.security.core
+package com.qomolangma.iam.domain
 
-import com.qomolangma.frameworks.security.core.User
 import java.util.*
 
 interface Users {

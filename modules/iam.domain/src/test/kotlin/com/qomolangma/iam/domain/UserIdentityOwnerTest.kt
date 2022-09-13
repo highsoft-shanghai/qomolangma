@@ -1,11 +1,8 @@
-package com.qomolangma.frameworks.security.core
+package com.qomolangma.iam.domain
 
 import com.qomolangma.frameworks.core.test.WithMocks
 import com.qomolangma.frameworks.domain.core.Identity
 import com.qomolangma.frameworks.security.core.GrantedAuthorities
-import com.qomolangma.frameworks.security.core.User
-import com.qomolangma.frameworks.security.core.UserIdentityOwner
-import com.qomolangma.frameworks.security.core.Users
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

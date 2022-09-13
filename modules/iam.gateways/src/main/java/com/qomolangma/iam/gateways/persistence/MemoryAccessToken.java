@@ -1,6 +1,6 @@
 package com.qomolangma.iam.gateways.persistence;
 
-import com.qomolangma.frameworks.security.core.AccessToken;
+import com.qomolangma.iam.domain.AccessToken;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.qomolangma.frameworks.security.core
+package com.qomolangma.iam.domain
 
 import com.qomolangma.frameworks.domain.core.GlobalClock.now
 import java.time.Instant
