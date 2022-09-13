@@ -16,6 +16,7 @@ allprojects {
         compileOnly libs.lombok
         implementation libs.guava
         implementation libs.commonsLang3
+        implementation fileTree(dir: "$rootDir/libs", include: ['*.jar'])
         annotationProcessor libs.lombok
         testCompileOnly libs.lombok
         testAnnotationProcessor libs.lombok
