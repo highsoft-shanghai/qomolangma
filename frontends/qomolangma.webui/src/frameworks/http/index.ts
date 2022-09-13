@@ -1,4 +1,5 @@
 import {AxiosRequestConfig} from "axios";
+//@typescript-eslint/no-unused-vars
 import {requestClassDecorator} from "./requestUrl";
 import makeSingleton from "../makeSingleton";
 import AxiosHttp from "../../acl/AxiosHttp";
