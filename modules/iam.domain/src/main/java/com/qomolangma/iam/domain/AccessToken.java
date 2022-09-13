@@ -31,7 +31,7 @@ public class AccessToken {
         return token;
     }
 
-    public String displayToken() {
+    public String display() {
         return BearerToken.create(token).value();
     }
 
@@ -56,6 +56,6 @@ public class AccessToken {
     }
 
     public Payload content() {
-        return Payload.Companion.append("token", displayToken()).build();
+        return Payload.Companion.append("token", display()).build();
     }
 }

@@ -40,12 +40,12 @@ class UserLoginTest : ApiTest() {
                 Pair("password", "123456"),
             ), document()
         )
-        val accessToken = system().displayAccessToken(accessTokens!!)
+        val accessToken = system().accessToken(accessTokens!!).display()
         assertThat(accessToken).isNotEqualTo("previous-token")
         post.statusCode(`is`(200))
             .body("code", `is`("0"))
             .body("data.token", `is`(accessToken))
-        assertThat(system().displayAccessToken(accessTokens)).isNotEqualTo("")
+        assertThat(system().accessToken(accessTokens).display()).isNotEqualTo("")
     }
 
     @AfterEach

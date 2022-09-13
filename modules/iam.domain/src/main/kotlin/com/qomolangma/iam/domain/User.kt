@@ -54,14 +54,12 @@ class User : Context {
             .append("userAccountName", owner.userAccount().name())
             .append("userName", owner.user().name())
             .append("tenantName", owner.tenant().name())
-            .append("accessToken", displayAccessToken(accessTokens))
+            .append("accessToken", accessToken(accessTokens).display())
             .append("authorities", grantedAuthorities.asSet())
             .build()
     }
 
-    fun displayAccessToken(accessTokens: AccessTokens): String {
-        return accessTokens.getById(id()).get().displayToken()
-    }
+    fun accessToken(accessTokens: AccessTokens) = accessTokens.getById(id()).get()
 
     interface AccessTokens {
         operator fun get(token: String): Optional<AccessToken>
