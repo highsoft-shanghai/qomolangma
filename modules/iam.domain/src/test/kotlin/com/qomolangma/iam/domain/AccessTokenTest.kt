@@ -1,6 +1,7 @@
 package com.qomolangma.iam.domain
 
 import com.qomolangma.frameworks.context.core.SimpleUserContext
+import com.qomolangma.frameworks.domain.core.Id
 import com.qomolangma.frameworks.domain.core.Identity
 import com.qomolangma.frameworks.security.core.GrantedAuthorities
 import com.qomolangma.frameworks.security.core.SimpleSecurityContext
@@ -41,7 +42,11 @@ internal class AccessTokenTest {
     fun should_be_able_to_provide_user_context() {
         assertThat(create(owner!!, authorities!!).userContext()).isEqualTo(
             SimpleUserContext(
-                id, NEIL_IN_QOMOLANGMA, NEIL, QOMOLANGMA, Base64.getEncoder().encodeToString("Qomolangma".encodeToByteArray())
+                Id("fixed-id"),
+                NEIL_IN_QOMOLANGMA,
+                NEIL,
+                QOMOLANGMA,
+                Base64.getEncoder().encodeToString("Qomolangma".encodeToByteArray())
             )
         )
     }
