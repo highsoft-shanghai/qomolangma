@@ -112,7 +112,8 @@ class User : Context {
                 Identity.create(payload["tenantName", asString()]),
                 payload["password", asString()]
             )
-            return User(owner, GrantedAuthorities.of(payload["grantedAuthorities", asString().array()].toSet()))
+            val grantedAuthorities = GrantedAuthorities.of(payload["grantedAuthorities", asString().array()].toSet())
+            return User(owner, grantedAuthorities)
         }
 
         @JvmStatic
