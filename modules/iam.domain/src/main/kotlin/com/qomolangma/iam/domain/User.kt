@@ -49,7 +49,7 @@ class User : Context {
         return SimpleSecurityContext(id(), grantedAuthorities())
     }
 
-    fun content(accessTokens: AccessTokens): Payload {
+    fun contentWithAccessTokenDisplay(accessTokens: AccessTokens): Payload {
         return append("id", id())
             .append("userAccountName", owner.userAccount().name())
             .append("userName", owner.user().name())
