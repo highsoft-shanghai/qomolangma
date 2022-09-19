@@ -15,6 +15,10 @@ public abstract class FieldType<T> {
         return new ArrayFieldType<>(this);
     }
 
+    public SetFieldType<T> set() {
+        return new SetFieldType<>(this);
+    }
+
     public StreamFieldType<T> stream() {
         return new StreamFieldType<>(this);
     }

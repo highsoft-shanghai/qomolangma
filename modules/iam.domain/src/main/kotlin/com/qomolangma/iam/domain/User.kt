@@ -59,6 +59,19 @@ class User : Context {
             .build()
     }
 
+    fun contentForUsers(): Payload {
+        return append("id", id())
+            .append("owner.userAccount.id", owner.userAccount().id())
+            .append("owner.userAccount.name", owner.userAccount().name())
+            .append("owner.user.id", owner.user().id())
+            .append("owner.user.name", owner.user().name())
+            .append("owner.tenant.id", owner.tenant().id())
+            .append("owner.tenant.name", owner.tenant().name())
+            .append("owner.password", owner.password())
+            .append("authorities", grantedAuthorities.asSet())
+            .build()
+    }
+
     fun accessToken(accessTokens: AccessTokens) = accessTokens.getById(id()).get()
 
     interface AccessTokens {
