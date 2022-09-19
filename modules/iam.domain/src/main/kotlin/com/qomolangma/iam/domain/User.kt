@@ -69,7 +69,7 @@ class User : Context {
         fun clear()
     }
 
-    private fun register(confirmedPassword: String, users: Users) {
+    fun register(confirmedPassword: String, users: Users) {
         owner.confirmPassword(confirmedPassword)
         owner.confirmUserName(users)
         users.add(this)
@@ -92,15 +92,14 @@ class User : Context {
         }
 
         @JvmStatic
-        fun register(payload: Payload, users: Users) {
+        fun byPayload(payload: Payload): User {
             val owner = UserIdentityOwner.create(
                 Identity.create(payload["userAccountName", asString()]),
                 Identity.create(payload["userName", asString()]),
                 Identity.create(payload["tenantName", asString()]),
                 payload["password", asString()]
             )
-            val user = User(owner, GrantedAuthorities.of(payload["grantedAuthorities", asString().array()].toSet()))
-            user.register(payload["confirmedPassword", asString()], users)
+            return User(owner, GrantedAuthorities.of(payload["grantedAuthorities", asString().array()].toSet()))
         }
 
         @JvmStatic
