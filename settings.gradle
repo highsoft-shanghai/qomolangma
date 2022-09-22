@@ -4,7 +4,6 @@ rootProject.name = "$project_name"
 
 includeModules("modules")
 includeModules("frameworks")
-includeModules("frontends")
 
 private includeModules(String packageName) {
     file(packageName).eachDir {
